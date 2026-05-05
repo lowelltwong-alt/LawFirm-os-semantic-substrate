@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/citation-target.schema.json",
+  "title": "Citation Target",
+  "description": "Resolved target for a citation mention. Citation targets preserve the normalized reference identity so grounded answers and reviewers can trace where a citation points without reinterpreting the canonical source structure.",
+  "type": "object",
+  "required": [
+    "citation_target_id",
+    "schema_type",
+    "schema_version",
+    "target_kind",
+    "normalized_citation",
+    "display_text"
+  ],
+  "properties": {
+    "citation_target_id": {
+      "type": "string",
+      "pattern": "^CTGT-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "citation-target"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "target_kind": {
+      "type": "string",
+      "enum": [
+        "internal-document-version",
+        "internal-component",
+        "external-authority",
+        "external-url"
+      ]
+    },
+    "normalized_citation": {
+      "type": "string",
+      "minLength": 3
+    },
+    "display_text": {
+      "type": "string",
+      "minLength": 3
+    },
+    "target_ref": {
+      "type": "object",
+      "properties": {
+        "document_id": {
+          "type": "string",
+          "pattern": "^DOC-[0-9]{6}$"
+        },
+        "document_version_id": {
+          "type": "string",
+          "pattern": "^DV-[0-9]{6}$"
+        },
+        "component_id": {
+          "type": "string",
+          "pattern": "^CMP-[0-9]{6}$"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "resolvable": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/access-decision.schema.json",
+  "title": "Access Decision",
+  "description": "Active v1 policy-and-governance contract for allow or deny decisions used by retrieval and answer rendering. Vendor identity and classification signals may inform the decision, but FMG policy posture remains the authority.",
+  "type": "object",
+  "required": [
+    "access_decision_id",
+    "schema_type",
+    "schema_version",
+    "subject_ref",
+    "target_ref",
+    "action",
+    "environment",
+    "decision",
+    "policy_basis",
+    "enforcement_controls"
+  ],
+  "properties": {
+    "access_decision_id": {
+      "type": "string",
+      "pattern": "^AD-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "access-decision"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "subject_ref": {
+      "type": "object",
+      "required": [
+        "subject_id",
+        "identity_profile_ref"
+      ],
+      "properties": {
+        "subject_id": {
+          "type": "string",
+          "minLength": 2
+        },
+        "identity_profile_ref": {
+          "type": "string",
+          "minLength": 2
+        },
+        "role_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "group_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "service_principal_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "target_ref": {
+      "type": "object",
+      "required": [
+        "target_type",
+        "target_id"
+      ],
+      "properties": {
+        "target_type": {
+          "type": "string",
+          "enum": [
+            "retrieval-request",
+            "document",
+            "document-version",
+            "chunk",
+            "retrieval-response",
+            "answer-event"
+          ]
+        },
+        "target_id": {
+          "type": "string",
+          "minLength": 2
+        },
+        "matter_scope_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "client_scope_id": {
+          "type": "string"
+        },
+        "confidentiality_class": {
+          "type": "string"
+        },
+        "source_system": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "retrieve",
+        "generate_answer",
+        "view_source",
+        "export"
+      ]
+    },
+    "environment": {
+      "type": "object",
+      "required": [
+        "purpose_of_use"
+      ],
+      "properties": {
+        "purpose_of_use": {
+          "type": "string",
+          "minLength": 3
+        },
+        "request_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "network_zone": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "deny"
+      ]
+    },
+    "reason_code": {
+      "type": "string",
+      "enum": [
+        "allowed_policy_match",
+        "denied_no_matter_scope",
+        "denied_client_restriction",
+        "denied_confidentiality_class",
+        "denied_quarantine_only",
+        "denied_missing_review_posture",
+        "denied_default_posture"
+      ]
+    },
+    "policy_basis": {
+      "type": "object",
+      "required": [
+        "deny_by_default",
+        "privilege_aware_retrieval",
+        "source_policy_refs"
+      ],
+      "properties": {
+        "deny_by_default": {
+          "type": "boolean",
+          "const": true
+        },
+        "privilege_aware_retrieval": {
+          "type": "boolean",
+          "const": true
+        },
+        "source_policy_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "matter_status": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "enforcement_controls": {
+      "type": "object",
+      "required": [
+        "apply_before_retrieval",
+        "apply_before_response_rendering"
+      ],
+      "properties": {
+        "apply_before_retrieval": {
+          "type": "boolean",
+          "const": true
+        },
+        "apply_before_response_rendering": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/chunk-set.schema.json",
+  "title": "Chunk Set",
+  "description": "Derived chunk-set artifact for a document version. Chunk sets must be generated from canonical components and span selectors, with structure-aware chunking preserved as the canonical default.",
+  "type": "object",
+  "required": [
+    "chunk_set_id",
+    "schema_type",
+    "schema_version",
+    "document_version_id",
+    "canonical_text_id",
+    "status",
+    "chunking_policy",
+    "chunk_ids",
+    "chunking_activity_id",
+    "boundary_controls"
+  ],
+  "properties": {
+    "chunk_set_id": {
+      "type": "string",
+      "pattern": "^CS-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "chunk-set"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "document_version_id": {
+      "type": "string",
+      "pattern": "^DV-[0-9]{6}$"
+    },
+    "canonical_text_id": {
+      "type": "string",
+      "pattern": "^CT-[0-9]{6}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "superseded",
+        "retired"
+      ]
+    },
+    "chunking_policy": {
+      "type": "object",
+      "required": [
+        "applied_strategy",
+        "canonical_default_strategy",
+        "boundary_source",
+        "parent_context_preserved"
+      ],
+      "properties": {
+        "applied_strategy": {
+          "type": "string",
+          "enum": [
+            "structure_aware",
+            "semantic_experimental"
+          ]
+        },
+        "canonical_default_strategy": {
+          "type": "string",
+          "const": "structure_aware"
+        },
+        "boundary_source": {
+          "type": "string",
+          "const": "canonical_components_and_span_selectors"
+        },
+        "parent_context_preserved": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "chunk_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^CHK-[0-9]{6}$"
+      }
+    },
+    "chunking_activity_id": {
+      "type": "string",
+      "minLength": 2
+    },
+    "boundary_controls": {
+      "type": "object",
+      "required": [
+        "may_redefine_canonical_boundaries",
+        "rebuild_requires_reparse"
+      ],
+      "properties": {
+        "may_redefine_canonical_boundaries": {
+          "type": "boolean",
+          "const": false
+        },
+        "rebuild_requires_reparse": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

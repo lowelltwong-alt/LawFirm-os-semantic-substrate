@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/embedding-set.schema.json",
+  "title": "Embedding Set",
+  "description": "Derived embedding package for a chunk set. Embedding sets are rebuildable derivatives of canonical chunk structure and may not redefine source document boundaries.",
+  "type": "object",
+  "required": [
+    "embedding_set_id",
+    "schema_type",
+    "schema_version",
+    "status",
+    "source_chunk_set_id",
+    "embedding_model",
+    "model_version",
+    "vector_dimensions",
+    "embedding_activity_id",
+    "created_at",
+    "boundary_controls"
+  ],
+  "properties": {
+    "embedding_set_id": {
+      "type": "string",
+      "pattern": "^ES-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "embedding-set"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "superseded",
+        "retired"
+      ]
+    },
+    "source_chunk_set_id": {
+      "type": "string",
+      "pattern": "^CS-[0-9]{6}$"
+    },
+    "embedding_model": {
+      "type": "string",
+      "minLength": 2
+    },
+    "model_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "vector_dimensions": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "embedding_activity_id": {
+      "type": "string",
+      "minLength": 2
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "boundary_controls": {
+      "type": "object",
+      "required": [
+        "derived_from_chunk_set",
+        "may_redefine_canonical_boundaries"
+      ],
+      "properties": {
+        "derived_from_chunk_set": {
+          "type": "boolean",
+          "const": true
+        },
+        "may_redefine_canonical_boundaries": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

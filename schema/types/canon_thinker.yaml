@@ -1,0 +1,14 @@
+kind: type
+id: canon_thinker
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: Thinker or author treated as a governed comparison subject.
+required_fields:
+  - thinker_name
+optional_fields:
+  - tradition_label
+  - era_label
+  - primary_language
+  - canonical_work_refs

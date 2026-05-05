@@ -1,0 +1,23 @@
+repo_role: semantic_control_plane_and_innovation_os_contract_repository
+canonical_rule: >
+  Law Firm contracts are canonical. Registries, doctrine, and validated operational
+  files outrank adapter settings, prompt conventions, and model-specific tool
+  surfaces.
+vendor_rule: >
+  Vendor tools and hosted assistants are adapters. They may consume Law Firm rules,
+  but they may not redefine canonical semantics or promotion requirements.
+runtime_rule: >
+  Runtime artifacts are derived unless explicitly promoted through governed
+  paths. Runtime traces, embeddings, indexes, summaries, and tool outputs do
+  not become canonical truth by default.
+mutation_rule: >
+  Canonical changes require governed review and promotion decisions. AI systems
+  may propose, summarize, route, and validate, but may not directly mutate
+  canon from runtime observations.
+evidence_rule: >
+  Missing evidence must be reported as missing evidence. Unsupported claims,
+  uncertain validation outcomes, and blocked profiles must remain explicitly
+  blocked or unresolved until real evidence exists.
+release_hygiene_rule: >
+  Release packaging must fail closed on source maps, local settings, traces,
+  and other non-authoritative local artifacts.

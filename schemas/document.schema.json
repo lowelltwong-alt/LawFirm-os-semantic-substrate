@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/document.schema.json",
+  "title": "Document",
+  "description": "Stable canonical document identity. A document is the enduring source object that anchors versioned source artifacts and canonical text, without collapsing those derived details into the document identity itself.",
+  "type": "object",
+  "required": [
+    "document_id",
+    "schema_type",
+    "schema_version",
+    "title",
+    "document_type",
+    "jurisdiction",
+    "current_version_id",
+    "canonical_status",
+    "access_policy_ref"
+  ],
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "pattern": "^DOC-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "document"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "document_type": {
+      "type": "string",
+      "enum": [
+        "billing-guideline",
+        "outside-counsel-guideline",
+        "engagement-letter",
+        "standard-operating-procedure",
+        "policy-document",
+        "brief",
+        "contract",
+        "court-filing",
+        "other"
+      ]
+    },
+    "jurisdiction": {
+      "type": "string",
+      "minLength": 2
+    },
+    "matter_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_systems": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "current_version_id": {
+      "type": "string",
+      "pattern": "^DV-[0-9]{6}$"
+    },
+    "canonical_status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "archived",
+        "retired"
+      ]
+    },
+    "access_policy_ref": {
+      "type": "string",
+      "minLength": 3
+    },
+    "steward_role": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

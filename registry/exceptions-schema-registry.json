@@ -1,0 +1,49 @@
+{
+  "registry_scope": "raw_runtime_learning",
+  "authoritative_for": [
+    "exception-event",
+    "pressure-vector"
+  ],
+  "schemas": [
+    {
+      "schema_id": "exception-event-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/exception-event.schema.json",
+      "applies_to": [
+        "exception-event"
+      ],
+      "layer": "runtime_evidence",
+      "owner": "runtime-learning",
+      "mutation_boundary": "no_direct_canonical_mutation"
+    },
+    {
+      "schema_id": "pressure-vector-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/pressure-vector.schema.json",
+      "applies_to": [
+        "pressure-vector"
+      ],
+      "layer": "runtime_evidence",
+      "owner": "runtime-learning",
+      "mutation_boundary": "no_direct_canonical_mutation"
+    }
+  ],
+  "selection_rules": {
+    "status_order": [
+      "active",
+      "draft",
+      "planned",
+      "deprecated"
+    ],
+    "require_schema_reference": true,
+    "fail_on_missing_schema": true,
+    "require_route_registry_match_for_exception_events": true
+  },
+  "notes": [
+    "This registry covers only raw exception intake and pressure aggregation.",
+    "Adaptation proposals and promotion decisions belong to the broader governed-learning and primary schema surfaces rather than the raw intake registry.",
+    "When resolving exception-event or pressure-vector contracts, this registry outranks the general schema registry."
+  ]
+}

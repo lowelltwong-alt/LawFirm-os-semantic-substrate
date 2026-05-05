@@ -1,0 +1,124 @@
+schema_set_id: enterprise_doctrinal_comparison_substrate
+version: 0.1.0
+status: draft
+phase: 1
+owner: Lowell T. Wong
+description: >
+  Machine-readable Phase 1 substrate for enterprise doctrinal comparison,
+  aligned to the current FMG fractal ontology shell and prepared for later
+  JSON Schema, SHACL, and LinkML hardening.
+compatibility:
+  source_of_truth: registry/source-of-truth.json
+  design_authority: registry/design-authority.json
+  canonical_address: governance/CANONICAL_ADDRESS_CONSTITUTION.md
+  claim_contract: governance/CLAIM_SCHEMA.md
+  metadata_standard: standards/metadata-standard.md
+  repo_schema_layer: schemas/
+  trust_zone_strategy: reuse current canonical trust-zone vocabulary
+  inference_policy: reuse asserted, derived, and hypothesis separation
+  shell_policy: preserve stable shell and avoid parallel ontology grammar
+directories:
+  interfaces: schema/interfaces
+  types: schema/types
+  enums: schema/enums
+  contracts: schema/contracts
+  docs: docs/roadmap
+phase_1_scope:
+  - define reusable interfaces
+  - define doctrinal comparison type seeds
+  - define controlled vocab seeds compatible with current governance
+  - prepare later schema hardening without changing current runtime schemas
+phase_2_targets:
+  - add JSON Schema and LinkML mappings
+  - add SHACL constraints for graph-facing types
+  - add registry integration and canonical ID prefix policy
+  - add canonical examples aligned to current address shell
+  - add validation hooks and compatibility checks
+phase_3_targets:
+  - add first-class assertion and provenance object layers
+  - add graph partition governance and validation
+  - add quarantine and boundary separation scaffolding
+phase_4_targets:
+  - add governed alignment assessment objects
+  - add rubric enums for scope, translation burden, and evidence sufficiency
+  - add comparison assessment validation and workflow checks
+  - keep comparison judgments machine-readable without false numeric precision
+phase_5_targets:
+  - add governed action, action-log, object-set, and pilot-slice types
+  - add reviewer-role and operational lifecycle scaffolding
+  - add bounded pilot slice seed data and workflow checks
+  - make doctrinal substrate operational without broad doctrinal population
+phase_6_targets:
+  - add semantic graph execution contracts for JSON-LD and named-graph packaging
+  - add SHACL and semantic validation scaffolding without changing canonical gates
+  - add property-graph projection contracts for governed downstream exports
+  - add retrieval feedback and proposal-promotion sidecars for bounded iteration
+  - add intake-conflicts-ai pilot artifacts proving semantic stack composition
+files:
+  - schema/interfaces/node.yaml
+  - schema/interfaces/assertion.yaml
+  - schema/interfaces/evidence_bearing.yaml
+  - schema/interfaces/comparable_position.yaml
+  - schema/interfaces/citable_span.yaml
+  - schema/types/canon_thinker.yaml
+  - schema/types/doctrine.yaml
+  - schema/types/doctrine_position.yaml
+  - schema/types/concept.yaml
+  - schema/types/passage_anchor.yaml
+  - schema/types/lexeme.yaml
+  - schema/types/manuscript_witness.yaml
+  - schema/types/translation_witness.yaml
+  - schema/types/evidence_bundle.yaml
+  - schema/types/comparison_object.yaml
+  - schema/types/relationship_object.yaml
+  - schema/types/object_set.yaml
+  - schema/types/graph_object.yaml
+  - schema/enums/relation_type.yaml
+  - schema/enums/alignment_degree.yaml
+  - schema/enums/alignment_scope.yaml
+  - schema/enums/confidence_level.yaml
+  - schema/enums/trust_zone.yaml
+  - schema/enums/lifecycle_status.yaml
+  - schema/enums/evidence_type.yaml
+  - schema/enums/evidence_sufficiency.yaml
+  - schema/enums/action_type.yaml
+  - schema/enums/object_set_kind.yaml
+  - schema/enums/reviewer_role.yaml
+  - schema/enums/pilot_slice_status.yaml
+  - schema/enums/translation_burden.yaml
+  - schema/enums/review_status.yaml
+  - schema/enums/assertion_kind.yaml
+  - schema/enums/graph_partition.yaml
+  - schema/enums/graph_manifest_status.yaml
+  - schema/enums/projection_status.yaml
+  - schema/enums/retrieval_feedback_status.yaml
+  - schema/enums/proposal_promotion_status.yaml
+  - schema/contracts/scale_invariant_contract.yaml
+  - schema/enums/hypothesis_state.yaml
+  - schema/enums/experiment_state.yaml
+  - schema/enums/learning_event_state.yaml
+  - schema/enums/allocation_decision_state.yaml
+  - schema/types/assertion_object.yaml
+  - schema/types/provenance_activity.yaml
+  - schema/types/alignment_assessment.yaml
+  - schema/types/action_definition.yaml
+  - schema/types/action_log_entry.yaml
+  - schema/types/object_set_definition.yaml
+  - schema/types/pilot_slice.yaml
+  - schema/types/capability_twin.yaml
+  - schema/types/jsonld_context.yaml
+  - schema/types/named_graph_manifest.yaml
+  - schema/types/property_graph_projection.yaml
+  - schema/types/retrieval_feedback.yaml
+  - schema/types/proposal_promotion.yaml
+  - schema/types/hypothesis.yaml
+  - schema/types/experiment.yaml
+  - schema/types/learning_event.yaml
+  - schema/types/allocation_decision.yaml
+  - schema/types/learning_transition_policy.yaml
+  - docs/roadmap/enterprise-doctrinal-comparison-phases.md
+  - docs/roadmap/phase-2-validation-layer.md
+  - docs/roadmap/phase-3-assertion-provenance-trust-layer.md
+  - docs/roadmap/phase-4-alignment-rubric-layer.md
+  - docs/roadmap/phase-5-operational-governance-and-pilot-slice.md
+  - docs/roadmap/phase-6-semantic-graph-stack.md

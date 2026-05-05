@@ -1,0 +1,12 @@
+kind: enum
+id: evidence_sufficiency
+version: 0.1.0
+status: draft
+description: >
+  Sufficiency posture for the evidence base supporting a governed comparison judgment.
+values:
+  - direct_primary_text
+  - strong_curated_secondary
+  - mixed_support
+  - indirect_inference
+  - thin_support

@@ -1,0 +1,19 @@
+id: AAS-000001
+title: Example alignment assessment
+object_type: alignment_assessment
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+comparison_object_id: CMP-000001
+relation_type: aligns_with
+alignment_degree: partially_aligned
+alignment_scope: doctrinal_core
+translation_burden: moderate
+evidence_sufficiency: mixed_support
+confidence_level: medium
+review_status: unchecked
+scope_note: Scope limited to doctrinal core rather than broader institutional implications.
+translation_note: Some conceptual translation is needed before comparison can be used responsibly.
+evidence_note: Evidence base is mixed and should be strengthened before promotion.
+source_refs:
+  - SRC-000001

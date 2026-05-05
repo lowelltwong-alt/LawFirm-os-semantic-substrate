@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/adaptation-proposal.schema.json",
+  "title": "Adaptation Proposal",
+  "type": "object",
+  "required": [
+    "proposal_id",
+    "schema_type",
+    "schema_version",
+    "status",
+    "proposal_class",
+    "summary",
+    "source_exception_ids",
+    "proposed_change",
+    "review",
+    "canonical_mutation_boundary"
+  ],
+  "properties": {
+    "proposal_id": {
+      "type": "string",
+      "pattern": "^AP-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "adaptation-proposal"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "under_review",
+        "approved",
+        "rejected",
+        "implemented"
+      ]
+    },
+    "proposal_class": {
+      "type": "string",
+      "enum": [
+        "retrieval_tuning",
+        "workflow_redesign",
+        "governance_policy_update",
+        "taxonomy_adjustment",
+        "ontology_extension"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 20
+    },
+    "source_exception_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^EXC-[0-9]{6}$"
+      }
+    },
+    "source_pressure_vector_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^PV-[0-9]{6}$"
+      }
+    },
+    "proposed_change": {
+      "type": "object",
+      "required": [
+        "target_layer",
+        "target_ref",
+        "change_type",
+        "rationale"
+      ],
+      "properties": {
+        "target_layer": {
+          "type": "string",
+          "enum": [
+            "retrieval",
+            "workflow",
+            "governance",
+            "taxonomy",
+            "ontology",
+            "schema"
+          ]
+        },
+        "target_ref": {
+          "type": "string"
+        },
+        "change_type": {
+          "type": "string",
+          "enum": [
+            "add",
+            "modify",
+            "deprecate",
+            "promote_rule",
+            "adjust_weighting"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 20
+        },
+        "expected_effect": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "owner",
+        "review_required",
+        "approval_state"
+      ],
+      "properties": {
+        "owner": {
+          "type": "string"
+        },
+        "review_required": {
+          "type": "boolean"
+        },
+        "approval_state": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ]
+        },
+        "reviewer_roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ops_owner",
+              "knowledge_owner",
+              "security_reviewer",
+              "legal_risk_reviewer",
+              "billing_integrity_reviewer"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "canonical_mutation_boundary": {
+      "type": "object",
+      "required": [
+        "direct_mutation_allowed",
+        "promotion_decision_required"
+      ],
+      "properties": {
+        "direct_mutation_allowed": {
+          "type": "boolean",
+          "const": false
+        },
+        "promotion_decision_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "promotion_decision_id": {
+          "type": "string",
+          "pattern": "^PD-[0-9]{6}$"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

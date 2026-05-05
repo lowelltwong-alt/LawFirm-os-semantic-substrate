@@ -1,0 +1,11 @@
+kind: enum
+id: proposal_promotion_status
+version: 0.1.0
+status: draft
+description: Promotion posture for governed semantic proposals.
+values:
+  - proposed
+  - under_review
+  - approved_for_pilot
+  - promoted
+  - rejected

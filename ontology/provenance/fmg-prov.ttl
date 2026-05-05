@@ -1,0 +1,143 @@
+@prefix doc: <https://fmg.example/ontology/documents#> .
+@prefix fmg: <https://fmg.example/ontology/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix provm: <https://fmg.example/ontology/provenance#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://fmg.example/ontology/provenance> a owl:Ontology ;
+  rdfs:label "FMG Provenance Module" ;
+  rdfs:comment "Canonical provenance activities and generation links for document normalization, retrieval, runtime learning, validation review, and promotion workflows." ;
+  owl:versionInfo "2026-04-phase34-reconciled" .
+
+provm:ParseActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Parse Activity" ;
+  rdfs:comment "Activity that parses an incoming source artifact into a governed document version." .
+
+provm:CanonicalizationActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Canonicalization Activity" ;
+  rdfs:comment "Activity that normalizes text into canonical document structure." .
+
+provm:ChunkingActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Chunking Activity" ;
+  rdfs:comment "Activity that segments canonical text into chunk sets for retrieval." .
+
+provm:EmbeddingActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Embedding Activity" ;
+  rdfs:comment "Activity that materializes embedding sets from chunked text." .
+
+provm:IndexBuildActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Index Build Activity" ;
+  rdfs:comment "Activity that produces a retrievable index build from an embedding set." .
+
+provm:RetrievalActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Retrieval Activity" ;
+  rdfs:comment "Activity that executes a retrieval request over indexed evidence." .
+
+provm:AnswerGenerationActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Answer Generation Activity" ;
+  rdfs:comment "Activity that produces answer events and supporting answer evidence." .
+
+provm:ExceptionAggregationActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Exception Aggregation Activity" ;
+  rdfs:comment "Activity that derives pressure vectors from raw exception events." .
+
+provm:OpportunityReviewActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Opportunity Review Activity" ;
+  rdfs:comment "Activity that reviews pressure and creates or updates opportunity objects." .
+
+provm:GateReviewActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Gate Review Activity" ;
+  rdfs:comment "Activity that records validation gate review decisions for operating objects." .
+
+provm:PromotionActivity a owl:Class ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:label "Promotion Activity" ;
+  rdfs:comment "Activity that records a promotion decision and governs canonical mutation." .
+
+provm:usedArtifact a owl:ObjectProperty ;
+  rdfs:domain prov:Activity ;
+  rdfs:range fmg:Artifact ;
+  rdfs:label "used artifact" ;
+  rdfs:comment "Associates a provenance activity with the governed artifact it consumed." .
+
+provm:generatedDocumentVersion a owl:ObjectProperty ;
+  rdfs:domain provm:ParseActivity ;
+  rdfs:range doc:DocumentVersion ;
+  rdfs:label "generated document version" .
+
+provm:generatedCanonicalText a owl:ObjectProperty ;
+  rdfs:domain provm:CanonicalizationActivity ;
+  rdfs:range doc:CanonicalText ;
+  rdfs:label "generated canonical text" .
+
+provm:generatedChunkSet a owl:ObjectProperty ;
+  rdfs:domain provm:ChunkingActivity ;
+  rdfs:range doc:ChunkSet ;
+  rdfs:label "generated chunk set" .
+
+provm:generatedEmbeddingSet a owl:ObjectProperty ;
+  rdfs:domain provm:EmbeddingActivity ;
+  rdfs:range doc:EmbeddingSet ;
+  rdfs:label "generated embedding set" .
+
+provm:generatedIndexBuild a owl:ObjectProperty ;
+  rdfs:domain provm:IndexBuildActivity ;
+  rdfs:range doc:IndexBuild ;
+  rdfs:label "generated index build" .
+
+provm:generatedAnswerEvent a owl:ObjectProperty ;
+  rdfs:domain provm:AnswerGenerationActivity ;
+  rdfs:range doc:AnswerEvent ;
+  rdfs:label "generated answer event" .
+
+provm:generatedPressureVector a owl:ObjectProperty ;
+  rdfs:domain provm:ExceptionAggregationActivity ;
+  rdfs:range fmg:PressureVector ;
+  rdfs:label "generated pressure vector" .
+
+provm:generatedOpportunity a owl:ObjectProperty ;
+  rdfs:domain provm:OpportunityReviewActivity ;
+  rdfs:range fmg:Opportunity ;
+  rdfs:label "generated opportunity" .
+
+provm:reviewedValidationGate a owl:ObjectProperty ;
+  rdfs:domain provm:GateReviewActivity ;
+  rdfs:range fmg:ValidationGateRecord ;
+  rdfs:label "reviewed validation gate" .
+
+provm:reviewedPromotionDecision a owl:ObjectProperty ;
+  rdfs:domain provm:PromotionActivity ;
+  rdfs:range fmg:PromotionDecision ;
+  rdfs:label "reviewed promotion decision" .
+
+provm:activityVersion a owl:DatatypeProperty ;
+  rdfs:domain prov:Activity ;
+  rdfs:range xsd:string ;
+  rdfs:label "activity version" .
+
+provm:activityProfile a owl:DatatypeProperty ;
+  rdfs:domain prov:Activity ;
+  rdfs:range xsd:string ;
+  rdfs:label "activity profile" .
+
+provm:runIdentifier a owl:DatatypeProperty ;
+  rdfs:domain prov:Activity ;
+  rdfs:range xsd:string ;
+  rdfs:label "run identifier" .
+
+provm:performedByRole a owl:DatatypeProperty ;
+  rdfs:domain prov:Activity ;
+  rdfs:range xsd:string ;
+  rdfs:label "performed by role" .

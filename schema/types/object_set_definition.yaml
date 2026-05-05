@@ -1,0 +1,18 @@
+kind: type
+id: object_set_definition
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: Governed operational definition for an object set.
+required_fields:
+  - display_title
+  - object_set_kind
+  - scope_note
+  - required_reviewer_role
+optional_fields:
+  - member_ids
+  - query_logic
+compatibility_notes:
+  - Object sets should remain bounded and machine-readable.
+  - Query-defined sets should not be confused with static manifests.

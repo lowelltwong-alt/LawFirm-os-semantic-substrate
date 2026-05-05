@@ -1,0 +1,26 @@
+id: PRP-TEMPLATE
+title: Intake conflicts AI proposal promotion
+object_type: proposal_promotion
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+display_title: intake_conflicts_ai_proposal_promotion
+proposal_promotion_status: proposed
+source_feedback_ref: RFB-000001
+proposed_change_summary: >
+  Promote a reviewed intake-conflicts retrieval bundle into a bounded internal
+  pilot package backed by the semantic graph manifest and projection contracts.
+approval_requirements:
+  - semantic graph manifest reviewed
+  - projection contract reviewed
+  - retrieval feedback triaged by governance reviewer
+target_manifest_refs:
+  - NGM-000001
+promotion_window: before_internal_pilot_release
+decision_notes:
+  - Do not promote quarantine partition material.
+alignment_assessment:
+  alignment_degree: partially_aligned
+  evidence_sufficiency: mixed_support
+  alignment_assessment_ref: AAS-000001
+  assessment_summary: Pending strengthened evidence before full promotion.

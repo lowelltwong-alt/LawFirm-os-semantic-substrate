@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/component.schema.json",
+  "title": "Component",
+  "description": "Canonical structural component of normalized text, such as a section, clause, paragraph, table, or footnote. Components define canonical document boundaries that retrieval artifacts may reference but may not redefine.",
+  "type": "object",
+  "required": [
+    "component_id",
+    "schema_type",
+    "schema_version",
+    "document_version_id",
+    "canonical_text_id",
+    "component_type",
+    "component_order",
+    "component_path",
+    "span_selector_ids",
+    "boundary_controls"
+  ],
+  "properties": {
+    "component_id": {
+      "type": "string",
+      "pattern": "^CMP-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "component"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "document_version_id": {
+      "type": "string",
+      "pattern": "^DV-[0-9]{6}$"
+    },
+    "canonical_text_id": {
+      "type": "string",
+      "pattern": "^CT-[0-9]{6}$"
+    },
+    "component_type": {
+      "type": "string",
+      "enum": [
+        "title",
+        "section",
+        "clause",
+        "paragraph",
+        "table",
+        "footnote",
+        "exhibit",
+        "appendix",
+        "list_item",
+        "quote",
+        "signature_block"
+      ]
+    },
+    "component_order": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "component_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "heading": {
+      "type": "string"
+    },
+    "parent_component_id": {
+      "type": "string",
+      "pattern": "^CMP-[0-9]{6}$"
+    },
+    "child_component_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^CMP-[0-9]{6}$"
+      }
+    },
+    "span_selector_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^SPAN-[0-9]{6}$"
+      }
+    },
+    "citation_mention_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^CMN-[0-9]{6}$"
+      }
+    },
+    "normalized_text_hash": {
+      "type": "string"
+    },
+    "boundary_controls": {
+      "type": "object",
+      "required": [
+        "is_canonical_boundary",
+        "retrieval_may_redefine_boundary"
+      ],
+      "properties": {
+        "is_canonical_boundary": {
+          "type": "boolean",
+          "const": true
+        },
+        "retrieval_may_redefine_boundary": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

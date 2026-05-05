@@ -1,0 +1,20 @@
+id: ALG-000003
+title: Authority conflict promotion decisions
+object_type: action_log_entry
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+action_type: promote_status
+actor: governance_review_board
+timestamp: 2026-04-06T11:10:00Z
+touched_object_ids:
+  - PRP-000002
+  - PRP-000003
+summary: >
+  Recorded accepted and rejected promotion outcomes for authority conflict
+  exception-driven proposals.
+parameters:
+  source_feedback_ref: RFB-000002
+  accepted_proposal_ref: PRP-000002
+  rejected_proposal_ref: PRP-000003
+  inferred_transition_state: promoted_baseline_change

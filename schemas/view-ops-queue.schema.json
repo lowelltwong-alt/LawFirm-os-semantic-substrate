@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/view-ops-queue.schema.json",
+  "title": "Ops Queue View",
+  "type": "object",
+  "required": ["queue_id", "items"],
+  "properties": {
+    "queue_id": {"type": "string"},
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item_id", "owner", "priority"],
+        "properties": {
+          "item_id": {"type": "string"},
+          "owner": {"type": "string"},
+          "priority": {"type": "string"},
+          "sla": {"type": "string"},
+          "escalation_condition": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

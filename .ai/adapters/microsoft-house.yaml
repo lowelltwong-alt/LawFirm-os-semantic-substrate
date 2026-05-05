@@ -1,0 +1,14 @@
+adapter_id: microsoft-house
+adapter_class: enterprise_preferred_implementation
+semantic_authority: false
+implementation_preferred: true
+consumes:
+  - .ai/instruction-kernel.yaml
+  - .ai/model-provider-portability.yaml
+  - .ai/action-risk-tiers.yaml
+  - .ai/approval-matrix.yaml
+  - governance/MICROSOFT_HOUSE_ADAPTER_POLICY.md
+notes:
+  - Preferred for identity, DLP, audit, workflow, and hosted agent execution.
+  - Canonical semantics remain Law Firm governed and provider-agnostic and provider-agnostic.
+  - Blocked profiles stay blocked until source payload evidence exists.

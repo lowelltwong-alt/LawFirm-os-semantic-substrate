@@ -1,0 +1,34 @@
+name: Validate Talent Intelligence Extension
+
+on:
+  push:
+    paths:
+      - 'schemas/extensions/talent_intelligence/**'
+      - 'examples/talent_intelligence/**'
+      - 'governance/TALENT_INTELLIGENCE_VALIDATION_RULES.md'
+      - 'governance/TALENT_INTELLIGENCE_LAYER_PLACEMENT.md'
+      - 'scripts/validate_talent_intelligence_examples.py'
+      - '.github/workflows/validate-talent-intelligence-extension.yml'
+  pull_request:
+    paths:
+      - 'schemas/extensions/talent_intelligence/**'
+      - 'examples/talent_intelligence/**'
+      - 'governance/TALENT_INTELLIGENCE_VALIDATION_RULES.md'
+      - 'governance/TALENT_INTELLIGENCE_LAYER_PLACEMENT.md'
+      - 'scripts/validate_talent_intelligence_examples.py'
+      - '.github/workflows/validate-talent-intelligence-extension.yml'
+
+jobs:
+  validate-talent-intelligence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate talent intelligence examples
+        run: python scripts/validate_talent_intelligence_examples.py

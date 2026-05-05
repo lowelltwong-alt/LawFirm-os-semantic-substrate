@@ -1,0 +1,11 @@
+kind: enum
+id: pilot_slice_status
+version: 0.1.0
+status: draft
+description: Lifecycle status labels for bounded pilot doctrinal slices.
+values:
+  - planned
+  - in_build
+  - validation_ready
+  - publication_ready
+  - archived

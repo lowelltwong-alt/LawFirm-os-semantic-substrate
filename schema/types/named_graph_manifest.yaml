@@ -1,0 +1,37 @@
+kind: type
+id: named_graph_manifest
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Governed manifest describing semantic graph partitions, included artifacts,
+  and publication posture for a bounded graph package.
+required_fields:
+  - display_title
+  - graph_manifest_status
+  - default_partition
+  - included_partitions
+  - context_ref
+  - publication_profile
+optional_fields:
+  - included_object_refs
+  - included_assertion_refs
+  - cross_partition_relations
+  - trust_boundary_notes
+  - promotion_requirements
+  - capability_node_traces
+compatibility_notes:
+  - >
+    Every cross_partition_relations entry must include relation_type,
+    directionality, cardinality, temporal_validity, and
+    trust_evidence_carryover.
+  - >
+    relation_type should use normalized semantics from
+    schema/enums/relation_type.yaml (equivalence, composition, derivation,
+    temporal_succession, control_dependency) for cross-partition governance.
+
+  - >
+    capability_node_traces entries should map capability_node_id values to
+    claim_refs, artifact_refs, and governance_decision_refs so capability twins
+    can be traced through graph publication decisions.

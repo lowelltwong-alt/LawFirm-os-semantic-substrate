@@ -1,0 +1,9 @@
+id: LTP-NEG-0001
+object_type: learning_transition_policy
+policy_rows:
+  - action_type: not_a_real_action
+    min_confidence_level: very_high
+    min_evidence_sufficiency: mythic_source
+    allowed_states:
+      - proposed
+      - invalid_state

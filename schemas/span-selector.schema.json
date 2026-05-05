@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/span-selector.schema.json",
+  "title": "Span Selector",
+  "description": "Exact canonical span selector over normalized text. Span selectors are the stable grounding anchors used by components, citations, chunks, retrieval results, and answer evidence.",
+  "type": "object",
+  "required": [
+    "span_selector_id",
+    "schema_type",
+    "schema_version",
+    "document_version_id",
+    "canonical_text_id",
+    "selector_type",
+    "char_start",
+    "char_end",
+    "exact_text"
+  ],
+  "properties": {
+    "span_selector_id": {
+      "type": "string",
+      "pattern": "^SPAN-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "span-selector"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "document_version_id": {
+      "type": "string",
+      "pattern": "^DV-[0-9]{6}$"
+    },
+    "canonical_text_id": {
+      "type": "string",
+      "pattern": "^CT-[0-9]{6}$"
+    },
+    "component_id": {
+      "type": "string",
+      "pattern": "^CMP-[0-9]{6}$"
+    },
+    "selector_type": {
+      "type": "string",
+      "enum": [
+        "text-position",
+        "page-region",
+        "text-position-and-page-region"
+      ]
+    },
+    "char_start": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "char_end": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "exact_text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prefix": {
+      "type": "string"
+    },
+    "suffix": {
+      "type": "string"
+    },
+    "page_anchor": {
+      "type": "object",
+      "properties": {
+        "start_page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "polygon": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "normalized_text_hash": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,11 @@
+kind: enum
+id: hypothesis_state
+version: 0.1.0
+status: draft
+description: Lifecycle states for governed hypotheses in learning loops.
+values:
+  - proposed
+  - active
+  - validated
+  - invalidated
+  - archived

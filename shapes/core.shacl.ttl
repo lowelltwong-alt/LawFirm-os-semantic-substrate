@@ -1,0 +1,177 @@
+@prefix fmg: <https://fmg.example/ontology/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Core SHACL stays scoped to semantic-core and governed runtime classes.
+# Retrieval, access, and index migration contracts are validated by JSON Schema
+# and are intentionally not promoted into core SHACL in Phase 7.
+
+fmg:ClaimShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:Claim ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:authorityZone ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:trustLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+fmg:CapabilityShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:Capability ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:operatingLayer ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+fmg:EvidenceShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:Evidence ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:supportsClaim ;
+        sh:minCount 1 ;
+        sh:class fmg:Claim ;
+    ] .
+
+fmg:ExceptionEventShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:ExceptionEvent ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:authorityZone ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:trustLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:routeIdentifier ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:normalizesInto ;
+        sh:minCount 1 ;
+        sh:class fmg:PressureVector ;
+    ] ;
+    sh:property [
+        sh:path fmg:violatesExpectation ;
+        sh:class fmg:Expectation ;
+    ] .
+
+fmg:PressureVectorShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:PressureVector ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:derivedFromExceptionEvent ;
+        sh:minCount 1 ;
+        sh:class fmg:ExceptionEvent ;
+    ] ;
+    sh:property [
+        sh:path fmg:requiresPromotionDecision ;
+        sh:hasValue true ;
+    ] .
+
+fmg:OpportunityShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:Opportunity ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:derivedFromPressureVector ;
+        sh:minCount 1 ;
+        sh:class fmg:PressureVector ;
+    ] ;
+    sh:property [
+        sh:path fmg:lifecycleStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:requiresPromotionDecision ;
+        sh:hasValue true ;
+    ] .
+
+fmg:ValidationGateRecordShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:ValidationGateRecord ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:governsArtifact ;
+        sh:minCount 1 ;
+        sh:class fmg:Artifact ;
+    ] ;
+    sh:property [
+        sh:path fmg:lifecycleStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+fmg:PromotionDecisionShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:PromotionDecision ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:decisionOutcome ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:fromLifecycleState ;
+        sh:minCount 1 ;
+        sh:class fmg:LifecycleState ;
+    ] ;
+    sh:property [
+        sh:path fmg:toLifecycleState ;
+        sh:minCount 1 ;
+        sh:class fmg:LifecycleState ;
+    ] ;
+    sh:property [
+        sh:path fmg:promotesTo ;
+        sh:minCount 1 ;
+        sh:class fmg:Artifact ;
+    ] .

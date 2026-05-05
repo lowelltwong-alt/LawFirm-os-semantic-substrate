@@ -1,0 +1,20 @@
+kind: type
+id: provenance_activity
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Governed provenance activity object representing who or what generated,
+  reviewed, imported, or promoted an assertion.
+required_fields:
+  - activity_kind
+  - performed_by
+  - performed_at
+optional_fields:
+  - tool_name
+  - tool_version
+  - input_refs
+  - output_refs
+  - review_outcome
+  - notes

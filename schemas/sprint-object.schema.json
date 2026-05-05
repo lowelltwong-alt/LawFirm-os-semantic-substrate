@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/sprint-object.schema.json",
+  "title": "Sprint Object",
+  "description": "Draft v1 Innovation OS execution contract for a bounded sprint derived from a reviewed opportunity. Sprints can execute scoped work, but they cannot directly mutate canonical meaning.",
+  "type": "object",
+  "required": [
+    "sprint_id",
+    "schema_type",
+    "schema_version",
+    "title",
+    "status",
+    "source_refs",
+    "ownership",
+    "delivery_scope",
+    "success_hypothesis",
+    "guardrails",
+    "mutation_boundary"
+  ],
+  "properties": {
+    "sprint_id": {
+      "type": "string",
+      "pattern": "^SPR-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "sprint-object"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 8
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "active",
+        "blocked",
+        "completed",
+        "submitted_for_gate_review",
+        "cancelled"
+      ]
+    },
+    "source_refs": {
+      "type": "object",
+      "required": [
+        "opportunity_ids"
+      ],
+      "properties": {
+        "opportunity_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^OPP-[0-9]{6}$"
+          }
+        },
+        "pressure_vector_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^PV-[0-9]{6}$"
+          }
+        },
+        "validation_gate_record_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^VGR-[0-9]{6}$"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ownership": {
+      "type": "object",
+      "required": [
+        "primary_owner",
+        "ops_owner",
+        "review_required"
+      ],
+      "properties": {
+        "primary_owner": {
+          "type": "string"
+        },
+        "ops_owner": {
+          "type": "string"
+        },
+        "review_required": {
+          "type": "boolean"
+        },
+        "executive_sponsor": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "delivery_scope": {
+      "type": "object",
+      "required": [
+        "scope_summary",
+        "timebox",
+        "exception_handling_path"
+      ],
+      "properties": {
+        "scope_summary": {
+          "type": "string"
+        },
+        "timebox": {
+          "type": "string"
+        },
+        "exception_handling_path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "success_hypothesis": {
+      "type": "string",
+      "minLength": 12
+    },
+    "success_metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "guardrails": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "mutation_boundary": {
+      "type": "object",
+      "required": [
+        "no_direct_canonical_mutation",
+        "promotion_decision_required_for_canonical_change",
+        "validation_gate_required_before_scale"
+      ],
+      "properties": {
+        "no_direct_canonical_mutation": {
+          "type": "boolean",
+          "const": true
+        },
+        "promotion_decision_required_for_canonical_change": {
+          "type": "boolean",
+          "const": true
+        },
+        "validation_gate_required_before_scale": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

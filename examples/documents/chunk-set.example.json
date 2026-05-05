@@ -1,0 +1,140 @@
+{
+  "address": "/example/internal_general/data/legal/documents/artifact/ART-chunk-set-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "data",
+    "domain": "legal",
+    "module": "documents",
+    "object_type": "artifact",
+    "object_id": "ART-chunk-set-000001",
+    "version": "v1"
+  },
+  "chunk_set": {
+    "chunk_set_id": "CS-000001",
+    "schema_type": "chunk-set",
+    "schema_version": "v1",
+    "document_version_id": "DV-000001",
+    "canonical_text_id": "CT-000001",
+    "status": "active",
+    "chunking_policy": {
+      "applied_strategy": "structure_aware",
+      "canonical_default_strategy": "structure_aware",
+      "boundary_source": "canonical_components_and_span_selectors",
+      "parent_context_preserved": true
+    },
+    "chunk_ids": [
+      "CHK-000001",
+      "CHK-000002"
+    ],
+    "chunking_activity_id": "activity:chunking-2026-04-14-001",
+    "boundary_controls": {
+      "may_redefine_canonical_boundaries": false,
+      "rebuild_requires_reparse": false
+    }
+  },
+  "chunks": [
+    {
+      "chunk_id": "CHK-000001",
+      "schema_type": "chunk",
+      "schema_version": "v1",
+      "chunk_set_id": "CS-000001",
+      "document_version_id": "DV-000001",
+      "canonical_text_id": "CT-000001",
+      "component_ids": [
+        "CMP-000001",
+        "CMP-000002"
+      ],
+      "span_selector_ids": [
+        "SPAN-000001",
+        "SPAN-000002"
+      ],
+      "chunk_order": 1,
+      "status": "active",
+      "text_hash": "56b946954d3dd7d2",
+      "text_excerpt": "1. Rate Increases. Partner rate increases require prior written approval. 1.1 The Firm may bill a partner rate increase only after the Client has approved the increase in writing.",
+      "boundary_controls": {
+        "derived_from_canonical_boundaries": true,
+        "may_redefine_canonical_boundaries": false
+      }
+    },
+    {
+      "chunk_id": "CHK-000002",
+      "schema_type": "chunk",
+      "schema_version": "v1",
+      "chunk_set_id": "CS-000001",
+      "document_version_id": "DV-000001",
+      "canonical_text_id": "CT-000001",
+      "component_ids": [
+        "CMP-000003"
+      ],
+      "span_selector_ids": [
+        "SPAN-000003",
+        "SPAN-000004"
+      ],
+      "chunk_order": 2,
+      "status": "active",
+      "text_hash": "48d91b8fd41c7e39",
+      "text_excerpt": "Fn.1 See OCG Section 4.2 for the approved notice and rate table submission path.",
+      "boundary_controls": {
+        "derived_from_canonical_boundaries": true,
+        "may_redefine_canonical_boundaries": false
+      }
+    }
+  ],
+  "embedding_set": {
+    "embedding_set_id": "ES-000001",
+    "schema_type": "embedding-set",
+    "schema_version": "v1",
+    "status": "active",
+    "source_chunk_set_id": "CS-000001",
+    "embedding_model": "text-embedding-3-large",
+    "model_version": "2026-04",
+    "vector_dimensions": 3072,
+    "embedding_activity_id": "activity:embed-2026-04-14-001",
+    "created_at": "2026-04-14T09:28:00Z",
+    "boundary_controls": {
+      "derived_from_chunk_set": true,
+      "may_redefine_canonical_boundaries": false
+    }
+  },
+  "index_build": {
+    "index_build_id": "IDX-000001",
+    "schema_type": "index-build",
+    "schema_version": "v1",
+    "status": "active",
+    "index_kind": "hybrid",
+    "index_profile": "hybrid-legal-default-v1",
+    "source_chunk_set_id": "CS-000001",
+    "source_embedding_set_id": "ES-000001",
+    "index_activity_id": "activity:index-2026-04-14-001",
+    "created_at": "2026-04-14T09:32:00Z",
+    "boundary_controls": {
+      "depends_on_canonical_chunk_boundaries": true,
+      "may_redefine_canonical_boundaries": false
+    }
+  },
+  "index_migration_plan": {
+    "migration_plan_id": "IMP-000001",
+    "schema_type": "index-migration-plan",
+    "schema_version": "v1",
+    "status": "planned",
+    "source_index_build_id": "IDX-000001",
+    "target_index_profile": {
+      "profile_id": "hybrid-legal-default-v2",
+      "source_system": "azure-ai-search"
+    },
+    "reason": "Upgrade reranking and sparse fusion weights while preserving canonical chunk lineage.",
+    "input_refs": {
+      "source_chunk_set_id": "CS-000001",
+      "source_embedding_set_id": "ES-000001"
+    },
+    "approval_ref": "review:index-migration-2026-04-14",
+    "boundary_controls": {
+      "reuses_canonical_source_structure": true,
+      "may_redefine_canonical_boundaries": false
+      ,
+      "requires_approved_adapter_profile": true
+    }
+  }
+}

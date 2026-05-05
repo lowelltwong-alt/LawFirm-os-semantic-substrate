@@ -1,0 +1,35 @@
+{
+  "exception_id": "EXC-000101",
+  "schema_type": "exception-event",
+  "schema_version": "v1",
+  "event_class": "retrieval_miss",
+  "severity": "moderate",
+  "event_time": "2026-04-08T10:00:00Z",
+  "summary": "Attorney retrieval missed a recent firm move due to chunk boundary fragmentation.",
+  "origin": {
+    "layer": "retrieval",
+    "component": "talent-neighborhood-builder",
+    "run_id": "run-2026-04-08-01",
+    "address_ref": "fco:retrieval:talent:attorney:chunk-boundary"
+  },
+  "route": {
+    "route_id": "route.retrieval_miss.v1",
+    "destination_loop": "retrieval_tuning",
+    "promotion_gate_required": true
+  },
+  "trust_metadata": {
+    "authority_zone": "market-intelligence-ops",
+    "trust_level": "moderate",
+    "confidence": 0.74,
+    "reviewer_required": true
+  },
+  "pressure_vector_refs": [
+    "PV-000501"
+  ],
+  "canonical_mutation_control": {
+    "direct_mutation_attempted": false,
+    "allowed_action": "route_for_review",
+    "proposed_target": "retrieval/chunking-guidance",
+    "boundary_note": "promotion_decision_required_for_canonical_change"
+  }
+}

@@ -1,0 +1,25 @@
+kind: interface
+id: evidence_bearing
+version: 0.1.0
+status: draft
+description: >
+  Provenance-bearing interface for objects that carry or aggregate support.
+required_fields:
+  - name: source_refs
+    type: list[string]
+    description: Canonical source identifiers, typically using SRC-style references.
+optional_fields:
+  - name: evidence_refs
+    type: list[string]
+    description: Evidence or chunk references, typically using CHK-style references.
+  - name: artifact_refs
+    type: list[string]
+  - name: derived_from_refs
+    type: list[string]
+  - name: evidence_type
+    type: evidence_type
+  - name: provenance_note
+    type: string
+compatibility_notes:
+  - Preserve current repo provenance and internal-reference discipline.
+  - Later validation should resolve internal references against governed objects.

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/view-evidence-bundle.schema.json",
+  "title": "Evidence Bundle View",
+  "type": "object",
+  "required": ["bundle_id", "claims", "sources"],
+  "properties": {
+    "bundle_id": {"type": "string"},
+    "claims": {"type": "array", "items": {"type": "string"}},
+    "sources": {"type": "array", "items": {"type": "string"}},
+    "span_refs": {"type": "array", "items": {"type": "string"}},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+  },
+  "additionalProperties": false
+}

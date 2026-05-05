@@ -1,0 +1,11 @@
+kind: enum
+id: object_set_kind
+version: 0.1.0
+status: draft
+description: Operational kinds for governed object sets.
+values:
+  - static
+  - query_defined
+  - slice_manifest
+  - review_queue
+  - publication_view

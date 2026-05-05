@@ -1,0 +1,37 @@
+{
+  "schema_id": "view-executive-brief-v1",
+  "schema_type": "view-executive-brief",
+  "schema_version": "draft-v1",
+  "brief_id": "EBR-000001",
+  "address": "/example/internal_general/governance/innovation_os/executive_brief/artifact/ART-ebr-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "governance",
+    "domain": "innovation_os",
+    "module": "executive_brief",
+    "object_type": "artifact",
+    "object_id": "ART-ebr-000001",
+    "version": "v1"
+  },
+  "title": "Portal friction opportunity with measurable work-to-cash upside",
+  "status": "draft",
+  "summary": "Recurring carrier-specific portal failures are consuming manual billing labor and delaying submission cycles, and the reviewed pressure is now strong enough to support a bounded sprint approval request.",
+  "why_it_matters": "The pattern creates measurable margin leakage and cycle-time drag, so leadership needs a decision-ready brief that stays tied to the governed exception and opportunity chain.",
+  "owner": "innovation_product_lead",
+  "options": [
+    "Approve the bounded sprint candidate for carrier-scoped workflow remediation.",
+    "Hold the brief for more evidence if exception recurrence drops below the current threshold."
+  ],
+  "evidence_refs": [
+    "EXC-000101",
+    "PV-000101",
+    "OPP-000001",
+    "SPR-000001"
+  ],
+  "next_actions": [
+    "Approve sprint-object SPR-000001 with existing validation-gate requirements.",
+    "Keep any later pilot or scale work subordinate to gate review and promotion-decision authority."
+  ],
+  "notes": "Synthetic draft executive brief derived from the active exception, pressure, opportunity, and sprint chain. It remains a governed presentation artifact and does not enact canonical change."
+}

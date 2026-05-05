@@ -1,0 +1,20 @@
+id: PRP-000003
+title: Authority conflict direct canonical write proposal
+object_type: proposal_promotion
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+display_title: authority_conflict_direct_write_rejection
+proposal_promotion_status: rejected
+source_feedback_ref: RFB-000002
+proposed_change_summary: >
+  Attempted direct schema mutation from exception pressure without bounded pilot
+  validation path.
+approval_requirements:
+  - architecture review board exception
+  - explicit canonical mutation authorization
+target_manifest_refs:
+  - NGM-000001
+promotion_window: blocked_pending_governance_exception
+decision_notes:
+  - Rejected: violates no-direct-mutation and bounded promotion policies.

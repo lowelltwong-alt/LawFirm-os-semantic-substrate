@@ -1,0 +1,54 @@
+{
+  "contract_name": "exceptions-lake-runtime-build-pack",
+  "contract_status": "draft_metadata_only",
+  "contract_repo_role": "semantic_control_plane_and_innovation_os_contract_repository",
+  "runtime_repo_role": "future_separate_runtime_repository_consuming_versioned_fmg_contracts",
+  "current_non_claims": [
+    "no real internal events are stored here",
+    "no production runtime exists here",
+    "no production dashboards exist here",
+    "no live connector workers exist here",
+    "no internal corpus ingestion is claimed here",
+    "no runtime Exceptions Lake deployment is claimed here",
+    "runtime observations do not directly mutate canon"
+  ],
+  "canonical_schema_keys": [
+    "exception-event-v1",
+    "pressure-vector-v1",
+    "adaptation-proposal-v1",
+    "promotion-decision-v1",
+    "opportunity-object-v1",
+    "sprint-object-v1",
+    "pilot-object-v1",
+    "validation-gate-record-v1",
+    "scale-package-object-v1",
+    "view-executive-brief-v1",
+    "source-ingestion-manifest-schema-v1",
+    "access-decision-schema-v1",
+    "evaluation-run-schema-v1"
+  ],
+  "required_validators": [
+    "scripts/check_registry_refs.py",
+    "scripts/validate_examples_registry.py",
+    "scripts/validate_integrity.py",
+    "scripts/validation/validate_exception_events.py",
+    "scripts/validation/validate_exception_governance.py",
+    "scripts/validation/validate_learning_loop_transitions.py",
+    "scripts/validation/validate_source_ingestion_manifests.py",
+    "scripts/validation/validate_canonical_grounding_chain.py",
+    "scripts/validation/validate_grounded_answer_evaluation_harness.py"
+  ],
+  "required_docs": [
+    "registry/source-of-truth.json",
+    "registry/design-authority.json",
+    "registry/schema-registry.json",
+    "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
+    "governance/EXCEPTIONS_LAKE_ARCHITECTURE.md",
+    "governance/AI_CONTROL_PLANE_BOUNDARY.md",
+    "docs/EXCEPTIONS_LAKE_RUNTIME_BUILD_PACK.md",
+    "docs/EXCEPTIONS_LAKE_CONTRACT_CONSUMPTION_MAP.md",
+    "docs/EXCEPTIONS_LAKE_RUNTIME_REPO_SKELETON.md"
+  ],
+  "export_version": "v1",
+  "last_reviewed_source": "main"
+}

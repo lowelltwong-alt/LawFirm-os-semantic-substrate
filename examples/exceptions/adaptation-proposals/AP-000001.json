@@ -1,0 +1,38 @@
+{
+  "proposal_id": "AP-000001",
+  "schema_type": "adaptation-proposal",
+  "schema_version": "v1",
+  "address": "/example/internal_general/governance/exceptions/adaptation_proposals/artifact/ART-ap-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "governance",
+    "domain": "exceptions",
+    "module": "adaptation_proposals",
+    "object_type": "artifact",
+    "object_id": "ART-ap-000001",
+    "version": "v1"
+  },
+  "status": "under_review",
+  "proposal_class": "retrieval_tuning",
+  "summary": "Promote a governed retrieval-neighborhood adjustment after repeated matter-context misses in billing-guideline retrieval.",
+  "source_exception_ids": ["EXC-000101"],
+  "source_pressure_vector_ids": ["PV-000101"],
+  "proposed_change": {
+    "target_layer": "retrieval",
+    "target_ref": "neighborhood-template:billing-guideline-review",
+    "change_type": "adjust_weighting",
+    "rationale": "Repeated misses show underweighting of matter-specific billing rules relative to general policy content.",
+    "expected_effect": "Increase retrieval precision for matter-bound billing guidance without mutating canonical ontology structure."
+  },
+  "review": {
+    "owner": "innovation-os",
+    "review_required": true,
+    "approval_state": "pending",
+    "reviewer_roles": ["ops_owner", "knowledge_owner", "billing_integrity_reviewer"]
+  },
+  "canonical_mutation_boundary": {
+    "direct_mutation_allowed": false,
+    "promotion_decision_required": true
+  }
+}

@@ -1,0 +1,41 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fmg: <https://example.fmg.local/ontology/> .
+
+fmg:JsonLdContextShape
+  a sh:NodeShape ;
+  sh:targetClass fmg:JsonLdContext ;
+  sh:property [
+    sh:path fmg:displayTitle ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path fmg:contextUri ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+  ] ;
+  sh:property [
+    sh:path fmg:governingGraphManifestRef ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+  ] .
+
+fmg:NamedGraphManifestShape
+  a sh:NodeShape ;
+  sh:targetClass fmg:NamedGraphManifest ;
+  sh:property [
+    sh:path fmg:graphManifestStatus ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path fmg:defaultPartition ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path fmg:contextRef ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+  ] .

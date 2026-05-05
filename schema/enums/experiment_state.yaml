@@ -1,0 +1,12 @@
+kind: enum
+id: experiment_state
+version: 0.1.0
+status: draft
+description: Lifecycle states for experiments that test hypotheses.
+values:
+  - planned
+  - running
+  - completed
+  - failed
+  - aborted
+  - archived

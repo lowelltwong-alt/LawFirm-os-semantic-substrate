@@ -1,0 +1,18 @@
+id: ALG-000002
+title: Authority conflict interpreted inference
+object_type: action_log_entry
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+action_type: revise_alignment_assessment
+actor: ontology_steward_alpha
+timestamp: 2026-04-06T09:40:00Z
+touched_object_ids:
+  - RFB-000002
+summary: >
+  Interpreted authority conflict exception pressure as a retrieval-governance
+  metadata gap requiring structured proposal routing.
+parameters:
+  source_exception_ref: archive/examples/exceptions/authority_conflict_override_example.json
+  inferred_transition_state: interpreted_inference
+  reviewer_role: review.structural

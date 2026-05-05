@@ -1,0 +1,13 @@
+kind: enum
+id: evidence_type
+version: 0.1.0
+status: draft
+description: Evidence classes for doctrinal comparison support objects.
+values:
+  - textual_citation
+  - lexical_analysis
+  - manuscript_witness
+  - translation_witness
+  - commentary_note
+  - inferential_link
+  - comparison_bundle

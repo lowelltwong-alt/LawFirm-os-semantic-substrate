@@ -1,0 +1,20 @@
+kind: type
+id: retrieval_feedback
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Governed sidecar capturing retrieval observations, gaps, and recommended
+  follow-up actions against bounded graph packages.
+required_fields:
+  - display_title
+  - retrieval_feedback_status
+  - graph_manifest_ref
+  - observed_gap
+  - recommendation_summary
+optional_fields:
+  - supporting_query_refs
+  - proposed_promotion_refs
+  - reviewer_notes
+  - review_metadata

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/gold-query.schema.json",
+  "title": "Gold Query",
+  "type": "object",
+  "required": ["query_id", "query_text", "workflow_type"],
+  "properties": {
+    "query_id": {"type": "string"},
+    "query_text": {"type": "string"},
+    "workflow_type": {"type": "string"},
+    "gold_doc_ids": {"type": "array", "items": {"type": "string"}},
+    "gold_span_ids": {"type": "array", "items": {"type": "string"}},
+    "citation_expectations": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

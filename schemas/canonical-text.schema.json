@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/canonical-text.schema.json",
+  "title": "Canonical Text",
+  "description": "Normalized canonical text body for a document version. Canonical text and its component/span structure define the stable source boundaries from which chunks, embeddings, indexes, retrieval results, and answers are derived.",
+  "type": "object",
+  "required": [
+    "canonical_text_id",
+    "schema_type",
+    "schema_version",
+    "document_version_id",
+    "normalization_activity_id",
+    "language",
+    "text_hash",
+    "total_char_count",
+    "structure_model",
+    "component_ids",
+    "canonical_boundary_rule"
+  ],
+  "properties": {
+    "canonical_text_id": {
+      "type": "string",
+      "pattern": "^CT-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "canonical-text"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "document_version_id": {
+      "type": "string",
+      "pattern": "^DV-[0-9]{6}$"
+    },
+    "normalization_activity_id": {
+      "type": "string",
+      "minLength": 2
+    },
+    "language": {
+      "type": "string",
+      "minLength": 2
+    },
+    "text_hash": {
+      "type": "string",
+      "minLength": 8
+    },
+    "total_char_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "structure_model": {
+      "type": "string",
+      "const": "hierarchical_document"
+    },
+    "component_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^CMP-[0-9]{6}$"
+      }
+    },
+    "citation_mention_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^CMN-[0-9]{6}$"
+      }
+    },
+    "canonical_boundary_rule": {
+      "type": "string",
+      "const": "components_and_span_selectors_are_source_of_truth"
+    }
+  },
+  "additionalProperties": false
+}

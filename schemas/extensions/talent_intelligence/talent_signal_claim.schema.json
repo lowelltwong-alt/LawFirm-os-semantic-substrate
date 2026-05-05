@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.fmg/schemas/extensions/talent_intelligence/talent_signal_claim.schema.json",
+  "title": "TalentSignalClaim",
+  "description": "Evidence-backed claim or assessment used in the talent intelligence extension for derived signals such as instability, portability, relationship warmth, and outreach readiness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "claim_id",
+    "signal_type",
+    "subject_ref",
+    "statement",
+    "status",
+    "authority_zone",
+    "confidence_posture"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "talent_signal_claim"
+    },
+    "claim_id": {
+      "type": "string"
+    },
+    "signal_type": {
+      "type": "string",
+      "enum": [
+        "relationship_warmth",
+        "introducer_strength",
+        "market_visibility",
+        "portable_book_evidence",
+        "firm_instability",
+        "outreach_readiness",
+        "other"
+      ]
+    },
+    "subject_ref": {
+      "type": "string"
+    },
+    "related_object_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "statement": {
+      "type": "string"
+    },
+    "score": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "score_band": {
+      "type": "string",
+      "enum": [
+        "very_low",
+        "low",
+        "medium",
+        "high",
+        "very_high"
+      ]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "source_profile_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "provisional",
+        "active",
+        "inactive",
+        "deprecated"
+      ]
+    },
+    "authority_zone": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal-general",
+        "internal-km-approved",
+        "practice-restricted",
+        "client-restricted",
+        "matter-restricted",
+        "ethical-wall-restricted",
+        "experimental-ai"
+      ]
+    },
+    "confidence_posture": {
+      "type": "string",
+      "enum": [
+        "asserted",
+        "inferred",
+        "hypothesis",
+        "reviewed"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "unreviewed",
+        "pending_review",
+        "reviewed",
+        "rejected"
+      ]
+    },
+    "valid_from": {
+      "type": "string",
+      "format": "date"
+    },
+    "valid_to": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

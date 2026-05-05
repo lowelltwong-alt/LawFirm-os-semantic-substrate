@@ -1,0 +1,67 @@
+profile_id: azure-document-intelligence-v1
+profile_version: 1.0.0
+status: draft
+draft_reason: awaiting validation against representative document exports; Microsoft public documentation confirms the vendor-side response field family, but implementation-ready validation still requires live exports
+evidence_status: public_vendor_reference
+readiness_status: structurally_sound_draft
+owner: document-platform
+provider: azure
+service: document-intelligence
+purpose: >
+  Map parser and OCR output into Law Firm canonical document and evidence objects
+  while preserving exact page, region, and span traceability.
+consumes_source_entities:
+  - content
+  - paragraphs
+  - sections
+  - tables
+  - spans
+  - boundingRegions
+emits_canonical_objects:
+  - document
+  - source-artifact
+  - document-version
+  - canonical-text
+  - component
+  - span-selector
+boundary_controls:
+  local_semantics_authoritative: false
+  may_redefine_canonical_boundaries: false
+  exact_source_traceability_required: true
+field_mappings:
+  - source_field: content
+    target_object: canonical-text
+    target_field: text
+    mapping_mode: exact
+  - source_field: paragraphs
+    target_object: component
+    target_field: component_type
+    target_value: paragraph
+    mapping_mode: transformed
+  - source_field: sections
+    target_object: component
+    target_field: component_type
+    target_value: section
+    mapping_mode: transformed
+  - source_field: tables
+    target_object: component
+    target_field: component_type
+    target_value: table
+    mapping_mode: transformed
+  - source_field: spans
+    target_object: span-selector
+    target_field: char_start
+    mapping_mode: transformed
+  - source_field: spans
+    target_object: span-selector
+    target_field: char_end
+    mapping_mode: transformed
+  - source_field: boundingRegions
+    target_object: span-selector
+    target_field: page_anchor
+    mapping_mode: transformed
+notes:
+  - Preserve parser provenance, model version, and page anchors.
+  - Unsupported vendor features must remain derived and non-canonical.
+  - Public vendor reference: Microsoft Learn publicly documents `content`, `paragraphs`, `sections`, `tables`, `spans`, and `boundingRegions` in the Document Intelligence analyze/layout response family.
+  - TODO_EVIDENCE: confirm export-specific envelope shape, span offset semantics, and page anchor geometry against a real Azure Document Intelligence export.

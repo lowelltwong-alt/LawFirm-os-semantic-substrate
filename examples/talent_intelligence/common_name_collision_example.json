@@ -1,0 +1,40 @@
+{
+  "scenario": "Two source profiles with the same observed name should remain separate pending stronger evidence.",
+  "candidate_group": "DUPGRP_000001",
+  "match_posture": "review_required",
+  "attorney_candidates": [
+    {
+      "object_type": "attorney",
+      "attorney_id": "ATY_000201",
+      "canonical_name": "John A. Smith",
+      "name_variants": ["John Smith", "John Andrew Smith"],
+      "status": "provisional",
+      "authority_zone": "internal-general",
+      "confidence_posture": "hypothesis",
+      "primary_practice": "Construction",
+      "home_office": "Nashville",
+      "admitted_jurisdictions": ["Tennessee"],
+      "source_profile_refs": ["SPROF_000201"],
+      "employment_episode_refs": ["EMP_000201"]
+    },
+    {
+      "object_type": "attorney",
+      "attorney_id": "ATY_000202",
+      "canonical_name": "John R. Smith",
+      "name_variants": ["John Smith", "John Robert Smith"],
+      "status": "provisional",
+      "authority_zone": "internal-general",
+      "confidence_posture": "hypothesis",
+      "primary_practice": "Insurance Coverage",
+      "home_office": "Charlotte",
+      "admitted_jurisdictions": ["North Carolina"],
+      "source_profile_refs": ["SPROF_000202"],
+      "employment_episode_refs": ["EMP_000202"]
+    }
+  ],
+  "review_notes": [
+    "Same observed short name is insufficient for merge.",
+    "Different middle initials, different offices, and different practice areas create collision risk.",
+    "No shared external identifier currently supports merge."
+  ]
+}

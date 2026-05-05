@@ -1,0 +1,106 @@
+id: NGM-000002
+title: Cross-zone relation semantics reference examples
+object_type: named_graph_manifest
+lifecycle_status: draft
+authority_zone: internal_general
+display_title: cross_zone_relation_semantics_reference_examples
+graph_manifest_status: draft
+default_partition: asserted
+included_partitions:
+  - asserted
+  - inferred
+  - boundary
+context_ref: CTX-000001
+publication_profile: bounded_internal_reference
+included_object_refs:
+  - DOC-000001
+included_assertion_refs:
+  - ASR-000001
+cross_partition_relations:
+  - relation_id: CPR-100001
+    source_zone: asserted
+    target_zone: inferred
+    source_ref: ASR-000101
+    target_ref: ASR-000901
+    relation_type: equivalence
+    directionality: bidirectional
+    cardinality: one_to_one
+    temporal_validity: always_valid
+    trust_evidence_carryover: inherit
+    notes: Canonical and inferred aliases resolve to the same governed claim.
+  - relation_id: CPR-100002
+    source_zone: asserted
+    target_zone: boundary
+    source_ref: ASR-000102
+    target_ref: BND-000210
+    relation_type: composition
+    directionality: unidirectional
+    cardinality: one_to_many
+    temporal_validity: interval_bound
+    trust_evidence_carryover: attenuate
+    notes: Boundary package composes multiple asserted nodes with stricter scope.
+  - relation_id: CPR-100003
+    source_zone: inferred
+    target_zone: projection
+    source_ref: ASR-000903
+    target_ref: PGP-000001
+    relation_type: derivation
+    directionality: unidirectional
+    cardinality: many_to_one
+    temporal_validity: event_bound
+    trust_evidence_carryover: manual_review
+    notes: Projection output is derived from multiple inferred claims.
+  - relation_id: CPR-100004
+    source_zone: boundary
+    target_zone: projection
+    source_ref: BND-000211
+    target_ref: PGP-000002
+    relation_type: temporal_succession
+    directionality: unidirectional
+    cardinality: one_to_one
+    temporal_validity: until_revoked
+    trust_evidence_carryover: none
+    notes: Projection version supersedes a boundary-controlled publication window.
+  - relation_id: CPR-100005
+    source_zone: boundary
+    target_zone: asserted
+    source_ref: BND-000300
+    target_ref: ASR-000103
+    relation_type: control_dependency
+    directionality: unidirectional
+    cardinality: one_to_many
+    temporal_validity: until_revoked
+    trust_evidence_carryover: manual_review
+    notes: Policy control in boundary zone governs asserted downstream use.
+capability_node_traces:
+  - capability_twin_id: CTW-000001
+    capability_node_id: CAPN-000202
+    claim_refs:
+      - CLM-000101
+    artifact_refs:
+      - ART-000001
+    governance_decision_refs:
+      - ADR-0001
+      - ALG-000002
+  - capability_twin_id: CTW-000001
+    capability_node_id: CAPN-000203
+    claim_refs:
+      - CLM-000101
+    artifact_refs:
+      - PGP-000001
+    governance_decision_refs:
+      - ADR-0002
+      - ALG-000003
+  - capability_twin_id: CTW-000001
+    capability_node_id: CAPN-000103
+    claim_refs:
+      - CLM-000101
+    artifact_refs:
+      - ART-000001
+    governance_decision_refs:
+      - PRP-000001
+      - PRP-000002
+trust_boundary_notes:
+  - Reference-only manifest for validating cross-zone relation semantics.
+promotion_requirements:
+  - Do not publish as production bundle; use for validator coverage and examples.

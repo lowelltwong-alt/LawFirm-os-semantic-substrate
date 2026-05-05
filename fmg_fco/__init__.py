@@ -1,0 +1,4 @@
+from . import entry as cli
+
+__all__ = ["cli"]
+__version__ = "0.1.0"

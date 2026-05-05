@@ -1,0 +1,19 @@
+id: ACT-000001
+title: Example action definition
+object_type: action_definition
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: first_order
+display_title: Add comparison
+action_type: add_comparison
+target_surface: data/comparisons
+required_inputs:
+  - compared_object_refs
+  - source_refs
+required_reviewer_role: review.structural
+required_checks:
+  - validate_schema
+  - validate_alignment_rubric
+lifecycle_impact: creates_new_comparison_object
+outputs:
+  - CMP-000001

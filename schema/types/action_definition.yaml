@@ -1,0 +1,16 @@
+kind: type
+id: action_definition
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: First-class governed definition for a reusable repository action.
+required_fields:
+  - display_title
+  - action_type
+  - target_surface
+  - required_inputs
+  - required_reviewer_role
+  - required_checks
+  - lifecycle_impact
+  - outputs

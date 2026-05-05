@@ -1,0 +1,11 @@
+kind: enum
+id: lifecycle_status
+version: 0.1.0
+status: draft
+description: Lifecycle labels compatible with current governance direction.
+values:
+  - draft
+  - planned
+  - active
+  - deprecated
+  - archived

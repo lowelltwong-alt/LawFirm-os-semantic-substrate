@@ -1,0 +1,57 @@
+mapping_id: litify-to-fmg-v1
+mapping_version: 1.0.0
+status: draft
+draft_reason: awaiting validation against tenant-specific Litify field configuration and policy scope rules; public Litify and Salesforce documentation confirm only the configurable platform boundary
+evidence_status: repo_authored_draft
+readiness_status: structurally_sound_draft
+source_system: litify
+purpose: >
+  Normalize Litify matter and client scope into FMG retrieval and access
+  controls without treating CRM labels as canonical semantics.
+canonical_boundary:
+  canonical_objects_only: true
+  vendor_local_semantics_authoritative: false
+source_entities:
+  - entity: matter
+    assumption_status: repo_authored_draft
+    verification_note: public Litify documentation confirms matter-management scope at the platform level, but the exact tenant matter object and field layout still require tenant verification
+    canonical_objects:
+      - document
+    derived_objects:
+      - retrieval-request
+  - entity: client
+    assumption_status: repo_authored_draft
+    verification_note: public platform documentation supports client-scope intent only; exact tenant linkage fields still require tenant verification
+    policy_objects:
+      - access-decision
+field_mappings:
+  - source_field: Matter.Id
+    assumption_status: repo_authored_draft
+    verification_note: FMG draft assumption only; public Litify and Salesforce docs do not prove the exact tenant field name
+    target_object: document
+    target_path: matter_refs[]
+    mapping_mode: exact
+  - source_field: Matter.Id
+    assumption_status: repo_authored_draft
+    verification_note: FMG draft assumption only; public Litify and Salesforce docs do not prove the exact tenant field name
+    target_object: retrieval-request
+    target_path: target_scope.matter_scope_ids[]
+    mapping_mode: exact
+  - source_field: Client.Id
+    assumption_status: repo_authored_draft
+    verification_note: FMG draft assumption only; public Litify and Salesforce docs do not prove the exact tenant field name or relationship path
+    target_object: access-decision
+    target_path: target_ref.client_scope_id
+    mapping_mode: exact
+  - source_field: Matter.Status
+    assumption_status: repo_authored_draft
+    verification_note: FMG draft assumption only; public Litify and Salesforce docs do not prove the exact tenant field name or status semantics
+    target_object: access-decision
+    target_path: policy_basis.matter_status
+    mapping_mode: transformed
+notes:
+  - Preserve Litify record IDs as external references and scope anchors.
+  - Practice-area and lifecycle picklists remain vendor-local labels unless explicitly governed elsewhere.
+  - Public vendor boundary only: Litify confirms a matter-management platform posture, and Salesforce confirms org-level object/field configurability, but neither public source proves this tenant's exact field family.
+  - This mapping intentionally omits team-role fields until a real Litify export confirms their exact shape.
+  - TODO_EVIDENCE: verify firm-specific Litify field dictionary before treating these mappings as implementation-ready.

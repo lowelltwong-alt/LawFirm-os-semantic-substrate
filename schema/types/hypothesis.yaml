@@ -1,0 +1,19 @@
+kind: type
+id: hypothesis
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Testable proposition in a governed learning loop. Hypotheses move through
+  explicit lifecycle states before they can drive allocation decisions.
+required_fields:
+  - display_title
+  - hypothesis_id
+  - loop_id
+  - hypothesis_state
+  - claim
+optional_fields:
+  - confidence_level
+  - evidence_refs
+  - successor_hypothesis_ref

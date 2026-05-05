@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Artifact v2 (Address-Enforced)",
+  "type": "object",
+  "required": [
+    "id",
+    "artifact_type",
+    "title",
+    "address",
+    "address_struct"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "artifact_type": { "type": "string" },
+    "title": { "type": "string" },
+    "address": { "$ref": "address.schema.json" },
+    "address_struct": { "$ref": "address_struct.schema.json" }
+  }
+}

@@ -1,0 +1,325 @@
+version: 0.1.0
+status: draft
+owner: Lowell T. Wong
+purpose: >
+  Machine-readable registry for external standards adoption posture in the
+  Law Firm semantic stack. This registry supports rationale transparency,
+  interoperability planning, and future validation.
+
+pilot_scope:
+  - intake
+  - conflicts
+  - ai_use
+
+design_rule: >
+  External standards support interoperability, provenance, metadata,
+  validation, and bounded domain extensions. substrate-native operating semantics
+  remain the design authority for policy topics, operating positions,
+  governance baselines, position assessments, retrieval packages, and
+  proposal promotion.
+
+standards:
+  - id: STD-000001
+    name: RDF / JSON-LD
+    adoption_status: adopt_now
+    why_status: >
+      Foundational graph representation and semantic packaging support that is
+      broadly useful and low-regret.
+    why_fmg_fit: >
+      Supports governed graph packaging, JSON-LD contexts, and future semantic
+      exports without replacing the repo's file-first governance shell.
+    why_not_core: >
+      Provides representation and packaging, but does not define Law Firm operating
+      semantics such as policy topic or governance baseline.
+    benefits_now:
+      - stable semantic packaging
+      - bounded graph interoperability
+      - future RDF export path
+    risks_if_overused:
+      - premature graph-first complexity
+      - over-optimization for publication before pilot usefulness
+    revisit_triggers:
+      - need for broader RDF publication
+      - need for stable machine-to-machine semantic exchange
+    pilot_usage:
+      - JSON-LD context files
+      - named-graph packaging direction
+    adr_ref: ADR-0002
+
+  - id: STD-000002
+    name: SKOS
+    adoption_status: adopt_now
+    why_status: >
+      Foundational controlled vocabulary and concept-scheme support for labels,
+      broader/narrower relations, and concept mapping.
+    why_fmg_fit: >
+      Fits policy topics, concept labels, and controlled vocabulary work needed
+      for Law Firm governance and retrieval.
+    why_not_core: >
+      Supports concept organization, but does not define Law Firm's operating layer
+      or policy decision semantics.
+    benefits_now:
+      - controlled labels
+      - broader and narrower concept structure
+      - easier concept mapping across artifacts
+    risks_if_overused:
+      - flattening operational meaning into taxonomy only
+    revisit_triggers:
+      - growth in concept schemes
+      - need for cross-system concept mapping
+    pilot_usage:
+      - policy topic and concept labeling
+    adr_ref: ADR-0002
+
+  - id: STD-000003
+    name: PROV-O
+    adoption_status: adopt_now
+    why_status: >
+      Provenance and derivation support is directly aligned with the repo's
+      provenance-first and governance-first posture.
+    why_fmg_fit: >
+      Helps represent attribution, derivation, review activity, and evidence
+      linkage for governed semantic artifacts.
+    why_not_core: >
+      Provenance explains who did what and where something came from, but does
+      not define the Law Firm operating meaning of the underlying object.
+    benefits_now:
+      - better attribution
+      - derivation tracking
+      - stronger review traceability
+    risks_if_overused:
+      - excessive modeling overhead on trivial objects
+    revisit_triggers:
+      - richer automated provenance pipelines
+      - stronger audit requirements
+    pilot_usage:
+      - provenance-aware graph and retrieval sidecars
+    adr_ref: ADR-0002
+
+  - id: STD-000004
+    name: DCTERMS
+    adoption_status: adopt_now
+    why_status: >
+      Mature metadata vocabulary for creation, modification, authorship,
+      description, and stewardship fields.
+    why_fmg_fit: >
+      Supports repo metadata consistency and common descriptive fields across
+      governed artifacts.
+    why_not_core: >
+      Metadata support is valuable but does not encode Law Firm-specific operating
+      policy meaning.
+    benefits_now:
+      - familiar metadata fields
+      - interoperability with common content systems
+    risks_if_overused:
+      - over-reliance on generic metadata where domain-specific fields matter
+    revisit_triggers:
+      - broader content interoperability needs
+    pilot_usage:
+      - descriptive metadata alignment
+    adr_ref: ADR-0002
+
+  - id: STD-000005
+    name: SHACL
+    adoption_status: adopt_now
+    why_status: >
+      Directly supports the repository's validation-first architecture by
+      making semantic constraints explicit and machine-checkable.
+    why_fmg_fit: >
+      Matches the repo's current validation discipline and future graph-facing
+      enforcement direction.
+    why_not_core: >
+      Validates structure and semantics, but does not define the operating
+      model itself.
+    benefits_now:
+      - machine-checkable semantic constraints
+      - clearer validation intent
+    risks_if_overused:
+      - spending too much time on constraint complexity before pilot utility
+    revisit_triggers:
+      - stronger graph validation requirements
+      - runtime semantic validation needs
+    pilot_usage:
+      - seed semantic and projection validation shapes
+    adr_ref: ADR-0002
+
+  - id: STD-000006
+    name: OWL-light
+    adoption_status: adopt_now
+    why_status: >
+      Limited formal semantics are useful for class and relation precision in a
+      small number of high-value places.
+    why_fmg_fit: >
+      Supports careful semantic clarity without forcing the pilot into heavy
+      inference logic.
+    why_not_core: >
+      The pilot is not an OWL-centric reasoning system. substrate-native operating
+      semantics remain primary.
+    benefits_now:
+      - bounded formal precision
+      - cleaner semantic contracts
+    risks_if_overused:
+      - over-formalization
+      - brittle logic before operational value is proven
+    revisit_triggers:
+      - need for stronger formal class reasoning
+    pilot_usage:
+      - semantic stack precision only where necessary
+    adr_ref: ADR-0002
+
+  - id: STD-000007
+    name: ODRL
+    adoption_status: selective
+    why_status: >
+      Useful for permissions and restrictions, especially around AI-use and
+      policy-controlled actions, but too narrow to impose everywhere yet.
+    why_fmg_fit: >
+      Can help express restricted, allowed, or conditional uses in bounded
+      workflows.
+    why_not_core: >
+      The pilot is broader than a rights-expression language and includes
+      governance baselines, retrieval, and operational positioning.
+    benefits_now:
+      - bounded permission modeling
+      - clearer restriction expression
+    risks_if_overused:
+      - premature rule formalism
+      - forcing all policy logic into permission syntax
+    revisit_triggers:
+      - repeated need to model AI-use restrictions formally
+      - need for machine-enforceable permission structures
+    pilot_usage:
+      - candidate for AI-use restrictions
+    adr_ref: ADR-0003
+
+  - id: STD-000008
+    name: W3C Time Ontology
+    adoption_status: selective
+    why_status: >
+      Helpful for effective dates, review windows, and time-bounded exceptions,
+      but not needed as a universal layer yet.
+    why_fmg_fit: >
+      Supports lifecycle timing, review cadence, and time-scoped restrictions.
+    why_not_core: >
+      Time modeling is important but secondary to the pilot's core operating
+      semantics.
+    benefits_now:
+      - effective-date support
+      - exception timing support
+    risks_if_overused:
+      - unnecessary temporal complexity
+    revisit_triggers:
+      - increased use of time-bounded exceptions
+      - need for stronger temporal reasoning
+    pilot_usage:
+      - candidate for review windows and policy effective dates
+    adr_ref: ADR-0003
+
+  - id: STD-000009
+    name: W3C ORG
+    adoption_status: selective
+    why_status: >
+      Useful for modeling teams, roles, and stewardship ownership, but not
+      required as a universal commitment in the pilot.
+    why_fmg_fit: >
+      Supports future stewardship, reviewer routing, and organizational
+      ownership.
+    why_not_core: >
+      The pilot is about governed operating semantics first, not formal org
+      modeling first.
+    benefits_now:
+      - clearer role and steward mapping
+    risks_if_overused:
+      - pushing the pilot into org-chart formalism too early
+    revisit_triggers:
+      - richer stewardship routing
+      - stronger organizational role modeling needs
+    pilot_usage:
+      - candidate for KM stewardship and reviewer models
+    adr_ref: ADR-0003
+
+  - id: STD-000010
+    name: Heavier OWL constructs
+    adoption_status: selective
+    why_status: >
+      Some richer OWL constructs may help later, but using them broadly now
+      would introduce unnecessary logical complexity.
+    why_fmg_fit: >
+      May help in isolated semantic precision cases once the operating layer is
+      stable.
+    why_not_core: >
+      The pilot is not trying to maximize formal inference at this stage.
+    benefits_now:
+      - possible later semantic precision
+    risks_if_overused:
+      - brittle inference
+      - premature logic-heavy design
+    revisit_triggers:
+      - clear requirement for richer formal reasoning
+    pilot_usage:
+      - none yet
+    adr_ref: ADR-0003
+
+  - id: STD-000011
+    name: LKIF Core
+    adoption_status: watchlist_later
+    why_status: >
+      Potential future legal-domain interoperability candidate, but premature
+      for the current proof of concept.
+    why_fmg_fit: >
+      May become useful if the pilot expands into deeper legal-domain concept
+      exchange.
+    why_not_core: >
+      Too narrow and too early for the current Law Firm operating pilot.
+    benefits_now:
+      - future interoperability awareness
+    risks_if_overused:
+      - distorting the pilot toward formal legal ontology design
+    revisit_triggers:
+      - repeated legal-domain interoperability demand
+    pilot_usage:
+      - none yet
+    adr_ref: ADR-0004
+
+  - id: STD-000012
+    name: LegalRuleML
+    adoption_status: watchlist_later
+    why_status: >
+      Promising for formal legal rule expression later, but not the right
+      center of gravity for the current bounded pilot.
+    why_fmg_fit: >
+      Could help if the system later expands into formalized legal rule
+      translation.
+    why_not_core: >
+      The current pilot is about governed decision substrate and policy
+      intelligence, not full legal rule formalization.
+    benefits_now:
+      - future awareness only
+    risks_if_overused:
+      - over-formalizing the pilot too early
+    revisit_triggers:
+      - direct need for formal legal rule expression
+    pilot_usage:
+      - none yet
+    adr_ref: ADR-0004
+
+  - id: STD-000013
+    name: Akoma Ntoso
+    adoption_status: watchlist_later
+    why_status: >
+      Useful for structured legal document exchange in some environments, but
+      not central to the current Law Firm semantic operating pilot.
+    why_fmg_fit: >
+      Could be useful if future scope includes structured legal-document
+      interchange.
+    why_not_core: >
+      The current pilot is not a legal document markup initiative.
+    benefits_now:
+      - future awareness only
+    risks_if_overused:
+      - shifting effort toward document markup instead of operating semantics
+    revisit_triggers:
+      - need for structured legal-document publishing or exchange
+    pilot_usage:
+      - none yet
+    adr_ref: ADR-0004

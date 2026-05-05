@@ -1,0 +1,61 @@
+{
+  "scale_package_id": "SCL-000001",
+  "schema_type": "scale-package-object",
+  "schema_version": "v1",
+  "address": "/example/internal_general/governance/innovation_os/scale/artifact/ART-scl-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "governance",
+    "domain": "innovation_os",
+    "module": "scale",
+    "object_type": "artifact",
+    "object_id": "ART-scl-000001",
+    "version": "v1"
+  },
+  "title": "Carrier portal rejection remediation rollout package",
+  "status": "draft",
+  "source_refs": {
+    "pilot_ids": [
+      "PIL-000001"
+    ],
+    "validation_gate_record_ids": [
+      "VGR-000001"
+    ],
+    "opportunity_ids": [
+      "OPP-000001"
+    ]
+  },
+  "ownership": {
+    "primary_owner": "billing_ops_owner",
+    "ops_owner": "billing_ops_owner",
+    "review_required": true,
+    "executive_sponsor": "cino_delegate"
+  },
+  "rollout_scope": {
+    "scope_summary": "Two carriers across one office"
+  },
+  "operational_artifacts": {
+    "sop_references": [
+      "SOP-portal-remediation-v1"
+    ],
+    "training_references": [
+      "TRN-billing-ops-portal-flow-v1"
+    ]
+  },
+  "monitoring": {
+    "monitoring_references": [
+      "MON-work-to-cash-portal-cycle-time"
+    ],
+    "kpi_evidence": [
+      "reduced rejection rate",
+      "lower manual touch time"
+    ]
+  },
+  "mutation_boundary": {
+    "no_direct_canonical_mutation": true,
+    "promotion_decision_required_for_canonical_change": true,
+    "human_approval_required_before_rollout": true
+  },
+  "notes": "This example shows how validated pilot work is packaged for rollout without bypassing gate review or promotion governance."
+}

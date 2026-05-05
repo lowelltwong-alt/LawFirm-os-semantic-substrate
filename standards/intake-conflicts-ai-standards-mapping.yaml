@@ -1,0 +1,117 @@
+version: 0.1.0
+status: draft
+pilot_id: PSL-000002
+pilot_name: intake_conflicts_ai_semantic_stack_v1
+owner: Lowell T. Wong
+purpose: >
+  Bounded mapping record showing how the intake/conflicts/AI-use pilot uses
+  external standards in support of substrate-native operating semantics.
+
+fmg_native_core:
+  - policy_topic
+  - operating_position
+  - governance_baseline
+  - position_assessment
+  - retrieval_package
+  - proposal_promotion
+  - exception_request
+
+pilot_objects:
+  - local_id: CTX-000001
+    local_name: intake_conflicts_ai_context
+    role: jsonld_context_package
+    standard_mappings:
+      - standard_id: STD-000001
+        mapped_concepts:
+          - JSON-LD context packaging
+        rationale: >
+          JSON-LD is used to package semantic terms for the pilot without
+          replacing the repo's file-governed shell.
+
+  - local_id: NGM-000001
+    local_name: intake_conflicts_ai_named_graph_manifest
+    role: named_graph_manifest
+    standard_mappings:
+      - standard_id: STD-000001
+        mapped_concepts:
+          - RDF graph packaging
+        rationale: >
+          RDF-style graph partitioning supports bounded semantic packaging and
+          trust-aware separation.
+
+  - local_id: PGP-000001
+    local_name: intake_conflicts_ai_property_graph_projection
+    role: projection_contract
+    standard_mappings:
+      - standard_id: STD-000001
+        mapped_concepts:
+          - semantic source for downstream projection
+        rationale: >
+          The canonical semantic layer can feed downstream projection without
+          making projection the source of truth.
+
+  - local_id: RFB-000001
+    local_name: intake_conflicts_ai_retrieval_feedback
+    role: retrieval_feedback_sidecar
+    standard_mappings:
+      - standard_id: STD-000003
+        mapped_concepts:
+          - provenance-aware feedback tracing
+        rationale: >
+          Retrieval feedback should remain reviewable and attributable.
+
+  - local_id: PRP-000001
+    local_name: intake_conflicts_ai_proposal_promotion
+    role: proposal_promotion_sidecar
+    standard_mappings:
+      - standard_id: STD-000003
+        mapped_concepts:
+          - promotion provenance
+        rationale: >
+          Promotion decisions should remain explicit and traceable.
+
+pilot_alignment_summary:
+  adopted_now_usage:
+    - RDF / JSON-LD supports context and graph packaging
+    - PROV-O supports traceability of feedback and promotion
+    - SHACL supports semantic validation scaffolding
+    - DCTERMS can support generalized metadata alignment
+    - SKOS can support policy-topic and concept labeling
+    - OWL-light can support bounded semantic precision where needed
+
+  selective_candidates:
+    - standard_id: STD-000007
+      name: ODRL
+      possible_future_use: AI-use permission and restriction expression
+      current_status: not yet implemented
+    - standard_id: STD-000008
+      name: W3C Time Ontology
+      possible_future_use: effective dates, review windows, timed exceptions
+      current_status: not yet implemented
+    - standard_id: STD-000009
+      name: W3C ORG
+      possible_future_use: stewardship ownership and reviewer-role modeling
+      current_status: not yet implemented
+
+  watchlist_later_candidates:
+    - standard_id: STD-000011
+      name: LKIF Core
+      current_status: watchlist only
+    - standard_id: STD-000012
+      name: LegalRuleML
+      current_status: watchlist only
+    - standard_id: STD-000013
+      name: Akoma Ntoso
+      current_status: watchlist only
+
+why_this_mapping_is_bounded: >
+  This pilot uses external standards only where they strengthen the current
+  semantic stack. substrate-native operating semantics remain the design authority.
+  The mapping is intentionally bounded to avoid premature legal-domain
+  formalism before the pilot proves immediate operational value.
+
+revisit_conditions:
+  - repeated AI-use restriction modeling demand
+  - stronger exception and time-window handling
+  - KM stewardship routing needs
+  - broader legal interoperability requests

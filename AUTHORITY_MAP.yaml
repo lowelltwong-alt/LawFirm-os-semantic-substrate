@@ -1,0 +1,80 @@
+authority_tiers:
+  canonical:
+    description: Binding repo truth. Changes here affect interpretation and precedence.
+    folders:
+      - registry/
+      - governance/
+      - .ai/
+    root_files:
+      - README.md
+      - AGENTS.md
+      - AI_START_HERE.md
+      - MACHINE_NAVIGATION_MANIFEST.json
+    notes:
+      - registry/source-of-truth.json is the primary precedence surface.
+      - registry/design-authority.json defines posture and non-negotiables.
+      - governance/AI_CONTROL_PLANE_BOUNDARY.md defines neutral AI control-plane rules.
+
+  operational:
+    description: Implements and enforces the canonical layer.
+    folders:
+      - ontology/
+      - shapes/
+      - schemas/
+      - schema/
+      - scripts/
+      - .github/
+    notes:
+      - ontology/ carries semantic meaning.
+      - schemas/ is the active JSON schema surface.
+      - schema/ is the schema framework surface, not the same as schemas/.
+
+  adapter:
+    description: Tool- and vendor-specific adapters that consume canonical rules without defining semantic authority.
+    folders:
+      - .claude/
+    root_files:
+      - CLAUDE.md
+      - .github/copilot-instructions.md
+    notes:
+      - Adapters may scope tools, hooks, and settings.
+      - Adapters may not outrank canonical tiers.
+
+  reference:
+    description: External alignment and interoperability surfaces.
+    folders:
+      - interop/
+      - mappings/
+      - profiles/
+      - standards/
+
+  example:
+    description: Illustrative or sample artifacts only.
+    folders:
+      - examples/
+      - data/
+      - graphs/
+    notes:
+      - graphs/manifests/ contains operational named graph manifests and should be treated as operational-tier content despite residing under graphs/. The graphs/ folder root is example-tier; graphs/manifests/ is the exception.
+
+  supporting:
+    description: Narrative, evaluation, template, and report support material.
+    folders:
+      - docs/
+      - reports/
+      - eval/
+      - templates/
+
+  historical:
+    description: Deprecated or archived materials kept for traceability.
+    folders:
+      - legacy/
+      - archive/
+
+resolution_rules:
+  - When files conflict, prefer canonical over all other tiers.
+  - Within canonical, registry/ outranks governance/ and .ai/ when precedence is explicit.
+  - For active JSON schema lookup on main, prefer registry/schema-registry.json.
+  - Adapter files are not semantic authorities and may not override canonical surfaces.
+  - Do not treat example, supporting, or historical folders as authoritative unless a canonical file explicitly says so.
+  - Use legacy/ and archive/ only for historical traceability.

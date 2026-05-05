@@ -1,0 +1,11 @@
+kind: enum
+id: projection_status
+version: 0.1.0
+status: draft
+description: Release posture for governed property-graph projection packages.
+values:
+  - planned
+  - draft
+  - review_ready
+  - published_internal
+  - superseded

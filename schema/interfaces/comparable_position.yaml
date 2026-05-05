@@ -1,0 +1,26 @@
+kind: interface
+id: comparable_position
+version: 0.1.0
+status: draft
+description: >
+  Interface for a doctrinal position that can be compared across thinkers,
+  traditions, witnesses, or interpretive frames.
+required_fields:
+  - name: doctrine_ref
+    type: string
+  - name: position_label
+    type: string
+  - name: comparison_axes
+    type: list[string]
+optional_fields:
+  - name: thinker_ref
+    type: string
+  - name: tradition_ref
+    type: string
+  - name: comparable_to_refs
+    type: list[string]
+  - name: scope_note
+    type: string
+compatibility_notes:
+  - Comparison should remain claim-mediated where interpretation matters.
+  - Comparable positions are substrate-level objects, not final inference output.

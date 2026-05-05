@@ -1,0 +1,30 @@
+{
+  "document_id": "DOC-000001",
+  "schema_type": "document",
+  "schema_version": "v1",
+  "address": "/example/internal_general/data/legal/documents/source/SRC-doc-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "data",
+    "domain": "legal",
+    "module": "documents",
+    "object_type": "source",
+    "object_id": "SRC-doc-000001",
+    "version": "v1"
+  },
+  "title": "Intake Conference Agreement - Acme Corp v. Smith",
+  "document_type": "engagement-letter",
+  "jurisdiction": "US-NY",
+  "matter_refs": [
+    "MTR-000001"
+  ],
+  "source_systems": [
+    "imanage://matters/MTR-000001/DOC-000001"
+  ],
+  "current_version_id": "DV-000001",
+  "canonical_status": "active",
+  "access_policy_ref": "policy://default-matter-read",
+  "steward_role": "matter_attorney",
+  "notes": "Example single-document object. See legal-document.example.json for a composite bundle."
+}

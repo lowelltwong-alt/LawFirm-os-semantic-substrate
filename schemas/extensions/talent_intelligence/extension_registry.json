@@ -1,0 +1,54 @@
+{
+  "extension_name": "talent_intelligence",
+  "status": "provisional",
+  "description": "Registry and placement manifest for the Talent Intelligence / Attorney Market Intelligence extension.",
+  "layer_fit": {
+    "identity_layer": [
+      "attorney.schema.json",
+      "external_identifier.schema.json"
+    ],
+    "node_layer": [
+      "attorney.schema.json",
+      "law_firm.schema.json",
+      "employment_episode.schema.json",
+      "source_profile.schema.json"
+    ],
+    "claim_layer": [
+      "talent_signal_claim.schema.json"
+    ],
+    "validation_layer": [
+      "../../governance/TALENT_INTELLIGENCE_VALIDATION_RULES.md",
+      "../../../scripts/validate_talent_intelligence_examples.py"
+    ],
+    "retrieval_layer": [],
+    "fractal_address_layer": [],
+    "artifact_layer": [
+      "source_profile.schema.json"
+    ],
+    "optional_orchestration_layer": [
+      "../../../.github/workflows/validate-talent-intelligence-extension.yml"
+    ]
+  },
+  "schema_files": [
+    "attorney.schema.json",
+    "law_firm.schema.json",
+    "employment_episode.schema.json",
+    "external_identifier.schema.json",
+    "source_profile.schema.json",
+    "talent_signal_claim.schema.json"
+  ],
+  "example_files": [
+    "../../../examples/talent_intelligence/attorney_minimal_example.json",
+    "../../../examples/talent_intelligence/attorney_firm_change_example.json",
+    "../../../examples/talent_intelligence/common_name_collision_example.json",
+    "../../../examples/talent_intelligence/leopard_list_intake_example.json",
+    "../../../examples/talent_intelligence/firm_instability_claim_example.json",
+    "../../../examples/talent_intelligence/portable_book_claim_example.json",
+    "../../../examples/talent_intelligence/relationship_warmth_claim_example.json"
+  ],
+  "end_state_placement": {
+    "semantic_resting_place": "layers_1_through_8",
+    "workflow_resting_place": "optional_layer_9",
+    "note": "The extension should terminate semantically in the repository's governed object, claim, evidence, and artifact layers. Workflow, sync, and automation concerns should terminate outside ontology truth in an optional orchestration layer if formalized."
+  }
+}

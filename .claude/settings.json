@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(*.pem)",
+      "Read(*.key)",
+      "Read(*.pfx)",
+      "Write(*.map)",
+      "Write(.claude/settings.local.json)",
+      "Bash(rm -rf *)",
+      "Bash(git push --force*)"
+    ]
+  },
+  "notes": [
+    "Adapter-only settings file.",
+    "Use Law Firm canonical authority surfaces before local adapter rules.",
+    "Deny-first posture reflects release-hygiene and supply-chain lessons."
+  ]
+}

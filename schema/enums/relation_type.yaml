@@ -1,0 +1,54 @@
+kind: enum
+id: relation_type
+version: 0.1.0
+status: draft
+description: >
+  Controlled relation labels aligned to current graph direction. Normalized
+  semantics are required for cross-partition links and must include explicit
+  directionality, cardinality, temporal validity, and trust/evidence carryover.
+values:
+  - relates_to
+  - depends_on
+  - supported_by
+  - derived_from
+  - conflicts_with
+  - part_of
+  - example_of
+  - aligns_with
+  - contrasts_with
+  - interprets
+  - anchors_to
+  - attested_by
+  - translated_by
+  - compares
+  - groups
+normalized_relation_semantics:
+  equivalence:
+    definition: >
+      Declares two nodes as semantically equivalent for governed retrieval and
+      downstream graph materialization.
+    directionality_default: bidirectional
+    cardinality_default: one_to_one
+  composition:
+    definition: >
+      Declares that a whole is composed from one or more constituent nodes.
+    directionality_default: unidirectional
+    cardinality_default: one_to_many
+  derivation:
+    definition: >
+      Declares that a target node is derived from a source node through
+      transformation, abstraction, or inference.
+    directionality_default: unidirectional
+    cardinality_default: many_to_one
+  temporal_succession:
+    definition: >
+      Declares that a target node succeeds a source node in time while
+      preserving explicit temporal validity boundaries.
+    directionality_default: unidirectional
+    cardinality_default: one_to_one
+  control_dependency:
+    definition: >
+      Declares that a target node's validity, execution, or interpretation is
+      controlled by a source node.
+    directionality_default: unidirectional
+    cardinality_default: one_to_many

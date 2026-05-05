@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/exception-event.schema.json",
+  "title": "Exception Event",
+  "description": "Append-only governed runtime evidence for retrieval, workflow, or governance friction. Exception events may route, aggregate, and attach evidence, but they may not directly mutate canonical meaning.",
+  "type": "object",
+  "required": [
+    "exception_id",
+    "schema_type",
+    "schema_version",
+    "event_class",
+    "severity",
+    "event_time",
+    "summary",
+    "origin",
+    "route",
+    "trust_metadata",
+    "canonical_mutation_control"
+  ],
+  "properties": {
+    "exception_id": {
+      "type": "string",
+      "pattern": "^EXC-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "exception-event"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    },
+    "event_class": {
+      "type": "string",
+      "enum": [
+        "retrieval_miss",
+        "workflow_escalation",
+        "authority_conflict_override"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "critical"
+      ]
+    },
+    "event_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 12
+    },
+    "details": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "object",
+      "required": [
+        "layer",
+        "component",
+        "run_id"
+      ],
+      "properties": {
+        "layer": {
+          "type": "string",
+          "enum": [
+            "retrieval",
+            "workflow",
+            "governance"
+          ]
+        },
+        "component": {
+          "type": "string",
+          "minLength": 3
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 3
+        },
+        "address_ref": {
+          "type": "string"
+        },
+        "artifact_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "policy_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "route": {
+      "type": "object",
+      "required": [
+        "route_id",
+        "destination_loop",
+        "promotion_gate_required"
+      ],
+      "properties": {
+        "route_id": {
+          "type": "string",
+          "pattern": "^route\\.[a-z0-9_]+\\.v[0-9]+$"
+        },
+        "destination_loop": {
+          "type": "string",
+          "enum": [
+            "retrieval_tuning",
+            "workflow_redesign",
+            "governance_review",
+            "cross_loop_review"
+          ]
+        },
+        "promotion_gate_required": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "trust_metadata": {
+      "type": "object",
+      "required": [
+        "authority_zone",
+        "trust_level",
+        "confidence",
+        "reviewer_required"
+      ],
+      "properties": {
+        "authority_zone": {
+          "type": "string"
+        },
+        "trust_level": {
+          "type": "string",
+          "enum": [
+            "low",
+            "moderate",
+            "high"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reviewer_required": {
+          "type": "boolean"
+        },
+        "review_role": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "pressure_vector_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^PV-[0-9]{6}$"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "canonical_mutation_control": {
+      "type": "object",
+      "required": [
+        "direct_mutation_attempted",
+        "allowed_action",
+        "boundary_note"
+      ],
+      "properties": {
+        "direct_mutation_attempted": {
+          "type": "boolean",
+          "const": false
+        },
+        "allowed_action": {
+          "type": "string",
+          "enum": [
+            "route_for_review",
+            "aggregate_pressure",
+            "attach_evidence_only"
+          ]
+        },
+        "proposed_target": {
+          "type": "string"
+        },
+        "boundary_note": {
+          "type": "string",
+          "const": "promotion_decision_required_for_canonical_change"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

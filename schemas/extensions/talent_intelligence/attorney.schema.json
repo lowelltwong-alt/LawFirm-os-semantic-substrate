@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.fmg/schemas/extensions/talent_intelligence/attorney.schema.json",
+  "title": "Attorney",
+  "description": "Canonical attorney entity for the talent intelligence extension. External identifiers, source profiles, and employment history should attach to this stable FMG identity rather than replace it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "attorney_id",
+    "canonical_name",
+    "status",
+    "authority_zone",
+    "confidence_posture"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "attorney"
+    },
+    "attorney_id": {
+      "type": "string",
+      "description": "Stable opaque FMG attorney identifier."
+    },
+    "canonical_name": {
+      "type": "string"
+    },
+    "name_variants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "provisional",
+        "active",
+        "inactive",
+        "merged",
+        "deprecated"
+      ]
+    },
+    "authority_zone": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal-general",
+        "internal-km-approved",
+        "practice-restricted",
+        "client-restricted",
+        "matter-restricted",
+        "ethical-wall-restricted",
+        "experimental-ai"
+      ]
+    },
+    "confidence_posture": {
+      "type": "string",
+      "enum": [
+        "asserted",
+        "inferred",
+        "hypothesis",
+        "reviewed"
+      ]
+    },
+    "primary_practice": {
+      "type": "string"
+    },
+    "home_office": {
+      "type": "string"
+    },
+    "admitted_jurisdictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "bar_credentials": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "external_identifier_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "source_profile_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "employment_episode_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "notes": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

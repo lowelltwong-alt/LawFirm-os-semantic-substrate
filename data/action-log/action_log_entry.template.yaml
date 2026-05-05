@@ -1,0 +1,15 @@
+id: ALG-000001
+title: Example action log entry
+object_type: action_log_entry
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+action_type: add_comparison
+actor: lowelltwong-alt
+timestamp: 2026-04-04T12:00:00Z
+touched_object_ids:
+  - CMP-000001
+summary: Seed log entry for adding a bounded pilot comparison object.
+parameters:
+  target_surface: data/comparisons
+  reviewer_role: review.structural

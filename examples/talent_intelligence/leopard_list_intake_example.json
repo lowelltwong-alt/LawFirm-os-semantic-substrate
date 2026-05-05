@@ -1,0 +1,87 @@
+{
+  "intake_artifact": {
+    "artifact_id": "ART_000301",
+    "artifact_type": "spreadsheet",
+    "source_type": "leopard_list",
+    "authority_zone": "internal-general",
+    "status": "provisional",
+    "imported_at": "2026-04-07T12:00:00Z",
+    "import_notes": "Example Leopard List import staged as artifact rather than ontology truth."
+  },
+  "mapped_source_row": {
+    "row_id": "ROW_000301",
+    "source_artifact_ref": "ART_000301",
+    "source_type": "leopard_list",
+    "observed_name": "Avery Collins",
+    "observed_title": "Partner",
+    "observed_firm": "Example & Hart LLP",
+    "observed_office": "Chicago",
+    "observed_practice": "Commercial Litigation",
+    "list_labels": [
+      "top target",
+      "portable book"
+    ],
+    "raw_text_excerpt": "Avery Collins | Partner | Example & Hart LLP | Chicago | Commercial Litigation"
+  },
+  "provisional_outputs": {
+    "source_profile": {
+      "object_type": "source_profile",
+      "source_profile_id": "SPROF_000301",
+      "source_type": "leopard_list",
+      "source_artifact_ref": "ART_000301",
+      "source_record_id": "ROW_000301",
+      "observed_name": "Avery Collins",
+      "observed_title": "Partner",
+      "observed_firm": "Example & Hart LLP",
+      "observed_office": "Chicago",
+      "observed_practice": "Commercial Litigation",
+      "raw_text_excerpt": "Avery Collins | Partner | Example & Hart LLP | Chicago | Commercial Litigation",
+      "status": "provisional",
+      "authority_zone": "internal-general",
+      "confidence_posture": "asserted",
+      "first_seen_at": "2026-04-07T12:00:00Z",
+      "last_seen_at": "2026-04-07T12:00:00Z",
+      "linked_entity_refs": [
+        "ATY_000301"
+      ]
+    },
+    "provisional_attorney": {
+      "object_type": "attorney",
+      "attorney_id": "ATY_000301",
+      "canonical_name": "Avery Collins",
+      "name_variants": [
+        "Avery Collins"
+      ],
+      "status": "provisional",
+      "authority_zone": "internal-general",
+      "confidence_posture": "hypothesis",
+      "primary_practice": "Commercial Litigation",
+      "home_office": "Chicago",
+      "external_identifier_refs": [],
+      "source_profile_refs": [
+        "SPROF_000301"
+      ],
+      "employment_episode_refs": [
+        "EMP_000301"
+      ]
+    },
+    "provisional_employment_episode": {
+      "object_type": "employment_episode",
+      "employment_episode_id": "EMP_000301",
+      "attorney_ref": "ATY_000301",
+      "law_firm_ref": "LF_000301",
+      "office": "Chicago",
+      "title": "Partner",
+      "practice_area": "Commercial Litigation",
+      "is_current": true,
+      "status": "provisional",
+      "authority_zone": "internal-general",
+      "confidence_posture": "asserted",
+      "source_profile_refs": [
+        "SPROF_000301"
+      ],
+      "notes": "Imported from Leopard List. Requires validation before promotion."
+    }
+  },
+  "promotion_rule_note": "List labels such as 'top target' and 'portable book' remain source-linked assessments until separately validated."
+}

@@ -1,0 +1,48 @@
+profile_id: litify-matter-v1
+profile_version: 1.0.0
+status: draft
+draft_reason: awaiting validation against tenant-specific Litify field configuration and client-scope policy rules; public Litify and Salesforce documentation confirm the configurable platform boundary, but not tenant field names
+evidence_status: repo_authored_draft
+readiness_status: structurally_sound_draft
+owner: retrieval-platform
+provider: litify
+service: matter
+purpose: >
+  Map matter, client, and workflow scoping metadata into Law Firm retrieval and
+  access controls without treating Litify labels as canonical semantic truth.
+consumes_source_entities:
+  - matter
+  - client
+emits_canonical_objects:
+  - document
+emits_derived_objects:
+  - retrieval-request
+emits_policy_objects:
+  - access-decision
+boundary_controls:
+  local_semantics_authoritative: false
+  may_create_local_semantic_forks: false
+  deny_by_default_required: true
+field_mappings:
+  - source_field: Matter.Id
+    target_object: document
+    target_field: matter_refs[]
+    mapping_mode: exact
+  - source_field: Matter.Id
+    target_object: retrieval-request
+    target_field: target_scope.matter_scope_ids[]
+    mapping_mode: exact
+  - source_field: Client.Id
+    target_object: access-decision
+    target_field: target_ref.client_scope_id
+    mapping_mode: exact
+  - source_field: Matter.Status
+    target_object: access-decision
+    target_field: policy_basis.matter_status
+    mapping_mode: transformed
+notes:
+  - Preserve upstream record IDs as external references and scope anchors.
+  - Do not derive canonical identity or ontology classes from local picklist labels.
+  - Public vendor boundary: Litify is publicly described as a configurable legal matter-management platform, and Salesforce public documentation confirms that object and field layouts are configurable per org.
+  - TODO_EVIDENCE: verify firm-specific team-role payloads before adding any Litify role-to-access mapping.
+  - TODO_EVIDENCE: verify matter status payload semantics against a real Litify export before treating status as implementation-ready.

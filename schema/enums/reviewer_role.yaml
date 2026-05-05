@@ -1,0 +1,11 @@
+kind: enum
+id: reviewer_role
+version: 0.1.0
+status: draft
+description: Reviewer role labels compatible with current human-in-the-loop posture.
+values:
+  - review.local
+  - review.structural
+  - review.tradition
+  - review.institution
+  - review.authority

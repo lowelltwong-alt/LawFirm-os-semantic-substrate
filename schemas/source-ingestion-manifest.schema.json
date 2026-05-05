@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/source-ingestion-manifest.schema.json",
+  "title": "Source Ingestion Manifest",
+  "description": "Metadata-only provenance gate required before an internal document source may be treated as a governed source. The manifest records stable identifiers, source provenance, stewardship, access posture, and lifecycle readiness without embedding source content.",
+  "type": "object",
+  "required": [
+    "source_ingestion_manifest_id",
+    "schema_type",
+    "schema_version",
+    "address",
+    "address_struct",
+    "document_id",
+    "source_artifact_id",
+    "source_type",
+    "source_system",
+    "source_identifier",
+    "capture_time",
+    "checksum",
+    "confidentiality_class",
+    "access_policy_ref",
+    "lifecycle_status",
+    "retention_rule",
+    "boundary_controls"
+  ],
+  "properties": {
+    "source_ingestion_manifest_id": {
+      "type": "string",
+      "pattern": "^SIM-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "source-ingestion-manifest"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    },
+    "document_id": {
+      "type": "string",
+      "pattern": "^DOC-[0-9]{6}$"
+    },
+    "source_artifact_id": {
+      "type": "string",
+      "pattern": "^SA-[0-9]{6}$"
+    },
+    "source_type": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "source_system": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$",
+      "minLength": 2,
+      "maxLength": 128
+    },
+    "source_identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$",
+      "minLength": 2,
+      "maxLength": 256
+    },
+    "capture_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "checksum": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "confidentiality_class": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "access_policy_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$",
+      "minLength": 3,
+      "maxLength": 128
+    },
+    "steward_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$",
+      "minLength": 2,
+      "maxLength": 128
+    },
+    "steward_role": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "lifecycle_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "review",
+        "approved",
+        "active",
+        "deprecated"
+      ]
+    },
+    "originating_repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$",
+      "minLength": 2,
+      "maxLength": 256
+    },
+    "retention_rule": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "boundary_controls": {
+      "type": "object",
+      "required": [
+        "metadata_only_manifest",
+        "manifest_may_not_embed_content",
+        "governed_source_requires_complete_provenance"
+      ],
+      "properties": {
+        "metadata_only_manifest": {
+          "type": "boolean",
+          "const": true
+        },
+        "manifest_may_not_embed_content": {
+          "type": "boolean",
+          "const": true
+        },
+        "governed_source_requires_complete_provenance": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "anyOf": [
+        {
+          "required": [
+            "steward_ref"
+          ]
+        },
+        {
+          "required": [
+            "steward_role"
+          ]
+        }
+      ]
+    }
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,13 @@
+kind: type
+id: translation_witness
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: Witness object representing a translation-based textual rendering.
+required_fields:
+  - translation_label
+optional_fields:
+  - language_code
+  - translator_label
+  - source_witness_ref

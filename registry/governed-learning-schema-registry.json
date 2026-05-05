@@ -1,0 +1,32 @@
+{
+  "schemas": [
+    {
+      "schema_id": "exception-event-v1",
+      "status": "active",
+      "path": "schemas/exception-event.schema.json",
+      "applies_to": ["exception-event"]
+    },
+    {
+      "schema_id": "pressure-vector-v1",
+      "status": "active",
+      "path": "schemas/pressure-vector.schema.json",
+      "applies_to": ["pressure-vector"]
+    },
+    {
+      "schema_id": "adaptation-proposal-v1",
+      "status": "active",
+      "path": "schemas/adaptation-proposal.schema.json",
+      "applies_to": ["adaptation-proposal"]
+    },
+    {
+      "schema_id": "promotion-decision-v1",
+      "status": "active",
+      "path": "schemas/promotion-decision.schema.json",
+      "applies_to": ["promotion-decision"]
+    }
+  ],
+  "notes": [
+    "This registry is the governed-learning surface for exception-to-promotion objects.",
+    "It is intentionally separate from the broader schema registry until older schema references are reconciled."
+  ]
+}

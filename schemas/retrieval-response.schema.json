@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/retrieval-response.schema.json",
+  "title": "Retrieval Response",
+  "description": "Derived retrieval result artifact that records ranked evidence returned for a query. Retrieval responses must reference canonical document versions, components, and exact span selectors and may not redefine source boundaries.",
+  "type": "object",
+  "required": [
+    "retrieval_response_id",
+    "schema_type",
+    "schema_version",
+    "retrieval_request_id",
+    "retrieval_trace_id",
+    "access_decision_id",
+    "request_summary",
+    "index_build_id",
+    "retrieval_activity_id",
+    "status",
+    "ranked_results",
+    "grounding_controls",
+    "access_enforcement"
+  ],
+  "properties": {
+    "retrieval_response_id": {
+      "type": "string",
+      "pattern": "^RR-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "retrieval-response"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "retrieval_request_id": {
+      "type": "string",
+      "pattern": "^RQ-[0-9]{6}$"
+    },
+    "retrieval_trace_id": {
+      "type": "string",
+      "pattern": "^RT-[0-9]{6}$"
+    },
+    "access_decision_id": {
+      "type": "string",
+      "pattern": "^AD-[0-9]{6}$"
+    },
+    "request_summary": {
+      "type": "object",
+      "required": [
+        "query_text",
+        "task_type",
+        "access_policy_ref"
+      ],
+      "properties": {
+        "query_text": {
+          "type": "string",
+          "minLength": 3
+        },
+        "task_type": {
+          "type": "string",
+          "enum": [
+            "grounded_answer",
+            "evidence_lookup",
+            "document_review",
+            "exception_triage"
+          ]
+        },
+        "access_policy_ref": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "index_build_id": {
+      "type": "string",
+      "pattern": "^IDX-[0-9]{6}$"
+    },
+    "retrieval_activity_id": {
+      "type": "string",
+      "minLength": 2
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "partial",
+        "empty",
+        "failed"
+      ]
+    },
+    "ranked_results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "rank",
+          "chunk_id",
+          "document_version_id",
+          "component_ids",
+          "span_selector_ids",
+          "scores"
+        ],
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "chunk_id": {
+            "type": "string",
+            "pattern": "^CHK-[0-9]{6}$"
+          },
+          "document_version_id": {
+            "type": "string",
+            "pattern": "^DV-[0-9]{6}$"
+          },
+          "component_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^CMP-[0-9]{6}$"
+            }
+          },
+          "span_selector_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^SPAN-[0-9]{6}$"
+            }
+          },
+          "citation_target_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CTGT-[0-9]{6}$"
+            }
+          },
+          "scores": {
+            "type": "object",
+            "properties": {
+              "lexical_rank": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "dense_rank": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "fusion_score": {
+                "type": "number"
+              },
+              "reranker_score": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "answer_event_id": {
+      "type": "string",
+      "pattern": "^AE-[0-9]{6}$"
+    },
+    "grounding_controls": {
+      "type": "object",
+      "required": [
+        "canonical_source_of_truth",
+        "results_reference_exact_spans",
+        "retrieval_artifacts_may_not_redefine_boundaries"
+      ],
+      "properties": {
+        "canonical_source_of_truth": {
+          "type": "string",
+          "const": "document_version_components_and_span_selectors"
+        },
+        "results_reference_exact_spans": {
+          "type": "boolean",
+          "const": true
+        },
+        "retrieval_artifacts_may_not_redefine_boundaries": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "access_enforcement": {
+      "type": "object",
+      "required": [
+        "deny_by_default_applied",
+        "access_decision_required",
+        "quarantine_excluded_by_default"
+      ],
+      "properties": {
+        "deny_by_default_applied": {
+          "type": "boolean",
+          "const": true
+        },
+        "access_decision_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "quarantine_excluded_by_default": {
+          "type": "boolean",
+          "const": true
+        },
+        "dlp_policy_outcome": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

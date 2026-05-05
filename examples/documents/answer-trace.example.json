@@ -1,0 +1,323 @@
+{
+  "address": "/example/internal_general/data/legal/documents/artifact/ART-answer-trace-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "data",
+    "domain": "legal",
+    "module": "documents",
+    "object_type": "artifact",
+    "object_id": "ART-answer-trace-000001",
+    "version": "v1"
+  },
+  "retrieval_request": {
+    "retrieval_request_id": "RQ-000001",
+    "schema_type": "retrieval-request",
+    "schema_version": "v1",
+    "query_text": "When may partner rate increases be billed?",
+    "task_type": "grounded_answer",
+    "requester_context": {
+      "subject_id": "user:km-001",
+      "identity_profile_ref": "azure-entra-access-v1",
+      "role_refs": [
+        "role:knowledge-manager"
+      ],
+      "group_refs": [
+        "group:litigation-ops"
+      ],
+      "purpose_of_use": "grounded_answer_support"
+    },
+    "target_scope": {
+      "matter_scope_ids": [
+        "matter:trinity"
+      ],
+      "client_scope_id": "client:trinity",
+      "document_types": [
+        "ocg"
+      ],
+      "source_systems": [
+        "imanage",
+        "sharepoint"
+      ],
+      "confidentiality_classes": [
+        "internal"
+      ]
+    },
+    "retrieval_policy": {
+      "deny_by_default": true,
+      "require_access_decision": true,
+      "canonical_documents_preferred": true,
+      "exact_span_traceability_required": true,
+      "allow_quarantine_by_default": false,
+      "adapter_profile_preferences": [
+        "azure-ai-search-v1",
+        "litify-matter-v1"
+      ]
+    },
+    "response_view": "view-evidence-bundle"
+  },
+  "access_decision": {
+    "access_decision_id": "AD-000001",
+    "schema_type": "access-decision",
+    "schema_version": "v1",
+    "subject_ref": {
+      "subject_id": "user:km-001",
+      "identity_profile_ref": "azure-entra-access-v1",
+      "role_refs": [
+        "role:knowledge-manager"
+      ],
+      "group_refs": [
+        "group:litigation-ops"
+      ]
+    },
+    "target_ref": {
+      "target_type": "retrieval-request",
+      "target_id": "RQ-000001",
+      "matter_scope_ids": [
+        "matter:trinity"
+      ],
+      "client_scope_id": "client:trinity",
+      "confidentiality_class": "internal",
+      "source_system": "azure-ai-search"
+    },
+    "action": "retrieve",
+    "environment": {
+      "purpose_of_use": "grounded_answer_support",
+      "request_time": "2026-04-14T09:35:00Z",
+      "network_zone": "corp"
+    },
+    "decision": "allow",
+    "reason_code": "allowed_policy_match",
+    "policy_basis": {
+      "deny_by_default": true,
+      "privilege_aware_retrieval": true,
+      "source_policy_refs": [
+        "policy:billing-guideline-internal-approved"
+      ],
+      "matter_status": "active"
+    },
+    "enforcement_controls": {
+      "apply_before_retrieval": true,
+      "apply_before_response_rendering": true
+    }
+  },
+  "retrieval_trace": {
+    "retrieval_trace_id": "RT-000001",
+    "schema_type": "retrieval-trace",
+    "schema_version": "v1",
+    "retrieval_request_id": "RQ-000001",
+    "status": "completed",
+    "adapter_runs": [
+      {
+        "adapter_profile_id": "azure-ai-search-v1",
+        "source_system": "azure-ai-search",
+        "engine_kind": "fusion",
+        "index_build_id": "IDX-000001",
+        "query_activity_id": "activity:retrieval-2026-04-14-001",
+        "returned_candidate_count": 2
+      }
+    ],
+    "policy_enforcement": {
+      "access_decision_id": "AD-000001",
+      "deny_by_default_applied": true,
+      "quarantine_excluded_by_default": true,
+      "adapter_filter_expression": "matter_scope eq 'matter:trinity'",
+      "privilege_filters_applied": [
+        "matter_scope",
+        "confidentiality_class"
+      ]
+    },
+    "result_trace": [
+      {
+        "rank": 1,
+        "chunk_id": "CHK-000001",
+        "document_version_id": "DV-000001",
+        "scores": {
+          "lexical_rank": 1,
+          "dense_rank": 2,
+          "fusion_score": 0.93,
+          "reranker_score": 0.89
+        }
+      },
+      {
+        "rank": 2,
+        "chunk_id": "CHK-000002",
+        "document_version_id": "DV-000001",
+        "scores": {
+          "lexical_rank": 2,
+          "dense_rank": 1,
+          "fusion_score": 0.79,
+          "reranker_score": 0.73
+        }
+      }
+    ],
+    "observability": {
+      "trace_id": "trace-2026-04-14-001",
+      "span_id": "span-001",
+      "correlation_id": "corr-001",
+      "emitted_field_standard_ref": "standards/open-telemetry-fields.md"
+    }
+  },
+  "retrieval_response": {
+    "retrieval_response_id": "RR-000001",
+    "schema_type": "retrieval-response",
+    "schema_version": "v1",
+    "retrieval_request_id": "RQ-000001",
+    "retrieval_trace_id": "RT-000001",
+    "access_decision_id": "AD-000001",
+    "request_summary": {
+      "query_text": "When may partner rate increases be billed?",
+      "task_type": "grounded_answer",
+      "access_policy_ref": "policy:billing-guideline-internal-approved"
+    },
+    "index_build_id": "IDX-000001",
+    "retrieval_activity_id": "activity:retrieval-2026-04-14-001",
+    "status": "completed",
+    "ranked_results": [
+      {
+        "rank": 1,
+        "chunk_id": "CHK-000001",
+        "document_version_id": "DV-000001",
+        "component_ids": [
+          "CMP-000002"
+        ],
+        "span_selector_ids": [
+          "SPAN-000002"
+        ],
+        "scores": {
+          "lexical_rank": 1,
+          "dense_rank": 2,
+          "fusion_score": 0.93,
+          "reranker_score": 0.89
+        }
+      },
+      {
+        "rank": 2,
+        "chunk_id": "CHK-000002",
+        "document_version_id": "DV-000001",
+        "component_ids": [
+          "CMP-000003"
+        ],
+        "span_selector_ids": [
+          "SPAN-000003",
+          "SPAN-000004"
+        ],
+        "citation_target_ids": [
+          "CTGT-000001"
+        ],
+        "scores": {
+          "lexical_rank": 2,
+          "dense_rank": 1,
+          "fusion_score": 0.79,
+          "reranker_score": 0.73
+        }
+      }
+    ],
+    "answer_event_id": "AE-000001",
+    "grounding_controls": {
+      "canonical_source_of_truth": "document_version_components_and_span_selectors",
+      "results_reference_exact_spans": true,
+      "retrieval_artifacts_may_not_redefine_boundaries": true
+    },
+    "access_enforcement": {
+      "deny_by_default_applied": true,
+      "access_decision_required": true,
+      "quarantine_excluded_by_default": true,
+      "dlp_policy_outcome": "allow"
+    }
+  },
+  "answer_event": {
+    "answer_event_id": "AE-000001",
+    "schema_type": "answer-event",
+    "schema_version": "v1",
+    "status": "completed",
+    "query_text": "When may partner rate increases be billed?",
+    "retrieval_response_id": "RR-000001",
+    "answer_text": "Partner rate increases may be billed only after the client has approved the increase in writing and the updated rate is reflected in the governing OCG record.",
+    "grounding_status": "grounded",
+    "access_basis": {
+      "access_decision_id": "AD-000001",
+      "purpose_of_use": "grounded_answer_support",
+      "source_policy_refs": [
+        "policy:billing-guideline-internal-approved"
+      ]
+    },
+    "answer_evidence_ids": [
+      "AEV-000001",
+      "AEV-000002"
+    ],
+    "model_profile": {
+      "model_name": "gpt-5.4",
+      "model_version": "2026-04",
+      "response_mode": "grounded_answer"
+    },
+    "generation_activity_id": "activity:answer-2026-04-14-001",
+    "generated_at": "2026-04-14T09:37:00Z",
+    "boundary_controls": {
+      "canonical_source_of_truth": "document_version_components_and_span_selectors",
+      "derived_answer_may_modify_canonical_boundary": false
+    }
+  },
+  "answer_evidence": [
+    {
+      "answer_evidence_id": "AEV-000001",
+      "schema_type": "answer-evidence",
+      "schema_version": "v1",
+      "answer_event_id": "AE-000001",
+      "retrieval_response_id": "RR-000001",
+      "document_version_id": "DV-000001",
+      "component_ids": [
+        "CMP-000002"
+      ],
+      "span_selector_ids": [
+        "SPAN-000002"
+      ],
+      "chunk_ids": [
+        "CHK-000001"
+      ],
+      "support_level": "direct",
+      "confidence": 0.95,
+      "evidence_excerpt": "The Firm may bill a partner rate increase only after the Client has approved the increase in writing and the updated rate is reflected in the governing OCG record.",
+      "retrieval_scores": {
+        "fusion_score": 0.93,
+        "reranker_score": 0.89
+      },
+      "boundary_controls": {
+        "exact_span_traceability": true,
+        "retrieval_artifacts_derive_from_canonical_source": true
+      }
+    },
+    {
+      "answer_evidence_id": "AEV-000002",
+      "schema_type": "answer-evidence",
+      "schema_version": "v1",
+      "answer_event_id": "AE-000001",
+      "retrieval_response_id": "RR-000001",
+      "document_version_id": "DV-000001",
+      "component_ids": [
+        "CMP-000003"
+      ],
+      "span_selector_ids": [
+        "SPAN-000003",
+        "SPAN-000004"
+      ],
+      "chunk_ids": [
+        "CHK-000002"
+      ],
+      "citation_mention_ids": [
+        "CMN-000001"
+      ],
+      "support_level": "contextual",
+      "confidence": 0.78,
+      "evidence_excerpt": "See OCG Section 4.2 for the approved notice and rate table submission path.",
+      "retrieval_scores": {
+        "fusion_score": 0.79,
+        "reranker_score": 0.73
+      },
+      "boundary_controls": {
+        "exact_span_traceability": true,
+        "retrieval_artifacts_derive_from_canonical_source": true
+      }
+    }
+  ]
+}

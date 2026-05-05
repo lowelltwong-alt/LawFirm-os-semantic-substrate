@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/quality-gate.schema.json",
+  "title": "Quality Gate",
+  "type": "object",
+  "required": ["gate_id", "gate_type", "status"],
+  "properties": {
+    "gate_id": {"type": "string"},
+    "gate_type": {"type": "string", "enum": ["schema", "shacl", "retrieval", "citation", "access_control", "latency", "cost"]},
+    "status": {"type": "string", "enum": ["pass", "fail", "warning"]},
+    "details": {"type": "string"}
+  },
+  "additionalProperties": false
+}

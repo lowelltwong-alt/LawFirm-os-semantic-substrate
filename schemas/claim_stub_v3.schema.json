@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Claim Registry Stub v3",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_type",
+    "schema_version",
+    "address",
+    "address_struct"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "claim"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v3"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    }
+  },
+  "description": "Minimal stub schema for registry validation. Superseded by schemas/claim_v3.schema.json for full validation."
+}

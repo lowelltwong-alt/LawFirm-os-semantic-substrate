@@ -1,0 +1,19 @@
+kind: type
+id: jsonld_context
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Governed JSON-LD context package for semantic graph exports that must remain
+  aligned to the current authority, trust, and partition shell.
+required_fields:
+  - display_title
+  - context_uri
+  - default_vocab
+  - bound_prefixes
+  - governing_graph_manifest_refs
+optional_fields:
+  - protected_terms
+  - governance_notes
+  - compatible_projection_refs

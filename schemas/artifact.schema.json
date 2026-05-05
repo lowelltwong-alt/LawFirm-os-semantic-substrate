@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/artifact.schema.json",
+  "title": "Governed Artifact (Example Only)",
+  "type": "object",
+  "required": [
+    "id",
+    "artifact_type",
+    "title",
+    "artifact_order",
+    "status",
+    "version",
+    "schema_id",
+    "template_id",
+    "authority_zone",
+    "trust_level",
+    "owner",
+    "created_at",
+    "updated_at",
+    "address",
+    "address_struct",
+    "attribution_chain"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "artifact_type": { "type": "string" },
+    "artifact_subtype": { "type": "string" },
+    "title": { "type": "string" },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "artifact_order": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "status": { "type": "string" },
+    "version": { "type": "string" },
+    "schema_id": { "type": "string", "const": "artifact-schema-v1" },
+    "template_id": { "type": "string", "const": "artifact-template-v1" },
+    "authority_zone": { "type": "string" },
+    "trust_level": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "unknown"]
+    },
+    "owner": { "type": "string" },
+    "steward": { "type": "string" },
+    "reviewer": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "review_by": { "type": "string", "format": "date-time" },
+    "retention_rule": { "type": "string" },
+    "archive_rule": { "type": "string" },
+    "deletion_rule": { "type": "string" },
+    "promotion_rule": { "type": "string" },
+    "demotion_rule": { "type": "string" },
+    "depends_on": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "enables": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "supersedes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "intended_use": { "type": "string" },
+    "audience": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "ai_ingestible": { "type": "boolean" },
+    "ai_priority": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "none"]
+    },
+    "validation_status": {
+      "type": "string",
+      "enum": ["valid", "invalid", "unchecked"]
+    },
+    "confidentiality": { "type": "string" },
+    "access_scope": { "type": "string" },
+    "address": { "$ref": "address.schema.json" },
+    "address_struct": { "$ref": "address_struct.schema.json" },
+    "attribution_chain": {
+      "type": "object",
+      "required": ["derivative_order", "primary_sources"],
+      "properties": {
+        "derivative_order": { "type": "integer", "minimum": 0 },
+        "primary_sources": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "derived_from": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "includes_sources": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "lineage_note": { "type": "string" }
+      }
+    },
+    "semantic_position": {
+      "type": "object",
+      "properties": {
+        "embedding_model": { "type": "string" },
+        "cluster_id": { "type": "string" },
+        "neighbors": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "projection": {
+          "type": "object",
+          "properties": {
+            "x": { "type": "number" },
+            "y": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

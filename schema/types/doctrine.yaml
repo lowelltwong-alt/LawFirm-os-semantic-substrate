@@ -1,0 +1,13 @@
+kind: type
+id: doctrine
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: Governing doctrinal topic that positions and evidence can attach to.
+required_fields:
+  - doctrine_label
+optional_fields:
+  - doctrine_family
+  - parent_doctrine_ref
+  - related_concept_refs

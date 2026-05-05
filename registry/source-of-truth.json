@@ -1,0 +1,177 @@
+{
+  "repo_id": "fmg-fractal-capability-ontology",
+  "default_branch": "main",
+  "working_branch": "main",
+  "current_release": "draft-2026-04-authority-reconciled",
+  "repo_role": "semantic_control_plane_and_innovation_os_contract_repository",
+  "authoritative_files": {
+    "root_readme": "README.md",
+    "contributing": "CONTRIBUTING.md",
+    "system_map": "governance/SYSTEM_MAP.md",
+    "repo_doctrine": "governance/REPO_DOCTRINE.md",
+    "roadmap": "governance/ALIGNMENT_FIRST_ROADMAP.md",
+    "integration_backlog": "governance/PHASED_INTEGRATION_BACKLOG.md",
+    "boundary_contract": "governance/ONTOLOGY_BOUNDARY_CONTRACT.md",
+    "canonical_document_model": "governance/CANONICAL_DOCUMENT_MODEL.md",
+    "gold_standard_backbone": "governance/GOLD_STANDARD_BACKBONE.md",
+    "exceptions_architecture": "governance/EXCEPTIONS_LAKE_ARCHITECTURE.md",
+    "exceptions_integration_note": "governance/EXCEPTIONS_LAYER_INTEGRATION_NOTE.md",
+    "innovation_os": "governance/INNOVATION_OS_OPERATING_SYSTEM.md",
+    "ai_control_plane_boundary": "governance/AI_CONTROL_PLANE_BOUNDARY.md",
+    "design_authority": "registry/design-authority.json",
+    "ontology_registry": "registry/ontology-registry.json",
+    "schema_registry": "registry/schema-registry.json",
+    "governed_learning_schema_registry": "registry/governed-learning-schema-registry.json",
+    "exceptions_schema_registry": "registry/exceptions-schema-registry.json",
+    "exception_route_registry": "registry/exception-route-registry.json",
+    "exceptions_contract_export": "registry/exceptions-lake-contract-export.json",
+    "template_registry": "registry/template-registry.json",
+    "deprecation_registry": "registry/deprecation-registry.json",
+    "drift_rules": "standards/drift-rules.json",
+    "exception_tooling_posture": "standards/exception-observability-tooling-registry.yaml"
+  },
+  "precedence_order": [
+    "registry/source-of-truth.json",
+    "registry/design-authority.json",
+    "registry/ontology-registry.json",
+    "registry/schema-registry.json",
+    "registry/exceptions-schema-registry.json",
+    "registry/exception-route-registry.json",
+    "registry/governed-learning-schema-registry.json",
+    "registry/template-registry.json",
+    "governance/AI_CONTROL_PLANE_BOUNDARY.md",
+    "governance/REPO_DOCTRINE.md",
+    "governance/ONTOLOGY_BOUNDARY_CONTRACT.md",
+    "governance/CANONICAL_DOCUMENT_MODEL.md",
+    "governance/GOLD_STANDARD_BACKBONE.md",
+    "governance/EXCEPTIONS_LAKE_ARCHITECTURE.md",
+    "governance/INNOVATION_OS_OPERATING_SYSTEM.md",
+    "AGENTS.md",
+    "AI_START_HERE.md",
+    ".ai/",
+    "examples/",
+    "legacy/",
+    "archive/"
+  ],
+  "layer_model": {
+    "semantic_meaning": [
+      "ontology/",
+      "shapes/",
+      "schemas/artifact.schema.json",
+      "schemas/claim_v3.schema.json",
+      "schemas/address.schema.json",
+      "schemas/address_struct.schema.json"
+    ],
+    "canonical_document_family": [
+      "governance/CANONICAL_DOCUMENT_MODEL.md",
+      "schemas/document.schema.json",
+      "schemas/source-artifact.schema.json",
+      "schemas/source-ingestion-manifest.schema.json",
+      "schemas/document-version.schema.json",
+      "schemas/canonical-text.schema.json",
+      "schemas/component.schema.json",
+      "schemas/span-selector.schema.json",
+      "schemas/citation-mention.schema.json",
+      "schemas/citation-target.schema.json"
+    ],
+    "gold_standard_backbone": [
+      "governance/GOLD_STANDARD_BACKBONE.md",
+      "schemas/gold-standard-asset.schema.json"
+    ],
+    "derived_document_and_evidence": [
+      "schemas/chunk-set.schema.json",
+      "schemas/chunk.schema.json",
+      "schemas/embedding-set.schema.json",
+      "schemas/index-build.schema.json",
+      "schemas/answer-evidence.schema.json",
+      "schemas/answer-event.schema.json"
+    ],
+    "retrieval_and_access": [
+      "governance/RETRIEVAL_ARCHITECTURE.md",
+      "governance/PRIVILEGE_AWARE_RETRIEVAL.md",
+      "schemas/retrieval-request.schema.json",
+      "schemas/retrieval-trace.schema.json",
+      "schemas/retrieval-response.schema.json",
+      "schemas/access-decision.schema.json",
+      "schemas/index-migration-plan.schema.json"
+    ],
+    "policy_and_governance": [
+      "governance/REPO_DOCTRINE.md",
+      "governance/ONTOLOGY_BOUNDARY_CONTRACT.md",
+      "registry/",
+      "standards/",
+      "schemas/access-decision.schema.json"
+    ],
+    "ai_control_plane": [
+      "governance/AI_CONTROL_PLANE_BOUNDARY.md",
+      ".ai/",
+      "CLAUDE.md",
+      ".claude/",
+      ".github/copilot-instructions.md"
+    ],
+    "action_and_runtime": [
+      "schemas/exception-event.schema.json",
+      "schemas/pressure-vector.schema.json",
+      "schemas/adaptation-proposal.schema.json",
+      "schemas/promotion-decision.schema.json",
+      "schemas/opportunity-object.schema.json",
+      "schemas/sprint-object.schema.json",
+      "schemas/pilot-object.schema.json",
+      "schemas/validation-gate-record.schema.json",
+      "schemas/scale-package-object.schema.json",
+      "schemas/view-executive-brief.schema.json"
+    ]
+  },
+  "schema_resolution_order": {
+    "default": [
+      "registry/schema-registry.json"
+    ],
+    "raw_runtime_intake": [
+      "registry/exceptions-schema-registry.json",
+      "registry/exception-route-registry.json",
+      "registry/schema-registry.json"
+    ],
+    "governed_learning": [
+      "registry/governed-learning-schema-registry.json",
+      "registry/schema-registry.json"
+    ],
+    "draft_action_layer": [
+      "registry/schema-registry.json",
+      "governance/PHASED_INTEGRATION_BACKLOG.md"
+    ]
+  },
+  "interpretation_rules": [
+    "Do not infer authority from file age or filename similarity.",
+    "Use registries before prose when resolving the current schema or route.",
+    "Keep ontology, canonical document structure, derived evidence, retrieval/access, policy, AI control plane, and action layers distinct when reading or editing the repo.",
+    "Treat source-ingestion-manifest as a metadata-only provenance gate required before an internal document is treated as a governed source; the manifest may not embed source content.",
+    "Treat Gold Standard assets as thin canonical KM designations anchored to canonical documents, source artifacts, components, exact spans, and policy references rather than as retrieval outputs or vendor-local labels.",
+    "Treat retrieval, answer, and index-migration contracts as derived control surfaces that consume canonical document structure without redefining it.",
+    "Treat the AI control plane as tool-neutral repo governance for AI contributors; vendor adapters consume it and do not outrank registries or doctrine.",
+    "Treat raw exceptions and pressure vectors as governed evidence and aggregation, not canonical truth.",
+    "Treat opportunity, sprint, pilot, validation, scale, and view objects as governed action or presentation layers, not ontology replacements.",
+    "Canonical meaning may change only through reviewed governance and promotion decisions."
+  ],
+  "mutation_boundary": {
+    "raw_runtime_may": [
+      "route_for_review",
+      "aggregate_pressure",
+      "attach_evidence_only"
+    ],
+    "raw_runtime_may_not": [
+      "canonical_ontology_write",
+      "taxonomy_rewrite",
+      "schema_mutation",
+      "policy_overwrite",
+      "address_system_mutation"
+    ],
+    "canonical_change_requires": [
+      "reviewed_adaptation_proposal",
+      "approved_promotion_decision"
+    ]
+  },
+  "deprecated_paths": [
+    "legacy/",
+    "archive/"
+  ]
+}

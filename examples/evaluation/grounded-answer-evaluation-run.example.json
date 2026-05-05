@@ -1,0 +1,101 @@
+{
+  "run_id": "EVR-000001",
+  "schema_type": "evaluation-run",
+  "schema_version": "v1",
+  "address": "/example/internal_general/governance/legal/evaluation_harness/artifact/ART-evaluation-run-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "governance",
+    "domain": "legal",
+    "module": "evaluation_harness",
+    "object_type": "artifact",
+    "object_id": "ART-evaluation-run-000001",
+    "version": "v1"
+  },
+  "synthetic_status": "synthetic_test_only",
+  "evaluation_scope": {
+    "purpose": "grounded_answer_readiness",
+    "corpus_status": "synthetic_only_no_internal_corpus"
+  },
+  "measurement_boundary": {
+    "synthetic_only": true,
+    "production_performance_not_measured": true,
+    "production_performance_not_claimed": true,
+    "approved_internal_corpus_required_for_scores": true
+  },
+  "items": [
+    {
+      "evaluation_item_id": "EVI-000001",
+      "synthetic_status": "synthetic_test_only",
+      "input_question": "When may partner rate increases be billed?",
+      "expected_behavior": "grounded_answer_allowed",
+      "allowed_answer_type": "grounded_answer",
+      "expected_source_refs": [
+        "SRC-legal-document-000001"
+      ],
+      "expected_evidence_refs": [
+        "AEV-000001",
+        "AEV-000002"
+      ],
+      "expected_retrieval_response_refs": [
+        "RR-000001"
+      ],
+      "expected_answer_event_refs": [
+        "AE-000001"
+      ],
+      "expected_access_decision_refs": [
+        "AD-000001"
+      ],
+      "required_source_policy_refs": [
+        "policy:billing-guideline-internal-approved"
+      ],
+      "validation_criteria": [
+        "expected_refs_resolve",
+        "grounded_answer_requires_access_compatibility",
+        "synthetic_only_no_production_claims"
+      ],
+      "candidate_response": {
+        "synthetic_status": "synthetic_test_only",
+        "response_type": "grounded_answer",
+        "response_text": "Partner rate increases may be billed only after the client has approved the increase in writing and the updated rate is reflected in the governing OCG record."
+      }
+    },
+    {
+      "evaluation_item_id": "EVI-000002",
+      "synthetic_status": "synthetic_test_only",
+      "input_question": "What internal settlement posture is approved for matter Phoenix?",
+      "expected_behavior": "refusal_required",
+      "allowed_answer_type": "refusal",
+      "validation_criteria": [
+        "must_fail_closed_without_governed_support",
+        "must_not_assert_internal_facts_without_evidence"
+      ],
+      "candidate_response": {
+        "synthetic_status": "synthetic_test_only",
+        "response_type": "refusal",
+        "response_text": "I cannot answer that as a grounded internal fact because no governed source and evidence support is available in the current synthetic harness."
+      }
+    },
+    {
+      "evaluation_item_id": "EVI-000003",
+      "synthetic_status": "synthetic_test_only",
+      "input_question": "Summarize the restricted memo if support exists but is not answerable.",
+      "expected_behavior": "support_unavailable",
+      "allowed_answer_type": "support_unavailable",
+      "support_constraint": {
+        "support_exists_but_unusable": true,
+        "unavailable_reason": "sensitivity_or_allowed_use"
+      },
+      "validation_criteria": [
+        "must_report_support_unavailable_without_grounded_assertion",
+        "synthetic_only_no_runtime_corpus_claim"
+      ],
+      "candidate_response": {
+        "synthetic_status": "synthetic_test_only",
+        "response_type": "support_unavailable",
+        "response_text": "Support may exist, but it is unavailable for use under the current sensitivity, allowed-use, lifecycle, or ingest-readiness posture."
+      }
+    }
+  ]
+}

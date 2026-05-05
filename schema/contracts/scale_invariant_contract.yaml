@@ -1,0 +1,134 @@
+kind: scale_invariant_contract
+id: scale_invariant_contract
+version: 0.1.0
+status: draft
+required_invariants: &required_invariants
+  - identity
+  - boundary
+  - state_transition
+  - evidence
+  - governance
+  - feedback
+levels:
+  micro:
+    description: Atomic entities and witness-level observations.
+    required_invariants: *required_invariants
+  meso:
+    description: Operational objects that aggregate and govern bounded workflows.
+    required_invariants: *required_invariants
+  macro:
+    description: Program-level manifests, projections, and enterprise governance artifacts.
+    required_invariants: *required_invariants
+
+default_projection: &default_projection
+  parent_level_mapping:
+    meso: summarize_required_invariants
+    macro: aggregate_required_invariants
+  child_projection_mapping:
+    micro: decompose_required_invariants
+    meso: package_required_invariants
+  invariant_preservation_rules:
+    identity: preserve stable id/object_type/title semantics through projection transforms
+    boundary: preserve explicit authority and ontology boundary constraints
+    state_transition: preserve lifecycle and review transition traceability
+    evidence: preserve citable evidence and provenance linkages
+    governance: preserve governing policy and approval references
+    feedback: preserve retrieval and decision feedback channels
+
+major_object_types:
+  action_definition:
+    <<: *default_projection
+    scale_level: meso
+  action_log_entry:
+    <<: *default_projection
+    scale_level: meso
+  alignment_assessment:
+    <<: *default_projection
+    scale_level: meso
+  allocation_decision:
+    <<: *default_projection
+    scale_level: meso
+  assertion_object:
+    <<: *default_projection
+    scale_level: meso
+  canon_thinker:
+    <<: *default_projection
+    scale_level: micro
+  capability_twin:
+    <<: *default_projection
+    scale_level: meso
+  comparison_object:
+    <<: *default_projection
+    scale_level: meso
+  concept:
+    <<: *default_projection
+    scale_level: micro
+  doctrine:
+    <<: *default_projection
+    scale_level: meso
+  doctrine_position:
+    <<: *default_projection
+    scale_level: meso
+  evidence_bundle:
+    <<: *default_projection
+    scale_level: meso
+  experiment:
+    <<: *default_projection
+    scale_level: meso
+  external_standards_registry:
+    <<: *default_projection
+    scale_level: macro
+  graph_object:
+    <<: *default_projection
+    scale_level: macro
+  hypothesis:
+    <<: *default_projection
+    scale_level: meso
+  jsonld_context:
+    <<: *default_projection
+    scale_level: macro
+  learning_event:
+    <<: *default_projection
+    scale_level: meso
+  learning_transition_policy:
+    <<: *default_projection
+    scale_level: meso
+  lexeme:
+    <<: *default_projection
+    scale_level: micro
+  manuscript_witness:
+    <<: *default_projection
+    scale_level: micro
+  named_graph_manifest:
+    <<: *default_projection
+    scale_level: macro
+  object_set:
+    <<: *default_projection
+    scale_level: meso
+  object_set_definition:
+    <<: *default_projection
+    scale_level: meso
+  passage_anchor:
+    <<: *default_projection
+    scale_level: micro
+  pilot_slice:
+    <<: *default_projection
+    scale_level: meso
+  property_graph_projection:
+    <<: *default_projection
+    scale_level: macro
+  proposal_promotion:
+    <<: *default_projection
+    scale_level: macro
+  provenance_activity:
+    <<: *default_projection
+    scale_level: meso
+  relationship_object:
+    <<: *default_projection
+    scale_level: meso
+  retrieval_feedback:
+    <<: *default_projection
+    scale_level: macro
+  translation_witness:
+    <<: *default_projection
+    scale_level: micro

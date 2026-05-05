@@ -1,0 +1,16 @@
+{
+  "id": "ART-000001",
+  "schema_type": "artifact",
+  "schema_version": "v1",
+  "address": "/example/public/governance/legal/intake_conflicts/artifact/ART-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "governance",
+    "domain": "legal",
+    "module": "intake_conflicts",
+    "object_type": "artifact",
+    "object_id": "ART-000001",
+    "version": "v1"
+  }
+}

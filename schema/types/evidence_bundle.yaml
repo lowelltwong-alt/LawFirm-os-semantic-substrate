@@ -1,0 +1,14 @@
+kind: type
+id: evidence_bundle
+version: 0.1.0
+status: draft
+implements:
+  - node
+  - evidence_bearing
+description: Aggregated evidence package supporting a comparison, doctrine, or position.
+required_fields:
+  - bundle_scope
+optional_fields:
+  - included_anchor_refs
+  - included_witness_refs
+  - included_claim_refs

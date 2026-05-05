@@ -1,0 +1,38 @@
+{
+  "@context": {
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@graph": [
+    {
+      "@id": "urn:fmg:doctrine:DOC-000001",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": "Intake Conflicts AI Governance",
+      "dcterms:description": "Governed doctrine scaffold for intake conflicts AI pilot."
+    },
+    {
+      "@id": "urn:fmg:concept:CON-000101",
+      "@type": "skos:Concept",
+      "skos:prefLabel": "Conflict Check Reliability",
+      "skos:broader": { "@id": "urn:fmg:concept:CON-000001" }
+    },
+    {
+      "@id": "urn:fmg:assertion:ASR-000031",
+      "@type": "prov:Entity",
+      "dcterms:references": [
+        { "@id": "urn:fmg:evidence:EVB-000004" }
+      ],
+      "prov:wasDerivedFrom": [
+        { "@id": "urn:fmg:assertion:ASR-000012" }
+      ]
+    },
+    {
+      "@id": "urn:fmg:activity:PRV-000010",
+      "@type": "prov:Activity",
+      "prov:startedAtTime": "2026-03-27T18:20:00Z",
+      "prov:endedAtTime": "2026-03-27T18:25:00Z",
+      "prov:type": "urn:fmg:activity-type:governance-review"
+    }
+  ]
+}

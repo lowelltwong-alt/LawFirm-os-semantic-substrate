@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Structured Address",
+  "type": "object",
+  "required": [
+    "environment",
+    "authority_zone",
+    "layer",
+    "domain",
+    "module",
+    "object_type",
+    "object_id",
+    "version"
+  ],
+  "properties": {
+    "environment": {
+      "type": "string",
+      "enum": ["example", "production"]
+    },
+    "authority_zone": {
+      "type": "string",
+      "enum": ["public", "internal_general", "restricted", "experimental"]
+    },
+    "layer": {
+      "type": "string",
+      "enum": ["governance", "ontology", "schema", "data", "retrieval"]
+    },
+    "domain": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
+    "module": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
+    "object_type": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
+    "object_id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]*-[a-z0-9_]+(?:-[a-z0-9_]+)*$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+$"
+    }
+  },
+  "additionalProperties": false
+}

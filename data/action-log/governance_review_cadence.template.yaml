@@ -1,0 +1,50 @@
+review_cycle_id: GRC-000000
+schema_type: governance-review-cadence
+schema_version: v1
+cadence:
+  frequency: monthly # monthly | quarterly
+  period_start: YYYY-MM-DD
+  period_end: YYYY-MM-DD
+  review_date: YYYY-MM-DD
+  reviewers:
+    - role: governance_lead
+      name: TBD
+
+thresholds:
+  min_alignment_score: 0.80
+  min_exception_route_coverage: 0.95
+
+metrics:
+  alignment_score:
+    approved_alignment_assessments: 0
+    total_alignment_assessments: 0
+    value: 0.00
+  exception_route_coverage:
+    exception_events_with_registered_route: 0
+    total_exception_events: 0
+    value: 0.00
+
+promotion_freeze_rule:
+  frozen: false
+  freeze_reason: "set when alignment_score < 0.80 or exception_route_coverage < 0.95"
+  freeze_scope:
+    - ontology_expansion
+
+mandatory_outputs:
+  drift_report:
+    artifact_id: DRF-000000
+    path: data/action-log/reports/DRF-000000.yaml
+    status: required
+  exception_trend_report:
+    artifact_id: ETR-000000
+    path: data/action-log/reports/ETR-000000.yaml
+    status: required
+  promotion_outcomes_report:
+    artifact_id: POR-000000
+    path: data/action-log/reports/POR-000000.yaml
+    status: required
+
+attestation:
+  all_mandatory_outputs_present: false
+  readiness_gate_effective: governance
+  notes: "Cadence artifact blocks promotion when mandatory outputs are missing."

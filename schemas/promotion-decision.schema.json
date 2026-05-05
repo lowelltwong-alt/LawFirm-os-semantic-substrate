@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/promotion-decision.schema.json",
+  "title": "Promotion Decision",
+  "description": "Active v1 decision record for whether a proposed change may affect retrieval, workflow, governance, taxonomy, ontology, or schema surfaces. Promotion decision remains the only lawful mutation gateway; raw runtime evidence and operating objects cannot bypass it.",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "schema_type",
+    "schema_version",
+    "decision_time",
+    "decision_outcome",
+    "proposal_id",
+    "reviewers",
+    "execution_boundary"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "pattern": "^PD-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "promotion-decision"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    },
+    "decision_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "decision_outcome": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "rejected",
+        "deferred"
+      ]
+    },
+    "proposal_id": {
+      "type": "string",
+      "pattern": "^AP-[0-9]{6}$"
+    },
+    "input_artifacts": {
+      "type": "object",
+      "properties": {
+        "exception_event_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EXC-[0-9]{6}$"
+          }
+        },
+        "pressure_vector_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^PV-[0-9]{6}$"
+          }
+        },
+        "opportunity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^OPP-[0-9]{6}$"
+          }
+        },
+        "sprint_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SPR-[0-9]{6}$"
+          }
+        },
+        "pilot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^PIL-[0-9]{6}$"
+          }
+        },
+        "scale_package_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SCL-[0-9]{6}$"
+          }
+        },
+        "validation_gate_record_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^VGR-[0-9]{6}$"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "reviewers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "role",
+          "name",
+          "decision"
+        ],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "ops_owner",
+              "knowledge_owner",
+              "security_reviewer",
+              "legal_risk_reviewer",
+              "billing_integrity_reviewer"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "approve",
+              "reject",
+              "comment"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "decision_rationale": {
+      "type": "string"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "execution_boundary": {
+      "type": "object",
+      "required": [
+        "may_update_canonical_objects",
+        "allowed_targets",
+        "requires_reviewed_inputs",
+        "raw_exception_direct_write_allowed"
+      ],
+      "properties": {
+        "may_update_canonical_objects": {
+          "type": "boolean"
+        },
+        "allowed_targets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "retrieval",
+              "workflow",
+              "governance",
+              "taxonomy",
+              "ontology",
+              "schema",
+              "view"
+            ]
+          }
+        },
+        "blocked_targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requires_reviewed_inputs": {
+          "type": "boolean",
+          "const": true
+        },
+        "raw_exception_direct_write_allowed": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "implementation_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "execution_boundary": {
+            "properties": {
+              "may_update_canonical_objects": {
+                "const": false
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "execution_boundary": {
+            "required": [
+              "blocked_targets"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

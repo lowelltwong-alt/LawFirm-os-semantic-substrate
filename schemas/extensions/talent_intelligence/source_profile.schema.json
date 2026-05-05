@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.fmg/schemas/extensions/talent_intelligence/source_profile.schema.json",
+  "title": "SourceProfile",
+  "description": "Observed source record or profile used as evidence input for governed talent intelligence objects.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "source_profile_id",
+    "source_type",
+    "source_artifact_ref",
+    "status",
+    "authority_zone",
+    "confidence_posture"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "source_profile"
+    },
+    "source_profile_id": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "law_firm_bio",
+        "bar_directory",
+        "linkedin",
+        "crm",
+        "vendor_export",
+        "leopard_list",
+        "spreadsheet",
+        "other"
+      ]
+    },
+    "source_artifact_ref": {
+      "type": "string"
+    },
+    "source_record_id": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "observed_name": {
+      "type": "string"
+    },
+    "observed_title": {
+      "type": "string"
+    },
+    "observed_firm": {
+      "type": "string"
+    },
+    "observed_office": {
+      "type": "string"
+    },
+    "observed_practice": {
+      "type": "string"
+    },
+    "raw_text_excerpt": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["provisional", "active", "inactive", "deprecated"]
+    },
+    "authority_zone": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal-general",
+        "internal-km-approved",
+        "practice-restricted",
+        "client-restricted",
+        "matter-restricted",
+        "ethical-wall-restricted",
+        "experimental-ai"
+      ]
+    },
+    "confidence_posture": {
+      "type": "string",
+      "enum": ["asserted", "inferred", "hypothesis", "reviewed"]
+    },
+    "first_seen_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_seen_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "linked_entity_refs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    }
+  }
+}

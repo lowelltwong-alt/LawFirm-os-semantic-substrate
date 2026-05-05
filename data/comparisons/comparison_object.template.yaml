@@ -1,0 +1,19 @@
+id: CMP-000001
+title: Example comparison object
+object_type: comparison_object
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+comparison_scope: doctrinal_alignment
+compared_object_refs:
+  - POS-000001
+  - POS-000002
+alignment_assessment_id: AAS-000001
+alignment_scope: doctrinal_core
+translation_burden: moderate
+evidence_sufficiency: mixed_support
+confidence_level: medium
+review_status: unchecked
+source_refs:
+  - SRC-000001
+alignment_summary: Seed comparison object for phase 3 scaffolding.

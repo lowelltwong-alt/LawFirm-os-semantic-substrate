@@ -1,0 +1,325 @@
+router_version: 0.1.0
+last_updated: "2026-05-02"
+owner_surface: docs/governance/ai-workflow/
+source_of_truth:
+  - AGENTS.md
+  - AI_START_HERE.md
+  - AI_WORK_START_HERE.md
+  - registry/source-of-truth.json
+  - registry/design-authority.json
+
+routes:
+  research_addition:
+    description: Add staged research or source synthesis without promoting it to canon.
+    default_mode: Edit
+    reasoning_effort: medium
+    internet: off_unless_source_verification_needed
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/research-addition-template.md
+    allowed_paths:
+      - incoming/research/**
+      - docs/research/**
+    forbidden:
+      - canonical_promotion
+      - runtime_execution
+      - raw_internal_data
+    validation:
+      - metadata
+      - crossrefs
+
+  governance_bridge:
+    description: Move staged findings into governed docs while preserving authority boundaries.
+    default_mode: Plan/Edit
+    reasoning_effort: high
+    internet: off_unless_official_docs_needed
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/governance-bridge-template.md
+    allowed_paths:
+      - governance/**
+      - docs/governance/**
+      - docs/roadmap/**
+    forbidden:
+      - raw_runtime_storage
+      - direct_canon_mutation_without_authority
+    validation:
+      - repo_drift
+      - crossrefs
+      - task_specific
+
+  schema_change:
+    description: Create or update schema contracts.
+    default_mode: Plan/Edit
+    reasoning_effort: high
+    internet: off
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/schema-change-template.md
+    allowed_paths:
+      - schemas/**
+      - examples/**
+      - registry/**
+      - scripts/validation/**
+    forbidden:
+      - production_runtime
+      - real_internal_data
+    validation:
+      - schema_examples
+      - repo_drift
+      - unit_tests
+
+  contract_export_change:
+    description: Change contract export bundles consumed by runtime repos.
+    default_mode: Plan/Edit
+    reasoning_effort: high
+    internet: off
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/contract-export-change-template.md
+    allowed_paths:
+      - registry/**
+      - docs/EXCEPTIONS_LAKE_CONTRACT_CONSUMPTION_MAP.md
+      - docs/EXCEPTIONS_LAKE_RUNTIME_BUILD_PACK.md
+    forbidden:
+      - runtime_implementation
+      - raw_transcripts
+    validation:
+      - contract_consistency
+      - repo_drift
+
+  exceptions_runtime_contract:
+    description: Change Law Firm-side contracts used by exceptions-lake-runtime.
+    default_mode: Plan/Edit
+    reasoning_effort: high
+    internet: off
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/exceptions-runtime-contract-template.md
+    allowed_paths:
+      - schemas/exception-event.schema.json
+      - schemas/pressure-vector.schema.json
+      - schemas/adaptation-proposal.schema.json
+      - schemas/promotion-decision.schema.json
+      - governance/EXCEPTIONS_LAKE_BOUNDARY.md
+      - registry/**
+      - docs/**
+    forbidden:
+      - live_connector_code
+      - production_event_store
+    validation:
+      - exception_validators
+      - learning_loop_validators
+      - repo_drift
+
+  retrieval_access_contract:
+    description: Change retrieval, access, answer evidence, or grounded-answer contracts.
+    default_mode: Plan/Edit
+    reasoning_effort: high
+    internet: off
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/retrieval-access-contract-template.md
+    allowed_paths:
+      - governance/RETRIEVAL_ARCHITECTURE.md
+      - governance/PRIVILEGE_AWARE_RETRIEVAL.md
+      - schemas/retrieval-*.json
+      - schemas/access-decision.schema.json
+      - schemas/answer-*.json
+      - examples/**
+    forbidden:
+      - production_retrieval_claims
+      - raw_client_data
+    validation:
+      - grounded_answer_eval
+      - access_contracts
+      - repo_drift
+
+  adapter_profile:
+    description: Add or change vendor/system adapter profiles and mappings.
+    default_mode: Edit
+    reasoning_effort: medium
+    internet: off_unless_official_vendor_docs_needed
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/adapter-profile-template.md
+    allowed_paths:
+      - profiles/**
+      - mappings/**
+      - standards/**
+    forbidden:
+      - treating_adapter_as_authority
+      - live_connector_code
+    validation:
+      - interop_mappings
+      - external_alignment
+
+  validation_infra:
+    description: Add validators, validation docs, or validation expectations.
+    default_mode: Plan/Edit
+    reasoning_effort: high
+    internet: off
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/validation-infra-template.md
+    allowed_paths:
+      - scripts/**
+      - .github/**
+      - reports/**
+      - docs/governance/**
+    forbidden:
+      - silent_skip
+      - converting_fail_closed_to_pass
+    validation:
+      - unit_tests
+      - repo_drift
+      - full_audit_or_known_gate
+
+  runtime_agent_planning:
+    description: Plan runtime agents or harness architecture without implementing runtime in this repo.
+    default_mode: Plan
+    reasoning_effort: high
+    internet: off_unless_official_docs_needed
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/runtime-agent-planning-template.md
+    allowed_paths:
+      - docs/**
+      - governance/**
+    forbidden:
+      - executable_runtime
+      - live_connectors
+      - raw_transcripts
+    validation:
+      - doc_review
+      - boundary_check
+
+  ai_audit_design:
+    description: Design AI input/output audit capture contracts, roadmap, retention, and privacy boundaries.
+    default_mode: Plan/Edit
+    reasoning_effort: high
+    internet: off_unless_official_governance_docs_needed
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/ai-audit-design-template.md
+    allowed_paths:
+      - docs/governance/ai-workflow/**
+      - governance/**
+      - schemas/**
+      - registry/**
+    forbidden:
+      - raw_transcript_storage
+      - production_audit_lake
+      - real_user_prompts_outputs
+    validation:
+      - privacy_boundary_review
+      - schema_review_when_applicable
+      - repo_drift
+
+  math_intelligence:
+    description: Track frontier math developments as governed-learning inputs for governed recursive improvement and assess impact on Law Firm architecture, ontology, retrieval, agents, audit, runtime plans, Exceptions Lake, and Innovation OS.
+    default_mode: Plan/Edit
+    reasoning_effort: high
+    internet: off_unless_verifying_official_source_types_or_public_source_monitoring_references
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/math-intelligence-template.md
+    allowed_paths:
+      - docs/governance/math-intelligence/**
+      - docs/governance/ai-workflow/ai-task-route-table.yaml
+      - docs/governance/ai-workflow/templates/math-intelligence-template.md
+      - docs/governance/ai-workflow/templates/math-breakthrough-impact-template.md
+    required:
+      - source_status_review
+      - proof_status_review
+      - math_domain_tagging
+      - project_surface_impact_tagging
+      - recommendation_selection
+      - governed_learning_posture
+    recommendation_options:
+      - ignore
+      - watch
+      - summarize
+      - deep_research
+      - prototype
+      - update_roadmap
+      - create_adaptation_proposal
+    may_create_or_recommend:
+      - watch_items
+      - proof_source_reviews
+      - math_impact_assessments
+      - roadmap_update_candidates
+      - deep_research_prompts
+      - prototype_recommendations
+      - adaptation_proposal_recommendations
+    may_not_directly_create:
+      - canonical_ontology_changes
+      - schema_changes
+      - runtime_changes
+      - production_retrieval_changes
+      - route_table_changes_beyond_this_scoped_pr
+      - promotion_decisions
+    governed_learning_posture: candidate_signal_to_assessment_to_recommendation_to_adaptation_proposal_recommendation_if_reviewed_to_promotion_decision_only_through_existing_authority_path
+    deep_research_definition: scoped_follow_up_research_task_or_prompt_not_verified_truth_not_automatic_canon_change_not_automatic_runtime_implementation
+    forbidden:
+      - runtime_implementation
+      - source_ingestion_pipeline
+      - autonomous_repo_rewriting
+      - schema_changes
+      - ci_changes
+      - production_feed
+      - automatic_canon_mutation
+      - automatic_runtime_changes
+      - treating_preprints_as_verified_truth
+      - autonomous_self_modification_framing
+    validation:
+      - doc_review
+      - boundary_check
+      - repo_drift
+      - full_audit_or_known_gate
+
+  agent_skill_capability_graph:
+    description: Govern substrate-neutral agent, subagent, skill, monitor, orchestrator, workflow, tag, and capability-edge registry surfaces for governed recursive improvement and future derived discovery outputs.
+    default_mode: Plan/Edit
+    reasoning_effort: high
+    internet: off_unless_official_platform_mapping_docs_needed
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/agent-skill-registry-template.md
+    allowed_paths:
+      - docs/governance/agent-skills/**
+      - docs/governance/ai-workflow/ai-task-route-table.yaml
+      - docs/governance/ai-workflow/templates/agent-skill-registry-template.md
+      - docs/governance/ai-workflow/templates/capability-overlap-impact-template.md
+    forbidden:
+      - .claude/agents/**
+      - .claude/skills/**
+      - runtime_implementation
+      - scheduler_implementation
+      - ci_changes
+      - validators
+      - schemas
+      - generated_indexes
+      - embeddings
+      - graphrag_package
+      - production_feed
+      - raw_transcript_capture
+      - autonomous_repo_rewriting
+      - generated_artifacts_as_canonical_truth
+    validation:
+      - doc_review
+      - boundary_check
+      - card_field_review
+      - tagging_model_review
+      - capability_taxonomy_review
+      - edge_vocabulary_review
+      - orchestrator_impact_review
+      - duplicate_merge_review
+      - audit_boundary_review
+      - derived_surface_classification
+      - repo_drift
+      - full_audit_or_known_gate
+
+  chat_handoff:
+    description: Convert chat outputs into scoped handoff instructions for later PR work.
+    default_mode: Plan/Edit
+    reasoning_effort: medium
+    internet: off
+    permissions: conservative
+    template: docs/governance/ai-workflow/templates/chat-handoff-template.md
+    allowed_paths:
+      - docs/**
+      - incoming/research/**
+    forbidden:
+      - canonical_promotion_without_route
+      - unsupported_claims
+    validation:
+      - doc_review

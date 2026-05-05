@@ -1,0 +1,64 @@
+{
+  "drift_checks": [
+    {
+      "id": "canonical_document_boundary_redefined_by_derived_artifact",
+      "severity": "critical"
+    },
+    {
+      "id": "retrieval_or_answer_artifact_presented_as_canonical_truth",
+      "severity": "critical"
+    },
+    {
+      "id": "vendor_adapter_presented_as_semantic_authority",
+      "severity": "critical"
+    },
+    {
+      "id": "gold_standard_asset_missing_canonical_anchors",
+      "severity": "critical"
+    },
+    {
+      "id": "missing_exact_span_traceability",
+      "severity": "critical"
+    },
+    {
+      "id": "source_of_truth_and_schema_registry_disagree",
+      "severity": "high"
+    },
+    {
+      "id": "authoritative_doc_and_registry_boundary_mismatch",
+      "severity": "high"
+    },
+    {
+      "id": "retrieval_access_contract_status_drift",
+      "severity": "high"
+    },
+    {
+      "id": "draft_adapter_promoted_without_evidence",
+      "severity": "high"
+    },
+    {
+      "id": "canonical_example_chain_broken",
+      "severity": "high"
+    },
+    {
+      "id": "missing_provenance_or_policy_reference",
+      "severity": "medium"
+    },
+    {
+      "id": "folder_or_vendor_label_treated_as_truth",
+      "severity": "medium"
+    }
+  ],
+  "evaluation_output": [
+    "aligned",
+    "partially_aligned",
+    "out_of_alignment",
+    "deprecated",
+    "needs_review"
+  ],
+  "notes": [
+    "Drift checks are evaluated against the active source-of-truth, schema-registry, doctrine, canonical document, retrieval/access, and Gold Standard boundary surfaces.",
+    "These checks intentionally prioritize canonical-vs-derived boundary failures over older address- or claim-specific drift heuristics.",
+    "Vendor payload evidence gaps remain a draft-adapter readiness issue, not proof of canonical drift by themselves."
+  ]
+}

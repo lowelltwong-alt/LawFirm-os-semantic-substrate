@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/pilot-object.schema.json",
+  "title": "Pilot Object",
+  "description": "Draft v1 Innovation OS pilot contract for scoped validation work derived from reviewed opportunities and sprints. Pilots may prove readiness for scale, but they cannot directly mutate canonical meaning.",
+  "type": "object",
+  "required": [
+    "pilot_id",
+    "schema_type",
+    "schema_version",
+    "title",
+    "status",
+    "source_refs",
+    "ownership",
+    "pilot_scope",
+    "success_metrics",
+    "gate_requirements",
+    "mutation_boundary"
+  ],
+  "properties": {
+    "pilot_id": {
+      "type": "string",
+      "pattern": "^PIL-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "pilot-object"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 8
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "active",
+        "paused",
+        "completed",
+        "approved_for_scale",
+        "no_go",
+        "cancelled"
+      ]
+    },
+    "source_refs": {
+      "type": "object",
+      "required": [
+        "opportunity_ids"
+      ],
+      "properties": {
+        "opportunity_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^OPP-[0-9]{6}$"
+          }
+        },
+        "sprint_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^SPR-[0-9]{6}$"
+          }
+        },
+        "validation_gate_record_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^VGR-[0-9]{6}$"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ownership": {
+      "type": "object",
+      "required": [
+        "primary_owner",
+        "ops_owner",
+        "review_required"
+      ],
+      "properties": {
+        "primary_owner": {
+          "type": "string"
+        },
+        "ops_owner": {
+          "type": "string"
+        },
+        "review_required": {
+          "type": "boolean"
+        },
+        "executive_sponsor": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "pilot_scope": {
+      "type": "object",
+      "required": [
+        "safe_test_scope",
+        "timebox",
+        "rollback_path"
+      ],
+      "properties": {
+        "safe_test_scope": {
+          "type": "string"
+        },
+        "timebox": {
+          "type": "string"
+        },
+        "rollback_path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "success_metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "gate_requirements": {
+      "type": "object",
+      "required": [
+        "go_no_go_gate",
+        "validation_gate_record_required"
+      ],
+      "properties": {
+        "go_no_go_gate": {
+          "type": "string",
+          "enum": [
+            "validation-gate-record"
+          ]
+        },
+        "validation_gate_record_required": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "mutation_boundary": {
+      "type": "object",
+      "required": [
+        "no_direct_canonical_mutation",
+        "promotion_decision_required_for_canonical_change",
+        "validation_gate_required_before_scale"
+      ],
+      "properties": {
+        "no_direct_canonical_mutation": {
+          "type": "boolean",
+          "const": true
+        },
+        "promotion_decision_required_for_canonical_change": {
+          "type": "boolean",
+          "const": true
+        },
+        "validation_gate_required_before_scale": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,173 @@
+@prefix fmg: <https://fmg.example/ontology/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+fmg:LifecycleStateShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:LifecycleState ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+fmg:OpportunityLifecycleShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:Opportunity ;
+    sh:property [
+        sh:path fmg:operatingLayer ;
+        sh:hasValue "action_and_runtime" ;
+    ] ;
+    sh:property [
+        sh:path fmg:lifecycleStatus ;
+        sh:in (
+            "proposed"
+            "ranked"
+            "approved_for_sprint"
+            "approved_for_pilot"
+            "rejected"
+            "converted_to_sprint"
+            "converted_to_pilot"
+            "superseded"
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:requiresPromotionDecision ;
+        sh:hasValue true ;
+    ] .
+
+fmg:SprintLifecycleShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:Sprint ;
+    sh:property [
+        sh:path fmg:operatingLayer ;
+        sh:hasValue "action_and_runtime" ;
+    ] ;
+    sh:property [
+        sh:path fmg:lifecycleStatus ;
+        sh:in (
+            "planned"
+            "active"
+            "blocked"
+            "completed"
+            "submitted_for_gate_review"
+            "cancelled"
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:requiresPromotionDecision ;
+        sh:hasValue true ;
+    ] .
+
+fmg:PilotLifecycleShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:Pilot ;
+    sh:property [
+        sh:path fmg:operatingLayer ;
+        sh:hasValue "action_and_runtime" ;
+    ] ;
+    sh:property [
+        sh:path fmg:lifecycleStatus ;
+        sh:in (
+            "planned"
+            "active"
+            "paused"
+            "completed"
+            "approved_for_scale"
+            "no_go"
+            "cancelled"
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:requiresPromotionDecision ;
+        sh:hasValue true ;
+    ] .
+
+fmg:ScalePackageLifecycleShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:ScalePackage ;
+    sh:property [
+        sh:path fmg:operatingLayer ;
+        sh:hasValue "action_and_runtime" ;
+    ] ;
+    sh:property [
+        sh:path fmg:lifecycleStatus ;
+        sh:in (
+            "draft"
+            "ready_for_rollout"
+            "rolling_out"
+            "active"
+            "retired"
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:requiresPromotionDecision ;
+        sh:hasValue true ;
+    ] .
+
+fmg:ValidationGateRecordLifecycleShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:ValidationGateRecord ;
+    sh:property [
+        sh:path fmg:operatingLayer ;
+        sh:hasValue "policy_and_governance" ;
+    ] ;
+    sh:property [
+        sh:path fmg:lifecycleStatus ;
+        sh:in (
+            "pending"
+            "approved"
+            "approved_with_monitoring"
+            "rejected"
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:requiresPromotionDecision ;
+        sh:hasValue true ;
+    ] .
+
+fmg:PromotionDecisionLifecycleShape
+    a sh:NodeShape ;
+    sh:targetClass fmg:PromotionDecision ;
+    sh:property [
+        sh:path fmg:operatingLayer ;
+        sh:hasValue "policy_and_governance" ;
+    ] ;
+    sh:property [
+        sh:path fmg:decisionOutcome ;
+        sh:in (
+            "approved"
+            "rejected"
+            "deferred"
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path fmg:fromLifecycleState ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class fmg:LifecycleState ;
+    ] ;
+    sh:property [
+        sh:path fmg:toLifecycleState ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class fmg:LifecycleState ;
+    ] ;
+    sh:property [
+        sh:path fmg:promotesTo ;
+        sh:minCount 1 ;
+        sh:class fmg:Artifact ;
+    ] .

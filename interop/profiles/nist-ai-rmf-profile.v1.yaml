@@ -1,0 +1,66 @@
+profile_id: nist-ai-rmf-profile
+profile_version: 1.0.0
+status: draft
+owner: ontology-governance
+core_schema:
+  manifest_path: schema/manifest.yaml
+  schema_set_id: enterprise_doctrinal_comparison_substrate
+  schema_set_version: 0.1.0
+  core_type_versions:
+    assertion_object: 0.1.0
+    evidence_bundle: 0.1.0
+    alignment_assessment: 0.1.0
+    retrieval_feedback: 0.1.0
+external_models:
+  - model_id: nist-ai-rmf
+    version: "1.0"
+  - model_id: nist-ai-rmf-playbook
+    version: "2023"
+mapping_metadata_contract:
+  required_fields:
+    - mapping_mode
+    - confidence
+    - lossiness
+  mapping_mode_values:
+    - exact
+    - transformed
+    - unsupported
+core_entity_mappings:
+  - core_entity: assertion_object
+    target_class: rmf:GovernFunctionRecord
+    mapping_rules:
+      - source_field: trust_level
+        target_path: rmf:risk_tolerance_signal
+        mapping_mode: transformed
+        confidence: 0.85
+        transformation: "map trust levels to qualitative RMF tolerance bands"
+        lossiness: "ordinal mapping may flatten edge-case review posture"
+      - source_field: review_status
+        target_path: rmf:governance_decision_state
+        mapping_mode: transformed
+        confidence: 0.9
+        transformation: "map FMG review states to RMF process states"
+        lossiness: none
+  - core_entity: evidence_bundle
+    target_class: rmf:MeasureFunctionArtifact
+    mapping_rules:
+      - source_field: evidence_type
+        target_path: rmf:measurement_artifact_type
+        mapping_mode: transformed
+        confidence: 0.88
+        transformation: "crosswalk enum to RMF measurement/control evidence types"
+        lossiness: "non-RMF evidence type extensions are grouped as 'other'"
+      - source_field: source_refs
+        target_path: rmf:source_traceability
+        mapping_mode: exact
+        confidence: 0.97
+        lossiness: none
+core_relation_mappings:
+  - core_relation: alignment_assessment
+    relation_semantics: "governed fit/gap assessment"
+    target_predicate_strategy:
+      target_path: target_predicate
+      mapping_mode: transformed
+      confidence: 0.84
+      transformation: "map alignment_degree to RMF profile target/maturity guidance"
+      lossiness: "narrative rationale must stay in sidecar notes"

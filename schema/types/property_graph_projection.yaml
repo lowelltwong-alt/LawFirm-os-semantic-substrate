@@ -1,0 +1,19 @@
+kind: type
+id: property_graph_projection
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Governed property-graph projection package derived from a named-graph
+  manifest for visualization, traversal, or retrieval indexing.
+required_fields:
+  - display_title
+  - projection_status
+  - graph_manifest_ref
+  - node_projection_rules
+  - edge_projection_rules
+optional_fields:
+  - property_whitelist
+  - excluded_partitions
+  - downstream_consumer_profiles

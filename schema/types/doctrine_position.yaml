@@ -1,0 +1,18 @@
+kind: type
+id: doctrine_position
+version: 0.1.0
+status: draft
+implements:
+  - node
+  - assertion
+  - evidence_bearing
+  - comparable_position
+description: >
+  Governed doctrinal position object used for comparison across thinkers,
+  traditions, or witness contexts.
+required_fields:
+  - canonical_statement
+optional_fields:
+  - stance_summary
+  - counter_position_refs
+  - review_status

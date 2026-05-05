@@ -1,0 +1,10 @@
+@prefix fmg: <https://fmg.example/alignment/lmss#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://fmg.example/alignment/lmss> a owl:Ontology ;
+  rdfs:label "LMSS Alignment" ;
+  rdfs:comment "Alignment scaffold between FMG core/extension concepts and SALI LMSS concepts." .
+
+fmg:MatterConceptAlignment a owl:Class ; rdfs:label "Matter concept alignment" .
+fmg:mapsToLMSS a owl:ObjectProperty ; rdfs:label "maps to LMSS" .

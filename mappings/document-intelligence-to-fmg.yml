@@ -1,0 +1,75 @@
+mapping_id: document-intelligence-to-fmg-v1
+mapping_version: 1.0.0
+status: draft
+draft_reason: draft mapping aligned to Microsoft public response documentation for Azure Document Intelligence; representative live exports are still required before implementation-ready validation
+evidence_status: public_vendor_reference
+readiness_status: structurally_sound_draft
+source_system: azure-document-intelligence
+purpose: >
+  Normalize parser and OCR output into FMG canonical document and evidence
+  objects with exact page and span traceability.
+canonical_boundary:
+  canonical_objects_only: true
+  vendor_local_semantics_authoritative: false
+source_entities:
+  - entity: analyze_response_envelope
+    assumption_status: repo_authored_draft
+    verification_note: FMG intake shorthand only; the exact top-level export envelope still needs confirmation from a real Azure Document Intelligence export
+    canonical_objects:
+      - document
+      - source-artifact
+      - document-version
+      - canonical-text
+      - component
+      - span-selector
+field_mappings:
+  - source_field: content
+    assumption_status: public_vendor_reference
+    verification_note: documented in Microsoft Learn as the top-level concatenated content string used by spans
+    target_object: canonical-text
+    target_path: text
+    mapping_mode: exact
+  - source_field: paragraphs
+    assumption_status: public_vendor_reference
+    verification_note: documented in Microsoft Learn analyze response; additional FMG component fields are still required at implementation time
+    target_object: component
+    target_path: component_type
+    mapping_mode: transformed
+  - source_field: sections
+    assumption_status: public_vendor_reference
+    verification_note: documented in Microsoft Learn layout response; additional FMG component fields are still required at implementation time
+    target_object: component
+    target_path: component_type
+    mapping_mode: transformed
+  - source_field: tables
+    assumption_status: public_vendor_reference
+    verification_note: documented in Microsoft Learn analyze response; additional FMG component fields are still required at implementation time
+    target_object: component
+    target_path: component_type
+    mapping_mode: transformed
+  - source_field: spans
+    assumption_status: public_vendor_reference
+    verification_note: documented in Microsoft Learn as offset-and-length spans into the top-level content string; target implementation must still derive FMG char_start and char_end
+    target_object: span-selector
+    target_path: char_start
+    mapping_mode: transformed
+  - source_field: spans
+    assumption_status: public_vendor_reference
+    verification_note: documented in Microsoft Learn as offset-and-length spans into the top-level content string; target implementation must still derive FMG char_start and char_end
+    target_object: span-selector
+    target_path: char_end
+    mapping_mode: transformed
+  - source_field: boundingRegions
+    assumption_status: public_vendor_reference
+    verification_note: documented in Microsoft Learn as page-number plus polygon geometry for rendered files
+    target_object: span-selector
+    target_path: page_anchor
+    mapping_mode: transformed
+verification_inputs_required:
+  - representative Azure Document Intelligence export
+  - span payload sample showing offset semantics
+  - page region sample showing anchor geometry
+notes:
+  - Parser metadata remains provenance, not semantic authority.
+  - Unsupported vendor output must remain derived until normalized into active FMG objects.
+  - This file now follows Microsoft public response field families rather than guessed vendor-side names.

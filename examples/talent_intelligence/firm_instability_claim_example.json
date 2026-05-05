@@ -1,0 +1,30 @@
+{
+  "object_type": "talent_signal_claim",
+  "claim_id": "TSCLAIM_000401",
+  "signal_type": "firm_instability",
+  "subject_ref": "LF_000401",
+  "related_object_refs": [
+    "SPROF_000401",
+    "SPROF_000402"
+  ],
+  "statement": "Multiple recent partner departures and public restructuring signals suggest elevated instability risk at this firm.",
+  "score": 0.76,
+  "score_band": "high",
+  "evidence_refs": [
+    "ART_000401",
+    "ART_000402"
+  ],
+  "source_profile_refs": [
+    "SPROF_000401",
+    "SPROF_000402"
+  ],
+  "status": "provisional",
+  "authority_zone": "internal-general",
+  "confidence_posture": "inferred",
+  "review_status": "pending_review",
+  "valid_from": "2026-04-01",
+  "valid_to": null,
+  "created_at": "2026-04-07T12:00:00Z",
+  "updated_at": "2026-04-07T12:00:00Z",
+  "notes": "Illustrative claim only. Example shows how a derived signal remains evidence-backed and review-aware."
+}

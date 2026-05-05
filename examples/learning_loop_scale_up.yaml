@@ -1,0 +1,48 @@
+workflow_id: LLW-000001
+display_title: Successful scale-up learning loop
+transition_policy_ref: LTP-000001
+steps:
+  - id: HYP-000001
+    object_type: hypothesis
+    from_state: proposed
+    to_state: active
+    loop_id: LOOP-ALPHA
+    claim: "Expedited conflict checks reduce false negatives without increasing review burden."
+  - id: EXP-000001
+    object_type: experiment
+    from_state: planned
+    to_state: running
+    loop_id: LOOP-ALPHA
+    hypothesis_ref: HYP-000001
+    success_criteria: "Lower false negatives by >=15% and keep median triage latency within SLA."
+  - id: EXP-000001
+    object_type: experiment
+    from_state: running
+    to_state: completed
+    loop_id: LOOP-ALPHA
+    confidence_level: high
+    evidence_sufficiency: direct_primary_text
+    evidence_refs:
+      - EVB-ALPHA-001
+      - EVB-ALPHA-002
+  - id: LEV-000001
+    object_type: learning_event
+    from_state: captured
+    to_state: accepted
+    loop_id: LOOP-ALPHA
+    experiment_ref: EXP-000001
+    confidence_level: high
+    evidence_sufficiency: direct_primary_text
+    evidence_refs:
+      - EVB-ALPHA-001
+  - id: ALD-000001
+    object_type: allocation_decision
+    from_state: proposed
+    to_state: enacted
+    loop_id: LOOP-ALPHA
+    action_type: scale
+    confidence_level: high
+    evidence_sufficiency: direct_primary_text
+    evidence_refs:
+      - EVB-ALPHA-001
+      - EVB-ALPHA-002

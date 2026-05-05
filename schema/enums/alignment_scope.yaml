@@ -1,0 +1,15 @@
+kind: enum
+id: alignment_scope
+version: 0.1.0
+status: draft
+description: >
+  Scope dimension being assessed in a governed doctrinal comparison.
+values:
+  - doctrinal_core
+  - terminology
+  - conceptual_frame
+  - anthropological_frame
+  - institutional_implication
+  - governance_translation
+  - historical_snapshot
+  - practical_ethics

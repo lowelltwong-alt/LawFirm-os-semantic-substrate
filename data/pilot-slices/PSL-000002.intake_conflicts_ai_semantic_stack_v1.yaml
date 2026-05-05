@@ -1,0 +1,29 @@
+id: PSL-000002
+title: Intake conflicts AI semantic stack pilot v1
+object_type: pilot_slice
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: first_order
+display_title: intake_conflicts_ai_semantic_stack_v1
+pilot_slice_status: planned
+target_thinkers:
+  - THK-000001
+target_doctrines:
+  - DOC-000001
+target_concepts:
+  - CON-000001
+target_comparisons:
+  - CMP-000001
+competency_questions:
+  - Can a bounded intake-conflicts pilot carry JSON-LD, named-graph, projection, and retrieval sidecars without disturbing canonical validators?
+  - Can proposal promotion remain explicit and reviewable rather than implicit in retrieval tuning?
+required_artifacts:
+  - CTX-000001
+  - NGM-000001
+  - PGP-000001
+  - RFB-000001
+  - PRP-000001
+exit_criteria:
+  - Canonical validators remain green after semantic stack additions.
+  - Semantic stack contracts stay additive and pilot-bounded.
+  - Retrieval promotion remains reviewable and asserted-first.

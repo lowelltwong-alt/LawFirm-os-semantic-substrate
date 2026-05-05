@@ -1,0 +1,35 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix edcs: <https://example.org/fmg/edcs#> .
+
+edcs:ComparisonObjectShape
+    a sh:NodeShape ;
+    sh:targetClass edcs:ComparisonObject ;
+    sh:property [
+        sh:path edcs:comparisonScope ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path edcs:comparedObjectRef ;
+        sh:minCount 2 ;
+    ] .
+
+edcs:RelationshipObjectShape
+    a sh:NodeShape ;
+    sh:targetClass edcs:RelationshipObject ;
+    sh:property [
+        sh:path edcs:subjectRef ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path edcs:relationType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path edcs:objectRef ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .

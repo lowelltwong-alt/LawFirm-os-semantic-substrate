@@ -1,0 +1,1447 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/view-budget-workbook.schema.json",
+  "title": "Budget Workbook View",
+  "description": "Draft v1 template-shaped synthetic budget workbook view. It is a governed presentation artifact and review packet input only. It may not claim production accuracy or bypass promotion boundaries.",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "schema_type",
+    "schema_version",
+    "budget_draft_id",
+    "candidate_status",
+    "contract_version",
+    "template_title",
+    "instruction_note",
+    "budget_columns",
+    "matter_header",
+    "phase_sections",
+    "totals",
+    "summary",
+    "template_footer_note",
+    "learning_metadata",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_id": {
+      "type": "string",
+      "const": "view-budget-workbook-v1"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "view-budget-workbook"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "draft-v1"
+    },
+    "budget_draft_id": {
+      "type": "string",
+      "pattern": "^BWD-[0-9]{6}$"
+    },
+    "candidate_status": {
+      "type": "string",
+      "const": "synthetic_candidate_not_canonical"
+    },
+    "contract_version": {
+      "type": "string",
+      "minLength": 7
+    },
+    "template_title": {
+      "type": "string",
+      "const": "BUDGET FORM"
+    },
+    "instruction_note": {
+      "type": "string",
+      "minLength": 32
+    },
+    "budget_columns": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "type": "string",
+          "const": "Original Budgeted Amount"
+        },
+        {
+          "type": "string",
+          "const": "Amount Billed to Date"
+        },
+        {
+          "type": "string",
+          "const": "Original Budget Amount Remaining"
+        },
+        {
+          "type": "string",
+          "const": "New Budgeted Amount"
+        }
+      ],
+      "items": false
+    },
+    "matter_header": {
+      "type": "object",
+      "required": [
+        "matter_family",
+        "matter_label_placeholder",
+        "client_name",
+        "client_matter_number",
+        "matter_name",
+        "claim_number",
+        "venue_placeholder",
+        "litigation_phase",
+        "carrier_guideline_placeholder_constraint",
+        "allowed_use_basis",
+        "sensitivity_level",
+        "review_owner",
+        "non_production"
+      ],
+      "properties": {
+        "matter_family": {
+          "type": "string",
+          "const": "synthetic_auto_bi_defense_v1"
+        },
+        "matter_label_placeholder": {
+          "type": "string",
+          "minLength": 8
+        },
+        "client_name": {
+          "$ref": "#/$defs/labeled_string_field"
+        },
+        "client_matter_number": {
+          "$ref": "#/$defs/labeled_string_field"
+        },
+        "matter_name": {
+          "$ref": "#/$defs/labeled_string_field"
+        },
+        "claim_number": {
+          "$ref": "#/$defs/labeled_string_field"
+        },
+        "venue_placeholder": {
+          "type": "string",
+          "minLength": 6
+        },
+        "litigation_phase": {
+          "type": "string",
+          "enum": [
+            "pre_suit",
+            "pleadings",
+            "written_discovery",
+            "depositions",
+            "expert",
+            "mediation",
+            "trial_prep"
+          ]
+        },
+        "carrier_guideline_placeholder_constraint": {
+          "type": "string",
+          "enum": [
+            "alpha",
+            "beta",
+            "gamma"
+          ]
+        },
+        "allowed_use_basis": {
+          "type": "string",
+          "enum": [
+            "synthetic_budget_learning_eval",
+            "synthetic_metadata_only_eval"
+          ]
+        },
+        "sensitivity_level": {
+          "type": "string",
+          "enum": [
+            "synthetic_internal",
+            "synthetic_restricted_budget",
+            "synthetic_policy_simulated"
+          ]
+        },
+        "review_owner": {
+          "type": "string",
+          "enum": [
+            "synthetic_knowledge_owner",
+            "synthetic_budget_ops_owner",
+            "synthetic_billing_integrity_owner",
+            "synthetic_governance_owner"
+          ]
+        },
+        "non_production": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "phase_sections": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "prefixItems": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/phase_section"
+            },
+            {
+              "properties": {
+                "phase_code": {
+                  "const": "L100"
+                },
+                "phase_label": {
+                  "const": "Case Assessment, Development and Administration"
+                },
+                "rows": {
+                  "type": "array",
+                  "minItems": 7,
+                  "maxItems": 7,
+                  "prefixItems": [
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L110"
+                            },
+                            "row_label": {
+                              "const": "Fact Investigation / Development"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L120"
+                            },
+                            "row_label": {
+                              "const": "Analysis / Strategy"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L130"
+                            },
+                            "row_label": {
+                              "const": "Experts / Consultants"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L140"
+                            },
+                            "row_label": {
+                              "const": "Document / File Management"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L150"
+                            },
+                            "row_label": {
+                              "const": "Budgeting"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L160"
+                            },
+                            "row_label": {
+                              "const": "Settlement / Non-Binding ADR"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L190"
+                            },
+                            "row_label": {
+                              "const": "Other Case Assessment, Development and Administration"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "items": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/phase_section"
+            },
+            {
+              "properties": {
+                "phase_code": {
+                  "const": "L200"
+                },
+                "phase_label": {
+                  "const": "Pre-Trial Pleading and Motions"
+                },
+                "rows": {
+                  "type": "array",
+                  "minItems": 6,
+                  "maxItems": 6,
+                  "prefixItems": [
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L210"
+                            },
+                            "row_label": {
+                              "const": "Pleading"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L220"
+                            },
+                            "row_label": {
+                              "const": "Preliminary Injunctions / Provisional Remedies"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L230"
+                            },
+                            "row_label": {
+                              "const": "Court Mandated Conferences"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L240"
+                            },
+                            "row_label": {
+                              "const": "Dispositive Motions"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L250"
+                            },
+                            "row_label": {
+                              "const": "Other Written Motions and Sanctions"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L260"
+                            },
+                            "row_label": {
+                              "const": "Class Action Certification and Notice"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "items": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/phase_section"
+            },
+            {
+              "properties": {
+                "phase_code": {
+                  "const": "L300"
+                },
+                "phase_label": {
+                  "const": "Discovery"
+                },
+                "rows": {
+                  "type": "array",
+                  "minItems": 6,
+                  "maxItems": 6,
+                  "prefixItems": [
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L310"
+                            },
+                            "row_label": {
+                              "const": "Written Discovery"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L320"
+                            },
+                            "row_label": {
+                              "const": "Document Production"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L330"
+                            },
+                            "row_label": {
+                              "const": "Depositions"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L340"
+                            },
+                            "row_label": {
+                              "const": "Expert Discovery"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L350"
+                            },
+                            "row_label": {
+                              "const": "Discovery Motions"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L390"
+                            },
+                            "row_label": {
+                              "const": "Other Discovery"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "items": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/phase_section"
+            },
+            {
+              "properties": {
+                "phase_code": {
+                  "const": "L400"
+                },
+                "phase_label": {
+                  "const": "Trial Preparation and Trial"
+                },
+                "rows": {
+                  "type": "array",
+                  "minItems": 7,
+                  "maxItems": 7,
+                  "prefixItems": [
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L410"
+                            },
+                            "row_label": {
+                              "const": "Fact Witnesses"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L420"
+                            },
+                            "row_label": {
+                              "const": "Expert Witnesses"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L430"
+                            },
+                            "row_label": {
+                              "const": "Written Motions and Submissions"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L440"
+                            },
+                            "row_label": {
+                              "const": "Other Trial Preparation and Support"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L450"
+                            },
+                            "row_label": {
+                              "const": "Trial and Hearing Attendance"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L460"
+                            },
+                            "row_label": {
+                              "const": "Post-Trial Motions and Submissions"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L470"
+                            },
+                            "row_label": {
+                              "const": "Enforcement"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "items": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/phase_section"
+            },
+            {
+              "properties": {
+                "phase_code": {
+                  "const": "L500"
+                },
+                "phase_label": {
+                  "const": "Appeal"
+                },
+                "rows": {
+                  "type": "array",
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "prefixItems": [
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L510"
+                            },
+                            "row_label": {
+                              "const": "Appellate Motions and Submissions"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L520"
+                            },
+                            "row_label": {
+                              "const": "Appellate Briefs"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "L530"
+                            },
+                            "row_label": {
+                              "const": "Oral Argument"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "items": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/phase_section"
+            },
+            {
+              "properties": {
+                "phase_code": {
+                  "const": "E100"
+                },
+                "phase_label": {
+                  "const": "Expenses"
+                },
+                "rows": {
+                  "type": "array",
+                  "minItems": 24,
+                  "maxItems": 24,
+                  "prefixItems": [
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E101"
+                            },
+                            "row_label": {
+                              "const": "Copying"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E102"
+                            },
+                            "row_label": {
+                              "const": "Outside Printing"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E103"
+                            },
+                            "row_label": {
+                              "const": "Word Processing"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E104"
+                            },
+                            "row_label": {
+                              "const": "Facsimile"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E105"
+                            },
+                            "row_label": {
+                              "const": "Telephone"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E106"
+                            },
+                            "row_label": {
+                              "const": "Online Research"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E107"
+                            },
+                            "row_label": {
+                              "const": "Messengers / Overnite"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E108"
+                            },
+                            "row_label": {
+                              "const": "Postage"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E109"
+                            },
+                            "row_label": {
+                              "const": "Local Travel"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E110"
+                            },
+                            "row_label": {
+                              "const": "Out-of-Town Travel"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E111"
+                            },
+                            "row_label": {
+                              "const": "Meals"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E112"
+                            },
+                            "row_label": {
+                              "const": "Court Fees"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E113"
+                            },
+                            "row_label": {
+                              "const": "Subpoena Fees"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E114"
+                            },
+                            "row_label": {
+                              "const": "Witness Fees"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E115"
+                            },
+                            "row_label": {
+                              "const": "Court Reporting & Transcripts"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E116"
+                            },
+                            "row_label": {
+                              "const": "Trial Transcripts"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E117"
+                            },
+                            "row_label": {
+                              "const": "Trial Exhibits"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E118"
+                            },
+                            "row_label": {
+                              "const": "Litigation, Support Vendors"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E119"
+                            },
+                            "row_label": {
+                              "const": "Experts"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E120"
+                            },
+                            "row_label": {
+                              "const": "Private Investigators"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E121"
+                            },
+                            "row_label": {
+                              "const": "Arbitrators / Mediators"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E122"
+                            },
+                            "row_label": {
+                              "const": "Local Counsel"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E123"
+                            },
+                            "row_label": {
+                              "const": "Other Professionals"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/budget_row"
+                        },
+                        {
+                          "properties": {
+                            "row_code": {
+                              "const": "E124"
+                            },
+                            "row_label": {
+                              "const": "Other"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "items": false
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "items": false
+    },
+    "totals": {
+      "type": "object",
+      "required": [
+        "original_total_budgeted_amount",
+        "amount_billed_to_date_total",
+        "original_budget_amount_remaining_total",
+        "new_total_budgeted_amount"
+      ],
+      "properties": {
+        "original_total_budgeted_amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "amount_billed_to_date_total": {
+          "type": "number",
+          "minimum": 0
+        },
+        "original_budget_amount_remaining_total": {
+          "type": "number",
+          "minimum": 0
+        },
+        "new_total_budgeted_amount": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "original_budget_label",
+        "original_budget_value",
+        "updated_budget_label",
+        "updated_budget_value"
+      ],
+      "properties": {
+        "original_budget_label": {
+          "type": "string",
+          "const": "Original Budget:"
+        },
+        "original_budget_value": {
+          "type": "number",
+          "minimum": 0
+        },
+        "updated_budget_label": {
+          "type": "string",
+          "const": "Updated budget:"
+        },
+        "updated_budget_value": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "template_footer_note": {
+      "type": "string",
+      "minLength": 24
+    },
+    "learning_metadata": {
+      "type": "object",
+      "required": [
+        "detected_exception_triggers",
+        "ingested_event_ids",
+        "pressure_candidate_status",
+        "review_packet_required",
+        "review_path"
+      ],
+      "properties": {
+        "detected_exception_triggers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "ingested_event_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EXC-[0-9]{6}$"
+          }
+        },
+        "pressure_candidate_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "review_packet_required": {
+          "type": "boolean"
+        },
+        "review_path": {
+          "type": "string",
+          "minLength": 4
+        },
+        "refusal_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "non_claims": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 8
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "labeled_string_field": {
+      "type": "object",
+      "required": [
+        "label",
+        "value"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 3
+        },
+        "value": {
+          "type": "string",
+          "minLength": 3
+        }
+      },
+      "additionalProperties": false
+    },
+    "budget_row": {
+      "type": "object",
+      "required": [
+        "row_code",
+        "row_label",
+        "original_budgeted_amount",
+        "amount_billed_to_date",
+        "original_budget_amount_remaining",
+        "new_budgeted_amount"
+      ],
+      "properties": {
+        "row_code": {
+          "type": "string",
+          "pattern": "^[LE][0-9]{3}$"
+        },
+        "row_label": {
+          "type": "string",
+          "minLength": 3
+        },
+        "original_budgeted_amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "amount_billed_to_date": {
+          "type": "number",
+          "minimum": 0
+        },
+        "original_budget_amount_remaining": {
+          "type": "number",
+          "minimum": 0
+        },
+        "new_budgeted_amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "row_note": {
+          "type": "string"
+        },
+        "driver_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "exception_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "phase_section": {
+      "type": "object",
+      "required": [
+        "phase_code",
+        "phase_label",
+        "rows"
+      ],
+      "properties": {
+        "phase_code": {
+          "type": "string",
+          "pattern": "^[LE][0-9]{3}$"
+        },
+        "phase_label": {
+          "type": "string",
+          "minLength": 3
+        },
+        "rows": {
+          "type": "array"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

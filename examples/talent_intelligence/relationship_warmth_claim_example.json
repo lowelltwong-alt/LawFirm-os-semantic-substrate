@@ -1,0 +1,26 @@
+{
+  "object_type": "talent_signal_claim",
+  "claim_id": "TSCLAIM_000403",
+  "signal_type": "relationship_warmth",
+  "subject_ref": "ATY_000403",
+  "related_object_refs": [
+    "FMGPERSON_000010",
+    "FMGPERSON_000011"
+  ],
+  "statement": "Multiple direct Law Firm relationships and recent contact history suggest this attorney is a warm outreach candidate.",
+  "score": 0.84,
+  "score_band": "high",
+  "evidence_refs": [
+    "ART_000405"
+  ],
+  "source_profile_refs": [],
+  "status": "provisional",
+  "authority_zone": "practice-restricted",
+  "confidence_posture": "asserted",
+  "review_status": "pending_review",
+  "valid_from": "2026-04-07",
+  "valid_to": null,
+  "created_at": "2026-04-07T12:00:00Z",
+  "updated_at": "2026-04-07T12:00:00Z",
+  "notes": "Illustrative internal relationship claim. Intended to show authority-zone sensitivity and claim-style modeling."
+}

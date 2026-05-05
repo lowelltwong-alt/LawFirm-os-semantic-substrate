@@ -1,0 +1,22 @@
+kind: type
+id: learning_event
+version: 0.1.0
+status: draft
+implements:
+  - node
+  - evidence_bearing
+description: >
+  Evidence-bearing event that records observations, interpretation, and review
+  outcomes within the learning loop.
+required_fields:
+  - display_title
+  - learning_event_id
+  - loop_id
+  - experiment_ref
+  - learning_event_state
+  - evidence_sufficiency
+optional_fields:
+  - confidence_level
+  - evidence_refs
+  - summary
+  - reviewer_notes

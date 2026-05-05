@@ -1,0 +1,14 @@
+kind: type
+id: action_log_entry
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: First-class governed log entry recording an operational action.
+required_fields:
+  - action_type
+  - actor
+  - timestamp
+  - touched_object_ids
+  - summary
+  - parameters

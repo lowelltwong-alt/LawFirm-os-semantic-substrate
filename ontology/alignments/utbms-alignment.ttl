@@ -1,0 +1,10 @@
+@prefix fmg: <https://fmg.example/alignment/utbms#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://fmg.example/alignment/utbms> a owl:Ontology ;
+  rdfs:label "UTBMS Alignment" ;
+  rdfs:comment "Alignment scaffold between FMG billing/task semantics and UTBMS style billing structures." .
+
+fmg:TaskCodeAlignment a owl:Class ; rdfs:label "Task code alignment" .
+fmg:mapsToUTBMS a owl:ObjectProperty ; rdfs:label "maps to UTBMS" .

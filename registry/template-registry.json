@@ -1,0 +1,62 @@
+{
+  "templates": [
+    {
+      "template_id": "artifact-template-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "templates/artifact-template-v1.md",
+      "description": "Canonical template for governed artifact records.",
+      "applies_to": ["artifact"],
+      "owner": "Lowell T. Wong",
+      "supersedes": null,
+      "required_metadata_fields": [
+        "id",
+        "title",
+        "artifact_type",
+        "artifact_order",
+        "status",
+        "version",
+        "schema_id",
+        "template_id",
+        "authority_zone",
+        "trust_level",
+        "owner",
+        "created_at",
+        "updated_at",
+        "address",
+        "address_struct",
+        "attribution_chain"
+      ]
+    },
+    {
+      "template_id": "claim-template-v2",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "templates/claim-template-v2.md",
+      "description": "Canonical template for governed claim records.",
+      "applies_to": ["claim"],
+      "owner": "Lowell T. Wong",
+      "supersedes": null,
+      "required_metadata_fields": [
+        "claim_id",
+        "schema_id",
+        "template_id",
+        "subject",
+        "predicate",
+        "object",
+        "claim_type",
+        "claim_mode",
+        "authority_zone",
+        "trust_level",
+        "source_refs",
+        "address",
+        "address_struct"
+      ]
+    }
+  ],
+  "selection_rules": {
+    "default_rule": "prefer active, otherwise prefer highest planned version when no active template exists",
+    "status_order": ["active", "planned", "deprecated"],
+    "require_template_reference": true
+  }
+}

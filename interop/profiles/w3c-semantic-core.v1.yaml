@@ -1,0 +1,142 @@
+profile_id: w3c-semantic-core
+profile_version: 1.0.0
+status: draft
+owner: ontology-governance
+core_schema:
+  manifest_path: schema/manifest.yaml
+  schema_set_id: enterprise_doctrinal_comparison_substrate
+  schema_set_version: 0.1.0
+  core_type_versions:
+    concept: 0.1.0
+    doctrine: 0.1.0
+    doctrine_position: 0.1.0
+    assertion_object: 0.1.0
+    relationship_object: 0.1.0
+    evidence_bundle: 0.1.0
+    provenance_activity: 0.1.0
+external_models:
+  - model_id: skos
+    version: "2009"
+  - model_id: prov-o
+    version: "2013"
+  - model_id: dcterms
+    version: "2012"
+mapping_metadata_contract:
+  required_fields:
+    - mapping_mode
+    - confidence
+    - lossiness
+  mapping_mode_values:
+    - exact
+    - transformed
+    - unsupported
+core_entity_mappings:
+  - core_entity: concept
+    target_class: skos:Concept
+    mapping_rules:
+      - source_field: id
+        target_path: "@id"
+        mapping_mode: transformed
+        confidence: 0.98
+        transformation: "prefix with base URI urn:fmg:concept:"
+        lossiness: none
+      - source_field: concept_label
+        target_path: skos:prefLabel
+        mapping_mode: exact
+        confidence: 0.99
+        lossiness: none
+      - source_field: broader_concept_ref
+        target_path: skos:broader
+        mapping_mode: transformed
+        confidence: 0.92
+        transformation: "convert canonical ID to concept URI"
+        lossiness: "reference context is preserved; FMG address metadata not emitted"
+      - source_field: narrower_concept_refs
+        target_path: skos:narrower
+        mapping_mode: transformed
+        confidence: 0.92
+        transformation: "map list of IDs to URIs"
+        lossiness: "ordering of source list not preserved"
+  - core_entity: doctrine
+    target_class: skos:ConceptScheme
+    mapping_rules:
+      - source_field: id
+        target_path: "@id"
+        mapping_mode: transformed
+        confidence: 0.98
+        transformation: "prefix with base URI urn:fmg:doctrine:"
+        lossiness: none
+      - source_field: title
+        target_path: dcterms:title
+        mapping_mode: exact
+        confidence: 0.99
+        lossiness: none
+      - source_field: summary
+        target_path: dcterms:description
+        mapping_mode: exact
+        confidence: 0.98
+        lossiness: none
+  - core_entity: doctrine_position
+    target_class: skos:Concept
+    mapping_rules:
+      - source_field: id
+        target_path: "@id"
+        mapping_mode: transformed
+        confidence: 0.98
+        transformation: "prefix with base URI urn:fmg:position:"
+        lossiness: none
+      - source_field: position_statement
+        target_path: skos:note
+        mapping_mode: transformed
+        confidence: 0.9
+        transformation: "serialize markdown/plain text to language-tagged literal"
+        lossiness: "format-specific markdown directives may be dropped"
+      - source_field: lifecycle_status
+        target_path: null
+        mapping_mode: unsupported
+        confidence: 0.0
+        lossiness: "no lifecycle primitive in SKOS core"
+core_relation_mappings:
+  - core_relation: relationship_object
+    relation_semantics: "typed relationship between governed nodes"
+    target_predicate_strategy:
+      target_path: target_predicate
+      mapping_mode: transformed
+      confidence: 0.86
+      transformation: "map relation_type enum to controlled SKOS/PROV predicate map"
+      lossiness: "some FMG-specific relation nuance collapsed to skos:related"
+    supported_relation_type_map:
+      supports: skos:broader
+      refines: skos:related
+      cites: dcterms:references
+      derived_from: prov:wasDerivedFrom
+  - core_relation: assertion_object
+    relation_semantics: "governed statement with provenance and evidence"
+    target_predicate_strategy:
+      target_path: target_predicate
+      mapping_mode: transformed
+      confidence: 0.88
+      transformation: "emit rdf:Statement reification with prov qualifiers"
+      lossiness: "assertion workflow state fields omitted"
+provenance_mappings:
+  - core_entity: provenance_activity
+    target_class: prov:Activity
+    mapping_rules:
+      - source_field: activity_type
+        target_path: prov:type
+        mapping_mode: transformed
+        confidence: 0.9
+        transformation: "normalize to controlled URI"
+        lossiness: none
+      - source_field: started_at
+        target_path: prov:startedAtTime
+        mapping_mode: exact
+        confidence: 0.99
+        lossiness: none
+      - source_field: ended_at
+        target_path: prov:endedAtTime
+        mapping_mode: exact
+        confidence: 0.99
+        lossiness: none
+sample_outputs:
+  - interop/samples/w3c-semantic-core/intake-conflicts-ai.sample.jsonld

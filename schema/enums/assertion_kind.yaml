@@ -1,0 +1,12 @@
+kind: enum
+id: assertion_kind
+version: 0.1.0
+status: draft
+description: >
+  Governed assertion posture labels for first-class assertion objects.
+values:
+  - asserted
+  - inferred
+  - imported
+  - ai_extracted
+  - editorial

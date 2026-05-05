@@ -1,0 +1,195 @@
+id: CTW-000001
+title: Intake conflicts AI capability twin
+object_type: capability_twin
+lifecycle_status: draft
+authority_zone: internal_general
+display_title: intake_conflicts_ai_capability_twin
+capability_id: CAP-000001
+capability_name: Intake conflicts AI semantic operations
+capability_tree:
+  root_node: CAPN-000001
+  nodes:
+    - capability_node_id: CAPN-000001
+      name: Intake conflicts AI semantic operations
+      description: End-to-end governed operation of intake conflicts AI capability.
+      children:
+        - CAPN-000101
+        - CAPN-000102
+        - CAPN-000103
+    - capability_node_id: CAPN-000101
+      name: Evidence intake and normalization
+      children:
+        - CAPN-000201
+    - capability_node_id: CAPN-000102
+      name: Claim synthesis and graph publication
+      children:
+        - CAPN-000202
+    - capability_node_id: CAPN-000103
+      name: Governance review and promotion
+      children:
+        - CAPN-000203
+    - capability_node_id: CAPN-000201
+      name: Source profile quality control
+      children: []
+    - capability_node_id: CAPN-000202
+      name: Cross-partition integrity controls
+      children: []
+    - capability_node_id: CAPN-000203
+      name: Governance promotion decisioning
+      children: []
+required_assets:
+  - ART-000001
+  - EBD-000001
+  - PGP-000001
+required_skills:
+  - skill: semantic_modeling
+    proficiency_level: advanced
+  - skill: provenance_governance
+    proficiency_level: advanced
+  - skill: retrieval_quality_review
+    proficiency_level: intermediate
+required_processes:
+  - process_id: PRC-000001
+    name: Assertion provenance review cycle
+  - process_id: PRC-000002
+    name: Named graph publication readiness gate
+  - process_id: PRC-000003
+    name: Proposal promotion adjudication
+
+dependency_graph:
+  nodes:
+    - CAPN-000101
+    - CAPN-000102
+    - CAPN-000103
+    - CAPN-000201
+    - CAPN-000202
+    - CAPN-000203
+  edges:
+    - from: CAPN-000201
+      to: CAPN-000101
+      dependency_type: data_quality_dependency
+    - from: CAPN-000101
+      to: CAPN-000102
+      dependency_type: input_dependency
+    - from: CAPN-000202
+      to: CAPN-000102
+      dependency_type: control_dependency
+    - from: CAPN-000102
+      to: CAPN-000103
+      dependency_type: handoff_dependency
+    - from: CAPN-000203
+      to: CAPN-000103
+      dependency_type: governance_dependency
+
+maturity_posture:
+  model: cmmi_like
+  current_level: 2
+  target_level: 3
+  assessment_notes:
+    - Core flow is repeatable but still reliant on manual review cadence.
+
+risk_posture:
+  overall_risk: medium
+  top_risks:
+    - risk_id: RSK-000001
+      description: Insufficient evidence freshness for promotion decisions.
+      likelihood: medium
+      impact: high
+    - risk_id: RSK-000002
+      description: Cross-partition derivation drift without explicit reviewer acknowledgement.
+      likelihood: medium
+      impact: medium
+
+telemetry_hooks:
+  - telemetry_id: TEL-000001
+    capability_node_id: CAPN-000101
+    metric_name: intake_evidence_coverage_ratio
+    metric_type: ratio
+    claim_refs:
+      - CLM-000101
+    artifact_refs:
+      - ART-000001
+    evidence_refs:
+      - EBD-000001
+    action_log_refs:
+      - ALG-000002
+  - telemetry_id: TEL-000002
+    capability_node_id: CAPN-000102
+    metric_name: graph_partition_integrity_score
+    metric_type: score
+    claim_refs:
+      - CLM-000101
+    artifact_refs:
+      - PGP-000001
+    evidence_refs:
+      - EBD-000001
+    action_log_refs:
+      - ALG-000003
+  - telemetry_id: TEL-000003
+    capability_node_id: CAPN-000103
+    metric_name: governance_cycle_time_days
+    metric_type: duration_days
+    claim_refs:
+      - CLM-000101
+    artifact_refs:
+      - ART-000001
+    evidence_refs:
+      - EBD-000001
+    action_log_refs:
+      - ALG-000003
+
+health_targets:
+  - capability_node_id: CAPN-000101
+    target_health_score: 0.8
+  - capability_node_id: CAPN-000102
+    target_health_score: 0.78
+  - capability_node_id: CAPN-000103
+    target_health_score: 0.82
+
+mapped_graph_manifests:
+  - graph_manifest_id: NGM-000001
+    capability_node_mappings:
+      - capability_node_id: CAPN-000101
+        claim_refs:
+          - CLM-000101
+        artifact_refs:
+          - ART-000001
+        governance_decision_refs:
+          - ADR-0001
+          - ALG-000002
+      - capability_node_id: CAPN-000102
+        claim_refs:
+          - CLM-000101
+        artifact_refs:
+          - PGP-000001
+        governance_decision_refs:
+          - ADR-0002
+          - ALG-000003
+      - capability_node_id: CAPN-000103
+        claim_refs:
+          - CLM-000101
+        artifact_refs:
+          - ART-000001
+        governance_decision_refs:
+          - PRP-000001
+          - PRP-000002
+  - graph_manifest_id: NGM-000002
+    capability_node_mappings:
+      - capability_node_id: CAPN-000202
+        claim_refs:
+          - CLM-000101
+        artifact_refs:
+          - PGP-000001
+        governance_decision_refs:
+          - ADR-0003
+      - capability_node_id: CAPN-000203
+        claim_refs:
+          - CLM-000101
+        artifact_refs:
+          - ART-000001
+        governance_decision_refs:
+          - PRP-000003
+
+investment_notes:
+  - Prioritize automation on CAPN-000103 to reduce governance cycle-time variance.
+  - Fund quality instrumentation for CAPN-000201 to improve downstream confidence.

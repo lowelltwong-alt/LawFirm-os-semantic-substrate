@@ -1,0 +1,33 @@
+{
+  "chunk_id": "CHK-000001",
+  "schema_type": "chunk",
+  "schema_version": "v1",
+  "address": "/example/internal_general/data/legal/documents/chunk/CHK-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "data",
+    "domain": "legal",
+    "module": "documents",
+    "object_type": "chunk",
+    "object_id": "CHK-000001",
+    "version": "v1"
+  },
+  "chunk_set_id": "CS-000001",
+  "document_version_id": "DV-000001",
+  "canonical_text_id": "CT-000001",
+  "component_ids": [
+    "CMP-000001"
+  ],
+  "span_selector_ids": [
+    "SPAN-000001"
+  ],
+  "chunk_order": 1,
+  "status": "active",
+  "text_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "text_excerpt": "This Agreement is entered into as of the date last signed below between Acme Corp and the Firm.",
+  "boundary_controls": {
+    "derived_from_canonical_boundaries": true,
+    "may_redefine_canonical_boundaries": false
+  }
+}

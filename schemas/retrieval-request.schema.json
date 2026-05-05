@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/retrieval-request.schema.json",
+  "title": "Retrieval Request",
+  "description": "Active v1 retrieval request contract for grounded retrieval. Requests express query intent, subject context, scope filters, and access posture, but they do not redefine canonical meaning or document boundaries.",
+  "type": "object",
+  "required": [
+    "retrieval_request_id",
+    "schema_type",
+    "schema_version",
+    "query_text",
+    "task_type",
+    "requester_context",
+    "target_scope",
+    "retrieval_policy",
+    "response_view"
+  ],
+  "properties": {
+    "retrieval_request_id": {
+      "type": "string",
+      "pattern": "^RQ-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "retrieval-request"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "query_text": {
+      "type": "string",
+      "minLength": 3
+    },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "grounded_answer",
+        "evidence_lookup",
+        "document_review",
+        "exception_triage"
+      ]
+    },
+    "requester_context": {
+      "type": "object",
+      "required": [
+        "subject_id",
+        "purpose_of_use",
+        "identity_profile_ref"
+      ],
+      "properties": {
+        "subject_id": {
+          "type": "string",
+          "minLength": 2
+        },
+        "identity_profile_ref": {
+          "type": "string",
+          "minLength": 2
+        },
+        "role_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "group_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "service_principal_id": {
+          "type": "string"
+        },
+        "purpose_of_use": {
+          "type": "string",
+          "minLength": 3
+        }
+      },
+      "additionalProperties": false
+    },
+    "target_scope": {
+      "type": "object",
+      "properties": {
+        "matter_scope_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "client_scope_id": {
+          "type": "string"
+        },
+        "document_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_systems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "authority_zones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confidentiality_classes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_classes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "governed_internal",
+              "external_restriction",
+              "matter_condition",
+              "quarantine_only"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "retrieval_policy": {
+      "type": "object",
+      "required": [
+        "deny_by_default",
+        "require_access_decision",
+        "canonical_documents_preferred",
+        "exact_span_traceability_required",
+        "allow_quarantine_by_default"
+      ],
+      "properties": {
+        "deny_by_default": {
+          "type": "boolean",
+          "const": true
+        },
+        "require_access_decision": {
+          "type": "boolean",
+          "const": true
+        },
+        "canonical_documents_preferred": {
+          "type": "boolean",
+          "const": true
+        },
+        "exact_span_traceability_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "allow_quarantine_by_default": {
+          "type": "boolean",
+          "const": false
+        },
+        "adapter_profile_preferences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "response_view": {
+      "type": "string",
+      "enum": [
+        "view-evidence-bundle",
+        "view-executive-brief",
+        "view-graph-neighborhood",
+        "view-ops-queue",
+        "view-review-diff"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,43 @@
+{
+  "answer_event_id": "AE-000001",
+  "schema_type": "answer-event",
+  "schema_version": "v1",
+  "address": "/example/internal_general/retrieval/legal/answer_events/artifact/ART-ae-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "retrieval",
+    "domain": "legal",
+    "module": "answer_events",
+    "object_type": "artifact",
+    "object_id": "ART-ae-000001",
+    "version": "v1"
+  },
+  "status": "completed",
+  "query_text": "What are the key obligations under the engagement agreement?",
+  "retrieval_response_id": "RR-000001",
+  "answer_text": "Under the engagement agreement, the Client agrees to provide timely documentation and the Firm agrees to maintain confidentiality per Section 4.",
+  "grounding_status": "grounded",
+  "access_basis": {
+    "access_decision_id": "AD-000001",
+    "purpose_of_use": "grounded_answer_support",
+    "source_policy_refs": [
+      "policy:billing-guideline-internal-approved"
+    ]
+  },
+  "answer_evidence_ids": [
+    "AEV-000001",
+    "AEV-000002"
+  ],
+  "model_profile": {
+    "model_name": "claude-sonnet-4-6",
+    "model_version": "4.6",
+    "response_mode": "grounded_answer"
+  },
+  "generation_activity_id": "GSA-000001",
+  "generated_at": "2026-04-16T00:00:00Z",
+  "boundary_controls": {
+    "canonical_source_of_truth": "document_version_components_and_span_selectors",
+    "derived_answer_may_modify_canonical_boundary": false
+  }
+}

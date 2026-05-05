@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "claim_id",
+    "schema_id",
+    "template_id",
+    "subject",
+    "predicate",
+    "object",
+    "claim_type",
+    "claim_mode",
+    "authority_zone",
+    "trust_level",
+    "source_refs",
+    "address",
+    "address_struct"
+  ],
+  "properties": {
+    "claim_id": {"type":"string"},
+    "schema_id": {"type":"string","const":"claim-schema-v2"},
+    "template_id": {"type":"string","const":"claim-template-v2"},
+    "subject": {"type":"string"},
+    "predicate": {"type":"string"},
+    "object": {"type":"string"},
+    "claim_type": {"type":"string"},
+    "claim_mode": {"type":"string"},
+    "authority_zone": {"type":"string"},
+    "trust_level": {"type":"string","enum":["high","medium","low","unknown"]},
+    "confidence": {"type":"number"},
+    "source_refs": {"type":"array","items":{"type":"string"},"minItems":1},
+    "evidence_refs": {"type":"array","items":{"type":"string"}},
+    "artifact_refs": {"type":"array","items":{"type":"string"}},
+    "derived_from_claims": {"type":"array","items":{"type":"string"}},
+    "created_at": {"type":"string","format":"date-time"},
+    "created_by": {"type":"string"},
+    "address": {"type":"string"},
+    "address_struct": {
+      "type":"object",
+      "required":[
+        "environment",
+        "authority_zone",
+        "layer",
+        "domain",
+        "module",
+        "object_type",
+        "object_id",
+        "version"
+      ],
+      "properties":{
+        "environment":{"type":"string"},
+        "authority_zone":{"type":"string"},
+        "layer":{"type":"string"},
+        "domain":{"type":"string"},
+        "module":{"type":"string"},
+        "object_type":{"type":"string"},
+        "object_id":{"type":"string"},
+        "version":{"type":"string"}
+      }
+    }
+  }
+}

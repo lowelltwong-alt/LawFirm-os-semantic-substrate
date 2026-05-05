@@ -1,0 +1,12 @@
+kind: enum
+id: translation_burden
+version: 0.1.0
+status: draft
+description: >
+  Translation burden needed before a comparison judgment can be used responsibly.
+values:
+  - minimal
+  - low
+  - moderate
+  - high
+  - extreme

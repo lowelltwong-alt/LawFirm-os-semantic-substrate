@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/view-graph-neighborhood.schema.json",
+  "title": "Graph Neighborhood View",
+  "type": "object",
+  "required": ["view_id", "focal_nodes", "neighbor_nodes", "relationships"],
+  "properties": {
+    "view_id": {"type": "string"},
+    "focal_nodes": {"type": "array", "items": {"type": "string"}},
+    "neighbor_nodes": {"type": "array", "items": {"type": "string"}},
+    "relationships": {"type": "array", "items": {"type": "string"}},
+    "expansion_policy": {"type": "string"}
+  },
+  "additionalProperties": false
+}

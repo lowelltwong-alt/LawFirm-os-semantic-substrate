@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/citation-mention.schema.json",
+  "title": "Citation Mention",
+  "description": "Canonical citation mention embedded in normalized text. Citation mentions retain exact span anchors and resolved targets so retrieval and grounded answers can cite sources without inventing new boundaries.",
+  "type": "object",
+  "required": [
+    "citation_mention_id",
+    "schema_type",
+    "schema_version",
+    "document_version_id",
+    "component_id",
+    "span_selector_ids",
+    "citation_text",
+    "citation_target_id",
+    "resolution_status"
+  ],
+  "properties": {
+    "citation_mention_id": {
+      "type": "string",
+      "pattern": "^CMN-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "citation-mention"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "document_version_id": {
+      "type": "string",
+      "pattern": "^DV-[0-9]{6}$"
+    },
+    "component_id": {
+      "type": "string",
+      "pattern": "^CMP-[0-9]{6}$"
+    },
+    "span_selector_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^SPAN-[0-9]{6}$"
+      }
+    },
+    "citation_text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "citation_target_id": {
+      "type": "string",
+      "pattern": "^CTGT-[0-9]{6}$"
+    },
+    "resolution_status": {
+      "type": "string",
+      "enum": [
+        "resolved",
+        "unresolved",
+        "partial"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "additionalProperties": false
+}

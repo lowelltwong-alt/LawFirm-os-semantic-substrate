@@ -1,0 +1,24 @@
+{
+  "kernel": [
+    "Person",
+    "Client",
+    "Matter",
+    "Issue",
+    "Document",
+    "Clause",
+    "Task",
+    "Claim"
+  ],
+  "canonical_schemas": [
+    "schemas/claim_v3.schema.json",
+    "schemas/artifact.schema.json"
+  ],
+  "validation_scripts": [
+    "scripts/validate_examples_canonical.py",
+    "scripts/validate_examples_registry.py",
+    "scripts/validate_canonical_spine.py",
+    "scripts/check_registry_refs.py",
+    "scripts/validate_repository_vnext.py",
+    "scripts/validation/run_shacl.py"
+  ]
+}

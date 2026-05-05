@@ -1,0 +1,34 @@
+{
+  "source_ingestion_manifest_id": "SIM-000001",
+  "schema_type": "source-ingestion-manifest",
+  "schema_version": "v1",
+  "address": "/example/internal_general/data/legal/documents/source_ingestion_manifest/SIM-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "data",
+    "domain": "legal",
+    "module": "documents",
+    "object_type": "source_ingestion_manifest",
+    "object_id": "SIM-000001",
+    "version": "v1"
+  },
+  "document_id": "DOC-000001",
+  "source_artifact_id": "SA-000001",
+  "source_type": "document-file",
+  "source_system": "iManage",
+  "source_identifier": "IMANAGE-ACME-OCG-2026-01-15",
+  "capture_time": "2026-04-14T09:10:00Z",
+  "checksum": "d44b6b9df5b4e1d2",
+  "confidentiality_class": "internal",
+  "access_policy_ref": "policy:billing-guideline-internal-approved",
+  "steward_role": "knowledge_manager",
+  "lifecycle_status": "approved",
+  "originating_repository": "imanage://workspace/acme/ocg",
+  "retention_rule": "retain-until-superseded",
+  "boundary_controls": {
+    "metadata_only_manifest": true,
+    "manifest_may_not_embed_content": true,
+    "governed_source_requires_complete_provenance": true
+  }
+}

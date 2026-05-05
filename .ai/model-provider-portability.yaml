@@ -1,0 +1,19 @@
+design_goal: AI-agnostic canonical layer with implementation-portable adapters
+
+canonical_commitment:
+  - semantic meaning is provider-independent
+  - registries and doctrine outrank model settings
+  - retrieval, validation, and promotion paths do not assume a single model vendor
+
+preferred_enterprise_path:
+  implementation_profile: microsoft-house
+  note: >
+    Microsoft may be the preferred enterprise implementation surface for
+    identity, DLP, workflow, audit, and hosted agent execution, while Law Firm
+    remains portable at the semantic layer.
+
+adapter_expectations:
+  - adapters must declare provider scope explicitly
+  - adapters must not claim semantic authority
+  - adapters must map back to Law Firm risk tiers and approval rules
+  - blocked profiles remain blocked until source payload evidence exists

@@ -1,0 +1,10 @@
+kind: enum
+id: trust_zone
+version: 0.1.0
+status: draft
+description: Access and governance zones aligned to the current canonical shell.
+values:
+  - public
+  - internal_general
+  - restricted
+  - experimental

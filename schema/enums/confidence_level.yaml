@@ -1,0 +1,10 @@
+kind: enum
+id: confidence_level
+version: 0.1.0
+status: draft
+description: Confidence labels aligned to current repo trust posture.
+values:
+  - high
+  - medium
+  - low
+  - unknown

@@ -1,0 +1,34 @@
+version: 0.1.0
+status: draft
+questions:
+  - id: GQ-000001
+    prompt: Can generative AI be used for first-pass intake summarization on this matter?
+    evaluation_focus:
+      - status correctness
+      - scope correctness
+      - governing basis visibility
+      - next action clarity
+
+  - id: GQ-000002
+    prompt: "What governs this answer: firm baseline, client restriction, matter condition, or exception path?"
+    evaluation_focus:
+      - governing basis correctness
+      - supporting source visibility
+
+  - id: GQ-000003
+    prompt: What restriction makes this answer narrower than the baseline?
+    evaluation_focus:
+      - restriction detection
+      - source support
+
+  - id: GQ-000004
+    prompt: Which semantic artifacts support the answer?
+    evaluation_focus:
+      - provenance visibility
+      - artifact traceability
+
+  - id: GQ-000005
+    prompt: What would need approval to change this answer?
+    evaluation_focus:
+      - promotion and exception path clarity
+      - next action usefulness

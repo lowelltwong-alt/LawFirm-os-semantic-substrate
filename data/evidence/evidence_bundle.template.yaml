@@ -1,0 +1,16 @@
+id: EVB-000001
+title: Example evidence bundle
+object_type: evidence_bundle
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: first_order
+trust_level: medium
+bundle_scope: doctrinal_comparison_support
+source_refs:
+  - SRC-000001
+evidence_refs:
+  - CHK-000001
+artifact_refs:
+  - ART-000001
+evidence_type: comparison_bundle
+provenance_note: Seed evidence bundle for phase 3 scaffolding.

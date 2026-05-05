@@ -1,0 +1,140 @@
+{
+  "registry_scope": "semantic_backbone_and_serialization",
+  "ontology_modules": [
+    {
+      "id": "fmg-core",
+      "artifact_type": "ontology",
+      "path": "ontology/core/fmg-core.ttl",
+      "status": "active",
+      "layer": "semantic_meaning",
+      "owner": "semantic-platform",
+      "shape_coverage": [
+        "shapes/core.shacl.ttl",
+        "shapes/lifecycle.shacl.ttl"
+      ],
+      "context_coverage": [
+        "ontology/context/fmg.context.jsonld"
+      ],
+      "imports": [],
+      "notes": [
+        "Defines canonical meaning anchors, runtime learning boundary classes, and the promotion-decision mutation gateway."
+      ]
+    },
+    {
+      "id": "fmg-taxonomy",
+      "artifact_type": "taxonomy",
+      "path": "ontology/taxonomy/fmg-taxonomy.ttl",
+      "status": "active",
+      "layer": "taxonomy",
+      "owner": "taxonomy-stewardship",
+      "shape_coverage": [],
+      "context_coverage": [
+        "ontology/context/fmg.context.jsonld"
+      ],
+      "imports": [],
+      "notes": [
+        "SKOS-only controlled vocabularies. Taxonomy terms classify artifacts and events but do not redefine ontology classes."
+      ]
+    },
+    {
+      "id": "legal-document-model",
+      "artifact_type": "ontology",
+      "path": "ontology/documents/legal-document-model.ttl",
+      "status": "active",
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "shape_coverage": [
+        "shapes/document-model.shacl.ttl"
+      ],
+      "context_coverage": [
+        "ontology/context/fmg.context.jsonld"
+      ],
+      "imports": [
+        "ontology/core/fmg-core.ttl"
+      ],
+      "notes": [
+        "Defines document identity, canonical text, citation, chunking, retrieval evidence, and answer support semantics."
+      ]
+    },
+    {
+      "id": "fmg-provenance",
+      "artifact_type": "ontology",
+      "path": "ontology/provenance/fmg-prov.ttl",
+      "status": "active",
+      "layer": "evidence_and_provenance",
+      "owner": "semantic-platform",
+      "shape_coverage": [],
+      "context_coverage": [
+        "ontology/context/fmg.context.jsonld"
+      ],
+      "imports": [
+        "ontology/core/fmg-core.ttl",
+        "ontology/documents/legal-document-model.ttl"
+      ],
+      "notes": [
+        "Defines generation, aggregation, review, and promotion activities across document and runtime workflows."
+      ]
+    },
+    {
+      "id": "fmg-context",
+      "artifact_type": "jsonld-context",
+      "path": "ontology/context/fmg.context.jsonld",
+      "status": "active",
+      "layer": "serialization_support",
+      "owner": "semantic-platform",
+      "shape_coverage": [],
+      "context_coverage": [
+        "ontology/context/fmg.context.jsonld"
+      ],
+      "imports": [
+        "ontology/core/fmg-core.ttl",
+        "ontology/documents/legal-document-model.ttl",
+        "ontology/provenance/fmg-prov.ttl",
+        "ontology/taxonomy/fmg-taxonomy.ttl"
+      ],
+      "notes": [
+        "Canonical JSON-LD term context for semantic, document, provenance, and taxonomy exports."
+      ]
+    },
+    {
+      "id": "lmss-alignment",
+      "artifact_type": "alignment",
+      "path": "ontology/alignments/lmss-alignment.ttl",
+      "status": "draft",
+      "layer": "alignment",
+      "owner": "integration-architecture",
+      "shape_coverage": [],
+      "context_coverage": [],
+      "imports": [
+        "ontology/core/fmg-core.ttl"
+      ],
+      "draft_reason": "External alignment retained as draft until term-by-term LMSS mapping review is complete.",
+      "notes": [
+        "Alignment module is intentionally draft and is not part of the mutation-authoritative core."
+      ]
+    },
+    {
+      "id": "utbms-alignment",
+      "artifact_type": "alignment",
+      "path": "ontology/alignments/utbms-alignment.ttl",
+      "status": "draft",
+      "layer": "alignment",
+      "owner": "integration-architecture",
+      "shape_coverage": [],
+      "context_coverage": [],
+      "imports": [
+        "ontology/core/fmg-core.ttl"
+      ],
+      "draft_reason": "External alignment retained as draft until term-by-term UTBMS mapping review is complete.",
+      "notes": [
+        "Alignment module is intentionally draft and is not part of the mutation-authoritative core."
+      ]
+    }
+  ],
+  "global_controls": {
+    "taxonomy_is_skos_only": true,
+    "canonical_mutation_gateway": "promotion-decision",
+    "runtime_learning_may_not_directly_mutate_canonical_meaning": true,
+    "document_and_provenance_semantics_are_separate_from_core_meaning": true
+  }
+}

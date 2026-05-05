@@ -1,0 +1,167 @@
+{
+  "manifest_id": "fmg-machine-navigation-manifest",
+  "version": "1.1.0",
+  "repo_role": "semantic_control_plane_and_innovation_os_contract_repository",
+  "description": "Machine-readable navigation guide for AI systems and contributors reading this repository from the outside.",
+  "start_files": [
+    {
+      "path": "AI_START_HERE.md",
+      "purpose": "Primary human and AI front door",
+      "read_first": true
+    },
+    {
+      "path": "registry/source-of-truth.json",
+      "purpose": "Authoritative repo role, precedence order, and layer model",
+      "read_first": true
+    },
+    {
+      "path": "registry/design-authority.json",
+      "purpose": "Design principles, authority posture, and non-negotiables",
+      "read_first": true
+    },
+    {
+      "path": "governance/SYSTEM_MAP.md",
+      "purpose": "Concise map of the repo\u2019s main layers",
+      "read_first": true
+    }
+  ],
+  "canonical_files": [
+    {
+      "path": "registry/source-of-truth.json",
+      "authority": "highest",
+      "role": "master authority map and precedence order"
+    },
+    {
+      "path": "registry/design-authority.json",
+      "authority": "highest",
+      "role": "design authority and non-negotiables"
+    },
+    {
+      "path": "governance/REPO_DOCTRINE.md",
+      "authority": "high",
+      "role": "canonical vs derived and mutation boundary"
+    },
+    {
+      "path": "governance/SYSTEM_MAP.md",
+      "authority": "high",
+      "role": "repo layer map"
+    },
+    {
+      "path": "governance/canonical_spine_manifest.json",
+      "authority": "high",
+      "role": "current canonical schema set and validation scripts"
+    },
+    {
+      "path": "registry/schema-registry.json",
+      "authority": "high-operational",
+      "role": "active schema key to file mapping used by live validators"
+    },
+    {
+      "path": "scripts/check_registry_refs.py",
+      "authority": "high-operational",
+      "role": "verifies authoritative path references exist"
+    }
+  ],
+  "folder_roles": {
+    "governance/": {
+      "authority_level": "canonical",
+      "role": "policy, doctrine, manifests, lifecycle, operating guidance"
+    },
+    "registry/": {
+      "authority_level": "canonical",
+      "role": "source-of-truth, design authority, registries, deprecations"
+    },
+    "ontology/": {
+      "authority_level": "operational-high",
+      "role": "semantic meaning layer"
+    },
+    "shapes/": {
+      "authority_level": "operational-high",
+      "role": "SHACL and validation shapes"
+    },
+    "schemas/": {
+      "authority_level": "operational-high",
+      "role": "concrete JSON schema files for governed objects"
+    },
+    "schema/": {
+      "authority_level": "operational",
+      "role": "schema manifest and interface/invariant structure"
+    },
+    "scripts/": {
+      "authority_level": "operational",
+      "role": "validation and enforcement tooling"
+    },
+    "interop/": {
+      "authority_level": "reference",
+      "role": "external model mapping profiles"
+    },
+    "mappings/": {
+      "authority_level": "reference",
+      "role": "crosswalks and source-to-canonical mappings"
+    },
+    "profiles/": {
+      "authority_level": "reference",
+      "role": "system and adapter profiles"
+    },
+    "standards/": {
+      "authority_level": "reference",
+      "role": "stable external/internal standards posture"
+    },
+    "examples/": {
+      "authority_level": "example",
+      "role": "illustrative instances only"
+    },
+    "data/": {
+      "authority_level": "example",
+      "role": "sample or test data only"
+    },
+    "graphs/": {
+      "authority_level": "example",
+      "role": "derived graph partitions and related artifacts"
+    },
+    "docs/": {
+      "authority_level": "supporting",
+      "role": "narrative and explanatory documentation"
+    },
+    "reports/": {
+      "authority_level": "supporting",
+      "role": "generated reports and audits"
+    },
+    "eval/": {
+      "authority_level": "supporting",
+      "role": "evaluation artifacts"
+    },
+    "templates/": {
+      "authority_level": "supporting",
+      "role": "template drafts and governed templates"
+    },
+    "archive/": {
+      "authority_level": "historical",
+      "role": "archived materials only"
+    },
+    "legacy/": {
+      "authority_level": "historical",
+      "role": "legacy materials only"
+    }
+  },
+  "disambiguation": {
+    "schema_vs_schemas": {
+      "schema/": "Schema-set manifest and interface/invariant structure.",
+      "schemas/": "Concrete JSON schemas for individual governed types."
+    },
+    "docs_vs_governance": {
+      "docs/": "Narrative and supporting only.",
+      "governance/": "Normative doctrine and lifecycle controls."
+    },
+    "active_schema_surface": {
+      "preferred_path": "registry/schema-registry.json",
+      "note": "Use this file for active schema lookup on main. The older schemas/schema_registry.json is a stale stub and must not be used for routing."
+    }
+  },
+  "decision_rules": [
+    "When in conflict, registry and governance files outrank docs and examples.",
+    "Do not infer active schema versions from filenames alone; use registry/schema-registry.json.",
+    "Treat legacy and archive paths as historical only.",
+    "Use scripts/check_registry_refs.py and governance/canonical_spine_manifest.json as live operational cross-checks."
+  ]
+}

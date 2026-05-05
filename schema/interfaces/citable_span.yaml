@@ -1,0 +1,26 @@
+kind: interface
+id: citable_span
+version: 0.1.0
+status: draft
+description: >
+  Interface for anchored textual spans that support stable citation and later
+  witness comparison.
+required_fields:
+  - name: anchor_id
+    type: string
+  - name: witness_ref
+    type: string
+  - name: span_start
+    type: string
+  - name: span_end
+    type: string
+optional_fields:
+  - name: citation_label
+    type: string
+  - name: normalized_text
+    type: string
+  - name: language_code
+    type: string
+compatibility_notes:
+  - Anchors must remain stable even when downstream addressing evolves.
+  - Span interfaces should later map to canonical anchor and source objects.

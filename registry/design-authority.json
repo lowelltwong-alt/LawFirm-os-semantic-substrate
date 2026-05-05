@@ -1,0 +1,51 @@
+{
+  "owner": "Lowell T. Wong",
+  "system_type": "semantic_control_plane_and_innovation_os_contract_repository",
+  "repo_role": "FMG is the canonical semantic control plane and Innovation OS contract repository.",
+  "core_principles": [
+    "Canonical_vs_derived_boundaries_must_remain_explicit",
+    "Canonical_document_structure_is_source_of_truth",
+    "Retrieval_and_access_contracts_are_derived_control_surfaces",
+    "Gold_Standard_is_a_thin_canonical_KM_backbone",
+    "Tool_neutral_AI_control_plane_is_governed_but_not_semantic_canon",
+    "Vendor_adapters_are_not_semantic_authorities",
+    "Promotion_decision_is_the_only_canonical_mutation_gateway",
+    "Exact_span_traceability_is_required_for_grounded_outputs",
+    "Deny_by_default_access_controls_are_required",
+    "Validation_and_CI_are_non_optional",
+    "Repository_is_a_living_governed_system"
+  ],
+  "governing_questions": [
+    "What is canonical meaning here?",
+    "What is canonical document structure here?",
+    "What is derived evidence or retrieval output here?",
+    "What AI control-plane rule applies here?",
+    "What policy or governance surface controls it?",
+    "What action or runtime surface depends on it?",
+    "What breaks if this changes?",
+    "What evidence and review path are required before promotion?"
+  ],
+  "artifact_order": {
+    "semantic_meaning": "ontology, taxonomy, and shape-backed semantic authority",
+    "canonical_document_family": "document, source-artifact, document-version, canonical-text, component, span-selector, and citation surfaces",
+    "derived_document_and_evidence": "chunk, embedding, index, answer, and retrieval-support artifacts rebuilt from canonical structure",
+    "retrieval_and_access": "derived request, trace, response, and access-control contracts",
+    "ai_control_plane": "tool-neutral AI contributor governance, change-packet rules, deterministic gates, and adapter boundaries",
+    "policy_and_governance": "registries, doctrine, lifecycle, access, and promotion controls",
+    "action_and_runtime": "exceptions, pressure, opportunity, validation, sprint, pilot, scale, and related operating objects"
+  },
+  "canonical_boundary_role": "Canonical meaning, canonical document structure, and draft Gold Standard KM designation must remain distinct from derived retrieval, answer, telemetry, vendor-local adapter outputs, and AI control-plane instructions.",
+  "retrieval_posture": "privilege_aware_hybrid_retrieval_over_canonical_document_structure",
+  "truth_posture": "registries_and_governed_canonical_objects_over_filename_or_vendor_convenience",
+  "enterprise_learning_posture": "append_only_runtime_evidence_with_reviewed_promotion_for_canonical_change",
+  "non_negotiables": [
+    "No canonical change without reviewed promotion decision",
+    "No retrieval or answer artifact may redefine canonical document boundaries",
+    "No vendor adapter may define canonical semantics locally",
+    "No AI adapter may outrank source-of-truth or design authority",
+    "No grounded answer without exact canonical span traceability",
+    "No access-sensitive retrieval without deny-by-default policy enforcement",
+    "No Gold Standard asset without canonical document, span, provenance, and policy anchors",
+    "No registry or doctrine drift that contradicts source-of-truth precedence"
+  ]
+}

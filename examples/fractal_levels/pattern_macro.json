@@ -1,0 +1,39 @@
+{
+  "id": "CON-900002",
+  "object_type": "concept",
+  "title": "Macro Pattern: Portfolio Intake Signal Program",
+  "concept_label": "portfolio_intake_signal_program",
+  "canonical_anchor_refs": [
+    "anchor://intake/macro/signal-program"
+  ],
+  "lifecycle_status": "active",
+  "authority_zone": "internal_general",
+  "scale_level": "macro",
+  "parent_level_mapping": {
+    "macro": "no-op self projection",
+    "meso": "emit governed directives for evidence bundle curation"
+  },
+  "child_projection_mapping": {
+    "meso": "project policy-weighted objectives to pilot slices",
+    "micro": "derive packet-level quality constraints and evidence checks"
+  },
+  "invariant_preservation_rules": {
+    "identity": "preserve portfolio program identifier and semantic label",
+    "boundary": "preserve enterprise boundary and cross-zone escalation policy",
+    "state_transition": "ensure macro stage changes map to meso and micro transition constraints",
+    "evidence": "retain evidentiary burden requirements in each downward projection",
+    "governance": "retain accountable decision authority and approval trace links",
+    "feedback": "federate retrieval and adjudication feedback back into program tuning"
+  },
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "ontology",
+    "domain": "fractal",
+    "module": "fractal_levels",
+    "object_type": "node",
+    "object_id": "NODE-900002",
+    "version": "v1"
+  },
+  "address": "/example/internal_general/ontology/fractal/fractal_levels/node/NODE-900002/v1"
+}

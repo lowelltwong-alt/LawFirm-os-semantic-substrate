@@ -1,0 +1,36 @@
+approval_matrix:
+  T0_read_only:
+    approver: none
+    notes:
+      - read and summarize only
+
+  T1_derived_artifact:
+    approver: maintainer
+    notes:
+      - must remain non-canonical
+
+  T2_contract_change:
+    approver: code_owner
+    required_checks:
+      - validator_output_recorded
+      - change_packet_present
+
+  T3_canonical_semantic_change:
+    approver: semantic_steward
+    required_checks:
+      - change_packet_present
+      - impact_explained
+      - rollback_path_defined
+      - promotion_path_respected
+
+  T4_external_or_destructive:
+    approver: human_explicit
+    required_checks:
+      - change_packet_present
+      - release_hygiene_passed
+      - approval_logged
+
+  T5_live_firm_data_or_runtime:
+    approver: blocked
+    required_checks:
+      - do_not_execute_in_this_repo

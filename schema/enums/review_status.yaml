@@ -1,0 +1,10 @@
+kind: enum
+id: review_status
+version: 0.1.0
+status: draft
+description: Review posture labels for governed assertions and comparison objects.
+values:
+  - unchecked
+  - reviewed
+  - approved
+  - rejected

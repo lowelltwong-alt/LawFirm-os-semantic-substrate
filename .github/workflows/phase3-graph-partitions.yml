@@ -1,0 +1,27 @@
+name: Phase 3 Graph Partitions
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  phase3-graph-partitions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Check graph partitions
+        run: python scripts/phase3/check_graph_partitions.py
+
+      - name: Build graph manifests
+        run: python scripts/phase3/build_graph_manifests.py

@@ -1,0 +1,25 @@
+kind: type
+id: alignment_assessment
+version: 0.1.0
+status: draft
+implements:
+  - node
+  - evidence_bearing
+description: >
+  First-class governed alignment assessment object layered above a comparison object.
+required_fields:
+  - comparison_object_id
+  - relation_type
+  - alignment_degree
+  - alignment_scope
+  - translation_burden
+  - evidence_sufficiency
+  - confidence_level
+  - review_status
+optional_fields:
+  - scope_note
+  - translation_note
+  - evidence_note
+compatibility_notes:
+  - Preserve compatibility with relation_type, alignment_degree, confidence_level, review_status, and trust-zone direction.
+  - Use this object to formalize comparison judgment without replacing richer underlying assertions and evidence.

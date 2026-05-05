@@ -1,0 +1,28 @@
+id: PRP-000002
+title: Authority conflict retrieval tagging promotion
+object_type: proposal_promotion
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+display_title: authority_conflict_retrieval_tagging_promotion
+proposal_promotion_status: promoted
+source_feedback_ref: RFB-000002
+proposed_change_summary: >
+  Promote a reviewed retrieval tag profile that binds exception authority
+  conflict events to reviewer-role metadata and evidence posture checks.
+approval_requirements:
+  - governance reviewer approval captured
+  - evidence sufficiency reviewed against alignment rubric
+  - no direct canonical mutation from exception event payload
+target_manifest_refs:
+  - NGM-000001
+promotion_window: before_internal_pilot_release
+decision_notes:
+  - Accepted for internal pilot after review board sign-off.
+alignment_assessment:
+  alignment_degree: strongly_aligned
+  evidence_sufficiency: strong_curated_secondary
+  alignment_assessment_ref: AAS-000001
+  assessment_summary: >
+    Proposal aligns with governed promotion policy and preserves trust
+    boundaries.

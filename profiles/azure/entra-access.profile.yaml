@@ -1,0 +1,65 @@
+profile_id: azure-entra-access-v1
+profile_version: 1.0.0
+status: draft
+draft_mode: explicit_scaffold
+draft_reason: claim shapes are plausible but exact identity, role, and service principal fields remain unverified in repo evidence
+evidence_status: missing_source_evidence
+readiness_status: blocked_pending_source_payload_evidence
+owner: security-platform
+provider: azure
+service: entra-access
+purpose: >
+  Map authenticated identity, role, and group claims into Law Firm requester and
+  subject context for policy-aware retrieval and answer rendering.
+source_entity_assumptions:
+  - entity: SOURCE_ENTITY_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact authenticated user claims envelope
+  - entity: SOURCE_ENTITY_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact service principal claims envelope
+  - entity: SOURCE_ENTITY_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact group and role claims structures
+emits_derived_objects:
+  - retrieval-request
+emits_policy_objects:
+  - access-decision
+boundary_controls:
+  local_semantics_authoritative: false
+  may_create_local_semantic_forks: false
+  deny_by_default_required: true
+field_mappings:
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact subject identifier claim name
+    target_object: retrieval-request
+    target_field: requester_context.subject_id
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact group claims field name and nesting behavior
+    target_object: access-decision
+    target_field: subject_ref.group_refs[]
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact role claims field name
+    target_object: access-decision
+    target_field: subject_ref.role_refs[]
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact service principal identifier field name
+    target_object: access-decision
+    target_field: subject_ref.service_principal_id
+    mapping_mode: transformed
+verification_inputs_required:
+  - Entra token or claims sample for human user
+  - Entra claims sample for service principal
+  - group and role claims field dictionary
+notes:
+  - Identity claims supply context for Law Firm policy evaluation.
+  - Entra roles and groups do not define canonical Law Firm meaning by themselves.
+  - Retrieval requests and access decisions are not canonical meaning objects.
+  - Exact Entra claim names remain placeholders until a real token or claims sample is available.

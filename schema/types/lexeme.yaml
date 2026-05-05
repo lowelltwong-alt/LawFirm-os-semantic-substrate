@@ -1,0 +1,13 @@
+kind: type
+id: lexeme
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: Lexical unit used in concept, passage, and translation comparison.
+required_fields:
+  - lemma
+optional_fields:
+  - language_code
+  - gloss
+  - concept_refs

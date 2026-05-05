@@ -1,0 +1,11 @@
+kind: enum
+id: learning_event_state
+version: 0.1.0
+status: draft
+description: Lifecycle states for evidence-bearing learning events.
+values:
+  - captured
+  - analyzed
+  - accepted
+  - rejected
+  - archived

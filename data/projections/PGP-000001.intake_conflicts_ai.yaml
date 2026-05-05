@@ -1,0 +1,25 @@
+id: PGP-000001
+title: Intake conflicts AI property graph projection
+object_type: property_graph_projection
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+display_title: intake_conflicts_ai_property_graph_projection
+projection_status: draft
+graph_manifest_ref: NGM-000001
+node_projection_rules:
+  - project governed objects as labeled nodes using object_type as the base label
+  - preserve authority_zone, lifecycle_status, and trust_level as node properties
+edge_projection_rules:
+  - project reviewed assertion objects as directed edges when relation_type is stable
+  - retain assertion object identifiers as edge provenance keys
+property_whitelist:
+  - authority_zone
+  - lifecycle_status
+  - review_status
+  - trust_level
+excluded_partitions:
+  - quarantine
+downstream_consumer_profiles:
+  - retrieval_index
+  - graph_visualization

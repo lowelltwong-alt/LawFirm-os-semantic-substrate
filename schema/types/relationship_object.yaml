@@ -1,0 +1,14 @@
+kind: type
+id: relationship_object
+version: 0.1.0
+status: draft
+implements:
+  - node
+  - assertion
+  - evidence_bearing
+description: Explicit governed relationship object for doctrinal and conceptual linkage.
+required_fields:
+  - relationship_scope
+optional_fields:
+  - mediation_note
+  - symmetry_note

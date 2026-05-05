@@ -1,0 +1,11 @@
+kind: enum
+id: graph_manifest_status
+version: 0.1.0
+status: draft
+description: Lifecycle posture for named-graph manifest packages.
+values:
+  - planned
+  - draft
+  - review_ready
+  - approved
+  - superseded

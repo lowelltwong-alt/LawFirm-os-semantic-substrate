@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.fmg/schemas/extensions/talent_intelligence/law_firm.schema.json",
+  "title": "LawFirm",
+  "description": "Canonical law firm entity for the talent intelligence extension.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "law_firm_id",
+    "canonical_name",
+    "status",
+    "authority_zone",
+    "confidence_posture"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "law_firm"
+    },
+    "law_firm_id": {
+      "type": "string"
+    },
+    "canonical_name": {
+      "type": "string"
+    },
+    "name_variants": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "status": {
+      "type": "string",
+      "enum": ["provisional", "active", "inactive", "merged", "deprecated"]
+    },
+    "authority_zone": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal-general",
+        "internal-km-approved",
+        "practice-restricted",
+        "client-restricted",
+        "matter-restricted",
+        "ethical-wall-restricted",
+        "experimental-ai"
+      ]
+    },
+    "confidence_posture": {
+      "type": "string",
+      "enum": ["asserted", "inferred", "hypothesis", "reviewed"]
+    },
+    "hq_location": {
+      "type": "string"
+    },
+    "office_locations": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "primary_practices": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "external_identifier_refs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "source_profile_refs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

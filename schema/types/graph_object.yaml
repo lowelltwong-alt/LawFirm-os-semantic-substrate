@@ -1,0 +1,15 @@
+kind: type
+id: graph_object
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Managed graph projection object for later visualization, traversal, or export
+  views without changing canonical meaning-bearing objects.
+required_fields:
+  - graph_scope
+optional_fields:
+  - included_node_refs
+  - included_relationship_refs
+  - projection_method

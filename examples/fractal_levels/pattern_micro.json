@@ -1,0 +1,39 @@
+{
+  "id": "CON-900001",
+  "object_type": "concept",
+  "title": "Micro Pattern: Client Intake Evidence Packet",
+  "concept_label": "intake_evidence_packet",
+  "canonical_anchor_refs": [
+    "anchor://intake/micro/evidence-packet"
+  ],
+  "lifecycle_status": "active",
+  "authority_zone": "internal_general",
+  "scale_level": "micro",
+  "parent_level_mapping": {
+    "meso": "group packet concepts into claim-ready bundles",
+    "macro": "roll up packet signal quality into portfolio metrics"
+  },
+  "child_projection_mapping": {
+    "micro": "no-op self projection",
+    "meso": "attach to evidence_bundle and assertion_object"
+  },
+  "invariant_preservation_rules": {
+    "identity": "retain CON-900001 and intake_evidence_packet label across levels",
+    "boundary": "keep packet inside internal trust boundary and approved source zones",
+    "state_transition": "promote only from active packet state to governed bundle states",
+    "evidence": "carry source-level citations and provenance pointers unchanged",
+    "governance": "require reviewer policy checks before meso aggregation",
+    "feedback": "capture retrieval misses and adjudication notes for re-ingest"
+  },
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "ontology",
+    "domain": "fractal",
+    "module": "fractal_levels",
+    "object_type": "node",
+    "object_id": "NODE-900001",
+    "version": "v1"
+  },
+  "address": "/example/internal_general/ontology/fractal/fractal_levels/node/NODE-900001/v1"
+}

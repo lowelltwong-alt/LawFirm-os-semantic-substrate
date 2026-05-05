@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/pressure-vector.schema.json",
+  "title": "Pressure Vector",
+  "description": "Aggregated governed signal derived from one or more exception events. Pressure vectors may prioritize and recommend follow-on work, but they may not directly mutate canonical meaning.",
+  "type": "object",
+  "required": [
+    "pressure_vector_id",
+    "schema_type",
+    "schema_version",
+    "vector_class",
+    "derived_from_exception_ids",
+    "signal_strength",
+    "recommended_route_ids",
+    "review_status",
+    "created_at",
+    "mutation_boundary"
+  ],
+  "properties": {
+    "pressure_vector_id": {
+      "type": "string",
+      "pattern": "^PV-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "pressure-vector"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    },
+    "vector_class": {
+      "type": "string",
+      "enum": [
+        "retrieval_quality_pressure",
+        "workflow_friction_pressure",
+        "authority_policy_pressure",
+        "cross_loop_pressure"
+      ]
+    },
+    "derived_from_exception_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^EXC-[0-9]{6}$"
+      }
+    },
+    "source_layers": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "retrieval",
+          "workflow",
+          "governance"
+        ]
+      }
+    },
+    "signal_strength": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "recommended_route_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^route\\.[a-z0-9_]+\\.v[0-9]+$"
+      }
+    },
+    "suggested_follow_on_families": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "adaptation-proposal",
+          "opportunity-object"
+        ]
+      }
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "under_review",
+        "accepted_for_follow_on",
+        "rejected"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "mutation_boundary": {
+      "type": "object",
+      "required": [
+        "no_direct_canonical_mutation",
+        "promotion_decision_required_for_canonical_change"
+      ],
+      "properties": {
+        "no_direct_canonical_mutation": {
+          "type": "boolean",
+          "const": true
+        },
+        "promotion_decision_required_for_canonical_change": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

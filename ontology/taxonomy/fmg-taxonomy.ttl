@@ -1,0 +1,130 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix tax: <https://fmg.example/taxonomy#> .
+
+tax:FMGTaxonomy a skos:ConceptScheme ;
+  dct:title "FMG Taxonomy" ;
+  skos:prefLabel "FMG Taxonomy"@en ;
+  skos:definition "Controlled vocabularies for FMG practice, matter, document, exception, risk, and operating-domain concepts. The taxonomy stays SKOS-only and does not redefine ontology classes."@en .
+
+tax:PracticeArea a skos:Concept ;
+  skos:topConceptOf tax:FMGTaxonomy ;
+  skos:prefLabel "Practice Area"@en ;
+  skos:definition "Top concept for practice-area classification."@en .
+
+tax:MatterType a skos:Concept ;
+  skos:topConceptOf tax:FMGTaxonomy ;
+  skos:prefLabel "Matter Type"@en ;
+  skos:definition "Top concept for matter-type classification."@en .
+
+tax:DocumentType a skos:Concept ;
+  skos:topConceptOf tax:FMGTaxonomy ;
+  skos:prefLabel "Document Type"@en ;
+  skos:definition "Top concept for governed document-type classification."@en .
+
+tax:ExceptionClass a skos:Concept ;
+  skos:topConceptOf tax:FMGTaxonomy ;
+  skos:prefLabel "Exception Class"@en ;
+  skos:definition "Top concept for raw runtime exception classes."@en .
+
+tax:OperationalDomain a skos:Concept ;
+  skos:topConceptOf tax:FMGTaxonomy ;
+  skos:prefLabel "Operational Domain"@en ;
+  skos:definition "Top concept for operating domains referenced by runtime and Innovation OS objects."@en .
+
+tax:RiskClass a skos:Concept ;
+  skos:topConceptOf tax:FMGTaxonomy ;
+  skos:prefLabel "Risk Class"@en ;
+  skos:definition "Top concept for governance and execution risk classification."@en .
+
+tax:KnowledgeAssetType a skos:Concept ;
+  skos:topConceptOf tax:FMGTaxonomy ;
+  skos:prefLabel "Knowledge Asset Type"@en ;
+  skos:definition "Top concept for knowledge assets used in retrieval, guidance, and operating workflows."@en .
+
+tax:GoldStandardAssetType a skos:Concept ;
+  skos:topConceptOf tax:FMGTaxonomy ;
+  skos:prefLabel "Gold Standard Asset Type"@en ;
+  skos:definition "Top concept for validated reference assets treated as high-trust operational authority."@en .
+
+tax:RetrievalMiss a skos:Concept ;
+  skos:broader tax:ExceptionClass ;
+  skos:prefLabel "Retrieval miss"@en ;
+  skos:definition "Exception class for retrieval responses that miss controlling or sufficiently specific material."@en ;
+  skos:notation "retrieval_miss" .
+
+tax:WorkflowEscalation a skos:Concept ;
+  skos:broader tax:ExceptionClass ;
+  skos:prefLabel "Workflow escalation"@en ;
+  skos:definition "Exception class for workflow failures or manual escalations that expose operating friction."@en ;
+  skos:notation "workflow_escalation" .
+
+tax:AuthorityConflictOverride a skos:Concept ;
+  skos:broader tax:ExceptionClass ;
+  skos:prefLabel "Authority conflict override"@en ;
+  skos:definition "Exception class for runtime signals that expose authoritative conflicts requiring governance review."@en ;
+  skos:notation "authority_conflict_override" .
+
+tax:RetrievalDomain a skos:Concept ;
+  skos:broader tax:OperationalDomain ;
+  skos:prefLabel "Retrieval"@en ;
+  skos:definition "Operating domain for retrieval, neighborhood tuning, and answer support."@en ;
+  skos:notation "retrieval" .
+
+tax:WorkflowDomain a skos:Concept ;
+  skos:broader tax:OperationalDomain ;
+  skos:prefLabel "Workflow"@en ;
+  skos:definition "Operating domain for execution workflow design and operational handling."@en ;
+  skos:notation "workflow" .
+
+tax:GovernanceDomain a skos:Concept ;
+  skos:broader tax:OperationalDomain ;
+  skos:prefLabel "Governance"@en ;
+  skos:definition "Operating domain for policy, review, and canonical governance."@en ;
+  skos:notation "governance" .
+
+tax:CrossLoopDomain a skos:Concept ;
+  skos:broader tax:OperationalDomain ;
+  skos:prefLabel "Cross-loop"@en ;
+  skos:definition "Operating domain for work spanning retrieval, workflow, and governance loops."@en ;
+  skos:notation "cross_loop" .
+
+tax:PolicyDocument a skos:Concept ;
+  skos:broader tax:DocumentType ;
+  skos:prefLabel "Policy document"@en ;
+  skos:definition "Document type for governed policy and procedure references."@en .
+
+tax:ExecutiveBrief a skos:Concept ;
+  skos:broader tax:DocumentType ;
+  skos:prefLabel "Executive brief"@en ;
+  skos:definition "Document type for sponsor-facing executive briefings."@en .
+
+tax:StandardOperatingProcedure a skos:Concept ;
+  skos:broader tax:DocumentType ;
+  skos:prefLabel "Standard operating procedure"@en ;
+  skos:definition "Document type for approved operating workflows and repeatable procedures."@en .
+
+tax:BillingGuideline a skos:Concept ;
+  skos:broader tax:DocumentType ;
+  skos:prefLabel "Billing guideline"@en ;
+  skos:definition "Document type for client, carrier, or matter-specific billing guidance."@en .
+
+tax:KnowledgeRunbook a skos:Concept ;
+  skos:broader tax:KnowledgeAssetType ;
+  skos:prefLabel "Knowledge runbook"@en ;
+  skos:definition "Knowledge asset type for governed instructions used in retrieval and operations."@en .
+
+tax:ExceptionEvidencePack a skos:Concept ;
+  skos:broader tax:KnowledgeAssetType ;
+  skos:prefLabel "Exception evidence pack"@en ;
+  skos:definition "Knowledge asset type for packaged runtime evidence supporting review and prioritization."@en .
+
+tax:ApprovedReferenceSet a skos:Concept ;
+  skos:broader tax:GoldStandardAssetType ;
+  skos:prefLabel "Approved reference set"@en ;
+  skos:definition "Gold-standard asset type for curated, approved reference collections."@en .
+
+tax:PromotionReadyPackage a skos:Concept ;
+  skos:broader tax:GoldStandardAssetType ;
+  skos:prefLabel "Promotion-ready package"@en ;
+  skos:definition "Gold-standard asset type for review-ready packages prepared for promotion decisions."@en .

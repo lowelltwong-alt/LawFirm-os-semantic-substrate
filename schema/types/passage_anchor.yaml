@@ -1,0 +1,14 @@
+kind: type
+id: passage_anchor
+version: 0.1.0
+status: draft
+implements:
+  - node
+  - citable_span
+description: Stable anchor for a cited passage or textual segment.
+required_fields:
+  - anchor_label
+optional_fields:
+  - source_ref
+  - manuscript_witness_refs
+  - translation_witness_refs

@@ -1,0 +1,22 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "@vocab": "https://example.fmg.local/ontology/",
+    "id": "@id",
+    "type": "@type",
+    "authority_zone": "https://example.fmg.local/ontology/authorityZone",
+    "graph_partition": "https://example.fmg.local/ontology/graphPartition",
+    "lifecycle_status": "https://example.fmg.local/ontology/lifecycleStatus",
+    "review_status": "https://example.fmg.local/ontology/reviewStatus",
+    "trust_level": "https://example.fmg.local/ontology/trustLevel",
+    "supportsMatterIntake": {
+      "@id": "https://example.fmg.local/ontology/supportsMatterIntake",
+      "@type": "@id"
+    },
+    "promotesProposal": {
+      "@id": "https://example.fmg.local/ontology/promotesProposal",
+      "@type": "@id"
+    }
+  }
+}

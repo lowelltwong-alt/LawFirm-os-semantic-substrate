@@ -1,0 +1,22 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fmg: <https://example.fmg.local/ontology/> .
+
+fmg:PropertyGraphProjectionShape
+  a sh:NodeShape ;
+  sh:targetClass fmg:PropertyGraphProjection ;
+  sh:property [
+    sh:path fmg:displayTitle ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path fmg:projectionStatus ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path fmg:graphManifestRef ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+  ] .

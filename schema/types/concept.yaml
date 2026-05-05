@@ -1,0 +1,13 @@
+kind: type
+id: concept
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: Reusable doctrinal or semantic concept used in comparison and interpretation.
+required_fields:
+  - concept_label
+optional_fields:
+  - broader_concept_ref
+  - narrower_concept_refs
+  - lexeme_refs

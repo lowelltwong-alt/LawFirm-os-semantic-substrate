@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/document-version.schema.json",
+  "title": "Document Version",
+  "description": "Immutable normalized document version derived from a source artifact. Document versions anchor canonical text, provenance, and all downstream derived retrieval artifacts.",
+  "type": "object",
+  "required": [
+    "document_version_id",
+    "schema_type",
+    "schema_version",
+    "document_id",
+    "source_artifact_id",
+    "version_identifier",
+    "status",
+    "normalization_profile",
+    "canonical_text_id",
+    "parse_activity_id",
+    "created_at"
+  ],
+  "properties": {
+    "document_version_id": {
+      "type": "string",
+      "pattern": "^DV-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "document-version"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "document_id": {
+      "type": "string",
+      "pattern": "^DOC-[0-9]{6}$"
+    },
+    "source_artifact_id": {
+      "type": "string",
+      "pattern": "^SA-[0-9]{6}$"
+    },
+    "version_identifier": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "superseded",
+        "withdrawn"
+      ]
+    },
+    "normalization_profile": {
+      "type": "string",
+      "minLength": 2
+    },
+    "canonical_text_id": {
+      "type": "string",
+      "pattern": "^CT-[0-9]{6}$"
+    },
+    "parse_activity_id": {
+      "type": "string",
+      "minLength": 2
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "language": {
+      "type": "string"
+    },
+    "page_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "content_hash": {
+      "type": "string"
+    },
+    "canonical_boundary_source": {
+      "type": "string",
+      "const": "canonical_text_and_components"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Canonical Address",
+  "type": "string",
+  "pattern": "^\\/(example|production)\\/(public|internal_general|restricted|experimental)\\/(governance|ontology|schema|data|retrieval)\\/[a-z0-9]+(?:_[a-z0-9]+)*\\/[a-z0-9]+(?:_[a-z0-9]+)*\\/[a-z0-9]+(?:_[a-z0-9]+)*\\/[A-Z][A-Z0-9_]*-[a-z0-9_]+(?:-[a-z0-9_]+)*\\/v[0-9]+$",
+  "description": "Canonical fractal address string for governed objects"
+}

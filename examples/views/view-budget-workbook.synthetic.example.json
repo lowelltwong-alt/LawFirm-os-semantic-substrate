@@ -1,0 +1,706 @@
+{
+  "schema_id": "view-budget-workbook-v1",
+  "schema_type": "view-budget-workbook",
+  "schema_version": "draft-v1",
+  "budget_draft_id": "BWD-000001",
+  "candidate_status": "synthetic_candidate_not_canonical",
+  "contract_version": "synthetic-contract-sha-001",
+  "template_title": "BUDGET FORM",
+  "instruction_note": "Attorneys are only responsible for filling out the Original Budgeted Amount for initial budgets or New Budgeted Amount for supplemental budgets in this synthetic draft example.",
+  "budget_columns": [
+    "Original Budgeted Amount",
+    "Amount Billed to Date",
+    "Original Budget Amount Remaining",
+    "New Budgeted Amount"
+  ],
+  "matter_header": {
+    "matter_family": "synthetic_auto_bi_defense_v1",
+    "matter_label_placeholder": "Synthetic Auto BI Defense Matter 001",
+    "client_name": {
+      "label": "Client Name",
+      "value": "Synthetic Carrier Alpha"
+    },
+    "client_matter_number": {
+      "label": "Client/Matter Number",
+      "value": "SYN-MAT-000001"
+    },
+    "matter_name": {
+      "label": "Matter Name",
+      "value": "Synthetic Auto BI Rear-End Defense"
+    },
+    "claim_number": {
+      "label": "Claim Number",
+      "value": "SYN-CLM-000001"
+    },
+    "venue_placeholder": "venue_beta_suburban",
+    "litigation_phase": "written_discovery",
+    "carrier_guideline_placeholder_constraint": "alpha",
+    "allowed_use_basis": "synthetic_budget_learning_eval",
+    "sensitivity_level": "synthetic_restricted_budget",
+    "review_owner": "synthetic_budget_ops_owner",
+    "non_production": true
+  },
+  "phase_sections": [
+    {
+      "phase_code": "L100",
+      "phase_label": "Case Assessment, Development and Administration",
+      "rows": [
+        {
+          "row_code": "L110",
+          "row_label": "Fact Investigation / Development",
+          "original_budgeted_amount": 3500.0,
+          "amount_billed_to_date": 900.0,
+          "original_budget_amount_remaining": 2600.0,
+          "new_budgeted_amount": 3500.0,
+          "driver_refs": [
+            "liability_clarity:mixed",
+            "fact_witness_count_band:3_5"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L120",
+          "row_label": "Analysis / Strategy",
+          "original_budgeted_amount": 4000.0,
+          "amount_billed_to_date": 1200.0,
+          "original_budget_amount_remaining": 2800.0,
+          "new_budgeted_amount": 4000.0,
+          "driver_refs": [
+            "claimant_attorney_involvement:active_litigation_counsel"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L130",
+          "row_label": "Experts / Consultants",
+          "original_budgeted_amount": 1500.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 1500.0,
+          "new_budgeted_amount": 1500.0,
+          "driver_refs": [
+            "expert_need:possible"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L140",
+          "row_label": "Document / File Management",
+          "original_budgeted_amount": 500.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 500.0,
+          "new_budgeted_amount": 500.0,
+          "driver_refs": [
+            "written_discovery_burden:moderate"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L150",
+          "row_label": "Budgeting",
+          "original_budgeted_amount": 800.0,
+          "amount_billed_to_date": 300.0,
+          "original_budget_amount_remaining": 500.0,
+          "new_budgeted_amount": 800.0,
+          "driver_refs": [
+            "budget_phase:discovery_refresh"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L160",
+          "row_label": "Settlement / Non-Binding ADR",
+          "original_budgeted_amount": 1000.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 1000.0,
+          "new_budgeted_amount": 1000.0,
+          "driver_refs": [
+            "mediation_likelihood:medium"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L190",
+          "row_label": "Other Case Assessment, Development and Administration",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        }
+      ]
+    },
+    {
+      "phase_code": "L200",
+      "phase_label": "Pre-Trial Pleading and Motions",
+      "rows": [
+        {
+          "row_code": "L210",
+          "row_label": "Pleading",
+          "original_budgeted_amount": 900.0,
+          "amount_billed_to_date": 200.0,
+          "original_budget_amount_remaining": 700.0,
+          "new_budgeted_amount": 900.0,
+          "driver_refs": [
+            "litigation_phase:written_discovery"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L220",
+          "row_label": "Preliminary Injunctions / Provisional Remedies",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L230",
+          "row_label": "Court Mandated Conferences",
+          "original_budgeted_amount": 300.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 300.0,
+          "new_budgeted_amount": 300.0,
+          "driver_refs": [
+            "venue_placeholder:venue_beta_suburban"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L240",
+          "row_label": "Dispositive Motions",
+          "original_budgeted_amount": 800.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 800.0,
+          "new_budgeted_amount": 800.0,
+          "driver_refs": [
+            "dispositive_motion_likelihood:medium"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L250",
+          "row_label": "Other Written Motions and Sanctions",
+          "original_budgeted_amount": 250.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 250.0,
+          "new_budgeted_amount": 250.0,
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L260",
+          "row_label": "Class Action Certification and Notice",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        }
+      ]
+    },
+    {
+      "phase_code": "L300",
+      "phase_label": "Discovery",
+      "rows": [
+        {
+          "row_code": "L310",
+          "row_label": "Written Discovery",
+          "original_budgeted_amount": 3200.0,
+          "amount_billed_to_date": 800.0,
+          "original_budget_amount_remaining": 2400.0,
+          "new_budgeted_amount": 3200.0,
+          "driver_refs": [
+            "written_discovery_burden:moderate"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L320",
+          "row_label": "Document Production",
+          "original_budgeted_amount": 2500.0,
+          "amount_billed_to_date": 600.0,
+          "original_budget_amount_remaining": 1900.0,
+          "new_budgeted_amount": 2500.0,
+          "driver_refs": [
+            "medical_specials_band:medium"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L330",
+          "row_label": "Depositions",
+          "original_budgeted_amount": 1800.0,
+          "amount_billed_to_date": 250.0,
+          "original_budget_amount_remaining": 1550.0,
+          "new_budgeted_amount": 2200.0,
+          "driver_refs": [
+            "deposition_burden:limited"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L340",
+          "row_label": "Expert Discovery",
+          "original_budgeted_amount": 900.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 900.0,
+          "new_budgeted_amount": 1400.0,
+          "driver_refs": [
+            "expert_need:possible"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L350",
+          "row_label": "Discovery Motions",
+          "original_budgeted_amount": 400.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 400.0,
+          "new_budgeted_amount": 400.0,
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L390",
+          "row_label": "Other Discovery",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        }
+      ]
+    },
+    {
+      "phase_code": "L400",
+      "phase_label": "Trial Preparation and Trial",
+      "rows": [
+        {
+          "row_code": "L410",
+          "row_label": "Fact Witnesses",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L420",
+          "row_label": "Expert Witnesses",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L430",
+          "row_label": "Written Motions and Submissions",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L440",
+          "row_label": "Other Trial Preparation and Support",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L450",
+          "row_label": "Trial and Hearing Attendance",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L460",
+          "row_label": "Post-Trial Motions and Submissions",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L470",
+          "row_label": "Enforcement",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        }
+      ]
+    },
+    {
+      "phase_code": "L500",
+      "phase_label": "Appeal",
+      "rows": [
+        {
+          "row_code": "L510",
+          "row_label": "Appellate Motions and Submissions",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [
+            "appeal_likelihood:low"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L520",
+          "row_label": "Appellate Briefs",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [
+            "appeal_likelihood:low"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "L530",
+          "row_label": "Oral Argument",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [
+            "appeal_likelihood:low"
+          ],
+          "exception_refs": []
+        }
+      ]
+    },
+    {
+      "phase_code": "E100",
+      "phase_label": "Expenses",
+      "rows": [
+        {
+          "row_code": "E101",
+          "row_label": "Copying",
+          "original_budgeted_amount": 120.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 120.0,
+          "new_budgeted_amount": 120.0,
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E102",
+          "row_label": "Outside Printing",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E103",
+          "row_label": "Word Processing",
+          "original_budgeted_amount": 80.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 80.0,
+          "new_budgeted_amount": 80.0,
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E104",
+          "row_label": "Facsimile",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E105",
+          "row_label": "Telephone",
+          "original_budgeted_amount": 60.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 60.0,
+          "new_budgeted_amount": 60.0,
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E106",
+          "row_label": "Online Research",
+          "original_budgeted_amount": 250.0,
+          "amount_billed_to_date": 120.0,
+          "original_budget_amount_remaining": 130.0,
+          "new_budgeted_amount": 250.0,
+          "driver_refs": [
+            "written_discovery_burden:moderate"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E107",
+          "row_label": "Messengers / Overnite",
+          "original_budgeted_amount": 40.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 40.0,
+          "new_budgeted_amount": 40.0,
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E108",
+          "row_label": "Postage",
+          "original_budgeted_amount": 30.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 30.0,
+          "new_budgeted_amount": 30.0,
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E109",
+          "row_label": "Local Travel",
+          "original_budgeted_amount": 120.0,
+          "amount_billed_to_date": 30.0,
+          "original_budget_amount_remaining": 90.0,
+          "new_budgeted_amount": 120.0,
+          "driver_refs": [
+            "fact_witness_count_band:3_5"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E110",
+          "row_label": "Out-of-Town Travel",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E111",
+          "row_label": "Meals",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E112",
+          "row_label": "Court Fees",
+          "original_budgeted_amount": 250.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 250.0,
+          "new_budgeted_amount": 250.0,
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E113",
+          "row_label": "Subpoena Fees",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E114",
+          "row_label": "Witness Fees",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E115",
+          "row_label": "Court Reporting & Transcripts",
+          "original_budgeted_amount": 600.0,
+          "amount_billed_to_date": 100.0,
+          "original_budget_amount_remaining": 500.0,
+          "new_budgeted_amount": 800.0,
+          "driver_refs": [
+            "deposition_burden:limited"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E116",
+          "row_label": "Trial Transcripts",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E117",
+          "row_label": "Trial Exhibits",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E118",
+          "row_label": "Litigation, Support Vendors",
+          "original_budgeted_amount": 250.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 250.0,
+          "new_budgeted_amount": 250.0,
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E119",
+          "row_label": "Experts",
+          "original_budgeted_amount": 900.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 900.0,
+          "new_budgeted_amount": 1100.0,
+          "driver_refs": [
+            "expert_need:possible"
+          ],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E120",
+          "row_label": "Private Investigators",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E121",
+          "row_label": "Arbitrators / Mediators",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E122",
+          "row_label": "Local Counsel",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E123",
+          "row_label": "Other Professionals",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        },
+        {
+          "row_code": "E124",
+          "row_label": "Other",
+          "original_budgeted_amount": 0.0,
+          "amount_billed_to_date": 0.0,
+          "original_budget_amount_remaining": 0.0,
+          "new_budgeted_amount": 0.0,
+          "row_note": "Synthetic placeholder row retained to mirror sanitized template shape.",
+          "driver_refs": [],
+          "exception_refs": []
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "original_total_budgeted_amount": 25050.0,
+    "amount_billed_to_date_total": 4500.0,
+    "original_budget_amount_remaining_total": 20550.0,
+    "new_total_budgeted_amount": 26350.0
+  },
+  "summary": {
+    "original_budget_label": "Original Budget:",
+    "original_budget_value": 25050.0,
+    "updated_budget_label": "Updated budget:",
+    "updated_budget_value": 26350.0
+  },
+  "template_footer_note": "The accepted by carrier amounts are only accurate as of the date viewed in the ebilling portal in the sanitized template. This synthetic example does not represent real carrier data.",
+  "learning_metadata": {
+    "detected_exception_triggers": [],
+    "ingested_event_ids": [],
+    "pressure_candidate_status": null,
+    "review_packet_required": false,
+    "review_path": "none",
+    "refusal_reason": null
+  },
+  "non_claims": [
+    "synthetic placeholder amounts only",
+    "no production budget accuracy claimed",
+    "no real law firm data or real matters",
+    "no canonical mutation from this view object"
+  ]
+}

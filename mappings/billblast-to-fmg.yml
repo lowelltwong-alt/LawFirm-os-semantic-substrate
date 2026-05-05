@@ -1,0 +1,60 @@
+mapping_id: billblast-to-fmg-v1
+mapping_version: 1.0.0
+status: draft
+draft_mode: explicit_scaffold
+draft_reason: BillBlast source fields are unverified in repo evidence and remain placeholders until real exports are captured
+evidence_status: missing_source_evidence
+readiness_status: blocked_pending_evidence_and_schema_decision
+source_system: billblast
+purpose: >
+  Normalize billing and denial exception signals into FMG runtime-learning
+  objects while preserving FMG route and promotion authority.
+canonical_boundary:
+  canonical_objects_only: true
+  vendor_local_semantics_authoritative: false
+source_entities:
+  - entity: SOURCE_ENTITY_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT BillBlast event object name and payload shape
+    target_objects:
+      - exception-event
+      - pressure-vector
+field_mappings:
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT source identifier field for the exception event
+    target_object: exception-event
+    target_path: TODO_TARGET_FIELD_REQUIRED_CURRENT_EXCEPTION_SCHEMA
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT source field for FMG event-class derivation
+    target_object: exception-event
+    target_path: event_class
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT source field for FMG severity derivation
+    target_object: exception-event
+    target_path: severity
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT source field for FMG route derivation
+    target_object: exception-event
+    target_path: route.route_id
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT source field for pressure signal strength
+    target_object: pressure-vector
+    target_path: signal_strength
+    mapping_mode: transformed
+verification_inputs_required:
+  - BillBlast event export
+  - denial taxonomy or exception category dictionary
+  - route or escalation export
+notes:
+  - BillBlast event categories must route through FMG route and exception policy.
+  - Vendor events may inform opportunity work, but never bypass human review or promotion.
+  - The current exception-event schema has no approved source-record-id target path.

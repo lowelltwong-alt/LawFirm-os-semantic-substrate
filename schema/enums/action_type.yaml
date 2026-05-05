@@ -1,0 +1,21 @@
+kind: enum
+id: action_type
+version: 0.1.0
+status: draft
+description: Controlled operational action types for governed repository changes.
+values:
+  - add_node
+  - add_assertion
+  - revise_assertion
+  - add_comparison
+  - revise_alignment_assessment
+  - promote_status
+  - deprecate_object
+  - register_object_set
+  - publish_slice
+  - schema_change
+  - governance_change
+  - continue
+  - pivot
+  - scale
+  - sunset

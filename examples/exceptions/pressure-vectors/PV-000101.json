@@ -1,0 +1,38 @@
+{
+  "pressure_vector_id": "PV-000101",
+  "schema_type": "pressure-vector",
+  "schema_version": "v1",
+  "address": "/example/internal_general/governance/exceptions/pressure_vectors/artifact/ART-pv-000101/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "governance",
+    "domain": "exceptions",
+    "module": "pressure_vectors",
+    "object_type": "artifact",
+    "object_id": "ART-pv-000101",
+    "version": "v1"
+  },
+  "vector_class": "retrieval_quality_pressure",
+  "derived_from_exception_ids": [
+    "EXC-000101"
+  ],
+  "source_layers": [
+    "retrieval"
+  ],
+  "signal_strength": 0.72,
+  "recommended_route_ids": [
+    "route.retrieval_miss.v1"
+  ],
+  "suggested_follow_on_families": [
+    "adaptation-proposal",
+    "opportunity-object"
+  ],
+  "review_status": "accepted_for_follow_on",
+  "created_at": "2026-04-10T14:05:00Z",
+  "notes": "Recurring misses are clustering around matter-specific billing guidance and should be reviewed for neighborhood tuning.",
+  "mutation_boundary": {
+    "no_direct_canonical_mutation": true,
+    "promotion_decision_required_for_canonical_change": true
+  }
+}

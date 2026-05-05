@@ -1,0 +1,310 @@
+@prefix fmg: <https://fmg.example/ontology/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://fmg.example/ontology/core> a owl:Ontology ;
+  rdfs:label "FMG Core Ontology" ;
+  rdfs:comment "Stable FMG semantic backbone. This module keeps canonical meaning, runtime learning evidence, and operational action objects distinct while preserving promotion-decision as the only lawful gateway for canonical mutation." ;
+  owl:versionInfo "2026-04-phase34-reconciled" .
+
+fmg:Artifact a owl:Class ;
+  rdfs:label "Artifact" ;
+  rdfs:comment "Governed record, package, or contract artifact with authority, trust, and lifecycle metadata." .
+
+fmg:Claim a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Claim" ;
+  rdfs:comment "First-order governed assertion object in the canonical meaning layer." .
+
+fmg:Capability a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Capability" ;
+  rdfs:comment "Stable capability concept in the canonical meaning layer." .
+
+fmg:Entity a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Entity" ;
+  rdfs:comment "Typed entity referenced by governed objects, evidence, and operating artifacts." .
+
+fmg:Constraint a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Constraint" ;
+  rdfs:comment "Rule, boundary, or precondition constraining a governed object or process." .
+
+fmg:Expectation a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Expectation" ;
+  rdfs:comment "Expected behavior that can be violated by runtime events." .
+
+fmg:Evidence a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Evidence" ;
+  rdfs:comment "Evidence-bearing object supporting claims, reviews, and decisions." .
+
+fmg:State a owl:Class ;
+  rdfs:label "State" ;
+  rdfs:comment "General state-bearing semantic anchor." .
+
+fmg:LifecycleState a owl:Class ;
+  rdfs:subClassOf fmg:State ;
+  rdfs:label "Lifecycle State" ;
+  rdfs:comment "Lifecycle anchor used for status transitions and promotion review." .
+
+fmg:ExceptionEvent a owl:Class ;
+  rdfs:subClassOf fmg:Evidence ;
+  rdfs:label "Exception Event" ;
+  rdfs:comment "Append-only runtime learning evidence of retrieval, workflow, or governance friction." .
+
+fmg:PressureVector a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Pressure Vector" ;
+  rdfs:comment "Aggregated signal derived from one or more exception events without mutating canonical meaning." .
+
+fmg:Opportunity a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Opportunity" ;
+  rdfs:comment "Innovation OS prioritization object derived from reviewed pressure." .
+
+fmg:Sprint a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Sprint" ;
+  rdfs:comment "Bounded execution object in the Innovation OS operating layer." .
+
+fmg:Pilot a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Pilot" ;
+  rdfs:comment "Bounded validation and rollout object in the Innovation OS operating layer." .
+
+fmg:ValidationGate a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Validation Gate" ;
+  rdfs:comment "Conceptual approval checkpoint applied before promotion or rollout transitions." .
+
+fmg:ValidationGateRecord a owl:Class ;
+  rdfs:subClassOf fmg:ValidationGate ;
+  rdfs:label "Validation Gate Record" ;
+  rdfs:comment "Recorded gate review for a specific opportunity, sprint, pilot, or scale candidate." .
+
+fmg:ScalePackage a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Scale Package" ;
+  rdfs:comment "Governed rollout handoff object created after pilot and gate review." .
+
+fmg:PromotionDecision a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Promotion Decision" ;
+  rdfs:comment "The only runtime-action object permitted to authorize canonical mutation." .
+
+fmg:Document a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Document" ;
+  rdfs:comment "Abstract document anchor. Concrete document structure is defined in the document module." .
+
+fmg:DocumentVersion a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Document Version" ;
+  rdfs:comment "Abstract versioned document anchor. Concrete structure is defined in the document module." .
+
+fmg:Component a owl:Class ;
+  rdfs:subClassOf fmg:Entity ;
+  rdfs:label "Component" ;
+  rdfs:comment "Structural segment of a canonical text body." .
+
+fmg:SpanSelector a owl:Class ;
+  rdfs:subClassOf fmg:Entity ;
+  rdfs:label "Span Selector" ;
+  rdfs:comment "Machine-readable selector over canonical text spans." .
+
+fmg:CitationMention a owl:Class ;
+  rdfs:subClassOf fmg:Evidence ;
+  rdfs:label "Citation Mention" ;
+  rdfs:comment "Evidence-bearing reference from one text object to a citation target." .
+
+fmg:CitationTarget a owl:Class ;
+  rdfs:subClassOf fmg:Entity ;
+  rdfs:label "Citation Target" ;
+  rdfs:comment "Resolvable target of a citation mention." .
+
+fmg:RetrievalTrace a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Retrieval Trace" ;
+  rdfs:comment "Derived trace artifact for retrieval execution and analysis." .
+
+fmg:AnswerEvent a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Answer Event" ;
+  rdfs:comment "Derived answer-production artifact." .
+
+fmg:AnswerEvidence a owl:Class ;
+  rdfs:subClassOf fmg:Evidence ;
+  rdfs:label "Answer Evidence" ;
+  rdfs:comment "Evidence package attached to an answer event." .
+
+fmg:hasEvidence a owl:ObjectProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range fmg:Evidence ;
+  rdfs:label "has evidence" ;
+  rdfs:comment "Associates a governed artifact with supporting evidence." .
+
+fmg:supportsClaim a owl:ObjectProperty ;
+  rdfs:domain fmg:Evidence ;
+  rdfs:range fmg:Claim ;
+  rdfs:label "supports claim" ;
+  rdfs:comment "Associates evidence with the canonical claim it supports." .
+
+fmg:hasConstraint a owl:ObjectProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range fmg:Constraint ;
+  rdfs:label "has constraint" ;
+  rdfs:comment "Associates an artifact with its governing constraints." .
+
+fmg:hasExpectation a owl:ObjectProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range fmg:Expectation ;
+  rdfs:label "has expectation" ;
+  rdfs:comment "Associates an artifact with expected behaviors or policies." .
+
+fmg:violatesExpectation a owl:ObjectProperty ;
+  rdfs:domain fmg:ExceptionEvent ;
+  rdfs:range fmg:Expectation ;
+  rdfs:label "violates expectation" ;
+  rdfs:comment "Links a runtime exception to the expectation it violated." .
+
+fmg:normalizesInto a owl:ObjectProperty ;
+  rdfs:domain fmg:ExceptionEvent ;
+  rdfs:range fmg:PressureVector ;
+  rdfs:label "normalizes into" ;
+  rdfs:comment "Links raw exception evidence to the aggregated pressure derived from it." .
+
+fmg:derivedFromExceptionEvent a owl:ObjectProperty ;
+  rdfs:domain fmg:PressureVector ;
+  rdfs:range fmg:ExceptionEvent ;
+  rdfs:label "derived from exception event" ;
+  rdfs:comment "Links a pressure vector to its contributing raw exception evidence." .
+
+fmg:derivedFromPressureVector a owl:ObjectProperty ;
+  rdfs:domain fmg:Opportunity ;
+  rdfs:range fmg:PressureVector ;
+  rdfs:label "derived from pressure vector" ;
+  rdfs:comment "Links an Innovation OS opportunity to the pressure that justified it." .
+
+fmg:derivedFromOpportunity a owl:ObjectProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range fmg:Opportunity ;
+  rdfs:label "derived from opportunity" ;
+  rdfs:comment "Links downstream action objects to the opportunity that authorized their creation." .
+
+fmg:selectedForSprint a owl:ObjectProperty ;
+  rdfs:domain fmg:Opportunity ;
+  rdfs:range fmg:Sprint ;
+  rdfs:label "selected for sprint" ;
+  rdfs:comment "Links an opportunity to a bounded sprint candidate." .
+
+fmg:selectedForPilot a owl:ObjectProperty ;
+  rdfs:domain fmg:Opportunity ;
+  rdfs:range fmg:Pilot ;
+  rdfs:label "selected for pilot" ;
+  rdfs:comment "Links an opportunity to a bounded pilot candidate." .
+
+fmg:governsArtifact a owl:ObjectProperty ;
+  rdfs:domain fmg:ValidationGateRecord ;
+  rdfs:range fmg:Artifact ;
+  rdfs:label "governs artifact" ;
+  rdfs:comment "Associates a gate record with the artifact under review." .
+
+fmg:validatedBy a owl:ObjectProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range fmg:ValidationGateRecord ;
+  rdfs:label "validated by" ;
+  rdfs:comment "Associates an artifact with its completed validation gate record." .
+
+fmg:promotesTo a owl:ObjectProperty ;
+  rdfs:domain fmg:PromotionDecision ;
+  rdfs:range fmg:Artifact ;
+  rdfs:label "promotes to" ;
+  rdfs:comment "Associates a promotion decision with the governed target it may update." .
+
+fmg:fromLifecycleState a owl:ObjectProperty ;
+  rdfs:domain fmg:PromotionDecision ;
+  rdfs:range fmg:LifecycleState ;
+  rdfs:label "from lifecycle state" ;
+  rdfs:comment "Identifies the prior lifecycle state before a promotion decision." .
+
+fmg:toLifecycleState a owl:ObjectProperty ;
+  rdfs:domain fmg:PromotionDecision ;
+  rdfs:range fmg:LifecycleState ;
+  rdfs:label "to lifecycle state" ;
+  rdfs:comment "Identifies the target lifecycle state after a promotion decision." .
+
+fmg:hasComponent a owl:ObjectProperty ;
+  rdfs:domain fmg:DocumentVersion ;
+  rdfs:range fmg:Component ;
+  rdfs:label "has component" ;
+  rdfs:comment "Associates a document version with its structural components." .
+
+fmg:hasSpan a owl:ObjectProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range fmg:SpanSelector ;
+  rdfs:label "has span" ;
+  rdfs:comment "Associates an artifact with a span selector over canonical text." .
+
+fmg:cites a owl:ObjectProperty ;
+  rdfs:domain fmg:CitationMention ;
+  rdfs:range fmg:CitationTarget ;
+  rdfs:label "cites" ;
+  rdfs:comment "Associates a citation mention with its target." .
+
+fmg:hasLifecycleState a owl:ObjectProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range fmg:LifecycleState ;
+  rdfs:label "has lifecycle state" ;
+  rdfs:comment "Associates an artifact with an explicit lifecycle state resource." .
+
+fmg:lifecycleStatus a owl:DatatypeProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range xsd:string ;
+  rdfs:label "lifecycle status" ;
+  rdfs:comment "Lightweight serialized status token used by runtime and action objects." .
+
+fmg:decisionOutcome a owl:DatatypeProperty ;
+  rdfs:domain fmg:PromotionDecision ;
+  rdfs:range xsd:string ;
+  rdfs:label "decision outcome" ;
+  rdfs:comment "Serialized decision outcome token for a promotion decision." .
+
+fmg:authorityZone a owl:DatatypeProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range xsd:string ;
+  rdfs:label "authority zone" ;
+  rdfs:comment "Authority zone that governs an artifact or evidence object." .
+
+fmg:trustLevel a owl:DatatypeProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range xsd:string ;
+  rdfs:label "trust level" ;
+  rdfs:comment "Trust posture for an artifact or evidence object." .
+
+fmg:operatingLayer a owl:DatatypeProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range xsd:string ;
+  rdfs:label "operating layer" ;
+  rdfs:comment "Layer token such as semantic_meaning, evidence_and_provenance, runtime_learning, policy_and_governance, or action_and_runtime." .
+
+fmg:routeIdentifier a owl:DatatypeProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range xsd:string ;
+  rdfs:label "route identifier" ;
+  rdfs:comment "Registry-backed route identifier used by runtime learning objects." .
+
+fmg:requiresPromotionDecision a owl:DatatypeProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range xsd:boolean ;
+  rdfs:label "requires promotion decision" ;
+  rdfs:comment "Indicates whether canonical mutation is blocked until a promotion decision exists." .
+
+fmg:mutationBoundaryNote a owl:DatatypeProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range xsd:string ;
+  rdfs:label "mutation boundary note" ;
+  rdfs:comment "Human-readable note describing the mutation boundary for an artifact." .

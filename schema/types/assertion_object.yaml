@@ -1,0 +1,24 @@
+kind: type
+id: assertion_object
+version: 0.1.0
+status: draft
+implements:
+  - node
+  - assertion
+  - evidence_bearing
+description: >
+  First-class governed assertion object for doctrinal comparison, provenance,
+  and graph partition control.
+required_fields:
+  - assertion_kind
+  - graph_partition
+  - provenance_activity_refs
+optional_fields:
+  - confidence
+  - boundary_note
+  - quarantine_reason
+  - promotion_target
+compatibility_notes:
+  - Assertion objects remain governed objects, not freeform notes.
+  - Graph partition must remain explicit and not be inferred from folder names alone.
+  - Later hardening should map cleanly to the canonical claim shell where appropriate.

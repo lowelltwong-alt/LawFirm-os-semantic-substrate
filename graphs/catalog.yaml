@@ -1,0 +1,22 @@
+version: 0.1.0
+status: draft
+description: >
+  Named graph catalog for assertion partition governance. Partitions are
+  governance boundaries, not merely storage folders.
+partitions:
+  - id: asserted
+    path: graphs/asserted
+    default_retrieval: include
+    promotion_rule: reviewed_core_only
+  - id: inferred
+    path: graphs/inferred
+    default_retrieval: opt_in
+    promotion_rule: explicit_inference_review
+  - id: boundary
+    path: graphs/boundary
+    default_retrieval: restricted_opt_in
+    promotion_rule: explicit_boundary_governance
+  - id: quarantine
+    path: graphs/quarantine
+    default_retrieval: exclude
+    promotion_rule: explicit_promotion_required

@@ -1,0 +1,92 @@
+{
+  "routes": [
+    {
+      "route_id": "route.retrieval_miss.v1",
+      "event_class": "retrieval_miss",
+      "allowed_source_layers": [
+        "retrieval"
+      ],
+      "destination_loop": "retrieval_tuning",
+      "promotion_gate_required": true,
+      "allowed_raw_actions": [
+        "route_for_review",
+        "aggregate_pressure",
+        "attach_evidence_only"
+      ],
+      "allowed_follow_on_families": [
+        "pressure-vector",
+        "adaptation-proposal",
+        "opportunity-object"
+      ],
+      "prohibited_direct_actions": [
+        "canonical_ontology_write",
+        "taxonomy_rewrite",
+        "schema_mutation",
+        "policy_overwrite",
+        "address_system_mutation"
+      ]
+    },
+    {
+      "route_id": "route.workflow_escalation.v1",
+      "event_class": "workflow_escalation",
+      "allowed_source_layers": [
+        "workflow"
+      ],
+      "destination_loop": "workflow_redesign",
+      "promotion_gate_required": true,
+      "allowed_raw_actions": [
+        "route_for_review",
+        "aggregate_pressure",
+        "attach_evidence_only"
+      ],
+      "allowed_follow_on_families": [
+        "pressure-vector",
+        "adaptation-proposal",
+        "opportunity-object"
+      ],
+      "prohibited_direct_actions": [
+        "canonical_ontology_write",
+        "taxonomy_rewrite",
+        "schema_mutation",
+        "policy_overwrite",
+        "address_system_mutation"
+      ]
+    },
+    {
+      "route_id": "route.authority_conflict_override.v1",
+      "event_class": "authority_conflict_override",
+      "allowed_source_layers": [
+        "governance"
+      ],
+      "destination_loop": "governance_review",
+      "promotion_gate_required": true,
+      "allowed_raw_actions": [
+        "route_for_review",
+        "aggregate_pressure",
+        "attach_evidence_only"
+      ],
+      "allowed_follow_on_families": [
+        "pressure-vector",
+        "adaptation-proposal",
+        "opportunity-object"
+      ],
+      "prohibited_direct_actions": [
+        "canonical_ontology_write",
+        "taxonomy_rewrite",
+        "schema_mutation",
+        "policy_overwrite",
+        "address_system_mutation"
+      ]
+    }
+  ],
+  "global_controls": {
+    "registry_scope": "raw_exception_routing_only",
+    "no_direct_canonical_mutation_from_raw_exception": true,
+    "canonical_change_requires": [
+      "reviewed_adaptation_proposal",
+      "approved_promotion_decision"
+    ],
+    "unknown_route_policy": "fail_validation",
+    "unknown_event_class_policy": "fail_validation"
+  }
+}

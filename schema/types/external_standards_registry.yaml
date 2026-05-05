@@ -1,0 +1,12 @@
+kind: type
+id: external_standards_registry
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: Machine-readable registry for external standards adoption posture.
+required_fields:
+  - standards
+optional_fields:
+  - pilot_scope
+  - governance_notes

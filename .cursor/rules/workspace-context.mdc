@@ -1,0 +1,30 @@
+---
+description: Treat the Law Firm ontology repo as the governing source of truth for related runtime repos.
+alwaysApply: true
+---
+
+This workspace contains related repositories.
+
+The LawFirm-os-semantic-substrate repo is the governing source of truth for:
+- ontology
+- taxonomy
+- governance
+- exception categories
+- semantic layer
+- capability model
+- agent policy
+- roadmap
+
+The exceptions-lake-runtime-main repo is a runtime/application layer.
+
+Before creating or changing runtime behavior:
+1. Check WORKSPACE_CONTEXT.md.
+2. Check the Law Firm ontology repo for existing concepts.
+3. Reuse existing terminology where possible.
+4. Do not create duplicate categories, statuses, or governance concepts.
+5. If a new concept is required, suggest where it should be registered in the ontology.
+6. Explain whether a proposed change is:
+   - ontology/governance
+   - runtime/application
+   - integration/interop
+   - documentation only

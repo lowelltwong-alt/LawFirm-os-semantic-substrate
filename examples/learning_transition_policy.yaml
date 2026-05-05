@@ -1,0 +1,37 @@
+id: LTP-000001
+object_type: learning_transition_policy
+display_title: Learning-loop transition policy v1
+policy_id: LTP-000001
+active_from: 2026-04-08
+policy_notes: >
+  Policy ties evidence_sufficiency and confidence_level thresholds to allowed
+  allocation actions. Allocation actions must include evidence_refs.
+policy_rows:
+  - action_type: scale
+    min_confidence_level: high
+    min_evidence_sufficiency: strong_curated_secondary
+    allowed_states:
+      - proposed
+      - approved
+      - enacted
+  - action_type: continue
+    min_confidence_level: medium
+    min_evidence_sufficiency: mixed_support
+    allowed_states:
+      - proposed
+      - approved
+      - enacted
+  - action_type: pivot
+    min_confidence_level: medium
+    min_evidence_sufficiency: mixed_support
+    allowed_states:
+      - proposed
+      - approved
+      - enacted
+  - action_type: sunset
+    min_confidence_level: low
+    min_evidence_sufficiency: thin_support
+    allowed_states:
+      - proposed
+      - approved
+      - enacted

@@ -1,0 +1,36 @@
+kind: interface
+id: assertion
+version: 0.1.0
+status: draft
+description: >
+  Claim-compatible assertion interface for governed doctrinal relationships and
+  comparison statements.
+required_fields:
+  - name: subject_ref
+    type: string
+    description: Stable identifier for the subject object.
+  - name: relation_type
+    type: relation_type
+    description: Controlled relation label.
+  - name: object_ref
+    type: string
+    description: Stable identifier for the object target.
+  - name: inference_mode
+    type: string
+    description: Use asserted, derived, or hypothesis to align with current claim policy.
+  - name: authority_zone
+    type: trust_zone
+    description: Governance zone for the assertion.
+  - name: trust_level
+    type: confidence_level
+    description: Confidence posture for the assertion.
+optional_fields:
+  - name: alignment_degree
+    type: alignment_degree
+  - name: review_status
+    type: review_status
+  - name: rationale
+    type: string
+compatibility_notes:
+  - Preserve asserted, derived, and hypothesis separation.
+  - Later hardening should map cleanly to the canonical claim contract.

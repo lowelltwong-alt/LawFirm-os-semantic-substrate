@@ -1,0 +1,81 @@
+profile_id: azure-ai-search-v1
+profile_version: 1.0.0
+status: draft
+draft_mode: explicit_scaffold
+draft_reason: exact Azure AI Search request, result, and index payload fields are unverified in repo evidence
+evidence_status: missing_source_evidence
+readiness_status: blocked_pending_source_payload_evidence
+owner: retrieval-platform
+provider: azure
+service: ai-search
+purpose: >
+  Map Azure AI Search indexing and query behavior into Law Firm derived retrieval
+  contracts without redefining canonical document boundaries or semantic meaning.
+source_entity_assumptions:
+  - entity: SOURCE_ENTITY_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact index envelope and field names
+  - entity: SOURCE_ENTITY_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact query and result envelope object name
+consumes_canonical_objects:
+  - document-version
+  - component
+  - span-selector
+  - chunk-set
+  - embedding-set
+emits_derived_objects:
+  - index-build
+  - retrieval-trace
+  - retrieval-response
+boundary_controls:
+  local_semantics_authoritative: false
+  may_redefine_canonical_boundaries: false
+  exact_source_traceability_required: true
+  deny_by_default_required: true
+  access_decision_required: true
+field_mappings:
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE source field corresponding to Law Firm index profile identifier
+    target_object: index-build
+    target_field: index_profile
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact search text field name
+    target_object: retrieval-request
+    target_field: query_text
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact filter field name and syntax
+    target_object: retrieval-trace
+    target_field: policy_enforcement.adapter_filter_expression
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE result field that carries Law Firm document-version identifiers
+    target_object: retrieval-response
+    target_field: ranked_results[].document_version_id
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE result field that carries Law Firm chunk identifiers
+    target_object: retrieval-response
+    target_field: ranked_results[].chunk_id
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_EVIDENCE exact score field and score family emitted by search results
+    target_object: retrieval-trace
+    target_field: result_trace[].scores
+    mapping_mode: transformed
+verification_inputs_required:
+  - live Azure AI Search index definition export
+  - live query request example
+  - live query response example with scored results
+notes:
+  - Azure scoring, vector fields, and semantic rerankers remain derived.
+  - Law Firm document versions, components, and span selectors remain the source of truth.
+  - Exact Azure AI Search request and result field names remain placeholders until a real export confirms them.

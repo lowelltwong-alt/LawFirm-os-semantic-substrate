@@ -1,0 +1,10 @@
+kind: enum
+id: retrieval_feedback_status
+version: 0.1.0
+status: draft
+description: Review posture for retrieval feedback artifacts.
+values:
+  - captured
+  - triaged
+  - actioned
+  - archived

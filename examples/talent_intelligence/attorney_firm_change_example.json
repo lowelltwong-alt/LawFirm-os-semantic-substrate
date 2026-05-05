@@ -1,0 +1,74 @@
+{
+  "attorney": {
+    "object_type": "attorney",
+    "attorney_id": "ATY_000002",
+    "canonical_name": "Morgan Lee Ramirez",
+    "name_variants": [
+      "Morgan L. Ramirez",
+      "Morgan Ramirez"
+    ],
+    "status": "active",
+    "authority_zone": "internal-general",
+    "confidence_posture": "reviewed",
+    "primary_practice": "Professional Liability",
+    "home_office": "Dallas",
+    "admitted_jurisdictions": [
+      "Texas",
+      "Georgia"
+    ],
+    "external_identifier_refs": [
+      "EXTID_000101",
+      "EXTID_000102"
+    ],
+    "source_profile_refs": [
+      "SPROF_000101",
+      "SPROF_000102"
+    ],
+    "employment_episode_refs": [
+      "EMP_000101",
+      "EMP_000102"
+    ],
+    "created_at": "2026-04-07T12:00:00Z",
+    "updated_at": "2026-04-07T12:00:00Z"
+  },
+  "employment_episodes": [
+    {
+      "object_type": "employment_episode",
+      "employment_episode_id": "EMP_000101",
+      "attorney_ref": "ATY_000002",
+      "law_firm_ref": "LF_000010",
+      "office": "Dallas",
+      "title": "Counsel",
+      "practice_area": "Professional Liability",
+      "start_date": "2020-08-01",
+      "end_date": "2024-12-31",
+      "is_current": false,
+      "status": "inactive",
+      "authority_zone": "internal-general",
+      "confidence_posture": "reviewed",
+      "source_profile_refs": [
+        "SPROF_000101"
+      ],
+      "notes": "Prior firm episode closed after confirmed move."
+    },
+    {
+      "object_type": "employment_episode",
+      "employment_episode_id": "EMP_000102",
+      "attorney_ref": "ATY_000002",
+      "law_firm_ref": "LF_000011",
+      "office": "Atlanta",
+      "title": "Partner",
+      "practice_area": "Professional Liability",
+      "start_date": "2025-01-01",
+      "end_date": null,
+      "is_current": true,
+      "status": "active",
+      "authority_zone": "internal-general",
+      "confidence_posture": "reviewed",
+      "source_profile_refs": [
+        "SPROF_000102"
+      ],
+      "notes": "Current firm episode after lateral move."
+    }
+  ]
+}

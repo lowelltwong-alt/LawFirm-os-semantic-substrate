@@ -1,0 +1,61 @@
+{
+  "registry_status": "superseded_historical",
+  "authoritative": false,
+  "supersedes": null,
+  "superseded_by": "registry/schema-registry.json",
+  "schemas": [
+    {
+      "schema_id": "artifact-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/artifact.schema.json",
+      "applies_to": ["artifact"]
+    },
+    {
+      "schema_id": "claim-schema-v3",
+      "version": "3.0.0",
+      "status": "active",
+      "path": "schemas/claim_v3.schema.json",
+      "applies_to": ["claim"]
+    },
+    {
+      "schema_id": "exception-event-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/exception-event.schema.json",
+      "applies_to": ["exception-event"]
+    },
+    {
+      "schema_id": "pressure-vector-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/pressure-vector.schema.json",
+      "applies_to": ["pressure-vector"]
+    },
+    {
+      "schema_id": "adaptation-proposal-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/adaptation-proposal.schema.json",
+      "applies_to": ["adaptation-proposal"]
+    },
+    {
+      "schema_id": "promotion-decision-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/promotion-decision.schema.json",
+      "applies_to": ["promotion-decision"]
+    }
+  ],
+  "validation_rules": {
+    "require_schema_reference": true,
+    "fail_on_missing_schema": true,
+    "status_order": ["active", "planned", "deprecated"]
+  },
+  "notes": [
+    "This file is historical. It was an earlier vNext plan snapshot for reconciling claim-v3 and the governed-learning objects into one active surface.",
+    "The active schema registry is registry/schema-registry.json, which already covers claim-v3, the governed-learning chain, the canonical-document family, retrieval/access, and Innovation OS operating objects.",
+    "Validators, source-of-truth, and schema_resolution_order all route through registry/schema-registry.json. This file is not referenced by source-of-truth, schema_resolution_order, or any validator and must not be used for active schema lookup.",
+    "Do not add entries here. Add or change entries in registry/schema-registry.json instead."
+  ]
+}

@@ -1,0 +1,36 @@
+risk_tiers:
+  T0_read_only:
+    description: inspect, summarize, inventory, explain
+    allowed_default: true
+    requires_change_packet: false
+    human_review: none
+
+  T1_derived_artifact:
+    description: create or update non-canonical docs, examples, or supporting artifacts
+    allowed_default: true
+    requires_change_packet: false
+    human_review: maintainer_review
+
+  T2_contract_change:
+    description: modify schemas, validators, CI, or AI control-plane files
+    allowed_default: false
+    requires_change_packet: true
+    human_review: code_owner_review
+
+  T3_canonical_semantic_change:
+    description: modify ontology, taxonomy, registries, or core governance meaning
+    allowed_default: false
+    requires_change_packet: true
+    human_review: semantic_steward_review
+
+  T4_external_or_destructive:
+    description: release, external integration, destructive delete, or high-risk writeback
+    allowed_default: false
+    requires_change_packet: true
+    human_review: explicit_human_approval
+
+  T5_live_firm_data_or_runtime:
+    description: production runtime behavior or real client/matter data inside this repo
+    allowed_default: false
+    requires_change_packet: true
+    human_review: blocked_in_this_repo

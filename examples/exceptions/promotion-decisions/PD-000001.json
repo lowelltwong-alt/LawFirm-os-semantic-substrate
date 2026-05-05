@@ -1,0 +1,47 @@
+{
+  "decision_id": "PD-000001",
+  "schema_type": "promotion-decision",
+  "schema_version": "v1",
+  "address": "/example/internal_general/governance/exceptions/promotion_decisions/decision_record/DEC-pd-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "governance",
+    "domain": "exceptions",
+    "module": "promotion_decisions",
+    "object_type": "decision_record",
+    "object_id": "DEC-pd-000001",
+    "version": "v1"
+  },
+  "decision_time": "2026-04-10T14:30:00Z",
+  "decision_outcome": "approved",
+  "proposal_id": "AP-000001",
+  "reviewers": [
+    {
+      "role": "ops_owner",
+      "name": "Innovation Operations Lead",
+      "decision": "approve"
+    },
+    {
+      "role": "billing_integrity_reviewer",
+      "name": "Billing Integrity Reviewer",
+      "decision": "approve"
+    }
+  ],
+  "decision_rationale": "The proposed retrieval change is bounded to neighborhood weighting and does not directly mutate canonical ontology objects.",
+  "input_artifacts": {
+    "exception_event_ids": ["EXC-000101"],
+    "pressure_vector_ids": ["PV-000101"]
+  },
+  "execution_boundary": {
+    "may_update_canonical_objects": false,
+    "allowed_targets": ["retrieval", "workflow"],
+    "blocked_targets": ["ontology", "schema"],
+    "requires_reviewed_inputs": true,
+    "raw_exception_direct_write_allowed": false
+  },
+  "implementation_refs": [
+    "neighborhood-template:billing-guideline-review",
+    "validator:validate_governed_learning_examples.py"
+  ]
+}

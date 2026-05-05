@@ -1,0 +1,13 @@
+kind: enum
+id: alignment_degree
+version: 0.1.0
+status: draft
+description: Comparison outcome labels for doctrinal alignment analysis.
+values:
+  - identical
+  - strongly_aligned
+  - partially_aligned
+  - mixed
+  - tension
+  - contradictory
+  - unresolved

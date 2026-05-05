@@ -1,0 +1,66 @@
+workflow_id: LLW-000002
+display_title: Pivot then sunset learning loop
+transition_policy_ref: LTP-000001
+steps:
+  - id: HYP-000101
+    object_type: hypothesis
+    from_state: proposed
+    to_state: active
+    loop_id: LOOP-BETA
+    claim: "Automated similarity ranking can replace first-pass human triage."
+  - id: EXP-000101
+    object_type: experiment
+    from_state: planned
+    to_state: running
+    loop_id: LOOP-BETA
+    hypothesis_ref: HYP-000101
+    success_criteria: "Meet quality threshold while reducing reviewer effort by >=20%."
+  - id: EXP-000101
+    object_type: experiment
+    from_state: running
+    to_state: failed
+    loop_id: LOOP-BETA
+    confidence_level: medium
+    evidence_sufficiency: mixed_support
+    evidence_refs:
+      - EVB-BETA-001
+  - id: LEV-000101
+    object_type: learning_event
+    from_state: captured
+    to_state: analyzed
+    loop_id: LOOP-BETA
+    experiment_ref: EXP-000101
+    confidence_level: medium
+    evidence_sufficiency: mixed_support
+    evidence_refs:
+      - EVB-BETA-001
+  - id: ALD-000101
+    object_type: allocation_decision
+    from_state: proposed
+    to_state: approved
+    loop_id: LOOP-BETA
+    action_type: pivot
+    confidence_level: medium
+    evidence_sufficiency: mixed_support
+    evidence_refs:
+      - EVB-BETA-001
+  - id: EXP-000102
+    object_type: experiment
+    from_state: planned
+    to_state: aborted
+    loop_id: LOOP-BETA
+    hypothesis_ref: HYP-000101
+    confidence_level: low
+    evidence_sufficiency: thin_support
+    evidence_refs:
+      - EVB-BETA-002
+  - id: ALD-000102
+    object_type: allocation_decision
+    from_state: proposed
+    to_state: enacted
+    loop_id: LOOP-BETA
+    action_type: sunset
+    confidence_level: low
+    evidence_sufficiency: thin_support
+    evidence_refs:
+      - EVB-BETA-002

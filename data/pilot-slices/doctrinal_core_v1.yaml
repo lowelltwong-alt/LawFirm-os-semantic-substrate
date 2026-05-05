@@ -1,0 +1,28 @@
+id: PSL-000001
+title: Doctrinal core pilot v1
+object_type: pilot_slice
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: first_order
+display_title: doctrinal_core_v1
+pilot_slice_status: planned
+target_thinkers:
+  - THK-000001
+  - THK-000002
+target_doctrines:
+  - DOC-000001
+target_concepts:
+  - CON-000001
+  - CON-000002
+target_comparisons:
+  - CMP-000001
+competency_questions:
+  - Can the substrate express a bounded doctrinal comparison with governed assessment?
+  - Can review, provenance, and alignment layers remain distinct in one pilot slice?
+required_artifacts:
+  - ACT-000001
+  - OSD-000001
+  - AAS-000001
+exit_criteria:
+  - Action, object-set, and pilot-slice validators pass.
+  - Bounded slice remains small and infrastructure-proving.

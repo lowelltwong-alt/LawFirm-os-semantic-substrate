@@ -1,0 +1,23 @@
+kind: type
+id: comparison_object
+version: 0.1.0
+status: draft
+implements:
+  - node
+  - evidence_bearing
+description: Governed object representing a structured comparison unit.
+required_fields:
+  - comparison_scope
+  - compared_object_refs
+optional_fields:
+  - comparison_method
+  - alignment_summary
+  - alignment_assessment_id
+  - alignment_scope
+  - translation_burden
+  - evidence_sufficiency
+  - confidence_level
+  - review_status
+  - scope_note
+  - translation_note
+  - evidence_note

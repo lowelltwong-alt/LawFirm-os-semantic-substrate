@@ -1,0 +1,74 @@
+{
+  "opportunity_id": "OPP-000001",
+  "schema_type": "opportunity-object",
+  "schema_version": "v1",
+  "address": "/example/internal_general/governance/innovation_os/opportunity/artifact/ART-opp-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "governance",
+    "domain": "innovation_os",
+    "module": "opportunity",
+    "object_type": "artifact",
+    "object_id": "ART-opp-000001",
+    "version": "v1"
+  },
+  "title": "Reduce recurring insurer portal rejection labor for carrier-specific billing failures",
+  "status": "ranked",
+  "source_refs": {
+    "pressure_vector_ids": [
+      "PV-000101"
+    ],
+    "exception_event_ids": [
+      "EXC-000101"
+    ],
+    "route_ids": [
+      "route.workflow_escalation.v1"
+    ],
+    "supporting_artifact_refs": [
+      "brief:work-to-cash-portal-friction-q2"
+    ]
+  },
+  "classification": {
+    "opportunity_class": "workflow_redesign",
+    "operating_domain": "workflow",
+    "delivery_scope": "internal_operations"
+  },
+  "scoring": {
+    "impact_score": 0.88,
+    "recurrence_score": 0.91,
+    "dollar_effect_estimate": 185000,
+    "time_to_value_score": 0.79,
+    "effort_score": 0.42,
+    "risk_score": 0.34,
+    "survivability_score": 0.77,
+    "strategic_alignment_score": 0.86,
+    "composite_priority_score": 0.82
+  },
+  "ownership": {
+    "primary_owner": "innovation_product_lead",
+    "ops_owner": "billing_ops_owner",
+    "review_required": true,
+    "executive_sponsor": "cino_delegate"
+  },
+  "validation_requirements": {
+    "requires_ops_validation": true,
+    "requires_security_validation": true,
+    "requires_legal_billing_validation": true
+  },
+  "next_step": {
+    "action": "prepare_sprint",
+    "target_family": "sprint-object",
+    "validation_gate_required": true
+  },
+  "mutation_boundary": {
+    "no_direct_canonical_mutation": true,
+    "promotion_decision_required_for_canonical_change": true,
+    "allowed_runtime_actions": [
+      "prioritize",
+      "prepare_sprint",
+      "attach_supporting_evidence"
+    ]
+  },
+  "notes": "This example shows how reviewed workflow pressure becomes a governed operating opportunity before any ontology, workflow, or policy promotion decision is made."
+}

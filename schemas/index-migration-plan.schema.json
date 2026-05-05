@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/index-migration-plan.schema.json",
+  "title": "Index Migration Plan",
+  "description": "Derived plan for rebuilding or migrating retrieval indexes without reparsing the source document or changing canonical document boundaries. Index migration must operate on stable canonical structure, approved adapter profiles, and derived chunk lineage.",
+  "type": "object",
+  "required": [
+    "migration_plan_id",
+    "schema_type",
+    "schema_version",
+    "status",
+    "source_index_build_id",
+    "target_index_profile",
+    "reason",
+    "input_refs",
+    "boundary_controls"
+  ],
+  "properties": {
+    "migration_plan_id": {
+      "type": "string",
+      "pattern": "^IMP-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "index-migration-plan"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "approved",
+        "executing",
+        "completed",
+        "cancelled"
+      ]
+    },
+    "source_index_build_id": {
+      "type": "string",
+      "pattern": "^IDX-[0-9]{6}$"
+    },
+    "target_index_profile": {
+      "type": "object",
+      "required": [
+        "profile_id",
+        "source_system"
+      ],
+      "properties": {
+        "profile_id": {
+          "type": "string"
+        },
+        "source_system": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 8
+    },
+    "input_refs": {
+      "type": "object",
+      "required": [
+        "source_chunk_set_id"
+      ],
+      "properties": {
+        "source_chunk_set_id": {
+          "type": "string",
+          "pattern": "^CS-[0-9]{6}$"
+        },
+        "source_embedding_set_id": {
+          "type": "string",
+          "pattern": "^ES-[0-9]{6}$"
+        },
+        "source_document_version_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^DV-[0-9]{6}$"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "approval_ref": {
+      "type": "string"
+    },
+    "boundary_controls": {
+      "type": "object",
+      "required": [
+        "reuses_canonical_source_structure",
+        "may_redefine_canonical_boundaries",
+        "requires_approved_adapter_profile"
+      ],
+      "properties": {
+        "reuses_canonical_source_structure": {
+          "type": "boolean",
+          "const": true
+        },
+        "may_redefine_canonical_boundaries": {
+          "type": "boolean",
+          "const": false
+        },
+        "requires_approved_adapter_profile": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

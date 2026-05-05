@@ -1,0 +1,26 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix edcs: <https://example.org/fmg/edcs#> .
+
+edcs:TrustZoneShape
+    a sh:NodeShape ;
+    sh:targetClass edcs:GovernedNode ;
+    sh:property [
+        sh:path edcs:authorityZone ;
+        sh:in (
+            "public"
+            "internal_general"
+            "restricted"
+            "experimental"
+        ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path edcs:trustLevel ;
+        sh:in (
+            "high"
+            "medium"
+            "low"
+            "unknown"
+        ) ;
+    ] .

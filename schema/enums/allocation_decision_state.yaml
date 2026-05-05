@@ -1,0 +1,11 @@
+kind: enum
+id: allocation_decision_state
+version: 0.1.0
+status: draft
+description: Lifecycle states for resource allocation decisions in learning loops.
+values:
+  - proposed
+  - approved
+  - enacted
+  - superseded
+  - retired

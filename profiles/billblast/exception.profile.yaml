@@ -1,0 +1,65 @@
+profile_id: billblast-exception-v1
+profile_version: 1.0.0
+status: draft
+draft_mode: explicit_scaffold
+draft_reason: BillBlast exception payload fields remain unverified in repo evidence and must be treated as scaffolds
+evidence_status: missing_source_evidence
+readiness_status: blocked_pending_evidence_and_schema_decision
+owner: runtime-learning
+provider: billblast
+service: exception
+purpose: >
+  Map billing and denial exception signals into Law Firm exception and pressure
+  objects without allowing vendor event categories to become canonical ontology.
+source_entity_assumptions:
+  - entity: SOURCE_ENTITY_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT BillBlast exception event export and supporting taxonomy objects
+emits_runtime_objects:
+  - exception-event
+  - pressure-vector
+emits_derived_objects:
+  - opportunity-object
+boundary_controls:
+  local_semantics_authoritative: false
+  may_create_local_semantic_forks: false
+  promotion_decision_required_for_canonical_change: true
+field_mappings:
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT source identifier field for the exception event
+    target_object: exception-event
+    target_field: TODO_TARGET_FIELD_REQUIRED_CURRENT_EXCEPTION_SCHEMA
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT source field for Law Firm event-class derivation
+    target_object: exception-event
+    target_field: event_class
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT source field for Law Firm severity derivation
+    target_object: exception-event
+    target_field: severity
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT source field for Law Firm route identifier derivation
+    target_object: exception-event
+    target_field: route.route_id
+    mapping_mode: transformed
+  - source_field: SOURCE_FIELD_REQUIRED
+    assumption_status: unverified_scaffold
+    verification_note: TODO_VERIFY_WITH_REAL_EXPORT source field for pressure aggregation strength
+    target_object: pressure-vector
+    target_field: signal_strength
+    mapping_mode: transformed
+verification_inputs_required:
+  - BillBlast exception export
+  - denial taxonomy dictionary
+  - route or escalation export
+notes:
+  - BillBlast categories remain source-system labels and must map through Law Firm route and event taxonomy.
+  - Opportunity creation requires human review; it is never direct from vendor events.
+  - The current exception schema has no approved source-record-id slot; a schema or mapping decision is still required.

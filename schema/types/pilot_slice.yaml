@@ -1,0 +1,17 @@
+kind: type
+id: pilot_slice
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: Governed bounded pilot slice for infrastructure-proving doctrinal work.
+required_fields:
+  - display_title
+  - pilot_slice_status
+  - target_thinkers
+  - target_doctrines
+  - target_concepts
+  - target_comparisons
+  - competency_questions
+  - required_artifacts
+  - exit_criteria

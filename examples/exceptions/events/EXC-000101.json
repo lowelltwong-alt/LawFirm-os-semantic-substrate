@@ -1,0 +1,46 @@
+{
+  "exception_id": "EXC-000101",
+  "schema_type": "exception-event",
+  "schema_version": "v1",
+  "address": "/example/internal_general/governance/exceptions/events/learning_event/LRN-exc-000101/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "governance",
+    "domain": "exceptions",
+    "module": "events",
+    "object_type": "learning_event",
+    "object_id": "LRN-exc-000101",
+    "version": "v1"
+  },
+  "event_class": "retrieval_miss",
+  "severity": "moderate",
+  "event_time": "2026-04-10T14:00:00Z",
+  "summary": "Matter-specific billing guideline retrieval missed the controlling exception language and returned only general policy text.",
+  "origin": {
+    "layer": "retrieval",
+    "component": "billing-guideline-neighborhood",
+    "run_id": "run-2026-04-10-001",
+    "address_ref": "root.fmg.billing.guidelines.review.exception.000101"
+  },
+  "route": {
+    "route_id": "route.retrieval_miss.v1",
+    "destination_loop": "retrieval_tuning",
+    "promotion_gate_required": true
+  },
+  "trust_metadata": {
+    "authority_zone": "internal-km-approved",
+    "trust_level": "high",
+    "confidence": 0.88,
+    "reviewer_required": true
+  },
+  "pressure_vector_refs": [
+    "PV-000101"
+  ],
+  "canonical_mutation_control": {
+    "direct_mutation_attempted": false,
+    "allowed_action": "route_for_review",
+    "proposed_target": "neighborhood-template:billing-guideline-review",
+    "boundary_note": "promotion_decision_required_for_canonical_change"
+  }
+}

@@ -1,0 +1,14 @@
+id: OSD-000001
+title: Example object set definition
+object_type: object_set_definition
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: first_order
+display_title: Pilot doctrinal core slice manifest
+object_set_kind: slice_manifest
+scope_note: Bounded set for doctrinal core pilot infrastructure validation.
+member_ids:
+  - THK-000001
+  - DOC-000001
+  - CON-000001
+required_reviewer_role: review.structural

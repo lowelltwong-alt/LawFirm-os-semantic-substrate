@@ -1,0 +1,32 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix edcs: <https://example.org/fmg/edcs#> .
+
+edcs:GovernedNodeShape
+    a sh:NodeShape ;
+    sh:targetClass edcs:GovernedNode ;
+    sh:property [
+        sh:path edcs:id ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path edcs:title ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path edcs:objectType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path edcs:lifecycleStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path edcs:authorityZone ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .

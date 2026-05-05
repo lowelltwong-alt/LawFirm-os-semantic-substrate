@@ -1,0 +1,27 @@
+name: Phase 5 Validate Pilot Slices
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  phase5-validate-pilot-slices:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Validate pilot slices
+        run: python scripts/phase5/validate_pilot_slices.py
+
+      - name: Build pilot slice report
+        run: python scripts/phase5/build_pilot_slice_report.py

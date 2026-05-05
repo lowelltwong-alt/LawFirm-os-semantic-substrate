@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.fmg/schemas/extensions/talent_intelligence/external_identifier.schema.json",
+  "title": "ExternalIdentifier",
+  "description": "External identifier attached to a governed object without replacing canonical FMG identity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "external_identifier_id",
+    "identifier_type",
+    "value",
+    "attached_to_ref",
+    "status",
+    "authority_zone",
+    "confidence_posture"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "external_identifier"
+    },
+    "external_identifier_id": {
+      "type": "string"
+    },
+    "identifier_type": {
+      "type": "string",
+      "enum": [
+        "bar_number",
+        "registration_number",
+        "linkedin_url",
+        "firm_bio_url",
+        "crm_candidate_id",
+        "vendor_person_id",
+        "work_email",
+        "other"
+      ]
+    },
+    "value": {
+      "type": "string"
+    },
+    "issuing_authority": {
+      "type": "string"
+    },
+    "jurisdiction": {
+      "type": "string"
+    },
+    "attached_to_ref": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["provisional", "active", "inactive", "deprecated"]
+    },
+    "authority_zone": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal-general",
+        "internal-km-approved",
+        "practice-restricted",
+        "client-restricted",
+        "matter-restricted",
+        "ethical-wall-restricted",
+        "experimental-ai"
+      ]
+    },
+    "confidence_posture": {
+      "type": "string",
+      "enum": ["asserted", "inferred", "hypothesis", "reviewed"]
+    },
+    "source_profile_refs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "first_observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_observed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+name: Validate Talent Intelligence Schemas
+
+on:
+  push:
+    paths:
+      - 'schemas/extensions/talent_intelligence/**'
+      - 'examples/talent_intelligence/**'
+      - 'scripts/validate_talent_intelligence_examples_against_schemas.py'
+      - '.github/workflows/validate-talent-intelligence-schema.yml'
+  pull_request:
+    paths:
+      - 'schemas/extensions/talent_intelligence/**'
+      - 'examples/talent_intelligence/**'
+      - 'scripts/validate_talent_intelligence_examples_against_schemas.py'
+      - '.github/workflows/validate-talent-intelligence-schema.yml'
+
+jobs:
+  validate-talent-intelligence-schemas:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install schema validation dependency
+        run: python -m pip install jsonschema
+
+      - name: Validate talent intelligence examples against schemas
+        run: python scripts/validate_talent_intelligence_examples_against_schemas.py

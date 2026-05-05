@@ -1,0 +1,22 @@
+kind: type
+id: experiment
+version: 0.1.0
+status: draft
+implements:
+  - node
+  - evidence_bearing
+description: >
+  Bounded test protocol tied to a hypothesis. Experiments produce evidence that
+  can justify continuing, pivoting, scaling, or sunsetting resource allocation.
+required_fields:
+  - display_title
+  - experiment_id
+  - loop_id
+  - hypothesis_ref
+  - experiment_state
+  - success_criteria
+optional_fields:
+  - confidence_level
+  - evidence_sufficiency
+  - evidence_refs
+  - completion_notes

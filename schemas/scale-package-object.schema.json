@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/scale-package-object.schema.json",
+  "title": "Scale Package Object",
+  "description": "Draft v1 Innovation OS rollout contract for a package prepared after pilot validation. Scale packages may coordinate rollout evidence and operating assets, but they cannot directly mutate canonical meaning.",
+  "type": "object",
+  "required": [
+    "scale_package_id",
+    "schema_type",
+    "schema_version",
+    "title",
+    "status",
+    "source_refs",
+    "ownership",
+    "rollout_scope",
+    "operational_artifacts",
+    "monitoring",
+    "mutation_boundary"
+  ],
+  "properties": {
+    "scale_package_id": {
+      "type": "string",
+      "pattern": "^SCL-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "scale-package-object"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 8
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "ready_for_rollout",
+        "rolling_out",
+        "active",
+        "retired"
+      ]
+    },
+    "source_refs": {
+      "type": "object",
+      "required": [
+        "pilot_ids",
+        "validation_gate_record_ids"
+      ],
+      "properties": {
+        "pilot_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^PIL-[0-9]{6}$"
+          }
+        },
+        "validation_gate_record_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^VGR-[0-9]{6}$"
+          }
+        },
+        "opportunity_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^OPP-[0-9]{6}$"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ownership": {
+      "type": "object",
+      "required": [
+        "primary_owner",
+        "ops_owner",
+        "review_required"
+      ],
+      "properties": {
+        "primary_owner": {
+          "type": "string"
+        },
+        "ops_owner": {
+          "type": "string"
+        },
+        "review_required": {
+          "type": "boolean"
+        },
+        "executive_sponsor": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rollout_scope": {
+      "type": "object",
+      "required": [
+        "scope_summary"
+      ],
+      "properties": {
+        "scope_summary": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "operational_artifacts": {
+      "type": "object",
+      "required": [
+        "sop_references",
+        "training_references"
+      ],
+      "properties": {
+        "sop_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "training_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "monitoring": {
+      "type": "object",
+      "required": [
+        "monitoring_references",
+        "kpi_evidence"
+      ],
+      "properties": {
+        "monitoring_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "kpi_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "mutation_boundary": {
+      "type": "object",
+      "required": [
+        "no_direct_canonical_mutation",
+        "promotion_decision_required_for_canonical_change",
+        "human_approval_required_before_rollout"
+      ],
+      "properties": {
+        "no_direct_canonical_mutation": {
+          "type": "boolean",
+          "const": true
+        },
+        "promotion_decision_required_for_canonical_change": {
+          "type": "boolean",
+          "const": true
+        },
+        "human_approval_required_before_rollout": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

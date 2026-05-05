@@ -1,0 +1,11 @@
+kind: enum
+id: graph_partition
+version: 0.1.0
+status: draft
+description: >
+  Named graph partitions used to preserve trust and inference boundaries.
+values:
+  - asserted
+  - inferred
+  - boundary
+  - quarantine

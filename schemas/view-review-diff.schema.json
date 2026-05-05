@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/view-review-diff.schema.json",
+  "title": "Review Diff View",
+  "type": "object",
+  "required": ["diff_id", "before_refs", "after_refs"],
+  "properties": {
+    "diff_id": {"type": "string"},
+    "before_refs": {"type": "array", "items": {"type": "string"}},
+    "after_refs": {"type": "array", "items": {"type": "string"}},
+    "change_class": {"type": "string"},
+    "migration_notes": {"type": "string"},
+    "reviewer_checklist": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

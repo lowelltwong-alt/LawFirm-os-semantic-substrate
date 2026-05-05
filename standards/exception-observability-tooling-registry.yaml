@@ -1,0 +1,33 @@
+version: 0.1.0
+status: canonical
+owner: Law Firm observability and governance maintainers
+purpose: >
+  Canonical posture for approved external observability tooling used to sense
+  exception traffic, while preserving substrate-native governance authority for
+  meaning, routing policy, and promotion decisions.
+
+authority_boundary:
+  - External tools may collect, index, alert, and visualize exception events.
+  - External tools must not be treated as semantic authority for canonical
+    ontology updates.
+  - Route eligibility and promotion semantics remain governed by Law Firm registries
+    and governance artifacts.
+
+tooling_posture:
+  approved_categories:
+    - logs_and_metrics
+    - traces_and_event_streams
+    - alerting_and_incident_management
+    - dashboards_and_observability_queries
+
+  prohibited_authority_assumptions:
+    - external tool outputs as direct ontology mutation instructions
+    - bypass of exception route governance
+    - promotion decisions without substrate-native review controls
+
+governing_links:
+  source_of_truth_key: authoritative_files.exception_tooling_posture
+  source_of_truth_path: registry/source-of-truth.json
+  architecture: governance/EXCEPTIONS_LAKE_ARCHITECTURE.md
+  route_registry: registry/exception-route-registry.json
+  schema_registry: registry/exceptions-schema-registry.json

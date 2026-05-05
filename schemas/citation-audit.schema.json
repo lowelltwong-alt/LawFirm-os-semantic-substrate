@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/citation-audit.schema.json",
+  "title": "Citation Audit",
+  "type": "object",
+  "required": ["audit_id", "answer_event_id", "verdict"],
+  "properties": {
+    "audit_id": {"type": "string"},
+    "answer_event_id": {"type": "string"},
+    "claims_reviewed": {"type": "array", "items": {"type": "string"}},
+    "verdict": {"type": "string", "enum": ["pass", "fail", "partial"]},
+    "citation_precision": {"type": "number", "minimum": 0, "maximum": 1},
+    "citation_recall": {"type": "number", "minimum": 0, "maximum": 1},
+    "reviewer_notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

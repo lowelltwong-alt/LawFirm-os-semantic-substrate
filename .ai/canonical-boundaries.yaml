@@ -1,0 +1,34 @@
+canonical_semantic_authority:
+  - registry/
+  - governance/
+  - ontology/
+  - shapes/
+  - schemas/
+  - schema/
+
+neutral_ai_control_plane:
+  - .ai/
+  - governance/AI_CONTROL_PLANE_BOUNDARY.md
+  - AGENTS.md
+  - AI_START_HERE.md
+
+vendor_adapters:
+  - .claude/
+  - CLAUDE.md
+  - .github/copilot-instructions.md
+  - profiles/azure/
+
+never_canonical:
+  - embeddings
+  - indexes
+  - GraphRAG summaries
+  - answer caches
+  - runtime traces
+  - local settings
+  - model-specific scratch state
+  - leaked or unofficial vendor code
+
+rules:
+  - Vendor adapters may consume canonical rules but may not override them.
+  - Runtime outputs may support evidence discovery but may not redefine canon.
+  - Canonical semantic edits require reviewed promotion paths.

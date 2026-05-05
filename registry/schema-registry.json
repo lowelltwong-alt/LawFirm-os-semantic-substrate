@@ -1,0 +1,487 @@
+{
+  "registry_scope": "primary_contract_surface",
+  "schemas": [
+    {
+      "schema_id": "artifact-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/artifact.schema.json",
+      "applies_to": [
+        "artifact"
+      ],
+      "layer": "semantic_meaning",
+      "owner": "semantic-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "claim-schema-v3",
+      "version": "3.0.0",
+      "status": "active",
+      "path": "schemas/claim_v3.schema.json",
+      "applies_to": [
+        "claim"
+      ],
+      "layer": "semantic_meaning",
+      "owner": "semantic-platform",
+      "supersedes": "claim-schema-v2"
+    },
+    {
+      "schema_id": "claim-schema-v2",
+      "version": "2.0.0",
+      "status": "deprecated",
+      "path": "schemas/claim_v2.schema.json",
+      "applies_to": [
+        "claim"
+      ],
+      "layer": "semantic_meaning",
+      "owner": "semantic-platform",
+      "superseded_by": "claim-schema-v3"
+    },
+    {
+      "schema_id": "address-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/address.schema.json",
+      "applies_to": [
+        "address"
+      ],
+      "layer": "semantic_meaning",
+      "owner": "semantic-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "address-struct-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/address_struct.schema.json",
+      "applies_to": [
+        "address-struct"
+      ],
+      "layer": "semantic_meaning",
+      "owner": "semantic-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "document-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/document.schema.json",
+      "applies_to": [
+        "document"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "source-artifact-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/source-artifact.schema.json",
+      "applies_to": [
+        "source-artifact"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "source-ingestion-manifest-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/source-ingestion-manifest.schema.json",
+      "applies_to": [
+        "source-ingestion-manifest"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "document-version-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/document-version.schema.json",
+      "applies_to": [
+        "document-version"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "canonical-text-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/canonical-text.schema.json",
+      "applies_to": [
+        "canonical-text"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "component-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/component.schema.json",
+      "applies_to": [
+        "component"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "span-selector-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/span-selector.schema.json",
+      "applies_to": [
+        "span-selector"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "citation-mention-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/citation-mention.schema.json",
+      "applies_to": [
+        "citation-mention"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "citation-target-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/citation-target.schema.json",
+      "applies_to": [
+        "citation-target"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "gold-standard-asset-schema-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/gold-standard-asset.schema.json",
+      "applies_to": [
+        "gold-standard-asset"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "chunk-set-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/chunk-set.schema.json",
+      "applies_to": [
+        "chunk-set"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "chunk-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/chunk.schema.json",
+      "applies_to": [
+        "chunk"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "document-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "embedding-set-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/embedding-set.schema.json",
+      "applies_to": [
+        "embedding-set"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "retrieval-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "index-build-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/index-build.schema.json",
+      "applies_to": [
+        "index-build"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "retrieval-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "answer-evidence-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/answer-evidence.schema.json",
+      "applies_to": [
+        "answer-evidence"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "retrieval-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "answer-event-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/answer-event.schema.json",
+      "applies_to": [
+        "answer-event"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "retrieval-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "retrieval-request-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/retrieval-request.schema.json",
+      "applies_to": [
+        "retrieval-request"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "retrieval-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "retrieval-trace-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/retrieval-trace.schema.json",
+      "applies_to": [
+        "retrieval-trace"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "retrieval-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "retrieval-response-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/retrieval-response.schema.json",
+      "applies_to": [
+        "retrieval-response"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "retrieval-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "index-migration-plan-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/index-migration-plan.schema.json",
+      "applies_to": [
+        "index-migration-plan"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "retrieval-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "access-decision-schema-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/access-decision.schema.json",
+      "applies_to": [
+        "access-decision"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "security-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "evaluation-run-schema-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/evaluation-run.schema.json",
+      "applies_to": [
+        "evaluation-run"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "retrieval-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "exception-event-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/exception-event.schema.json",
+      "applies_to": [
+        "exception-event"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "runtime-learning",
+      "supersedes": null
+    },
+    {
+      "schema_id": "pressure-vector-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/pressure-vector.schema.json",
+      "applies_to": [
+        "pressure-vector"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "runtime-learning",
+      "supersedes": null
+    },
+    {
+      "schema_id": "adaptation-proposal-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/adaptation-proposal.schema.json",
+      "applies_to": [
+        "adaptation-proposal"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "runtime-learning",
+      "supersedes": null
+    },
+    {
+      "schema_id": "promotion-decision-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/promotion-decision.schema.json",
+      "applies_to": [
+        "promotion-decision"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "runtime-learning",
+      "supersedes": null
+    },
+    {
+      "schema_id": "opportunity-object-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/opportunity-object.schema.json",
+      "applies_to": [
+        "opportunity-object"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "sprint-object-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/sprint-object.schema.json",
+      "applies_to": [
+        "sprint-object"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "pilot-object-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/pilot-object.schema.json",
+      "applies_to": [
+        "pilot-object"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "validation-gate-record-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/validation-gate-record.schema.json",
+      "applies_to": [
+        "validation-gate-record"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "scale-package-object-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/scale-package-object.schema.json",
+      "applies_to": [
+        "scale-package-object"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "view-executive-brief-v1",
+      "version": "draft-v1",
+      "status": "draft",
+      "path": "schemas/view-executive-brief.schema.json",
+      "applies_to": [
+        "view-executive-brief"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "view-budget-workbook-v1",
+      "version": "draft-v1",
+      "status": "draft",
+      "path": "schemas/view-budget-workbook.schema.json",
+      "applies_to": [
+        "view-budget-workbook"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    }
+  ],
+  "validation_rules": {
+    "require_schema_reference": true,
+    "fail_on_missing_schema": true,
+    "status_order": [
+      "active",
+      "draft",
+      "planned",
+      "deprecated"
+    ],
+    "family_specific_overrides": {
+      "exception-event": "registry/exceptions-schema-registry.json",
+      "pressure-vector": "registry/exceptions-schema-registry.json",
+      "adaptation-proposal": "registry/governed-learning-schema-registry.json",
+      "promotion-decision": "registry/governed-learning-schema-registry.json"
+    }
+  },
+  "notes": [
+    "This is the primary registry for the active contract surface across semantic, evidence, policy, and action layers.",
+    "Source-ingestion-manifest is active as the metadata-only provenance gate required before an internal document source is treated as a governed source.",
+    "The retrieval contract family now treats retrieval-request, access-decision, retrieval-trace, retrieval-response, and index-migration-plan as an active internal control surface validated by examples and schema checks.",
+    "Evaluation-run is a draft synthetic grounded-answer readiness harness. It may validate grounding, refusal, and permission-aware behavior over synthetic fixtures only, and it must not claim production retrieval or answer quality.",
+    "Retrieval-response and retrieval-trace formally coexist: response is the ranked result artifact, while trace remains the derived execution and observability record.",
+    "Gold Standard lands here as the first draft canonical KM family. It remains intentionally narrow and anchored to existing canonical documents, source artifacts, components, spans, and policy references.",
+    "Innovation OS operating-object contracts are intentionally still marked draft even after field normalization because broader example and validator coverage is not complete yet.",
+    "Stub schemas, legacy helpers, and extension-local registries remain outside this primary surface until they are reconciled in place."
+  ]
+}

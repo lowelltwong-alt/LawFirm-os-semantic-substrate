@@ -1,0 +1,24 @@
+version: 0.1.0
+status: draft
+owner: Lowell T. Wong
+
+source_systems:
+  - id: SRCSYS-000001
+    name: Firm policy documents
+    source_class: governed_internal
+    allowed_for_pilot: true
+
+  - id: SRCSYS-000002
+    name: Client outside counsel guidelines
+    source_class: external_restriction
+    allowed_for_pilot: true
+
+  - id: SRCSYS-000003
+    name: Matter-specific restrictions
+    source_class: matter_condition
+    allowed_for_pilot: true
+
+  - id: SRCSYS-000004
+    name: AI-generated material
+    source_class: quarantine_only
+    allowed_for_pilot: conditional

@@ -1,0 +1,20 @@
+id: ASR-000001
+title: Example assertion object
+object_type: assertion_object
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: first_order
+assertion_kind: asserted
+graph_partition: asserted
+subject_ref: DOC-000001
+relation_type: relates_to
+object_ref: CON-000001
+inference_mode: asserted
+trust_level: medium
+review_status: unchecked
+source_refs:
+  - SRC-000001
+evidence_refs:
+  - CHK-000001
+provenance_activity_refs:
+  - PRV-000001

@@ -1,0 +1,30 @@
+{
+  "id": "ART-000001",
+  "artifact_type": "framework",
+  "title": "Example Artifact for Validation",
+  "artifact_order": 2,
+  "status": "draft",
+  "version": "1.0.0",
+  "schema_id": "artifact-schema-v1",
+  "template_id": "artifact-template-v1",
+  "authority_zone": "public",
+  "trust_level": "medium",
+  "owner": "Lowell T. Wong",
+  "created_at": "2026-03-31T12:00:00Z",
+  "updated_at": "2026-03-31T12:00:00Z",
+  "address": "/example/public/governance/legal/intake_conflicts/artifact/ART-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "governance",
+    "domain": "legal",
+    "module": "intake_conflicts",
+    "object_type": "artifact",
+    "object_id": "ART-000001",
+    "version": "v1"
+  },
+  "attribution_chain": {
+    "derivative_order": 1,
+    "primary_sources": ["SRC-doc-000001"]
+  }
+}

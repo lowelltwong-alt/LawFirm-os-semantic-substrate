@@ -1,0 +1,109 @@
+@prefix doc: <https://fmg.example/ontology/documents#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+doc:DocumentShape
+    a sh:NodeShape ;
+    sh:targetClass doc:Document ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path doc:hasVersion ;
+        sh:minCount 1 ;
+        sh:class doc:DocumentVersion ;
+    ] .
+
+doc:DocumentVersionShape
+    a sh:NodeShape ;
+    sh:targetClass doc:DocumentVersion ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path doc:derivedFromSourceArtifact ;
+        sh:minCount 1 ;
+        sh:class doc:SourceArtifact ;
+    ] ;
+    sh:property [
+        sh:path doc:hasCanonicalText ;
+        sh:minCount 1 ;
+        sh:class doc:CanonicalText ;
+    ] .
+
+doc:CanonicalTextShape
+    a sh:NodeShape ;
+    sh:targetClass doc:CanonicalText ;
+    sh:property [
+        sh:path doc:hasComponent ;
+        sh:minCount 1 ;
+        sh:class doc:Component ;
+    ] ;
+    sh:property [
+        sh:path doc:materializesChunkSet ;
+        sh:class doc:ChunkSet ;
+    ] .
+
+doc:ComponentShape
+    a sh:NodeShape ;
+    sh:targetClass doc:Component ;
+    sh:property [
+        sh:path doc:hasSpanSelector ;
+        sh:minCount 1 ;
+        sh:class doc:SpanSelector ;
+    ] .
+
+doc:SpanSelectorShape
+    a sh:NodeShape ;
+    sh:targetClass doc:SpanSelector ;
+    sh:property [
+        sh:path doc:charStart ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path doc:charEnd ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] .
+
+doc:CitationMentionShape
+    a sh:NodeShape ;
+    sh:targetClass doc:CitationMention ;
+    sh:property [
+        sh:path doc:citesTarget ;
+        sh:minCount 1 ;
+        sh:class doc:CitationTarget ;
+    ] .
+
+doc:ChunkSetShape
+    a sh:NodeShape ;
+    sh:targetClass doc:ChunkSet ;
+    sh:property [
+        sh:path doc:hasChunk ;
+        sh:minCount 1 ;
+        sh:class doc:Chunk ;
+    ] .
+
+doc:AnswerEventShape
+    a sh:NodeShape ;
+    sh:targetClass doc:AnswerEvent ;
+    sh:property [
+        sh:path doc:supportedByEvidence ;
+        sh:minCount 1 ;
+        sh:class doc:AnswerEvidence ;
+    ] .
+
+doc:AnswerEvidenceShape
+    a sh:NodeShape ;
+    sh:targetClass doc:AnswerEvidence ;
+    sh:property [
+        sh:path doc:aboutDocumentVersion ;
+        sh:minCount 1 ;
+        sh:class doc:DocumentVersion ;
+    ] .

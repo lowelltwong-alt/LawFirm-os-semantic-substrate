@@ -1,0 +1,28 @@
+name: Validate YAML Substrate
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  validate-yaml:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Validate substrate YAML structure
+        run: python scripts/validation/validate_schema.py
+      - name: Validate DNA invariant coverage
+        run: python scripts/validation/validate_dna_invariants.py
+      - name: Validate ontology first-order and second-order boundaries
+        run: python scripts/validation/validate_ontology_boundary.py

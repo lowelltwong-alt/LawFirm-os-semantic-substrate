@@ -1,0 +1,54 @@
+{
+  "gate_record_id": "VGR-000001",
+  "schema_type": "validation-gate-record",
+  "schema_version": "v1",
+  "address": "/example/internal_general/governance/innovation_os/validation_gate/decision_record/DEC-vgr-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "governance",
+    "domain": "innovation_os",
+    "module": "validation_gate",
+    "object_type": "decision_record",
+    "object_id": "DEC-vgr-000001",
+    "version": "v1"
+  },
+  "target_ref": {
+    "schema_type": "pilot-object",
+    "object_id": "PIL-000001",
+    "related_opportunity_id": "OPP-000001"
+  },
+  "gate_phase": "pre-scale",
+  "status": "approved_with_monitoring",
+  "gate_reviews": [
+    {
+      "gate_type": "ops_validation",
+      "decision": "approved",
+      "reviewer_role": "billing_ops_owner",
+      "notes": "Workflow logic and KPI instrumentation are sufficient for limited carrier rollout."
+    },
+    {
+      "gate_type": "security_dlp_validation",
+      "decision": "approved",
+      "reviewer_role": "security_validator",
+      "notes": "RBAC, logging, and data classification controls are confirmed for the scoped automation."
+    },
+    {
+      "gate_type": "legal_risk_billing_integrity_validation",
+      "decision": "approved_with_conditions",
+      "reviewer_role": "billing_integrity_validator",
+      "notes": "Scale is allowed only with approved appeal-language templates and ongoing deduction monitoring."
+    }
+  ],
+  "rollout_constraints": {
+    "allowed_scope": "Two-carrier pilot rollout",
+    "requires_monitoring": true,
+    "requires_executive_brief_update": true
+  },
+  "mutation_boundary": {
+    "no_direct_canonical_mutation": true,
+    "promotion_decision_required_for_canonical_change": true,
+    "promotion_candidate_only": true
+  },
+  "notes": "This example shows how Innovation OS gate records preserve human review and prevent pilot or sprint artifacts from bypassing canonical governance."
+}

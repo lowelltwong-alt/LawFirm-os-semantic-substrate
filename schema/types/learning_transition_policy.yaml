@@ -1,0 +1,17 @@
+kind: type
+id: learning_transition_policy
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Machine-readable policy mapping evidence_sufficiency and confidence_level to
+  permitted allocation action_type outcomes.
+required_fields:
+  - display_title
+  - policy_id
+  - active_from
+  - policy_rows
+optional_fields:
+  - policy_notes
+  - lifecycle_status

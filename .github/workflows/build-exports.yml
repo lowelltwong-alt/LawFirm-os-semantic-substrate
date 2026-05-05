@@ -1,0 +1,30 @@
+name: Build Phase 2 Exports
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build-exports:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Build substrate exports
+        run: python scripts/validation/build_exports.py
+
+      - name: Upload export artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase2-exports
+          path: generated/phase2/enterprise_doctrinal_comparison_substrate.json

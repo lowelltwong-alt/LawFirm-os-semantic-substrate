@@ -1,0 +1,12 @@
+adapter_id: claude-code
+adapter_class: vendor_specific
+semantic_authority: false
+consumes:
+  - .ai/instruction-kernel.yaml
+  - .ai/action-risk-tiers.yaml
+  - .ai/approval-matrix.yaml
+  - governance/AI_CONTROL_PLANE_BOUNDARY.md
+notes:
+  - Adapter only.
+  - Use deny-first settings and deterministic gates.
+  - Do not operationalize leaked or unofficial vendor code.

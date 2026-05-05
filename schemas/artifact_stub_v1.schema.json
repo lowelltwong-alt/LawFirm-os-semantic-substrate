@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Artifact Registry Stub v1",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_type",
+    "schema_version",
+    "address",
+    "address_struct"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "artifact"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    }
+  },
+  "description": "Minimal stub schema for registry validation. Superseded by schemas/artifact.schema.json for full validation."
+}

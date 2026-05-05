@@ -1,0 +1,30 @@
+name: Validate Canonical Examples
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install jsonschema
+
+      - name: Run canonical validation
+        run: python scripts/validate_examples_canonical.py
+
+      - name: Run source ingestion manifest validation
+        run: python scripts/validation/validate_source_ingestion_manifests.py
+
+      - name: Run integrity validation
+        run: python scripts/validate_integrity.py

@@ -1,0 +1,9 @@
+{
+  "deprecations": [],
+  "rules": {
+    "require_replacement": true,
+    "require_migration_path": true,
+    "allow_hard_delete": false,
+    "note": "All deprecated objects must include forward mapping to preserve graph continuity and AI interpretability."
+  }
+}

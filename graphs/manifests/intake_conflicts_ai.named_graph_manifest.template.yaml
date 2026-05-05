@@ -1,0 +1,75 @@
+id: NGM-000001
+title: Intake conflicts AI named graph manifest
+object_type: named_graph_manifest
+lifecycle_status: draft
+authority_zone: internal_general
+display_title: intake_conflicts_ai_named_graph_manifest
+graph_manifest_status: draft
+default_partition: asserted
+included_partitions:
+  - asserted
+  - inferred
+  - quarantine
+context_ref: CTX-000001
+publication_profile: bounded_internal_pilot
+included_object_refs:
+  - DOC-000001
+  - CMP-000001
+included_assertion_refs:
+  - ASR-000001
+cross_partition_relations:
+  - relation_id: CPR-000001
+    source_zone: asserted
+    target_zone: inferred
+    source_ref: ASR-000001
+    target_ref: ASR-000901
+    relation_type: derivation
+    directionality: unidirectional
+    cardinality: one_to_many
+    temporal_validity: interval_bound
+    trust_evidence_carryover: attenuate
+    notes: Inferred claims derive from asserted evidence with confidence decay.
+  - relation_id: CPR-000002
+    source_zone: boundary
+    target_zone: projection
+    source_ref: BND-000001
+    target_ref: PGP-000001
+    relation_type: control_dependency
+    directionality: unidirectional
+    cardinality: one_to_many
+    temporal_validity: until_revoked
+    trust_evidence_carryover: manual_review
+    notes: Boundary policy gates which fields can flow into projection outputs.
+capability_node_traces:
+  - capability_twin_id: CTW-000001
+    capability_node_id: CAPN-000101
+    claim_refs:
+      - CLM-000101
+    artifact_refs:
+      - ART-000001
+    governance_decision_refs:
+      - ADR-0001
+      - ALG-000002
+  - capability_twin_id: CTW-000001
+    capability_node_id: CAPN-000102
+    claim_refs:
+      - CLM-000101
+    artifact_refs:
+      - PGP-000001
+    governance_decision_refs:
+      - ADR-0002
+      - ALG-000003
+  - capability_twin_id: CTW-000001
+    capability_node_id: CAPN-000103
+    claim_refs:
+      - CLM-000101
+    artifact_refs:
+      - ART-000001
+    governance_decision_refs:
+      - PRP-000001
+      - PRP-000002
+trust_boundary_notes:
+  - Quarantine content remains excluded from default retrieval bundles.
+  - Inferred material requires explicit opt-in and reviewer awareness.
+promotion_requirements:
+  - Review named graph contents before any asserted publication package is cut.

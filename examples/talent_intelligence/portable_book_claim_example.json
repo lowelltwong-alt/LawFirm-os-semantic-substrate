@@ -1,0 +1,29 @@
+{
+  "object_type": "talent_signal_claim",
+  "claim_id": "TSCLAIM_000402",
+  "signal_type": "portable_book_evidence",
+  "subject_ref": "ATY_000402",
+  "related_object_refs": [
+    "EMP_000402",
+    "SPROF_000403"
+  ],
+  "statement": "Public lead-counsel appearances, thought leadership, and sustained client-facing visibility suggest meaningful portable-book potential.",
+  "score": 0.68,
+  "score_band": "medium",
+  "evidence_refs": [
+    "ART_000403",
+    "ART_000404"
+  ],
+  "source_profile_refs": [
+    "SPROF_000403"
+  ],
+  "status": "provisional",
+  "authority_zone": "internal-general",
+  "confidence_posture": "inferred",
+  "review_status": "pending_review",
+  "valid_from": "2026-04-07",
+  "valid_to": null,
+  "created_at": "2026-04-07T12:00:00Z",
+  "updated_at": "2026-04-07T12:00:00Z",
+  "notes": "Illustrative example only. Portable book remains an evidence-backed assessment rather than intrinsic identity truth."
+}

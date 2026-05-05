@@ -1,0 +1,369 @@
+kind: invariant_map
+id: first_order_invariants
+version: 0.1.0
+status: draft
+invariants:
+  - identity
+  - address_placement
+  - lineage_provenance
+  - lifecycle_state
+  - trust_posture
+types:
+  action_definition:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      linked_refs: [canonical_anchor_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, lifecycle_impact]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  action_log_entry:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      linked_refs: [canonical_anchor_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  allocation_decision:
+    identity:
+      explicit_fields: [id, object_type, title, display_title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [loop_id, allocation_decision_id]
+      linked_refs: [evidence_refs, supersedes_decision_ref]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, allocation_decision_state]
+    trust_posture:
+      explicit_fields: [authority_zone, confidence_level, evidence_sufficiency]
+  alignment_assessment:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [source_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, review_status]
+    trust_posture:
+      explicit_fields: [authority_zone, confidence_level]
+  assertion_object:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [provenance_activity_refs, source_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone, trust_level]
+  canon_thinker:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      linked_refs: [canonical_anchor_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  capability_twin:
+    identity:
+      explicit_fields: [id, object_type, title, display_title, capability_id, capability_name]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [capability_tree, dependency_graph, mapped_graph_manifests]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, maturity_posture, risk_posture]
+    trust_posture:
+      explicit_fields: [authority_zone, risk_posture, maturity_posture, health_targets]
+  comparison_object:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [source_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, review_status]
+    trust_posture:
+      explicit_fields: [authority_zone, confidence_level]
+  concept:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      linked_refs: [canonical_anchor_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  doctrine:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      linked_refs: [canonical_anchor_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  doctrine_position:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [source_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, review_status]
+    trust_posture:
+      explicit_fields: [authority_zone, trust_level]
+  evidence_bundle:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [source_refs, derived_from_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  external_standards_registry:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      linked_refs: [canonical_anchor_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  experiment:
+    identity:
+      explicit_fields: [id, object_type, title, display_title, experiment_id]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+      explicit_fields: [loop_id]
+    lineage_provenance:
+      linked_refs: [hypothesis_ref, evidence_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, experiment_state]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  graph_object:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      linked_refs: [included_node_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  hypothesis:
+    identity:
+      explicit_fields: [id, object_type, title, display_title, hypothesis_id]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+      explicit_fields: [loop_id]
+    lineage_provenance:
+      linked_refs: [evidence_refs, successor_hypothesis_ref]
+      explicit_fields: [loop_id]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, hypothesis_state]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  jsonld_context:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [governing_graph_manifest_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  lexeme:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      linked_refs: [concept_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  learning_event:
+    identity:
+      explicit_fields: [id, object_type, title, display_title, learning_event_id]
+    address_placement:
+      linked_refs: [canonical_anchor_refs, experiment_ref]
+    lineage_provenance:
+      explicit_fields: [loop_id]
+      linked_refs: [experiment_ref, evidence_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, learning_event_state]
+    trust_posture:
+      explicit_fields: [authority_zone, confidence_level, evidence_sufficiency]
+  learning_transition_policy:
+    identity:
+      explicit_fields: [id, object_type, title, display_title, policy_id]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+      explicit_fields: [active_from]
+    lineage_provenance:
+      explicit_fields: [policy_rows, policy_id]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, active_from]
+    trust_posture:
+      explicit_fields: [authority_zone, policy_rows]
+  manuscript_witness:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [provenance_label]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  named_graph_manifest:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [included_object_refs, included_assertion_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, graph_manifest_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  object_set:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [member_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  object_set_definition:
+    identity:
+      explicit_fields: [id, object_type, title, display_title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [member_ids]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  passage_anchor:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [source_ref]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  pilot_slice:
+    identity:
+      explicit_fields: [id, object_type, title, display_title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [required_artifacts]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, pilot_slice_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  property_graph_projection:
+    identity:
+      explicit_fields: [id, object_type, title, display_title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [graph_manifest_ref]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, projection_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  proposal_promotion:
+    identity:
+      explicit_fields: [id, object_type, title, display_title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [source_feedback_ref, target_manifest_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, proposal_promotion_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  provenance_activity:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [input_refs, output_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  relationship_object:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [source_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone, trust_level]
+  retrieval_feedback:
+    identity:
+      explicit_fields: [id, object_type, title, display_title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [graph_manifest_ref, supporting_query_refs]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status, retrieval_feedback_status]
+    trust_posture:
+      explicit_fields: [authority_zone]
+  translation_witness:
+    identity:
+      explicit_fields: [id, object_type, title]
+    address_placement:
+      linked_refs: [canonical_anchor_refs]
+    lineage_provenance:
+      explicit_fields: [source_witness_ref]
+    lifecycle_state:
+      explicit_fields: [lifecycle_status]
+    trust_posture:
+      explicit_fields: [authority_zone]

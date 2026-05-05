@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fmg.example/schemas/chunk.schema.json",
+  "title": "Chunk",
+  "description": "Derived retrieval chunk referenced from a chunk set. Chunks must point back to canonical components and exact span selectors and may not redefine canonical document boundaries.",
+  "type": "object",
+  "required": [
+    "chunk_id",
+    "schema_type",
+    "schema_version",
+    "chunk_set_id",
+    "document_version_id",
+    "canonical_text_id",
+    "component_ids",
+    "span_selector_ids",
+    "chunk_order",
+    "status",
+    "text_hash",
+    "boundary_controls"
+  ],
+  "properties": {
+    "chunk_id": {
+      "type": "string",
+      "pattern": "^CHK-[0-9]{6}$"
+    },
+    "schema_type": {
+      "type": "string",
+      "const": "chunk"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "address": {
+      "$ref": "address.schema.json"
+    },
+    "address_struct": {
+      "$ref": "address_struct.schema.json"
+    },
+    "chunk_set_id": {
+      "type": "string",
+      "pattern": "^CS-[0-9]{6}$"
+    },
+    "document_version_id": {
+      "type": "string",
+      "pattern": "^DV-[0-9]{6}$"
+    },
+    "canonical_text_id": {
+      "type": "string",
+      "pattern": "^CT-[0-9]{6}$"
+    },
+    "component_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^CMP-[0-9]{6}$"
+      }
+    },
+    "span_selector_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^SPAN-[0-9]{6}$"
+      }
+    },
+    "chunk_order": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "superseded",
+        "retired"
+      ]
+    },
+    "text_hash": {
+      "type": "string",
+      "minLength": 8
+    },
+    "text_excerpt": {
+      "type": "string"
+    },
+    "boundary_controls": {
+      "type": "object",
+      "required": [
+        "derived_from_canonical_boundaries",
+        "may_redefine_canonical_boundaries"
+      ],
+      "properties": {
+        "derived_from_canonical_boundaries": {
+          "type": "boolean",
+          "const": true
+        },
+        "may_redefine_canonical_boundaries": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,35 @@
+kind: interface
+id: node
+version: 0.1.0
+status: draft
+description: >
+  Base governed object interface for doctrinal substrate types. Keeps identity,
+  governance posture, and shell compatibility explicit.
+required_fields:
+  - name: id
+    type: string
+    description: Stable object identifier.
+  - name: title
+    type: string
+    description: Human-readable label.
+  - name: object_type
+    type: string
+    description: Deterministic type name matching the substrate type file.
+  - name: lifecycle_status
+    type: lifecycle_status
+    description: Current lifecycle posture.
+  - name: authority_zone
+    type: trust_zone
+    description: Governance and access zone compatible with the current shell.
+optional_fields:
+  - name: summary
+    type: string
+  - name: aliases
+    type: list[string]
+  - name: canonical_anchor_refs
+    type: list[string]
+  - name: notes
+    type: string
+compatibility_notes:
+  - Do not collapse ID into canonical address.
+  - Runtime object address fields remain governed by the canonical address constitution.

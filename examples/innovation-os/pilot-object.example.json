@@ -1,0 +1,52 @@
+{
+  "pilot_id": "PIL-000001",
+  "schema_type": "pilot-object",
+  "schema_version": "v1",
+  "address": "/example/internal_general/governance/innovation_os/pilot/artifact/ART-pil-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "governance",
+    "domain": "innovation_os",
+    "module": "pilot",
+    "object_type": "artifact",
+    "object_id": "ART-pil-000001",
+    "version": "v1"
+  },
+  "title": "Test OCG delta detection workflow",
+  "status": "planned",
+  "source_refs": {
+    "opportunity_ids": [
+      "OPP-000001"
+    ],
+    "sprint_ids": [
+      "SPR-000001"
+    ]
+  },
+  "ownership": {
+    "primary_owner": "innovation_product_lead",
+    "ops_owner": "billing_ops_owner",
+    "review_required": true,
+    "executive_sponsor": "cino_delegate"
+  },
+  "pilot_scope": {
+    "safe_test_scope": "Single client and two matters",
+    "timebox": "30 days",
+    "rollback_path": "Disable automation and revert to manual queue"
+  },
+  "success_metrics": [
+    "delta detection accuracy",
+    "reduced rework",
+    "review completion within SLA"
+  ],
+  "gate_requirements": {
+    "go_no_go_gate": "validation-gate-record",
+    "validation_gate_record_required": true
+  },
+  "mutation_boundary": {
+    "no_direct_canonical_mutation": true,
+    "promotion_decision_required_for_canonical_change": true,
+    "validation_gate_required_before_scale": true
+  },
+  "notes": "This example shows a scoped pilot that remains operational until human gate review and any later promotion decision are complete."
+}

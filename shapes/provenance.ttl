@@ -1,0 +1,15 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix edcs: <https://example.org/fmg/edcs#> .
+
+edcs:EvidenceBearingShape
+    a sh:NodeShape ;
+    sh:targetClass edcs:EvidenceBearingObject ;
+    sh:property [
+        sh:path edcs:sourceRef ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path edcs:evidenceType ;
+        sh:datatype xsd:string ;
+    ] .

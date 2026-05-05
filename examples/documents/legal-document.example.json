@@ -1,0 +1,248 @@
+{
+  "address": "/example/internal_general/data/legal/documents/source/SRC-legal-document-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "data",
+    "domain": "legal",
+    "module": "documents",
+    "object_type": "source",
+    "object_id": "SRC-legal-document-000001",
+    "version": "v1"
+  },
+  "document": {
+    "document_id": "DOC-000001",
+    "schema_type": "document",
+    "schema_version": "v1",
+    "title": "Acme Insurance Outside Counsel Billing Guidelines",
+    "document_type": "outside-counsel-guideline",
+    "jurisdiction": "US-NY",
+    "matter_refs": [
+      "matter:acme-coverage-litigation"
+    ],
+    "source_systems": [
+      "iManage"
+    ],
+    "current_version_id": "DV-000001",
+    "canonical_status": "active",
+    "access_policy_ref": "policy:billing-guideline-internal-approved",
+    "steward_role": "knowledge_manager"
+  },
+  "source_artifact": {
+    "source_artifact_id": "SA-000001",
+    "schema_type": "source-artifact",
+    "schema_version": "v1",
+    "document_id": "DOC-000001",
+    "source_system": "iManage",
+    "source_identifier": "IMANAGE-ACME-OCG-2026-01-15",
+    "capture_time": "2026-04-14T09:10:00Z",
+    "mime_type": "application/pdf",
+    "checksum": "d44b6b9df5b4e1d2",
+    "status": "captured",
+    "storage_ref": "imanage://workspace/acme/ocg/2026-01-15.pdf",
+    "file_size_bytes": 482112,
+    "parser_profile": "azure-document-intelligence-v1",
+    "ocr_required": false,
+    "ingest_activity_id": "activity:ingest-2026-04-14-001"
+  },
+  "document_version": {
+    "document_version_id": "DV-000001",
+    "schema_type": "document-version",
+    "schema_version": "v1",
+    "document_id": "DOC-000001",
+    "source_artifact_id": "SA-000001",
+    "version_identifier": "2026-01-15",
+    "status": "active",
+    "normalization_profile": "legal-document-v1",
+    "canonical_text_id": "CT-000001",
+    "parse_activity_id": "activity:parse-2026-04-14-001",
+    "created_at": "2026-04-14T09:14:00Z",
+    "language": "en",
+    "page_count": 3,
+    "content_hash": "f18cf4a49a3a66b7",
+    "canonical_boundary_source": "canonical_text_and_components"
+  },
+  "canonical_text": {
+    "canonical_text_id": "CT-000001",
+    "schema_type": "canonical-text",
+    "schema_version": "v1",
+    "document_version_id": "DV-000001",
+    "normalization_activity_id": "activity:normalize-2026-04-14-001",
+    "language": "en",
+    "text_hash": "ee4251653f97f8b2",
+    "total_char_count": 412,
+    "structure_model": "hierarchical_document",
+    "component_ids": [
+      "CMP-000001",
+      "CMP-000002",
+      "CMP-000003"
+    ],
+    "citation_mention_ids": [
+      "CMN-000001"
+    ],
+    "canonical_boundary_rule": "components_and_span_selectors_are_source_of_truth"
+  },
+  "components": [
+    {
+      "component_id": "CMP-000001",
+      "schema_type": "component",
+      "schema_version": "v1",
+      "document_version_id": "DV-000001",
+      "canonical_text_id": "CT-000001",
+      "component_type": "section",
+      "component_order": 1,
+      "component_path": "1",
+      "heading": "Rate Increases",
+      "child_component_ids": [
+        "CMP-000002"
+      ],
+      "span_selector_ids": [
+        "SPAN-000001"
+      ],
+      "normalized_text_hash": "4dbd6b21288b46f0",
+      "boundary_controls": {
+        "is_canonical_boundary": true,
+        "retrieval_may_redefine_boundary": false
+      }
+    },
+    {
+      "component_id": "CMP-000002",
+      "schema_type": "component",
+      "schema_version": "v1",
+      "document_version_id": "DV-000001",
+      "canonical_text_id": "CT-000001",
+      "component_type": "clause",
+      "component_order": 2,
+      "component_path": "1.1",
+      "heading": "Partner rate increase approval",
+      "parent_component_id": "CMP-000001",
+      "span_selector_ids": [
+        "SPAN-000002"
+      ],
+      "citation_mention_ids": [
+        "CMN-000001"
+      ],
+      "normalized_text_hash": "ef7f3f60113afe15",
+      "boundary_controls": {
+        "is_canonical_boundary": true,
+        "retrieval_may_redefine_boundary": false
+      }
+    },
+    {
+      "component_id": "CMP-000003",
+      "schema_type": "component",
+      "schema_version": "v1",
+      "document_version_id": "DV-000001",
+      "canonical_text_id": "CT-000001",
+      "component_type": "footnote",
+      "component_order": 3,
+      "component_path": "fn.1",
+      "span_selector_ids": [
+        "SPAN-000003"
+      ],
+      "normalized_text_hash": "77c1c7a1460c5544",
+      "boundary_controls": {
+        "is_canonical_boundary": true,
+        "retrieval_may_redefine_boundary": false
+      }
+    }
+  ],
+  "span_selectors": [
+    {
+      "span_selector_id": "SPAN-000001",
+      "schema_type": "span-selector",
+      "schema_version": "v1",
+      "document_version_id": "DV-000001",
+      "canonical_text_id": "CT-000001",
+      "component_id": "CMP-000001",
+      "selector_type": "text-position-and-page-region",
+      "char_start": 0,
+      "char_end": 67,
+      "exact_text": "1. Rate Increases. Partner rate increases require prior written approval.",
+      "page_anchor": {
+        "start_page": 1,
+        "end_page": 1
+      },
+      "normalized_text_hash": "70d8f79307f184b4"
+    },
+    {
+      "span_selector_id": "SPAN-000002",
+      "schema_type": "span-selector",
+      "schema_version": "v1",
+      "document_version_id": "DV-000001",
+      "canonical_text_id": "CT-000001",
+      "component_id": "CMP-000002",
+      "selector_type": "text-position-and-page-region",
+      "char_start": 68,
+      "char_end": 231,
+      "exact_text": "1.1 The Firm may bill a partner rate increase only after the Client has approved the increase in writing and the updated rate is reflected in the governing OCG record.",
+      "page_anchor": {
+        "start_page": 1,
+        "end_page": 1
+      },
+      "normalized_text_hash": "7f7708b50e29c9cf"
+    },
+    {
+      "span_selector_id": "SPAN-000003",
+      "schema_type": "span-selector",
+      "schema_version": "v1",
+      "document_version_id": "DV-000001",
+      "canonical_text_id": "CT-000001",
+      "component_id": "CMP-000003",
+      "selector_type": "text-position-and-page-region",
+      "char_start": 232,
+      "char_end": 311,
+      "exact_text": "Fn.1 See OCG Section 4.2 for the approved notice and rate table submission path.",
+      "page_anchor": {
+        "start_page": 1,
+        "end_page": 1
+      },
+      "normalized_text_hash": "582d2afdadd90685"
+    },
+    {
+      "span_selector_id": "SPAN-000004",
+      "schema_type": "span-selector",
+      "schema_version": "v1",
+      "document_version_id": "DV-000001",
+      "canonical_text_id": "CT-000001",
+      "component_id": "CMP-000003",
+      "selector_type": "text-position",
+      "char_start": 240,
+      "char_end": 255,
+      "exact_text": "OCG Section 4.2",
+      "prefix": "Fn.1 See ",
+      "suffix": " for the approved",
+      "normalized_text_hash": "131c8a987ded57ef"
+    }
+  ],
+  "citation_targets": [
+    {
+      "citation_target_id": "CTGT-000001",
+      "schema_type": "citation-target",
+      "schema_version": "v1",
+      "target_kind": "external-authority",
+      "normalized_citation": "OCG Section 4.2",
+      "display_text": "Outside Counsel Guidelines Section 4.2",
+      "target_ref": {
+        "uri": "https://example.org/acme-ocg/section-4-2"
+      },
+      "resolvable": true
+    }
+  ],
+  "citation_mentions": [
+    {
+      "citation_mention_id": "CMN-000001",
+      "schema_type": "citation-mention",
+      "schema_version": "v1",
+      "document_version_id": "DV-000001",
+      "component_id": "CMP-000003",
+      "span_selector_ids": [
+        "SPAN-000004"
+      ],
+      "citation_text": "OCG Section 4.2",
+      "citation_target_id": "CTGT-000001",
+      "resolution_status": "resolved",
+      "confidence": 0.98
+    }
+  ]
+}

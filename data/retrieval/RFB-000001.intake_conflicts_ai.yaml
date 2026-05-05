@@ -1,0 +1,27 @@
+id: RFB-000001
+title: Intake conflicts AI retrieval feedback
+object_type: retrieval_feedback
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+display_title: intake_conflicts_ai_retrieval_feedback
+retrieval_feedback_status: captured
+graph_manifest_ref: NGM-000001
+observed_gap: >
+  Intake conflicts pilot retrieval lacks a governed path for surfacing AI
+  proposals that improve graph packaging without collapsing asserted and
+  inferred material.
+recommendation_summary: >
+  Route high-signal retrieval findings into a bounded proposal-promotion queue
+  reviewed by the same governance shell as named graph manifests.
+supporting_query_refs:
+  - QRY-INTAKE-CONFLICTS-001
+proposed_promotion_refs:
+  - PRP-000001
+reviewer_notes:
+  - Preserve asserted-first retrieval defaults.
+review_metadata:
+  review_status: reviewed
+  reviewer_role: review.structural
+  reviewed_by: intake_conflicts_steward
+  reviewed_at: 2026-04-05T15:10:00Z

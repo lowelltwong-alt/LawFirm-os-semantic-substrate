@@ -1,0 +1,12 @@
+kind: type
+id: object_set
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: Deterministic grouping object for a governed set of comparison-relevant objects.
+required_fields:
+  - member_refs
+optional_fields:
+  - set_basis
+  - ordering_rule

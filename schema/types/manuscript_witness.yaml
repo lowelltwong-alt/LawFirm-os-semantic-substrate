@@ -1,0 +1,13 @@
+kind: type
+id: manuscript_witness
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: Witness object representing a manuscript-based textual tradition source.
+required_fields:
+  - witness_label
+optional_fields:
+  - siglum
+  - date_label
+  - provenance_label

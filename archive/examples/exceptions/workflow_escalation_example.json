@@ -1,0 +1,35 @@
+{
+  "exception_id": "EXC-000102",
+  "schema_type": "exception-event",
+  "schema_version": "v1",
+  "event_class": "workflow_escalation",
+  "severity": "high",
+  "event_time": "2026-04-08T10:15:00Z",
+  "summary": "Workflow escalated to manual review after repeated confidence collapse in intake normalization.",
+  "origin": {
+    "layer": "workflow",
+    "component": "intake-normalization-pipeline",
+    "run_id": "run-2026-04-08-02",
+    "address_ref": "fco:workflow:intake:normalization:escalation"
+  },
+  "route": {
+    "route_id": "route.workflow_escalation.v1",
+    "destination_loop": "workflow_redesign",
+    "promotion_gate_required": true
+  },
+  "trust_metadata": {
+    "authority_zone": "ops-governance",
+    "trust_level": "high",
+    "confidence": 0.82,
+    "reviewer_required": true
+  },
+  "pressure_vector_refs": [
+    "PV-000502"
+  ],
+  "canonical_mutation_control": {
+    "direct_mutation_attempted": false,
+    "allowed_action": "aggregate_pressure",
+    "proposed_target": "workflow/escalation-threshold-policy",
+    "boundary_note": "promotion_decision_required_for_canonical_change"
+  }
+}

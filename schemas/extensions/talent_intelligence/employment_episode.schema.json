@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.fmg/schemas/extensions/talent_intelligence/employment_episode.schema.json",
+  "title": "EmploymentEpisode",
+  "description": "Time-bounded employment relationship between an attorney and a law firm or office.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "employment_episode_id",
+    "attorney_ref",
+    "law_firm_ref",
+    "status",
+    "authority_zone",
+    "confidence_posture"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "employment_episode"
+    },
+    "employment_episode_id": {
+      "type": "string"
+    },
+    "attorney_ref": {
+      "type": "string"
+    },
+    "law_firm_ref": {
+      "type": "string"
+    },
+    "office": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "practice_area": {
+      "type": "string"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "is_current": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "enum": ["provisional", "active", "inactive", "deprecated"]
+    },
+    "authority_zone": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal-general",
+        "internal-km-approved",
+        "practice-restricted",
+        "client-restricted",
+        "matter-restricted",
+        "ethical-wall-restricted",
+        "experimental-ai"
+      ]
+    },
+    "confidence_posture": {
+      "type": "string",
+      "enum": ["asserted", "inferred", "hypothesis", "reviewed"]
+    },
+    "source_profile_refs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

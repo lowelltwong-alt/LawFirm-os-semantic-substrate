@@ -1,0 +1,35 @@
+{
+  "exception_id": "EXC-000103",
+  "schema_type": "exception-event",
+  "schema_version": "v1",
+  "event_class": "authority_conflict_override",
+  "severity": "critical",
+  "event_time": "2026-04-08T10:30:00Z",
+  "summary": "Authority conflict detected when override request attempted to bypass designated governance reviewer.",
+  "origin": {
+    "layer": "governance",
+    "component": "approval-router",
+    "run_id": "run-2026-04-08-03",
+    "address_ref": "fco:governance:approval:override-conflict"
+  },
+  "route": {
+    "route_id": "route.authority_conflict_override.v1",
+    "destination_loop": "governance_review",
+    "promotion_gate_required": true
+  },
+  "trust_metadata": {
+    "authority_zone": "design-authority",
+    "trust_level": "high",
+    "confidence": 0.91,
+    "reviewer_required": true
+  },
+  "pressure_vector_refs": [
+    "PV-000503"
+  ],
+  "canonical_mutation_control": {
+    "direct_mutation_attempted": false,
+    "allowed_action": "attach_evidence_only",
+    "proposed_target": "governance/authority-boundary-clarification",
+    "boundary_note": "promotion_decision_required_for_canonical_change"
+  }
+}

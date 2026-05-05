@@ -1,0 +1,51 @@
+{
+  "address": "/example/internal_general/retrieval/knowledge_management/gold_standard/artifact/ART-gsa-000001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "retrieval",
+    "domain": "knowledge_management",
+    "module": "gold_standard",
+    "object_type": "artifact",
+    "object_id": "ART-gsa-000001",
+    "version": "v1"
+  },
+  "gold_standard_asset": {
+    "gold_standard_asset_id": "GSA-000001",
+    "schema_type": "gold-standard-asset",
+    "schema_version": "v1",
+    "title": "Acme OCG Partner Rate Increase Rule",
+    "lifecycle_status": "active",
+    "asset_kind": "approved-answer-source",
+    "document_id": "DOC-000001",
+    "document_version_id": "DV-000001",
+    "component_ids": [
+      "CMP-000002"
+    ],
+    "span_selector_ids": [
+      "SPAN-000002"
+    ],
+    "access_policy_ref": "policy:billing-guideline-internal-approved",
+    "steward_role": "knowledge_manager",
+    "scope_refs": {
+      "jurisdiction_refs": [
+        "US-NY"
+      ],
+      "matter_refs": [
+        "matter:acme-coverage-litigation"
+      ],
+      "domain_refs": [
+        "billing-guidelines"
+      ]
+    },
+    "source_artifact_refs": [
+      "SA-000001"
+    ],
+    "boundary_controls": {
+      "anchored_to_canonical_document_structure": true,
+      "retrieval_may_not_redefine_asset_boundary": true,
+      "vendor_labels_are_not_canonical": true
+    },
+    "notes": "Draft Gold Standard asset anchored to the stewarded billing-guideline clause for KM and grounded search use."
+  }
+}

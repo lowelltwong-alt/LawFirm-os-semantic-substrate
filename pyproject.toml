@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fmg-fractal-capability-ontology"
+version = "0.1.0"
+description = "Internal semantic control-plane and Innovation OS contract repository tooling."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["PyYAML", "jsonschema", "rdflib", "pyshacl"]
+
+[project.scripts]
+fmg = "fmg_fco.entry:main"
+fmg-release-snapshot = "fmg_fco.entry:release_snapshot_main"
+
+[tool.setuptools]
+packages = ["fmg_fco"]

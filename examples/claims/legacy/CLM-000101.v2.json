@@ -1,0 +1,27 @@
+{
+  "claim_id": "CLM-000101",
+  "schema_id": "claim-schema-v2",
+  "template_id": "claim-template-v2",
+  "subject": "insurance_carriers",
+  "predicate": "control_costs_via",
+  "object": "outside_counsel_guidelines",
+  "claim_type": "causal",
+  "claim_mode": "assertion",
+  "authority_zone": "public",
+  "trust_level": "medium",
+  "confidence": 0.8,
+  "source_refs": ["SRC-doc-000001"],
+  "evidence_refs": ["CHK-000001"],
+  "artifact_refs": ["ART-000001"],
+  "address": "/example/public/governance/legal/intake_conflicts/claim/CLM-000101/v2",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "governance",
+    "domain": "legal",
+    "module": "intake_conflicts",
+    "object_type": "claim",
+    "object_id": "CLM-000101",
+    "version": "v2"
+  }
+}

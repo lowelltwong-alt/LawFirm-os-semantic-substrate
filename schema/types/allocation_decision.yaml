@@ -1,0 +1,22 @@
+kind: type
+id: allocation_decision
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Explicit resource allocation decision. Uses action_type values continue,
+  pivot, scale, or sunset and requires supporting evidence before state changes.
+required_fields:
+  - display_title
+  - allocation_decision_id
+  - loop_id
+  - allocation_decision_state
+  - action_type
+  - confidence_level
+  - evidence_sufficiency
+  - evidence_refs
+optional_fields:
+  - rationale
+  - approved_by
+  - supersedes_decision_ref

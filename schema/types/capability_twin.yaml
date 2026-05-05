@@ -1,0 +1,30 @@
+kind: type
+id: capability_twin
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Operational capability digital twin contract that captures decomposition,
+  dependencies, required enablers, and evidence-backed telemetry used for
+  health and investment decisions.
+required_fields:
+  - display_title
+  - capability_id
+  - capability_name
+  - capability_tree
+  - required_assets
+  - required_skills
+  - required_processes
+  - dependency_graph
+  - maturity_posture
+  - risk_posture
+  - telemetry_hooks
+optional_fields:
+  - mapped_graph_manifests
+  - health_targets
+  - investment_notes
+compatibility_notes:
+  - capability_tree root and dependency_graph nodes should use canonical capability_node_id values.
+  - telemetry_hooks should reference evidence/artifact IDs that exist in governed registries.
+  - mapped_graph_manifests entries should map each capability_node_id to claim_refs, artifact_refs, and governance_decision_refs.

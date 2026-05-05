@@ -1,0 +1,298 @@
+@prefix doc: <https://fmg.example/ontology/documents#> .
+@prefix fmg: <https://fmg.example/ontology/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://fmg.example/ontology/documents> a owl:Ontology ;
+  rdfs:label "FMG Legal Document Model" ;
+  rdfs:comment "Canonical ontology module for document identity, canonical text, exact span selectors, citation structure, and derived retrieval and grounded-answer artifacts. Canonical document structure remains the source of truth; chunks, embeddings, indexes, retrieval responses, and answers are derived." ;
+  owl:versionInfo "2026-04-phase5-document-model" .
+
+doc:Document a owl:Class ;
+  rdfs:subClassOf fmg:Document ;
+  rdfs:label "Document" ;
+  rdfs:comment "Stable document identity across versions." .
+
+doc:DocumentVersion a owl:Class ;
+  rdfs:subClassOf fmg:DocumentVersion ;
+  rdfs:label "Document Version" ;
+  rdfs:comment "Immutable normalized document version derived from a source artifact." .
+
+doc:SourceArtifact a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Source Artifact" ;
+  rdfs:comment "Captured source file or extracted source object ingested into FMG." .
+
+doc:CanonicalText a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Canonical Text" ;
+  rdfs:comment "Normalized text body whose components and span selectors define canonical boundaries." .
+
+doc:Component a owl:Class ;
+  rdfs:subClassOf fmg:Component ;
+  rdfs:label "Component" ;
+  rdfs:comment "Addressable structural segment of canonical text, such as a section, clause, paragraph, table, footnote, or exhibit." .
+
+doc:SpanSelector a owl:Class ;
+  rdfs:subClassOf fmg:SpanSelector ;
+  rdfs:label "Span Selector" ;
+  rdfs:comment "Exact machine-readable selector over a canonical text span." .
+
+doc:CitationMention a owl:Class ;
+  rdfs:subClassOf fmg:CitationMention ;
+  rdfs:label "Citation Mention" ;
+  rdfs:comment "Explicit citation mention embedded in canonical text." .
+
+doc:CitationTarget a owl:Class ;
+  rdfs:subClassOf fmg:CitationTarget ;
+  rdfs:label "Citation Target" ;
+  rdfs:comment "Normalized target referenced by a citation mention." .
+
+doc:ChunkSet a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Chunk Set" ;
+  rdfs:comment "Derived chunk collection generated from canonical components and exact spans." .
+
+doc:Chunk a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Chunk" ;
+  rdfs:comment "Derived retrieval chunk anchored to canonical components and span selectors." .
+
+doc:EmbeddingSet a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Embedding Set" ;
+  rdfs:comment "Derived embedding package built from a chunk set." .
+
+doc:IndexBuild a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Index Build" ;
+  rdfs:comment "Derived retrieval index built from a chunk set and, where applicable, an embedding set." .
+
+doc:RetrievalResponse a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Retrieval Response" ;
+  rdfs:comment "Derived retrieval result artifact that returns ranked evidence anchored to canonical spans." .
+
+doc:IndexMigrationPlan a owl:Class ;
+  rdfs:subClassOf fmg:Artifact ;
+  rdfs:label "Index Migration Plan" ;
+  rdfs:comment "Derived plan for rebuilding or migrating retrieval indexes without changing canonical document structure." .
+
+doc:AnswerEvent a owl:Class ;
+  rdfs:subClassOf fmg:AnswerEvent ;
+  rdfs:label "Answer Event" ;
+  rdfs:comment "Derived grounded-answer artifact produced from a retrieval response." .
+
+doc:AnswerEvidence a owl:Class ;
+  rdfs:subClassOf fmg:AnswerEvidence ;
+  rdfs:label "Answer Evidence" ;
+  rdfs:comment "Evidence package that resolves an answer event back to document versions, components, spans, and supporting chunks." .
+
+doc:hasVersion a owl:ObjectProperty ;
+  rdfs:domain doc:Document ;
+  rdfs:range doc:DocumentVersion ;
+  rdfs:label "has version" .
+
+doc:derivedFromSourceArtifact a owl:ObjectProperty ;
+  rdfs:domain doc:DocumentVersion ;
+  rdfs:range doc:SourceArtifact ;
+  rdfs:label "derived from source artifact" .
+
+doc:hasCanonicalText a owl:ObjectProperty ;
+  rdfs:domain doc:DocumentVersion ;
+  rdfs:range doc:CanonicalText ;
+  rdfs:label "has canonical text" .
+
+doc:hasComponent a owl:ObjectProperty ;
+  rdfs:domain doc:CanonicalText ;
+  rdfs:range doc:Component ;
+  rdfs:label "has component" .
+
+doc:hasSpanSelector a owl:ObjectProperty ;
+  rdfs:domain doc:Component ;
+  rdfs:range doc:SpanSelector ;
+  rdfs:label "has span selector" .
+
+doc:usesSpanSelector a owl:ObjectProperty ;
+  rdfs:domain fmg:Artifact ;
+  rdfs:range doc:SpanSelector ;
+  rdfs:label "uses span selector" ;
+  rdfs:comment "Associates a derived artifact or citation artifact with the exact canonical span selectors it relies on." .
+
+doc:hasCitationMention a owl:ObjectProperty ;
+  rdfs:domain doc:Component ;
+  rdfs:range doc:CitationMention ;
+  rdfs:label "has citation mention" .
+
+doc:citesTarget a owl:ObjectProperty ;
+  rdfs:domain doc:CitationMention ;
+  rdfs:range doc:CitationTarget ;
+  rdfs:label "cites target" .
+
+doc:materializesChunkSet a owl:ObjectProperty ;
+  rdfs:domain doc:CanonicalText ;
+  rdfs:range doc:ChunkSet ;
+  rdfs:label "materializes chunk set" .
+
+doc:hasChunk a owl:ObjectProperty ;
+  rdfs:domain doc:ChunkSet ;
+  rdfs:range doc:Chunk ;
+  rdfs:label "has chunk" .
+
+doc:materializesEmbeddingSet a owl:ObjectProperty ;
+  rdfs:domain doc:ChunkSet ;
+  rdfs:range doc:EmbeddingSet ;
+  rdfs:label "materializes embedding set" .
+
+doc:materializesIndexBuild a owl:ObjectProperty ;
+  rdfs:domain doc:EmbeddingSet ;
+  rdfs:range doc:IndexBuild ;
+  rdfs:label "materializes index build" .
+
+doc:usesIndexBuild a owl:ObjectProperty ;
+  rdfs:domain doc:RetrievalResponse ;
+  rdfs:range doc:IndexBuild ;
+  rdfs:label "uses index build" .
+
+doc:returnsChunk a owl:ObjectProperty ;
+  rdfs:domain doc:RetrievalResponse ;
+  rdfs:range doc:Chunk ;
+  rdfs:label "returns chunk" .
+
+doc:returnsAnswerEvent a owl:ObjectProperty ;
+  rdfs:domain doc:RetrievalResponse ;
+  rdfs:range doc:AnswerEvent ;
+  rdfs:label "returns answer event" .
+
+doc:supportedByEvidence a owl:ObjectProperty ;
+  rdfs:domain doc:AnswerEvent ;
+  rdfs:range doc:AnswerEvidence ;
+  rdfs:label "supported by evidence" .
+
+doc:aboutDocumentVersion a owl:ObjectProperty ;
+  rdfs:domain doc:AnswerEvidence ;
+  rdfs:range doc:DocumentVersion ;
+  rdfs:label "about document version" .
+
+doc:retrievedFromChunk a owl:ObjectProperty ;
+  rdfs:domain doc:AnswerEvidence ;
+  rdfs:range doc:Chunk ;
+  rdfs:label "retrieved from chunk" .
+
+doc:migratesFromIndexBuild a owl:ObjectProperty ;
+  rdfs:domain doc:IndexMigrationPlan ;
+  rdfs:range doc:IndexBuild ;
+  rdfs:label "migrates from index build" .
+
+doc:reusesChunkSet a owl:ObjectProperty ;
+  rdfs:domain doc:IndexMigrationPlan ;
+  rdfs:range doc:ChunkSet ;
+  rdfs:label "reuses chunk set" .
+
+doc:sourceSystem a owl:DatatypeProperty ;
+  rdfs:domain doc:SourceArtifact ;
+  rdfs:range xsd:string ;
+  rdfs:label "source system" .
+
+doc:sourceIdentifier a owl:DatatypeProperty ;
+  rdfs:domain doc:SourceArtifact ;
+  rdfs:range xsd:string ;
+  rdfs:label "source identifier" .
+
+doc:mimeType a owl:DatatypeProperty ;
+  rdfs:domain doc:SourceArtifact ;
+  rdfs:range xsd:string ;
+  rdfs:label "mime type" .
+
+doc:checksum a owl:DatatypeProperty ;
+  rdfs:domain doc:SourceArtifact ;
+  rdfs:range xsd:string ;
+  rdfs:label "checksum" .
+
+doc:versionIdentifier a owl:DatatypeProperty ;
+  rdfs:domain doc:DocumentVersion ;
+  rdfs:range xsd:string ;
+  rdfs:label "version identifier" .
+
+doc:normalizationProfile a owl:DatatypeProperty ;
+  rdfs:domain doc:DocumentVersion ;
+  rdfs:range xsd:string ;
+  rdfs:label "normalization profile" .
+
+doc:componentType a owl:DatatypeProperty ;
+  rdfs:domain doc:Component ;
+  rdfs:range xsd:string ;
+  rdfs:label "component type" .
+
+doc:structurePath a owl:DatatypeProperty ;
+  rdfs:domain doc:Component ;
+  rdfs:range xsd:string ;
+  rdfs:label "structure path" .
+
+doc:resolutionStatus a owl:DatatypeProperty ;
+  rdfs:domain doc:CitationMention ;
+  rdfs:range xsd:string ;
+  rdfs:label "resolution status" .
+
+doc:pageAnchor a owl:DatatypeProperty ;
+  rdfs:domain doc:SpanSelector ;
+  rdfs:range xsd:string ;
+  rdfs:label "page anchor" .
+
+doc:charStart a owl:DatatypeProperty ;
+  rdfs:domain doc:SpanSelector ;
+  rdfs:range xsd:integer ;
+  rdfs:label "character start" .
+
+doc:charEnd a owl:DatatypeProperty ;
+  rdfs:domain doc:SpanSelector ;
+  rdfs:range xsd:integer ;
+  rdfs:label "character end" .
+
+doc:chunkOrder a owl:DatatypeProperty ;
+  rdfs:domain doc:Chunk ;
+  rdfs:range xsd:integer ;
+  rdfs:label "chunk order" .
+
+doc:chunkingStrategy a owl:DatatypeProperty ;
+  rdfs:domain doc:ChunkSet ;
+  rdfs:range xsd:string ;
+  rdfs:label "chunking strategy" .
+
+doc:embeddingModel a owl:DatatypeProperty ;
+  rdfs:domain doc:EmbeddingSet ;
+  rdfs:range xsd:string ;
+  rdfs:label "embedding model" .
+
+doc:indexProfile a owl:DatatypeProperty ;
+  rdfs:domain doc:IndexBuild ;
+  rdfs:range xsd:string ;
+  rdfs:label "index profile" .
+
+doc:answerText a owl:DatatypeProperty ;
+  rdfs:domain doc:AnswerEvent ;
+  rdfs:range xsd:string ;
+  rdfs:label "answer text" .
+
+doc:groundingStatus a owl:DatatypeProperty ;
+  rdfs:domain doc:AnswerEvent ;
+  rdfs:range xsd:string ;
+  rdfs:label "grounding status" .
+
+doc:retrievalScore a owl:DatatypeProperty ;
+  rdfs:domain doc:AnswerEvidence ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "retrieval score" .
+
+doc:migrationStatus a owl:DatatypeProperty ;
+  rdfs:domain doc:IndexMigrationPlan ;
+  rdfs:range xsd:string ;
+  rdfs:label "migration status" .
+
+prov:wasGeneratedBy rdfs:domain fmg:Artifact ;
+  rdfs:range prov:Activity .
+
+prov:wasDerivedFrom rdfs:domain fmg:Artifact ;
+  rdfs:range fmg:Artifact .

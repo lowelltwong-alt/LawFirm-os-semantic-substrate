@@ -1,0 +1,167 @@
+{
+  "@context": {
+    "id": "@id",
+    "type": "@type",
+    "fmg": "https://fmg.example/ontology/core#",
+    "doc": "https://fmg.example/ontology/documents#",
+    "provm": "https://fmg.example/ontology/provenance#",
+    "tax": "https://fmg.example/taxonomy#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "label": "rdfs:label",
+    "comment": "rdfs:comment",
+    "Artifact": "fmg:Artifact",
+    "Claim": "fmg:Claim",
+    "Capability": "fmg:Capability",
+    "Evidence": "fmg:Evidence",
+    "ExceptionEvent": "fmg:ExceptionEvent",
+    "PressureVector": "fmg:PressureVector",
+    "Opportunity": "fmg:Opportunity",
+    "Sprint": "fmg:Sprint",
+    "Pilot": "fmg:Pilot",
+    "ValidationGateRecord": "fmg:ValidationGateRecord",
+    "ScalePackage": "fmg:ScalePackage",
+    "PromotionDecision": "fmg:PromotionDecision",
+    "Document": "doc:Document",
+    "DocumentVersion": "doc:DocumentVersion",
+    "CanonicalText": "doc:CanonicalText",
+    "Component": "doc:Component",
+    "SpanSelector": "doc:SpanSelector",
+    "CitationMention": "doc:CitationMention",
+    "CitationTarget": "doc:CitationTarget",
+    "ChunkSet": "doc:ChunkSet",
+    "Chunk": "doc:Chunk",
+    "AnswerEvent": "doc:AnswerEvent",
+    "AnswerEvidence": "doc:AnswerEvidence",
+    "hasEvidence": {
+      "@id": "fmg:hasEvidence",
+      "@type": "@id"
+    },
+    "supportsClaim": {
+      "@id": "fmg:supportsClaim",
+      "@type": "@id"
+    },
+    "normalizesInto": {
+      "@id": "fmg:normalizesInto",
+      "@type": "@id"
+    },
+    "derivedFromExceptionEvent": {
+      "@id": "fmg:derivedFromExceptionEvent",
+      "@type": "@id"
+    },
+    "derivedFromPressureVector": {
+      "@id": "fmg:derivedFromPressureVector",
+      "@type": "@id"
+    },
+    "selectedForSprint": {
+      "@id": "fmg:selectedForSprint",
+      "@type": "@id"
+    },
+    "selectedForPilot": {
+      "@id": "fmg:selectedForPilot",
+      "@type": "@id"
+    },
+    "governsArtifact": {
+      "@id": "fmg:governsArtifact",
+      "@type": "@id"
+    },
+    "validatedBy": {
+      "@id": "fmg:validatedBy",
+      "@type": "@id"
+    },
+    "promotesTo": {
+      "@id": "fmg:promotesTo",
+      "@type": "@id"
+    },
+    "fromLifecycleState": {
+      "@id": "fmg:fromLifecycleState",
+      "@type": "@id"
+    },
+    "toLifecycleState": {
+      "@id": "fmg:toLifecycleState",
+      "@type": "@id"
+    },
+    "lifecycleStatus": "fmg:lifecycleStatus",
+    "decisionOutcome": "fmg:decisionOutcome",
+    "authorityZone": "fmg:authorityZone",
+    "trustLevel": "fmg:trustLevel",
+    "operatingLayer": "fmg:operatingLayer",
+    "routeIdentifier": "fmg:routeIdentifier",
+    "requiresPromotionDecision": "fmg:requiresPromotionDecision",
+    "mutationBoundaryNote": "fmg:mutationBoundaryNote",
+    "hasVersion": {
+      "@id": "doc:hasVersion",
+      "@type": "@id"
+    },
+    "derivedFromSourceArtifact": {
+      "@id": "doc:derivedFromSourceArtifact",
+      "@type": "@id"
+    },
+    "hasCanonicalText": {
+      "@id": "doc:hasCanonicalText",
+      "@type": "@id"
+    },
+    "hasComponent": {
+      "@id": "doc:hasComponent",
+      "@type": "@id"
+    },
+    "hasSpanSelector": {
+      "@id": "doc:hasSpanSelector",
+      "@type": "@id"
+    },
+    "hasCitationMention": {
+      "@id": "doc:hasCitationMention",
+      "@type": "@id"
+    },
+    "citesTarget": {
+      "@id": "doc:citesTarget",
+      "@type": "@id"
+    },
+    "materializesChunkSet": {
+      "@id": "doc:materializesChunkSet",
+      "@type": "@id"
+    },
+    "hasChunk": {
+      "@id": "doc:hasChunk",
+      "@type": "@id"
+    },
+    "materializesEmbeddingSet": {
+      "@id": "doc:materializesEmbeddingSet",
+      "@type": "@id"
+    },
+    "materializesIndexBuild": {
+      "@id": "doc:materializesIndexBuild",
+      "@type": "@id"
+    },
+    "producesAnswerEvent": {
+      "@id": "doc:producesAnswerEvent",
+      "@type": "@id"
+    },
+    "supportedByEvidence": {
+      "@id": "doc:supportedByEvidence",
+      "@type": "@id"
+    },
+    "aboutDocumentVersion": {
+      "@id": "doc:aboutDocumentVersion",
+      "@type": "@id"
+    },
+    "retrievedFromChunk": {
+      "@id": "doc:retrievedFromChunk",
+      "@type": "@id"
+    },
+    "sourceSystem": "doc:sourceSystem",
+    "sourceIdentifier": "doc:sourceIdentifier",
+    "mimeType": "doc:mimeType",
+    "checksum": "doc:checksum",
+    "versionIdentifier": "doc:versionIdentifier",
+    "normalizationProfile": "doc:normalizationProfile",
+    "componentType": "doc:componentType",
+    "pageAnchor": "doc:pageAnchor",
+    "charStart": "doc:charStart",
+    "charEnd": "doc:charEnd",
+    "chunkOrder": "doc:chunkOrder",
+    "embeddingModel": "doc:embeddingModel",
+    "indexProfile": "doc:indexProfile",
+    "answerText": "doc:answerText",
+    "retrievalScore": "doc:retrievalScore"
+  }
+}

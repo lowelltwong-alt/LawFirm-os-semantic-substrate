@@ -1,0 +1,28 @@
+id: RFB-000002
+title: Authority conflict exception feedback
+object_type: retrieval_feedback
+lifecycle_status: draft
+authority_zone: internal_general
+ontology_order: second_order
+display_title: authority_conflict_exception_feedback
+retrieval_feedback_status: actioned
+graph_manifest_ref: NGM-000001
+observed_gap: >
+  Exception events for authority conflict escalation lacked a standardized
+  retrieval tag for mandatory reviewer role and evidence posture.
+recommendation_summary: >
+  Add a governance retrieval tag profile and explicit promotion guardrails to
+  keep escalation evidence interpretable without allowing direct canonical
+  mutation.
+supporting_query_refs:
+  - QRY-EXC-AUTH-CONFLICT-001
+proposed_promotion_refs:
+  - PRP-000002
+  - PRP-000003
+reviewer_notes:
+  - Derived from archive/examples/exceptions/authority_conflict_override_example.json triage.
+review_metadata:
+  review_status: approved
+  reviewer_role: review.structural
+  reviewed_by: ontology_steward_alpha
+  reviewed_at: 2026-04-06T10:05:00Z

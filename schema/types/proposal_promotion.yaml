@@ -1,0 +1,20 @@
+kind: type
+id: proposal_promotion
+version: 0.1.0
+status: draft
+implements:
+  - node
+description: >
+  Governed promotion sidecar for moving bounded pilot semantics toward broader
+  retrieval or publication use after review.
+required_fields:
+  - display_title
+  - proposal_promotion_status
+  - source_feedback_ref
+  - proposed_change_summary
+  - approval_requirements
+optional_fields:
+  - target_manifest_refs
+  - promotion_window
+  - decision_notes
+  - alignment_assessment
