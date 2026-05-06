@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/autonomy/autonomy-decision-record.schema.json",
+  "title": "Autonomy Decision Record",
+  "description": "Draft Phase 2 record for deterministic red/yellow/green authority classification.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "schema_type",
+    "schema_version",
+    "source_object_type",
+    "source_object_id",
+    "proposed_action",
+    "risk_color",
+    "autonomy_mode",
+    "allowed_actions",
+    "forbidden_actions",
+    "audit_required",
+    "reasons"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "pattern": "^ADR-[0-9]{6}$"
+    },
+    "schema_type": {
+      "const": "autonomy-decision-record"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "source_object_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_object_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposed_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risk_color": {
+      "enum": [
+        "green",
+        "yellow",
+        "red",
+        "green_candidate"
+      ]
+    },
+    "autonomy_mode": {
+      "enum": [
+        "human_out_of_loop",
+        "autonomous_flagged",
+        "human_in_loop"
+      ]
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "human_green_required": {
+      "type": "boolean"
+    },
+    "audit_required": {
+      "type": "boolean"
+    },
+    "reasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

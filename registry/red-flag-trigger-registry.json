@@ -1,0 +1,26 @@
+{
+  "registry_id": "red-flag-trigger-registry",
+  "schema_version": "v1",
+  "status": "draft",
+  "red_flag_triggers": [
+    "real_client_data",
+    "real_matter_data",
+    "privileged_content",
+    "secret_or_credential_exposure",
+    "direct_canonical_mutation",
+    "new_route_id",
+    "new_event_class",
+    "external_write_send_or_publish",
+    "client_visible_output",
+    "filing_signature_or_disclosure",
+    "billing_or_legal_finality",
+    "missing_audit_record_for_material_action",
+    "human_approval_bypass",
+    "destructive_operation_risk"
+  ],
+  "required_response": "stop_or_human_approval_required",
+  "notes": [
+    "Hard red triggers override leverage and hardness.",
+    "Agents may prepare evidence, but they may not execute final authority for red work."
+  ]
+}

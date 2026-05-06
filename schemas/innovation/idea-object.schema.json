@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/innovation/idea-object.schema.json",
+  "title": "Idea Object",
+  "description": "Draft Phase 2 local idea lifecycle object. Ideas may be killed, parked, combined, or converted into opportunities, but they do not execute themselves.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "idea_id",
+    "schema_type",
+    "schema_version",
+    "title",
+    "status",
+    "source_refs",
+    "summary",
+    "risk_color",
+    "resurrection_triggers",
+    "authority_boundary"
+  ],
+  "properties": {
+    "idea_id": {
+      "type": "string",
+      "pattern": "^IDEA-[0-9]{6}$"
+    },
+    "schema_type": {
+      "const": "idea-object"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 8
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "under_review",
+        "parked",
+        "killed",
+        "resurrection_candidate",
+        "converted_to_opportunity"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risk_color": {
+      "enum": [
+        "green",
+        "yellow",
+        "red",
+        "green_candidate"
+      ]
+    },
+    "resurrection_triggers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "converted_opportunity_id": {
+      "type": "string",
+      "pattern": "^OPP-[0-9]{6}$"
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "local_artifact_only",
+        "may_execute",
+        "may_mutate_canon",
+        "human_review_required_for_resurrection"
+      ],
+      "properties": {
+        "local_artifact_only": {
+          "const": true
+        },
+        "may_execute": {
+          "const": false
+        },
+        "may_mutate_canon": {
+          "const": false
+        },
+        "human_review_required_for_resurrection": {
+          "const": true
+        }
+      }
+    }
+  }
+}

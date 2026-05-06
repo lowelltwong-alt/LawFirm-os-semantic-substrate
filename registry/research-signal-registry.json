@@ -1,0 +1,36 @@
+{
+  "registry_id": "research-signal-registry",
+  "schema_version": "v1",
+  "status": "draft",
+  "schema_refs": [
+    {
+      "object_type": "discovery-signal",
+      "schema_path": "schemas/discovery-signal.schema.json",
+      "placement": "root_existing_canonical",
+      "phase2_alias": "research-signal-object",
+      "alias_authority": "non_authoritative_alias"
+    },
+    {
+      "object_type": "research-request-object",
+      "schema_path": "schemas/research/research-request-object.schema.json",
+      "placement": "phase2_grouped_new"
+    },
+    {
+      "object_type": "research-brief-object",
+      "schema_path": "schemas/research/research-brief-object.schema.json",
+      "placement": "phase2_grouped_new"
+    },
+    {
+      "object_type": "incident-analogy-record",
+      "schema_path": "schemas/research/incident-analogy-record.schema.json",
+      "placement": "phase2_grouped_new"
+    }
+  ],
+  "policy": {
+    "local_only_scaffold": true,
+    "live_web_crawling_allowed": false,
+    "live_external_api_calls_allowed": false,
+    "external_writes_allowed": false,
+    "research_outputs_create_authority": false
+  }
+}

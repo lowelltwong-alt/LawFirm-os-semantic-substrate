@@ -434,6 +434,200 @@
       "supersedes": null
     },
     {
+      "schema_id": "discovery-signal-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/discovery-signal.schema.json",
+      "applies_to": [
+        "discovery-signal",
+        "research-signal-object"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null,
+      "notes": "Phase 2 research-signal-object is a non-authoritative alias to the existing root discovery-signal schema."
+    },
+    {
+      "schema_id": "opportunity-scorecard-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/innovation/opportunity-scorecard.schema.json",
+      "applies_to": [
+        "opportunity-scorecard"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "idea-object-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/innovation/idea-object.schema.json",
+      "applies_to": [
+        "idea-object"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "autonomy-lane-passport-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/autonomy/autonomy-lane-passport.schema.json",
+      "applies_to": [
+        "autonomy-lane-passport"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "autonomy-decision-record-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/autonomy/autonomy-decision-record.schema.json",
+      "applies_to": [
+        "autonomy-decision-record"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "autonomy-reclassification-record-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/autonomy/autonomy-reclassification-record.schema.json",
+      "applies_to": [
+        "autonomy-reclassification-record"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "assumption-record-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/autonomy/assumption-record.schema.json",
+      "applies_to": [
+        "assumption-record"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "assumption-watch-record-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/autonomy/assumption-watch-record.schema.json",
+      "applies_to": [
+        "assumption-watch-record"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "green-restoration-packet-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/autonomy/green-restoration-packet.schema.json",
+      "applies_to": [
+        "green-restoration-packet"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "harness-plan-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/harness/harness-plan.schema.json",
+      "applies_to": [
+        "harness-plan"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "agent-review-record-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/harness/agent-review-record.schema.json",
+      "applies_to": [
+        "agent-review-record"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "frontier-review-record-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/harness/frontier-review-record.schema.json",
+      "applies_to": [
+        "frontier-review-record"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "codex-task-packet-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/harness/codex-task-packet.schema.json",
+      "applies_to": [
+        "codex-task-packet"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "research-request-object-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/research/research-request-object.schema.json",
+      "applies_to": [
+        "research-request-object"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "research-brief-object-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/research/research-brief-object.schema.json",
+      "applies_to": [
+        "research-brief-object"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
+      "schema_id": "incident-analogy-record-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/research/incident-analogy-record.schema.json",
+      "applies_to": [
+        "incident-analogy-record"
+      ],
+      "layer": "action_and_runtime",
+      "owner": "innovation-operating-system",
+      "supersedes": null
+    },
+    {
       "schema_id": "view-executive-brief-v1",
       "version": "draft-v1",
       "status": "draft",
@@ -482,6 +676,7 @@
     "Retrieval-response and retrieval-trace formally coexist: response is the ranked result artifact, while trace remains the derived execution and observability record.",
     "Gold Standard lands here as the first draft canonical KM family. It remains intentionally narrow and anchored to existing canonical documents, source artifacts, components, spans, and policy references.",
     "Innovation OS operating-object contracts are intentionally still marked draft even after field normalization because broader example and validator coverage is not complete yet.",
+    "Phase 2 Innovation Autonomy grouped schemas are additive for genuinely new surfaces. Existing root-level Innovation OS schemas remain in place and are discovered through registry entries.",
     "Stub schemas, legacy helpers, and extension-local registries remain outside this primary surface until they are reconciled in place."
   ]
 }

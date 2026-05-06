@@ -1,0 +1,43 @@
+{
+  "registry_id": "assumption-watch-registry",
+  "schema_version": "v1",
+  "status": "draft",
+  "schema_refs": [
+    "schemas/autonomy/assumption-record.schema.json",
+    "schemas/autonomy/assumption-watch-record.schema.json",
+    "schemas/autonomy/autonomy-reclassification-record.schema.json"
+  ],
+  "assumptions": [
+    {
+      "assumption_id": "ASM-000001",
+      "statement": "Input and output remain synthetic or local-only artifacts.",
+      "watch_signal_classes": [
+        "real_client_data",
+        "real_matter_data",
+        "external_write_request"
+      ],
+      "failure_effect": "downgrade_to_red"
+    },
+    {
+      "assumption_id": "ASM-000002",
+      "statement": "Generated task packets remain inert and do not execute Codex, Git, patches, model calls, or network calls.",
+      "watch_signal_classes": [
+        "self_patching_request",
+        "git_operation_request",
+        "live_model_call_request",
+        "network_request"
+      ],
+      "failure_effect": "downgrade_to_red"
+    },
+    {
+      "assumption_id": "ASM-000003",
+      "statement": "No new route_id or event_class authority is introduced outside the governed promotion path.",
+      "watch_signal_classes": [
+        "route_id_creation",
+        "event_class_creation",
+        "canonical_schema_mutation"
+      ],
+      "failure_effect": "downgrade_to_red"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/research/research-request-object.schema.json",
+  "title": "Research Request Object",
+  "description": "Draft Phase 2 local-only research commission request. This is not a live crawler or external API instruction.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_id",
+    "schema_type",
+    "schema_version",
+    "source_refs",
+    "question",
+    "allowed_sources",
+    "forbidden_actions",
+    "authority_boundary"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "pattern": "^RRQ-[0-9]{6}$"
+    },
+    "schema_type": {
+      "const": "research-request-object"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allowed_sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "local_only",
+        "may_live_crawl",
+        "may_call_external_api",
+        "may_write_externally"
+      ],
+      "properties": {
+        "local_only": {
+          "const": true
+        },
+        "may_live_crawl": {
+          "const": false
+        },
+        "may_call_external_api": {
+          "const": false
+        },
+        "may_write_externally": {
+          "const": false
+        }
+      }
+    }
+  }
+}

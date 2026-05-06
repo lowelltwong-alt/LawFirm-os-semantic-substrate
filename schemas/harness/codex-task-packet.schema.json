@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/harness/codex-task-packet.schema.json",
+  "title": "Codex Task Packet",
+  "description": "Draft Phase 2 task packet for future local implementation work. Packets are instructions, not execution authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "schema_type",
+    "schema_version",
+    "objective",
+    "repos_touched",
+    "risk_color",
+    "harness_level",
+    "leverage_score",
+    "allowed_actions",
+    "forbidden_actions",
+    "acceptance_criteria",
+    "tests_to_run",
+    "rollback_rule",
+    "documentation_updates_required",
+    "authority_boundary"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^CDX-[0-9]{6}$"
+    },
+    "schema_type": {
+      "const": "codex-task-packet"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repos_touched": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_color": {
+      "enum": [
+        "green",
+        "yellow",
+        "red",
+        "green_candidate"
+      ]
+    },
+    "harness_level": {
+      "enum": [
+        "H0",
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5"
+      ]
+    },
+    "leverage_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "files_to_add_or_update": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "tests_to_run": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollback_rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "documentation_updates_required": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "may_execute_itself",
+        "may_push_git",
+        "may_mutate_canon",
+        "human_required_for_red_or_promotion"
+      ],
+      "properties": {
+        "may_execute_itself": {
+          "const": false
+        },
+        "may_push_git": {
+          "const": false
+        },
+        "may_mutate_canon": {
+          "const": false
+        },
+        "human_required_for_red_or_promotion": {
+          "const": true
+        }
+      }
+    }
+  }
+}

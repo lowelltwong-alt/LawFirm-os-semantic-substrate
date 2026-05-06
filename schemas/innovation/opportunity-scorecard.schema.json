@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/innovation/opportunity-scorecard.schema.json",
+  "title": "Opportunity Scorecard",
+  "description": "Draft Phase 2 scorecard for ranking opportunity objects. Leverage controls priority only and never overrides red/yellow/green authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scorecard_id",
+    "schema_type",
+    "schema_version",
+    "opportunity_id",
+    "source_refs",
+    "scores",
+    "risk_color",
+    "hardness_level",
+    "leverage_score",
+    "recommended_harness",
+    "recommended_action",
+    "authority_boundary"
+  ],
+  "properties": {
+    "scorecard_id": {
+      "type": "string",
+      "pattern": "^OSC-[0-9]{6}$"
+    },
+    "schema_type": {
+      "const": "opportunity-scorecard"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "opportunity_id": {
+      "type": "string",
+      "pattern": "^OPP-[0-9]{6}$"
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "impact",
+        "recurrence",
+        "strategic_alignment",
+        "time_to_value",
+        "review_rework_reduction",
+        "learning_value",
+        "effort",
+        "risk",
+        "dependency",
+        "governance_load",
+        "confidence"
+      ],
+      "properties": {
+        "impact": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "recurrence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "strategic_alignment": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "time_to_value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "review_rework_reduction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "learning_value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "effort": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "risk": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "dependency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "governance_load": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "risk_color": {
+      "enum": [
+        "green",
+        "yellow",
+        "red",
+        "green_candidate"
+      ]
+    },
+    "hardness_level": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "leverage_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "recommended_harness": {
+      "enum": [
+        "H0",
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5"
+      ]
+    },
+    "recommended_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "risk_color_controls_authority",
+        "hardness_controls_harness_depth",
+        "leverage_controls_priority",
+        "no_direct_canonical_mutation"
+      ],
+      "properties": {
+        "risk_color_controls_authority": {
+          "const": true
+        },
+        "hardness_controls_harness_depth": {
+          "const": true
+        },
+        "leverage_controls_priority": {
+          "const": true
+        },
+        "no_direct_canonical_mutation": {
+          "const": true
+        }
+      }
+    }
+  }
+}

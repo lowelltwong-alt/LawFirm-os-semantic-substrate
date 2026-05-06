@@ -39,6 +39,32 @@ This repo is Law Firm's semantic-governance substrate and Innovation OS contract
 
 Runtime implementations may consume these contracts, but they must not redefine canonical meaning, lifecycle states, mutation authority, or promotion authority.
 
+## Phase 2 schema and policy router
+
+For Phase 2 Innovation Autonomy + Harness work:
+
+- Existing root-level Innovation OS schemas remain at `schemas/*.schema.json`.
+- New autonomy schemas live under `schemas/autonomy/`.
+- New harness schemas live under `schemas/harness/`.
+- New local-only research lifecycle schemas live under `schemas/research/`.
+- New Innovation OS objects that did not already exist at root live under `schemas/innovation/`.
+- Registry discovery lives under `registry/`; do not create a parallel `registries/` root.
+
+Start Phase 2 control-plane work from:
+
+1. `governance/PHASE_2_SCHEMA_PLACEMENT.md`
+2. `governance/INNOVATION_AUTONOMY_LAYER.md`
+3. `governance/AUTONOMY_RYG_POLICY.md`
+4. `governance/CONTINUOUS_AUTONOMY_ASSURANCE.md`
+5. `governance/HARNESS_INTENSITY_POLICY.md`
+6. `governance/RESEARCH_SIGNAL_INGESTION_POLICY.md`
+7. `registry/innovation-object-registry.json`
+8. `registry/autonomy-lane-registry.json`
+9. `registry/harness-policy-registry.json`
+10. `registry/red-flag-trigger-registry.json`
+
+Do not duplicate an existing root schema into a grouped folder unless a compatibility need is documented and the grouped file is clearly marked as a non-authoritative alias.
+
 ## AI interaction audit principle
 
 Law Firm defines the audit contracts and governance. Runtime systems capture and persist audit events. Raw production AI prompts, outputs, and transcripts must not be stored in this repository. Raw transcripts belong only in a secure, encrypted, access-controlled, retention-governed audit store.

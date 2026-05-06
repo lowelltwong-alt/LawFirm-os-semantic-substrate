@@ -20,6 +20,37 @@ The repository keeps four layers explicit:
 4. Action and runtime contracts
    Governed exception intake, pressure aggregation, operating objects, validation gates, scale packages, and promotion decisions.
 
+## Phase 2 Innovation Autonomy + Harness Layer
+
+This repo now carries the control-plane authority artifacts for the Phase 2 Innovation Autonomy + Harness Layer.
+
+Core law:
+
+```text
+Risk color controls authority.
+Hardness controls harness depth.
+Leverage controls priority.
+```
+
+Existing root-level Innovation OS schemas remain in place for backward compatibility and remain discoverable through `registry/schema-registry.json` and `registry/innovation-object-registry.json`. New Phase 2 schema families are grouped by concern:
+
+- `schemas/autonomy/` for red/yellow/green lane, assumption watch, reclassification, and restoration records.
+- `schemas/harness/` for harness plans, agent reviews, frontier reviews, and Codex task packets.
+- `schemas/research/` for local-only research requests, briefs, and incident analogy records.
+- `schemas/innovation/` only for genuinely new Innovation OS objects that did not already exist at root.
+
+See:
+
+- `governance/PHASE_2_SCHEMA_PLACEMENT.md`
+- `governance/INNOVATION_AUTONOMY_LAYER.md`
+- `governance/AUTONOMY_RYG_POLICY.md`
+- `governance/HARNESS_INTENSITY_POLICY.md`
+- `DATA_FLOW_MAP.md`
+- `AI_WORK_START_HERE.md`
+- `AI_TABLE_OF_CONTENTS.md`
+- `ENDPOINTS_AND_COMMANDS.md`
+- `RECENT_WORK.md`
+
 ## Mutation Boundary
 
 Raw runtime objects must never rewrite canonical meaning directly.

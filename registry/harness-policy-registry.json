@@ -1,0 +1,52 @@
+{
+  "registry_id": "harness-policy-registry",
+  "schema_version": "v1",
+  "status": "draft",
+  "core_rule": "Hardness controls harness depth, but risk color controls authority.",
+  "schema_refs": [
+    "schemas/harness/harness-plan.schema.json",
+    "schemas/harness/agent-review-record.schema.json",
+    "schemas/harness/frontier-review-record.schema.json",
+    "schemas/harness/codex-task-packet.schema.json"
+  ],
+  "harness_levels": [
+    {
+      "harness_level": "H0",
+      "meaning": "deterministic check only"
+    },
+    {
+      "harness_level": "H1",
+      "meaning": "single builder plus tests"
+    },
+    {
+      "harness_level": "H2",
+      "meaning": "planner plus builder plus tests"
+    },
+    {
+      "harness_level": "H3",
+      "meaning": "planner plus builder plus evaluator"
+    },
+    {
+      "harness_level": "H4",
+      "meaning": "planner plus builder plus evaluator plus adversarial critic plus specialist guards"
+    },
+    {
+      "harness_level": "H5",
+      "meaning": "full committee plus frontier judge plus rollback and human decision packet"
+    }
+  ],
+  "authority_floor": [
+    {
+      "risk_color": "green",
+      "minimum_authority_gate": "within_preapproved_lane"
+    },
+    {
+      "risk_color": "yellow",
+      "minimum_authority_gate": "human_review_before_final_authority"
+    },
+    {
+      "risk_color": "red",
+      "minimum_authority_gate": "stop_or_human_approval_required"
+    }
+  ]
+}
