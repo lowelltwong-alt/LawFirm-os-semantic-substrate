@@ -1,0 +1,43 @@
+{
+  "registry_scope": "orchestrator_human_approval_draft",
+  "status": "draft_metadata_only",
+  "owner": "semantic-control-plane",
+  "approval_states": [
+    "not_required",
+    "required",
+    "approved",
+    "rejected",
+    "approved_with_conditions",
+    "not_attempted"
+  ],
+  "default_rules": [
+    {
+      "rule_id": "approval.rule.real_data_transition.v1",
+      "trigger": "any transition out of synthetic-only mode",
+      "required": true,
+      "approver_role": "governance_reviewer"
+    },
+    {
+      "rule_id": "approval.rule.side_effect.v1",
+      "trigger": "any write-capable tool or connector",
+      "required": true,
+      "approver_role": "operations_owner"
+    },
+    {
+      "rule_id": "approval.rule.semantic_change.v1",
+      "trigger": "route/event/schema/governance change proposal",
+      "required": true,
+      "approver_role": "semantic_governance"
+    },
+    {
+      "rule_id": "approval.rule.lake_runtime_safe_handoff.v1",
+      "trigger": "runtime-safe lake mode",
+      "required": true,
+      "approver_role": "runtime_owner"
+    }
+  ],
+  "global_controls": {
+    "approval_records_are_evidence_not_canon": true,
+    "promotion_decision_required_for_canonical_change": true
+  }
+}

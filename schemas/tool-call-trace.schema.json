@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/tool-call-trace.schema.json",
+  "title": "LawFirm OS Tool Call Trace",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool_call_id",
+    "run_id",
+    "trace_id",
+    "span_id",
+    "tool_id",
+    "tool_version",
+    "side_effect_class",
+    "authorization_status",
+    "args_hash",
+    "result_status",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "tool_call_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "span_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tool_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tool_version": {
+      "type": "string"
+    },
+    "side_effect_class": {
+      "enum": [
+        "none",
+        "read",
+        "internal_write",
+        "external_write",
+        "execute"
+      ]
+    },
+    "authorization_status": {
+      "enum": [
+        "allowed",
+        "denied",
+        "approval_required",
+        "not_attempted"
+      ]
+    },
+    "args_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "result_hash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "result_status": {
+      "enum": [
+        "success",
+        "failed",
+        "blocked",
+        "not_attempted"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

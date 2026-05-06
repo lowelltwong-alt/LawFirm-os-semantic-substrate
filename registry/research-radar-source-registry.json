@@ -1,0 +1,51 @@
+{
+  "registry_scope": "orchestrator_external_discovery_sources_draft",
+  "status": "draft_metadata_only",
+  "owner": "semantic-control-plane",
+  "purpose": "Define source classes for research-radar discovery. Sources are method evidence only and do not authorize direct code, contract, or policy mutation.",
+  "sources": [
+    {
+      "source_id": "source.arxiv.math_ai.v1",
+      "kind": "paper_index",
+      "authority_tier": 1,
+      "allowed": true,
+      "categories": [
+        "math",
+        "cs.AI",
+        "cs.LG",
+        "cs.DS",
+        "cs.CR"
+      ]
+    },
+    {
+      "source_id": "source.official_lab_blogs.v1",
+      "kind": "lab_blog",
+      "authority_tier": 1,
+      "allowed": true
+    },
+    {
+      "source_id": "source.standards_bodies.v1",
+      "kind": "standards",
+      "authority_tier": 1,
+      "allowed": true
+    },
+    {
+      "source_id": "source.github_repos.v1",
+      "kind": "repository",
+      "authority_tier": 3,
+      "allowed": true
+    },
+    {
+      "source_id": "source.social_posts.v1",
+      "kind": "social",
+      "authority_tier": 4,
+      "allowed": false
+    }
+  ],
+  "global_controls": {
+    "external_discovery_may_propose_upgrade": true,
+    "external_discovery_may_modify_canon": false,
+    "external_discovery_may_auto_deploy": false,
+    "shadow_eval_required_before_proposal": true
+  }
+}

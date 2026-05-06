@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/orchestrator-run-record.schema.json",
+  "title": "LawFirm OS Orchestrator Run Ledger Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ledger_version",
+    "run_id",
+    "lineage_root_id",
+    "trace_id",
+    "span_id",
+    "correlation_id",
+    "manifest_id",
+    "manifest_hash",
+    "environment",
+    "command_name",
+    "step_type",
+    "step_status",
+    "synthetic",
+    "timestamp"
+  ],
+  "properties": {
+    "ledger_version": {
+      "const": "1"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lineage_root_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "span_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "policy_bundle_id": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "command_name": {
+      "type": "string"
+    },
+    "step_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "step_type": {
+      "type": "string"
+    },
+    "step_status": {
+      "enum": [
+        "started",
+        "success",
+        "blocked",
+        "failed",
+        "needs_review"
+      ]
+    },
+    "selected_route_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "event_class_proposed": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "validation_result_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "synthetic": {
+      "type": "boolean",
+      "const": true
+    },
+    "duration_ms": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "retry_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "error_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "error_message_redacted": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "output_claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "message_history": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lake_mode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "handoff_attempted": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "idempotency_key": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

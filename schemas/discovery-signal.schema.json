@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/discovery-signal.schema.json",
+  "title": "LawFirm OS Research Radar Discovery Signal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "signal_id",
+    "signal_type",
+    "source_kind",
+    "source_uri",
+    "title",
+    "claims",
+    "relevance",
+    "recommended_action",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "signal_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "signal_type": {
+      "const": "external_research_discovery"
+    },
+    "source_kind": {
+      "type": "string"
+    },
+    "source_uri": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "published_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "relevance": {
+      "type": "object"
+    },
+    "recommended_action": {
+      "enum": [
+        "ignore",
+        "create_shadow_experiment",
+        "create_eval_fixture",
+        "open_governance_question"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
