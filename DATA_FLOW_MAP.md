@@ -117,6 +117,15 @@ sequenceDiagram
 - Existing unit validation under `scripts/validation/tests/`.
 - Drift check via `scripts/check_repo_drift.py`.
 
+## Orchestrator-Facing Surfaces
+
+The substrate publishes a canonical manifest for orchestrator consumption:
+
+- `manifests/contract_manifest.v1.json` — required orchestrator-facing manifest. Stable keys: `manifest_id`, `manifest_version`, `policy_bundle_id`, `canonical_schema_keys`, `registry_refs`, `governance_refs`.
+- `registry/orchestrator-contract-export.json` — broader contract metadata complementing the manifest.
+- `governance/ORCHESTRATOR_BOUNDARY.md` — orchestrator boundary doctrine (manifest-first loading, pin-and-refresh discipline, hard prohibitions).
+- `docs/ORCHESTRATION_LAYER_DATA_FLOW.md` — Mermaid flow and sequence for the execution-plane interaction with substrate and Exception Lake.
+
 ## Latest Data-Flow Change
 
 - Date: 2026-05-06

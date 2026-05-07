@@ -4,6 +4,14 @@
 
 `draft_metadata_only` until schema examples, validators, and cross-repo tests are promoted.
 
+## Canonical names
+
+- Substrate (control plane): `LawFirm-os-semantic-substrate`
+- Orchestrator (execution plane): `LawFirm-os-orchestrator`
+- Evidence Lake (evidence plane): `exceptions-lake-runtime-main`
+
+For the full naming and authority order across repos, see `governance/CROSS_REPO_MAP.md`.
+
 ## Purpose
 
 The Orchestrator is the LawFirm OS execution plane. It coordinates bounded model/tool workflows under pinned Semantic Substrate contracts and emits contract-locked evidence packets to the Exception Lake boundary.
@@ -28,6 +36,37 @@ The Orchestrator is not a semantic authority.
 - assemble local evidence packet directories;
 - hand off only through approved Exception Lake client modes;
 - emit improvement proposals and semantic-change requests for human review.
+
+## Manifest-first loading
+
+The Orchestrator loads substrate contracts in this order:
+
+1. `manifests/contract_manifest.v1.json` — canonical orchestrator-facing manifest. Required when present. A manifest-aware orchestrator version must fail closed if the manifest is absent.
+2. `registry/orchestrator-contract-export.json` — broader contract metadata that complements the manifest.
+3. `registry/exception-route-registry.json` — canonical `route_id` and `event_class` authority.
+
+Required manifest fields (must not be silently defaulted):
+
+- `manifest_id`
+- `manifest_version`
+- `policy_bundle_id`
+- `canonical_schema_keys`
+- `registry_refs`
+- `governance_refs`
+
+`policy_bundle_id` in particular must be read from the manifest and must not be defaulted by the consumer.
+
+## Pin-and-refresh discipline
+
+The Orchestrator pins the substrate by SHA in `contracts.lock.json`. Required fields:
+
+- `contract_repo` — must equal the canonical machine name `LawFirm-os-semantic-substrate`
+- `contract_ref_type` — `git_sha`
+- `contract_sha` — a substrate commit SHA that exists in substrate history
+- `generated_at` — ISO8601 timestamp
+- `generated_by` — `LawFirm-os-orchestrator`
+
+Lock validation is fail-closed on missing fields, invalid fields, or SHA drift.
 
 ## Forbidden Orchestrator actions
 

@@ -1,5 +1,43 @@
 # Recent Work
 
+## 2026-05-06 — Cross-Repo Coherence Patch 2: Orchestrator Manifest Surface
+
+Codex task / PR: Cross-repo coherence fix train Patch 2.
+
+Files changed:
+- Added `manifests/contract_manifest.v1.json` as the canonical orchestrator-facing manifest. Stable keys: `manifest_id`, `manifest_version`, `policy_bundle_id`, `canonical_schema_keys`, `registry_refs`, `governance_refs`. Marks `non_claims`, `consumer_lock_requirements`, and `manifest_first_loading_policy`.
+- Updated `registry/orchestrator-contract-export.json` to reference the new canonical manifest as `primary_orchestrator_manifest`, added `canonical_repo_name`, expanded `depends_on` and `required_docs` to include the cross-repo map, ORCHESTRATOR_BOUNDARY, and ORCHESTRATION_LAYER_DATA_FLOW.
+- Augmented `governance/ORCHESTRATOR_BOUNDARY.md` with canonical-name section, manifest-first loading doctrine, and pin-and-refresh discipline. The pre-existing authority-split table and forbidden-actions list remain unchanged.
+- Augmented `docs/ORCHESTRATION_LAYER_DATA_FLOW.md` with canonical-names section and a manifest-first authoritative-surface index. Existing Mermaid flow and sequence remain unchanged.
+- Updated `registry/source-of-truth.json` to enumerate `orchestrator_contract_manifest`, `orchestrator_boundary`, `orchestration_layer_data_flow` and to add `manifests/contract_manifest.v1.json` to the `phase_2_innovation_autonomy_layer` block.
+- Updated `AI_TABLE_OF_CONTENTS.md` with a new "Canonical Manifests" section and added `governance/CROSS_REPO_MAP.md`, `governance/ORCHESTRATOR_BOUNDARY.md`, `governance/EXCEPTIONS_LAKE_BOUNDARY.md`, and `docs/ORCHESTRATION_LAYER_DATA_FLOW.md` to the Phase 2 Governance section.
+- Updated `AI_WORK_START_HERE.md` Phase 2 schema and policy router with canonical-manifest doctrine and the explicit "must not silently default `policy_bundle_id`" rule.
+- Updated `DATA_FLOW_MAP.md` with an "Orchestrator-Facing Surfaces" section.
+
+Schemas changed:
+- None. The manifest references existing canonical schema keys without introducing new schemas.
+
+Commands/endpoints changed:
+- None.
+
+Data flow changed:
+- Made the orchestrator-facing manifest path (`manifests/contract_manifest.v1.json`) explicit. The runtime consumer should now prefer this path over a silent fallback to `registry/orchestrator-contract-export.json`.
+
+Tests added/updated:
+- None.
+
+Risk color:
+- Yellow. New canonical surface in the substrate that runtime repos will consume.
+
+Hardness/harness level:
+- H2. Planner plus implementation plus existing validation.
+
+Leverage rationale:
+- Eliminates silent shape coercion in the orchestrator's substrate reader. Once orchestrator Patch 3 lands, `policy_bundle_id` is required from the manifest and the runtime fail-closes if absent.
+
+Follow-up:
+- Patch 3 will refresh orchestrator `contracts.lock.json` against this commit and require the new manifest in the orchestrator's substrate reader.
+
 ## 2026-05-06 — Cross-Repo Coherence Patch 1: source-of-truth Phase 2 Enumeration And Cross-Repo Map
 
 Codex task / PR: Cross-repo coherence fix train Patch 1.

@@ -21,6 +21,10 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `registry/orchestrator-contract-export.json`
 - `registry/exceptions-lake-contract-export.json`
 
+## Canonical Manifests
+
+- `manifests/contract_manifest.v1.json` — canonical orchestrator-facing manifest. Stable keys for runtime consumers: `manifest_id`, `manifest_version`, `policy_bundle_id`, `canonical_schema_keys`, `registry_refs`, `governance_refs`.
+
 ## Phase 2 Registries
 
 - `registry/innovation-object-registry.json`
@@ -32,6 +36,9 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 
 ## Phase 2 Governance
 
+- `governance/CROSS_REPO_MAP.md`
+- `governance/ORCHESTRATOR_BOUNDARY.md`
+- `governance/EXCEPTIONS_LAKE_BOUNDARY.md`
 - `governance/PHASE_2_SCHEMA_PLACEMENT.md`
 - `governance/PHASE_2_ROADMAP.md`
 - `governance/INNOVATION_AUTONOMY_LAYER.md`
@@ -41,6 +48,7 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `governance/RESEARCH_SIGNAL_INGESTION_POLICY.md`
 - `governance/GREEN_RESTORATION_POLICY.md`
 - `governance/INTERNAL_IDEA_LIFECYCLE.md`
+- `docs/ORCHESTRATION_LAYER_DATA_FLOW.md`
 
 ## Planned PR07 Decision Intelligence
 

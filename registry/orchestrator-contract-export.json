@@ -1,6 +1,10 @@
 {
   "contract_name": "lawfirm-os-orchestrator-contract-export",
   "contract_status": "draft_metadata_only",
+  "canonical_repo_name": "LawFirm-os-semantic-substrate",
+  "human_label": "Law Firm OS Semantic Substrate",
+  "primary_orchestrator_manifest": "manifests/contract_manifest.v1.json",
+  "primary_manifest_role": "Canonical orchestrator-facing manifest. Consumers should prefer this manifest path. This export remains as broader metadata.",
   "contract_repo_role": "semantic_control_plane_for_orchestrator_consumption",
   "orchestrator_repo_role": "execution_plane_consuming_versioned_contracts_and_emitting_evidence_packets",
   "evidence_repo_role": "exceptions_lake_runtime_validates_and_records_runtime_evidence",
@@ -14,9 +18,12 @@
     "research radar signals are method evidence only and are not authority"
   ],
   "depends_on": [
+    "manifests/contract_manifest.v1.json",
     "registry/exceptions-lake-contract-export.json",
     "registry/exception-route-registry.json",
+    "governance/CROSS_REPO_MAP.md",
     "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
+    "governance/ORCHESTRATOR_BOUNDARY.md",
     "governance/AI_CONTROL_PLANE_BOUNDARY.md"
   ],
   "draft_schema_keys": [
@@ -34,7 +41,10 @@
     "registry/research-radar-source-registry.json"
   ],
   "required_docs": [
+    "governance/CROSS_REPO_MAP.md",
     "governance/ORCHESTRATOR_BOUNDARY.md",
+    "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
+    "governance/AI_CONTROL_PLANE_BOUNDARY.md",
     "docs/ORCHESTRATION_LAYER_DATA_FLOW.md"
   ],
   "export_version": "draft-v1",

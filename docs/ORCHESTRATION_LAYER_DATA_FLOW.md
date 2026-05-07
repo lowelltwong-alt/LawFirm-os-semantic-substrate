@@ -2,6 +2,25 @@
 
 Status: `draft_metadata_only`.
 
+## Canonical names
+
+- Substrate (control plane): `LawFirm-os-semantic-substrate`
+- Orchestrator (execution plane): `LawFirm-os-orchestrator`
+- Evidence Lake (evidence plane): `exceptions-lake-runtime-main`
+
+For sibling-repo names, plane responsibilities, and authority order across repos, see `governance/CROSS_REPO_MAP.md`.
+
+## Authoritative orchestrator-facing surfaces
+
+The orchestrator should consume the substrate read-only through these surfaces:
+
+- `manifests/contract_manifest.v1.json` — canonical orchestrator-facing manifest with stable keys (`manifest_id`, `manifest_version`, `policy_bundle_id`, `canonical_schema_keys`, `registry_refs`, `governance_refs`).
+- `registry/orchestrator-contract-export.json` — broader contract metadata.
+- `registry/exception-route-registry.json` — canonical `route_id` and `event_class` authority.
+- `registry/schema-registry.json` — schema discovery surface.
+- `registry/autonomy-lane-registry.json`, `registry/harness-policy-registry.json`, `registry/red-flag-trigger-registry.json`, `registry/assumption-watch-registry.json` — Phase 2 autonomy/harness authority surfaces.
+- `governance/ORCHESTRATOR_BOUNDARY.md` — orchestrator boundary doctrine.
+
 ## Current MVP flow
 
 ```mermaid

@@ -53,6 +53,7 @@ For Phase 2 Innovation Autonomy + Harness work:
 - New local-only research lifecycle schemas live under `schemas/research/`.
 - New Innovation OS objects that did not already exist at root live under `schemas/innovation/`.
 - `registry/` is the canonical discovery surface for schema and governance references; do not create a parallel `registries/` root.
+- `manifests/contract_manifest.v1.json` is the canonical orchestrator-facing manifest. Required keys for runtime consumers: `manifest_id`, `manifest_version`, `policy_bundle_id`, `canonical_schema_keys`, `registry_refs`, `governance_refs`. Consumers must not silently default `policy_bundle_id`.
 
 Start Phase 2 control-plane work from:
 
