@@ -30,6 +30,7 @@ This repo is the LawFirm OS control-plane and semantic-substrate authority surfa
 ## Phase 2 Governance
 
 - `governance/PHASE_2_SCHEMA_PLACEMENT.md`
+- `governance/PHASE_2_ROADMAP.md`
 - `governance/INNOVATION_AUTONOMY_LAYER.md`
 - `governance/AUTONOMY_RYG_POLICY.md`
 - `governance/CONTINUOUS_AUTONOMY_ASSURANCE.md`
@@ -37,6 +38,13 @@ This repo is the LawFirm OS control-plane and semantic-substrate authority surfa
 - `governance/RESEARCH_SIGNAL_INGESTION_POLICY.md`
 - `governance/GREEN_RESTORATION_POLICY.md`
 - `governance/INTERNAL_IDEA_LIFECYCLE.md`
+
+## Planned PR07 Decision Intelligence
+
+- Future control-plane schemas: `schemas/decision/`
+- Future decision registries: `registry/decision-model-registry.json`, `registry/stakes-profile-registry.json`
+- Future Research Radar registry: `registry/research-radar-registry.json`
+- Future governance docs: `governance/DECISION_INTELLIGENCE_MODEL.md`, `governance/STAKES_AND_REVERSIBILITY_POLICY.md`, `governance/RESEARCH_RADAR_OPERATING_MODEL.md`
 
 ## Schema Locations
 

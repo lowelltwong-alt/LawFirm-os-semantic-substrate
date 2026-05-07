@@ -53,17 +53,20 @@ For Phase 2 Innovation Autonomy + Harness work:
 Start Phase 2 control-plane work from:
 
 1. `governance/PHASE_2_SCHEMA_PLACEMENT.md`
-2. `governance/INNOVATION_AUTONOMY_LAYER.md`
-3. `governance/AUTONOMY_RYG_POLICY.md`
-4. `governance/CONTINUOUS_AUTONOMY_ASSURANCE.md`
-5. `governance/HARNESS_INTENSITY_POLICY.md`
-6. `governance/RESEARCH_SIGNAL_INGESTION_POLICY.md`
-7. `registry/innovation-object-registry.json`
-8. `registry/autonomy-lane-registry.json`
-9. `registry/harness-policy-registry.json`
-10. `registry/red-flag-trigger-registry.json`
+2. `governance/PHASE_2_ROADMAP.md`
+3. `governance/INNOVATION_AUTONOMY_LAYER.md`
+4. `governance/AUTONOMY_RYG_POLICY.md`
+5. `governance/CONTINUOUS_AUTONOMY_ASSURANCE.md`
+6. `governance/HARNESS_INTENSITY_POLICY.md`
+7. `governance/RESEARCH_SIGNAL_INGESTION_POLICY.md`
+8. `registry/innovation-object-registry.json`
+9. `registry/autonomy-lane-registry.json`
+10. `registry/harness-policy-registry.json`
+11. `registry/red-flag-trigger-registry.json`
 
 Do not duplicate an existing root schema into a grouped folder unless a compatibility need is documented and the grouped file is clearly marked as a non-authoritative alias.
+
+PR07 is reserved for Decision Intelligence, Stakes Model, and Research Radar Seeding. Do not pull PR07 work into PR01-PR06 unless a small compatibility hook is required. PR07 is still local-only: no live crawling, scheduled jobs, model calls, external APIs, external writes, autonomous research execution, or production research automation.
 
 ## AI interaction audit principle
 

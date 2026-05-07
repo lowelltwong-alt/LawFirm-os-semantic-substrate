@@ -35,3 +35,35 @@ Leverage rationale:
 
 Follow-up:
 - Implement PR02 in the Orchestrator repo after PR01 validation passes.
+
+## 2026-05-06 — PR07 Roadmap Reservation
+
+Codex task / PR: Roadmap-only addition before proceeding beyond PR06.
+
+Files changed:
+- Added `governance/PHASE_2_ROADMAP.md`.
+- Updated README, AI front door, AI TOC, data-flow map, and Innovation Autonomy Layer docs.
+
+Schemas changed:
+- None. PR07 schemas are planned only.
+
+Commands/endpoints changed:
+- None.
+
+Data flow changed:
+- Reserved future decision intelligence inputs for stakes, reversibility, frequency, and Research Radar watchlists/briefs.
+
+Tests added/updated:
+- None.
+
+Risk color:
+- Green for roadmap-only local documentation.
+
+Hardness/harness level:
+- H0 documentation check only.
+
+Leverage rationale:
+- Prevents PR06 from absorbing decision intelligence and keeps Research Radar automation out of scope until explicitly approved.
+
+Follow-up:
+- Keep PR01-PR06 scopes unchanged. Implement PR07 later as local-only, schema-first foundations.

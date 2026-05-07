@@ -6,6 +6,8 @@ This repo is the LawFirm OS control-plane authority surface. It owns Phase 2 sch
 
 Runtime repos consume these contracts. They do not mutate canon.
 
+PR07 roadmap extension: decision intelligence will add stakes profiles, reversibility scoring, decision escalation records, and local-only Research Radar watchlists/briefs. These outputs remain candidate evidence and decision support only.
+
 ## Current Object Flow
 
 ```text
@@ -31,10 +33,13 @@ flowchart LR
     EL["Exception Lake Runtime\nAppend-only Evidence Records"]
     HUM["Human Governance\nGreen Restoration + Promotion"]
     SIG["Signals\nExceptions + Research + Ideas"]
+    DEC["PR07 Decision Intelligence\nStakes + Reversibility + Frequency"]
 
     SS -->|"schemas, policies, registries"| OR
     SS -->|"contract exports + validation policy"| EL
     SIG -->|"evidence inputs"| OR
+    SS -->|"planned PR07 decision/stakes policy"| DEC
+    DEC -->|"planned escalation sensitivity inputs"| OR
     OR -->|"opportunity, scorecard, autonomy decision, harness plan, task packet"| EL
     EL -->|"pressure vectors + stored evidence"| OR
     OR -->|"human decision packet when authority changes"| HUM
@@ -100,8 +105,8 @@ sequenceDiagram
 
 - Date: 2026-05-06
 - Changed by: Codex
-- What changed: Added Phase 2 Innovation Autonomy + Harness authority surfaces.
-- Objects added: autonomy decision records, assumption watch records, harness plans, Codex task packets, research request/brief objects, incident analogies, opportunity scorecards, idea objects.
+- What changed: Added Phase 2 Innovation Autonomy + Harness authority surfaces and reserved PR07 for Decision Intelligence, Stakes Model, and local-only Research Radar seeding.
+- Objects added: autonomy decision records, assumption watch records, harness plans, Codex task packets, research request/brief objects, incident analogies, opportunity scorecards, idea objects. Planned PR07 objects include decision models, stakes profiles, reversibility/decision contexts, escalation records, Research Radar items, watchlists, and briefs.
 - Repos affected: control-plane repo only in PR01.
 - Risk color: yellow governance/schema change; human review required before treating new authority as stable canon.
 - Harness level: H2 local schema/policy update plus validation.

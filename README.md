@@ -30,6 +30,9 @@ Core law:
 Risk color controls authority.
 Hardness controls harness depth.
 Leverage controls priority.
+Stakes size controls escalation sensitivity.
+Reversibility controls autonomy.
+Frequency controls compounding value.
 ```
 
 Existing root-level Innovation OS schemas remain in place for backward compatibility and remain discoverable through `registry/schema-registry.json` and `registry/innovation-object-registry.json`. New Phase 2 schema families are grouped by concern:
@@ -42,6 +45,7 @@ Existing root-level Innovation OS schemas remain in place for backward compatibi
 See:
 
 - `governance/PHASE_2_SCHEMA_PLACEMENT.md`
+- `governance/PHASE_2_ROADMAP.md`
 - `governance/INNOVATION_AUTONOMY_LAYER.md`
 - `governance/AUTONOMY_RYG_POLICY.md`
 - `governance/HARNESS_INTENSITY_POLICY.md`
@@ -50,6 +54,8 @@ See:
 - `AI_TABLE_OF_CONTENTS.md`
 - `ENDPOINTS_AND_COMMANDS.md`
 - `RECENT_WORK.md`
+
+Roadmap note: PR07 is reserved for Decision Intelligence, Stakes Model, and Research Radar Seeding. It is local-only and schema-first. It must not add live web crawling, scheduled jobs, model calls, external APIs, external writes, autonomous research execution, or production research automation.
 
 ## Mutation Boundary
 
