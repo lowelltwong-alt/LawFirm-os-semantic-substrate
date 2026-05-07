@@ -1,5 +1,7 @@
 # LawFirm OS Semantic Substrate
 
+Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm OS Semantic Substrate. Sibling repos and authority order across repos are defined in `governance/CROSS_REPO_MAP.md`.
+
 Law Firm is the semantic-governance substrate and Innovation OS contract repository for this project.
 
 It is the canonical home for machine-readable meaning, evidence structure, change policy, and governed operating contracts. It is not a production runtime, a system-of-record deployment, or the canonical store for embeddings, indexes, OCR model specifics, GraphRAG summaries, or answer caches.
@@ -19,6 +21,51 @@ The repository keeps four layers explicit:
 
 4. Action and runtime contracts
    Governed exception intake, pressure aggregation, operating objects, validation gates, scale packages, and promotion decisions.
+
+## Phase 2 Innovation Autonomy + Harness Layer
+
+This repo now carries the control-plane authority artifacts for the Phase 2 Innovation Autonomy + Harness Layer.
+
+Core law:
+
+```text
+Risk color controls authority.
+Hardness controls harness depth.
+Leverage controls priority.
+Stakes size controls escalation sensitivity.
+Reversibility controls autonomy.
+Frequency controls compounding value.
+```
+
+`schemas/` (plural) is the canonical machine-readable JSON Schema authority layer. New Phase 2 machine-readable schemas go under `schemas/` unless a future compatibility-preserving governance change says otherwise. `registry/` is the canonical discovery surface for schema and governance references.
+
+A separate `schema/` (singular) directory exists as a legacy / Phase 1 / draft doctrinal-comparison substrate. It does **not** replace `schemas/` and is non-canonical for Phase 2 work. Any future migration or renaming of `schema/` must be a separate compatibility-preserving cleanup PR.
+
+Existing root-level Innovation OS schemas remain in place for backward compatibility and remain discoverable through `registry/schema-registry.json` and `registry/innovation-object-registry.json`. New Phase 2 schema families are grouped by concern:
+
+- `schemas/autonomy/` for red/yellow/green lane, assumption watch, reclassification, and restoration records.
+- `schemas/harness/` for harness plans, agent reviews, frontier reviews, and Codex task packets.
+- `schemas/research/` for local-only research requests, briefs, and incident analogy records.
+- `schemas/innovation/` only for genuinely new Innovation OS objects that did not already exist at root.
+
+See:
+
+- `governance/PHASE_2_SCHEMA_PLACEMENT.md`
+- `governance/PHASE_2_ROADMAP.md`
+- `governance/INNOVATION_AUTONOMY_LAYER.md`
+- `governance/AUTONOMY_RYG_POLICY.md`
+- `governance/HARNESS_INTENSITY_POLICY.md`
+- `DATA_FLOW_MAP.md`
+- `AI_WORK_START_HERE.md`
+- `AI_TABLE_OF_CONTENTS.md`
+- `ENDPOINTS_AND_COMMANDS.md`
+- `RECENT_WORK.md`
+
+Roadmap note: PR07 is reserved for Decision Intelligence, Stakes Model, and Research Radar Seeding. It is local-only and schema-first. It must not add live web crawling, scheduled jobs, model calls, external APIs, external writes, autonomous research execution, or production research automation.
+
+The first planned PR07 Research Radar watchlist seed is `research-radar-frontier-ai-001` for `frontier_ai_capability`. The roadmap also reserves additional local-only seed topics for math breakthroughs, agent failures, prompt injection, legal AI ethics, model provider policy changes, harness design, RAG quality, workflow orchestration, decision science, creativity with AI, law-firm reputation risk, and billing/carrier changes. These are roadmap evidence only until PR07 adds schemas and local object builders.
+
+`registry/research-radar-source-registry.json` already exists as pre-PR07 draft scaffolding. It is metadata-only and non-authorizing, and does not authorize live crawling, scheduled jobs, model calls, external APIs, external writes, or production research automation. PR07 may later formalize, supersede, or reconcile it.
 
 ## Mutation Boundary
 

@@ -1,0 +1,48 @@
+{
+  "registry_scope": "orchestrator_model_policy_draft",
+  "status": "draft_metadata_only",
+  "owner": "semantic-control-plane",
+  "non_claims": [
+    "does not authorize production model use",
+    "does not authorize real client or matter data",
+    "does not select a vendor as canonical authority"
+  ],
+  "policies": [
+    {
+      "policy_id": "model.policy.synthetic_classification.mock.v1",
+      "status": "draft_metadata_only",
+      "allowed_data_origin": [
+        "synthetic"
+      ],
+      "allowed_adapters": [
+        "mock"
+      ],
+      "structured_output_required": true,
+      "max_model_calls": 1,
+      "allow_freeform_downstream_parsing": false,
+      "approval_required": false,
+      "notes": "CI/default policy for local-first orchestrator MVP."
+    },
+    {
+      "policy_id": "model.policy.synthetic_classification.structured.v1",
+      "status": "draft_metadata_only",
+      "allowed_data_origin": [
+        "synthetic"
+      ],
+      "allowed_adapters": [
+        "openai_structured"
+      ],
+      "structured_output_required": true,
+      "max_model_calls": 1,
+      "allow_freeform_downstream_parsing": false,
+      "approval_required": true,
+      "notes": "Optional production-like structured-output adapter. Still synthetic-only."
+    }
+  ],
+  "global_controls": {
+    "model_output_is_proposal_only": true,
+    "unknown_route_policy": "fail_closed",
+    "unknown_event_class_policy": "fail_closed",
+    "no_semantic_authority_in_model_output": true
+  }
+}

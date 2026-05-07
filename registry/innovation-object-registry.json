@@ -1,0 +1,49 @@
+{
+  "registry_id": "innovation-object-registry",
+  "schema_version": "v1",
+  "status": "draft",
+  "discovery_rule": "Registry entries are the canonical discovery surface. Existing root-level Innovation OS schemas remain at root for compatibility; new Phase 2-only schemas are grouped by concern.",
+  "objects": [
+    {
+      "object_type": "opportunity-object",
+      "schema_path": "schemas/opportunity-object.schema.json",
+      "placement": "root_existing_canonical"
+    },
+    {
+      "object_type": "opportunity-scorecard",
+      "schema_path": "schemas/innovation/opportunity-scorecard.schema.json",
+      "placement": "phase2_grouped_new"
+    },
+    {
+      "object_type": "sprint-object",
+      "schema_path": "schemas/sprint-object.schema.json",
+      "placement": "root_existing_canonical"
+    },
+    {
+      "object_type": "pilot-object",
+      "schema_path": "schemas/pilot-object.schema.json",
+      "placement": "root_existing_canonical"
+    },
+    {
+      "object_type": "validation-gate-record",
+      "schema_path": "schemas/validation-gate-record.schema.json",
+      "placement": "root_existing_canonical"
+    },
+    {
+      "object_type": "scale-package-object",
+      "schema_path": "schemas/scale-package-object.schema.json",
+      "placement": "root_existing_canonical"
+    },
+    {
+      "object_type": "idea-object",
+      "schema_path": "schemas/innovation/idea-object.schema.json",
+      "placement": "phase2_grouped_new"
+    },
+    {
+      "object_type": "promotion-decision",
+      "schema_path": "schemas/promotion-decision.schema.json",
+      "placement": "root_existing_canonical",
+      "authority_note": "Promotion decisions are required only when canon changes."
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/harness/frontier-review-record.schema.json",
+  "title": "Frontier Review Record",
+  "description": "Draft Phase 2 record for specialist or frontier-method review inside high-intensity harnesses.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "frontier_review_id",
+    "schema_type",
+    "schema_version",
+    "target_ref",
+    "harness_level",
+    "review_method",
+    "findings",
+    "authority_boundary"
+  ],
+  "properties": {
+    "frontier_review_id": {
+      "type": "string",
+      "pattern": "^FRR-[0-9]{6}$"
+    },
+    "schema_type": {
+      "const": "frontier-review-record"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "target_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "harness_level": {
+      "enum": [
+        "H4",
+        "H5"
+      ]
+    },
+    "review_method": {
+      "type": "string",
+      "minLength": 1
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "review_is_evidence_only",
+        "requires_human_decision_for_authority"
+      ],
+      "properties": {
+        "review_is_evidence_only": {
+          "const": true
+        },
+        "requires_human_decision_for_authority": {
+          "const": true
+        }
+      }
+    }
+  }
+}

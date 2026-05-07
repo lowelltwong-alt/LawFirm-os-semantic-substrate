@@ -1,0 +1,100 @@
+{
+  "manifest_id": "lawfirm-os-semantic-substrate-orchestrator-manifest-v1",
+  "manifest_version": "1.0.0",
+  "manifest_kind": "orchestrator_consumer_manifest",
+  "manifest_status": "draft_metadata_only",
+  "canonical_repo_name": "LawFirm-os-semantic-substrate",
+  "human_label": "Law Firm OS Semantic Substrate",
+  "policy_bundle_id": "runtime-policy-v1",
+  "policy_bundle_version": "1.0.0",
+  "purpose": "Stable orchestrator-facing manifest for the Law Firm OS Semantic Substrate. Lists canonical schema keys, registry refs, and governance refs that the orchestrator consumes read-only. Runtime systems must not redefine canon, invent route_id or event_class, or treat their outputs as canonical truth.",
+  "authority_rule": "The Orchestrator may consume these references and assemble proposal evidence, but it must not create route IDs, event classes, schemas, approval doctrine, or promotion decisions.",
+  "non_claims": [
+    "no production orchestrator deployment is authorized by this manifest",
+    "no real client or matter data path is authorized",
+    "no autonomous write actions are authorized",
+    "no semantic substrate mutation by runtime evidence is authorized",
+    "research radar signals are method evidence only and are not authority"
+  ],
+  "canonical_schema_keys": [
+    "exception-event-v1",
+    "pressure-vector-v1",
+    "adaptation-proposal-v1",
+    "promotion-decision-v1",
+    "opportunity-object-v1",
+    "opportunity-scorecard-v1",
+    "idea-object-v1",
+    "autonomy-lane-passport-v1",
+    "autonomy-decision-record-v1",
+    "autonomy-reclassification-record-v1",
+    "assumption-record-v1",
+    "assumption-watch-record-v1",
+    "green-restoration-packet-v1",
+    "harness-plan-v1",
+    "agent-review-record-v1",
+    "frontier-review-record-v1",
+    "codex-task-packet-v1",
+    "research-request-object-v1",
+    "research-brief-object-v1",
+    "incident-analogy-record-v1"
+  ],
+  "registry_refs": [
+    "registry/source-of-truth.json",
+    "registry/design-authority.json",
+    "registry/schema-registry.json",
+    "registry/exception-route-registry.json",
+    "registry/exceptions-schema-registry.json",
+    "registry/governed-learning-schema-registry.json",
+    "registry/autonomy-lane-registry.json",
+    "registry/harness-policy-registry.json",
+    "registry/red-flag-trigger-registry.json",
+    "registry/assumption-watch-registry.json",
+    "registry/innovation-object-registry.json",
+    "registry/research-signal-registry.json",
+    "registry/model-policy-registry.json",
+    "registry/tool-authority-registry.json",
+    "registry/human-approval-registry.json"
+  ],
+  "draft_registry_refs": [
+    "registry/research-radar-source-registry.json"
+  ],
+  "governance_refs": [
+    "governance/CROSS_REPO_MAP.md",
+    "governance/AI_CONTROL_PLANE_BOUNDARY.md",
+    "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
+    "governance/ORCHESTRATOR_BOUNDARY.md",
+    "governance/INNOVATION_AUTONOMY_LAYER.md",
+    "governance/AUTONOMY_RYG_POLICY.md",
+    "governance/HARNESS_INTENSITY_POLICY.md",
+    "governance/CONTINUOUS_AUTONOMY_ASSURANCE.md",
+    "governance/GREEN_RESTORATION_POLICY.md",
+    "governance/RESEARCH_SIGNAL_INGESTION_POLICY.md",
+    "governance/INTERNAL_IDEA_LIFECYCLE.md",
+    "governance/PHASE_2_SCHEMA_PLACEMENT.md",
+    "governance/PHASE_2_ROADMAP.md"
+  ],
+  "data_flow_refs": [
+    "DATA_FLOW_MAP.md",
+    "docs/ORCHESTRATION_LAYER_DATA_FLOW.md"
+  ],
+  "broader_metadata_export": "registry/orchestrator-contract-export.json",
+  "consumer_lock_requirements": {
+    "lock_path": "contracts.lock.json",
+    "required_fields": [
+      "contract_repo",
+      "contract_ref_type",
+      "contract_sha",
+      "generated_at",
+      "generated_by"
+    ],
+    "contract_repo_canonical": "LawFirm-os-semantic-substrate",
+    "fail_closed_on_missing_or_invalid_lock": true,
+    "fail_closed_on_sha_drift": true
+  },
+  "manifest_first_loading_policy": {
+    "preferred_path": "manifests/contract_manifest.v1.json",
+    "broader_metadata_path": "registry/orchestrator-contract-export.json",
+    "fallback_allowed_when_manifest_absent": false,
+    "policy_bundle_id_required": true
+  }
+}

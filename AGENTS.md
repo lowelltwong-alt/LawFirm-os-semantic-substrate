@@ -24,6 +24,9 @@ Agents must:
 - run the validation commands requested in the task
 - report exact validation results
 - stop and report unresolved governance conflicts instead of guessing
+- preserve the Phase 2 rule: risk color controls authority, hardness controls harness depth, and leverage controls priority
+- use `registry/` as the canonical discovery surface for Phase 2 schemas and policies
+- keep existing root-level Innovation OS schemas in place unless a separate compatibility-preserving migration is approved
 
 Agents must not:
 
@@ -34,6 +37,10 @@ Agents must not:
 - convert failures into silent skips
 - treat adapter files as semantic authority
 - treat examples, reports, data, graphs, archive, or legacy files as canonical truth unless an authority surface says so
+- create grouped duplicate schemas for existing root-level Innovation OS schemas
+- create or restore green authority without human approval
+- let hardness or leverage override red/yellow/green authority
+- add live research crawling, external API calls, external writes, or production automation as part of Phase 2 scaffolding
 
 ## Agent findings as exception candidates
 

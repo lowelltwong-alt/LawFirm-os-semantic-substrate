@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/autonomy/autonomy-reclassification-record.schema.json",
+  "title": "Autonomy Reclassification Record",
+  "description": "Draft Phase 2 append-only record explaining why an autonomy lane or action was reclassified.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "schema_type",
+    "schema_version",
+    "target_ref",
+    "previous_risk_color",
+    "new_risk_color",
+    "trigger_refs",
+    "explanation",
+    "green_restoration_requires_human"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "pattern": "^ARC-[0-9]{6}$"
+    },
+    "schema_type": {
+      "const": "autonomy-reclassification-record"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "target_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "previous_risk_color": {
+      "enum": [
+        "green",
+        "yellow",
+        "red",
+        "green_candidate"
+      ]
+    },
+    "new_risk_color": {
+      "enum": [
+        "green",
+        "yellow",
+        "red",
+        "green_candidate"
+      ]
+    },
+    "trigger_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "explanation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "green_restoration_requires_human": {
+      "const": true
+    }
+  }
+}

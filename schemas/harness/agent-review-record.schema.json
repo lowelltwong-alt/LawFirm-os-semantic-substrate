@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/harness/agent-review-record.schema.json",
+  "title": "Agent Review Record",
+  "description": "Draft Phase 2 append-only record for agent review findings and recommendations.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "review_id",
+    "schema_type",
+    "schema_version",
+    "target_ref",
+    "agent_role",
+    "risk_color",
+    "findings",
+    "recommendation",
+    "authority_boundary"
+  ],
+  "properties": {
+    "review_id": {
+      "type": "string",
+      "pattern": "^ARR-[0-9]{6}$"
+    },
+    "schema_type": {
+      "const": "agent-review-record"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "target_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent_role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risk_color": {
+      "enum": [
+        "green",
+        "yellow",
+        "red",
+        "green_candidate"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommendation": {
+      "enum": [
+        "approve_for_next_gate",
+        "revise",
+        "escalate_to_human",
+        "reject"
+      ]
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "review_is_evidence_only",
+        "may_restore_green",
+        "may_promote_canon"
+      ],
+      "properties": {
+        "review_is_evidence_only": {
+          "const": true
+        },
+        "may_restore_green": {
+          "const": false
+        },
+        "may_promote_canon": {
+          "const": false
+        }
+      }
+    }
+  }
+}

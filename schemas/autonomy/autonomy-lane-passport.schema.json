@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/autonomy/autonomy-lane-passport.schema.json",
+  "title": "Autonomy Lane Passport",
+  "description": "Draft Phase 2 passport for a preapproved autonomy lane. Green authority remains conditional on watched assumptions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "lane_id",
+    "schema_type",
+    "schema_version",
+    "risk_color",
+    "scope",
+    "allowed_actions",
+    "forbidden_actions",
+    "assumption_ids",
+    "human_authority_boundary"
+  ],
+  "properties": {
+    "lane_id": {
+      "type": "string",
+      "pattern": "^LANE-[A-Z0-9_-]+$"
+    },
+    "schema_type": {
+      "const": "autonomy-lane-passport"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "risk_color": {
+      "enum": [
+        "green",
+        "yellow",
+        "red",
+        "green_candidate"
+      ]
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allowed_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumption_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^ASM-[0-9]{6}$"
+      }
+    },
+    "human_authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_required_to_create_green",
+        "human_required_to_restore_green",
+        "agents_may_downgrade_green"
+      ],
+      "properties": {
+        "human_required_to_create_green": {
+          "const": true
+        },
+        "human_required_to_restore_green": {
+          "const": true
+        },
+        "agents_may_downgrade_green": {
+          "const": true
+        }
+      }
+    }
+  }
+}

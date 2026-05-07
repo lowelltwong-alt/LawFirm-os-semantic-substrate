@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/harness/harness-plan.schema.json",
+  "title": "Harness Plan",
+  "description": "Draft Phase 2 harness plan. Hardness selects harness depth; risk color still controls authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "harness_id",
+    "schema_type",
+    "schema_version",
+    "target_object_id",
+    "risk_color",
+    "hardness_level",
+    "leverage_score",
+    "harness_level",
+    "required_agents",
+    "required_tests",
+    "allowed_outputs",
+    "forbidden_outputs",
+    "human_required",
+    "rollback_required"
+  ],
+  "properties": {
+    "harness_id": {
+      "type": "string",
+      "pattern": "^HPL-[0-9]{6}$"
+    },
+    "schema_type": {
+      "const": "harness-plan"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "target_object_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risk_color": {
+      "enum": [
+        "green",
+        "yellow",
+        "red",
+        "green_candidate"
+      ]
+    },
+    "hardness_level": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "leverage_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "harness_level": {
+      "enum": [
+        "H0",
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5"
+      ]
+    },
+    "required_agents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "human_required": {
+      "type": "boolean"
+    },
+    "rollback_required": {
+      "type": "boolean"
+    }
+  }
+}

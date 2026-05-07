@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/research/incident-analogy-record.schema.json",
+  "title": "Incident Analogy Record",
+  "description": "Draft Phase 2 record that maps an internal or external incident pattern to watched assumptions and opportunities.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "analogy_id",
+    "schema_type",
+    "schema_version",
+    "source_refs",
+    "incident_summary",
+    "mapped_assumption_ids",
+    "risk_color",
+    "recommended_action"
+  ],
+  "properties": {
+    "analogy_id": {
+      "type": "string",
+      "pattern": "^IAR-[0-9]{6}$"
+    },
+    "schema_type": {
+      "const": "incident-analogy-record"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "incident_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mapped_assumption_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^ASM-[0-9]{6}$"
+      }
+    },
+    "risk_color": {
+      "enum": [
+        "green",
+        "yellow",
+        "red",
+        "green_candidate"
+      ]
+    },
+    "recommended_action": {
+      "enum": [
+        "archive",
+        "downgrade_to_yellow",
+        "downgrade_to_red",
+        "request_human_review"
+      ]
+    }
+  }
+}

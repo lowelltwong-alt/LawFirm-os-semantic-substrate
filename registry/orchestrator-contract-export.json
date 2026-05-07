@@ -1,0 +1,52 @@
+{
+  "contract_name": "lawfirm-os-orchestrator-contract-export",
+  "contract_status": "draft_metadata_only",
+  "canonical_repo_name": "LawFirm-os-semantic-substrate",
+  "human_label": "Law Firm OS Semantic Substrate",
+  "primary_orchestrator_manifest": "manifests/contract_manifest.v1.json",
+  "primary_manifest_role": "Canonical orchestrator-facing manifest. Consumers should prefer this manifest path. This export remains as broader metadata.",
+  "contract_repo_role": "semantic_control_plane_for_orchestrator_consumption",
+  "orchestrator_repo_role": "execution_plane_consuming_versioned_contracts_and_emitting_evidence_packets",
+  "evidence_repo_role": "exceptions_lake_runtime_validates_and_records_runtime_evidence",
+  "baseline_commit_observed": "a9df5e75319ecdd4e100321be35b51e88bb75ba8",
+  "authority_rule": "The Orchestrator may consume these contracts and assemble proposal evidence, but it must not create route IDs, event classes, schemas, approval doctrine, or promotion decisions.",
+  "current_non_claims": [
+    "no production orchestrator is claimed by this contract export",
+    "no real client or matter data path is authorized",
+    "no autonomous write actions are authorized",
+    "no semantic substrate mutation by runtime evidence is authorized",
+    "research radar signals are method evidence only and are not authority"
+  ],
+  "depends_on": [
+    "manifests/contract_manifest.v1.json",
+    "registry/exceptions-lake-contract-export.json",
+    "registry/exception-route-registry.json",
+    "governance/CROSS_REPO_MAP.md",
+    "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
+    "governance/ORCHESTRATOR_BOUNDARY.md",
+    "governance/AI_CONTROL_PLANE_BOUNDARY.md"
+  ],
+  "draft_schema_keys": [
+    "evidence-packet-v1",
+    "orchestrator-run-record-v1",
+    "tool-call-trace-v1",
+    "human-approval-record-v1",
+    "discovery-signal-v1",
+    "upgrade-proposal-v1"
+  ],
+  "draft_registries": [
+    "registry/model-policy-registry.json",
+    "registry/tool-authority-registry.json",
+    "registry/human-approval-registry.json",
+    "registry/research-radar-source-registry.json"
+  ],
+  "required_docs": [
+    "governance/CROSS_REPO_MAP.md",
+    "governance/ORCHESTRATOR_BOUNDARY.md",
+    "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
+    "governance/AI_CONTROL_PLANE_BOUNDARY.md",
+    "docs/ORCHESTRATION_LAYER_DATA_FLOW.md"
+  ],
+  "export_version": "draft-v1",
+  "last_reviewed_source": "main"
+}

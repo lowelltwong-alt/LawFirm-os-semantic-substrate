@@ -1,0 +1,55 @@
+{
+  "registry_id": "autonomy-lane-registry",
+  "schema_version": "v1",
+  "status": "draft",
+  "core_law": {
+    "risk_color_controls_authority": true,
+    "hardness_controls_harness_depth": true,
+    "leverage_controls_priority": true
+  },
+  "schema_refs": [
+    "schemas/autonomy/autonomy-lane-passport.schema.json",
+    "schemas/autonomy/autonomy-decision-record.schema.json",
+    "schemas/autonomy/autonomy-reclassification-record.schema.json",
+    "schemas/autonomy/green-restoration-packet.schema.json"
+  ],
+  "risk_colors": [
+    {
+      "risk_color": "green",
+      "authority": "preapproved conditional lane",
+      "human_required_to_create_or_restore": true
+    },
+    {
+      "risk_color": "yellow",
+      "authority": "bounded evidence-building and draft work",
+      "human_required_to_finalize_authority": true
+    },
+    {
+      "risk_color": "red",
+      "authority": "stop or human approval required",
+      "human_required_to_execute_final_authority": true
+    },
+    {
+      "risk_color": "green_candidate",
+      "authority": "recommendation only until human approval",
+      "human_required_to_create_green": true
+    }
+  ],
+  "preapproved_green_lane_examples": [
+    {
+      "lane_id": "LANE-SYNTHETIC-FIXTURE-DRAFTS",
+      "scope": "Synthetic fixture and local artifact drafting with no canonical mutation or external write.",
+      "required_assumptions": [
+        "ASM-000001"
+      ]
+    },
+    {
+      "lane_id": "LANE-CODEX-TASK-PACKET-DRAFTS",
+      "scope": "Local Codex task packet drafting for human-reviewed future implementation.",
+      "required_assumptions": [
+        "ASM-000001",
+        "ASM-000002"
+      ]
+    }
+  ]
+}
