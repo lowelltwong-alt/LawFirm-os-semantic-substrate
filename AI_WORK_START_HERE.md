@@ -68,6 +68,8 @@ Do not duplicate an existing root schema into a grouped folder unless a compatib
 
 PR07 is reserved for Decision Intelligence, Stakes Model, and Research Radar Seeding. Do not pull PR07 work into PR01-PR06 unless a small compatibility hook is required. PR07 is still local-only: no live crawling, scheduled jobs, model calls, external APIs, external writes, autonomous research execution, or production research automation.
 
+The roadmap names `research-radar-frontier-ai-001` as the initial planned local-only Research Radar watchlist seed. Treat it as roadmap evidence only until PR07 creates a schema and local object builder.
+
 ## AI interaction audit principle
 
 Law Firm defines the audit contracts and governance. Runtime systems capture and persist audit events. Raw production AI prompts, outputs, and transcripts must not be stored in this repository. Raw transcripts belong only in a secure, encrypted, access-controlled, retention-governed audit store.

@@ -57,6 +57,8 @@ See:
 
 Roadmap note: PR07 is reserved for Decision Intelligence, Stakes Model, and Research Radar Seeding. It is local-only and schema-first. It must not add live web crawling, scheduled jobs, model calls, external APIs, external writes, autonomous research execution, or production research automation.
 
+The first planned PR07 Research Radar watchlist seed is `research-radar-frontier-ai-001` for `frontier_ai_capability`. It is roadmap evidence only until PR07 adds schemas and local object builders.
+
 ## Mutation Boundary
 
 Raw runtime objects must never rewrite canonical meaning directly.

@@ -45,6 +45,7 @@ This repo is the LawFirm OS control-plane and semantic-substrate authority surfa
 - Future decision registries: `registry/decision-model-registry.json`, `registry/stakes-profile-registry.json`
 - Future Research Radar registry: `registry/research-radar-registry.json`
 - Future governance docs: `governance/DECISION_INTELLIGENCE_MODEL.md`, `governance/STAKES_AND_REVERSIBILITY_POLICY.md`, `governance/RESEARCH_RADAR_OPERATING_MODEL.md`
+- Initial local-only watchlist seed: `research-radar-frontier-ai-001` in `governance/PHASE_2_ROADMAP.md`
 
 ## Schema Locations
 

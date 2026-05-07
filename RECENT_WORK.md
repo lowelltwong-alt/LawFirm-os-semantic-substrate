@@ -67,3 +67,35 @@ Leverage rationale:
 
 Follow-up:
 - Keep PR01-PR06 scopes unchanged. Implement PR07 later as local-only, schema-first foundations.
+
+## 2026-05-06 — PR07 Research Radar Watchlist Seed
+
+Codex task / PR: Roadmap-only addition for initial PR07 Research Radar seed.
+
+Files changed:
+- Updated `governance/PHASE_2_ROADMAP.md`.
+- Updated README, AI front door, AI TOC, and data-flow map references.
+
+Schemas changed:
+- None. `research-radar-frontier-ai-001` is not yet a schema-validated object.
+
+Commands/endpoints changed:
+- None.
+
+Data flow changed:
+- Added a roadmap-only Research Radar seed for frontier AI capability signals that may affect harness intensity, autonomy assumptions, green-lane watch policy, and Codex task generation.
+
+Tests added/updated:
+- None.
+
+Risk color:
+- Green for roadmap-only documentation.
+
+Hardness/harness level:
+- H0 documentation check only.
+
+Leverage rationale:
+- Preserves an explicit local-only PR07 seed without expanding PR01-PR06 or adding live research automation.
+
+Follow-up:
+- Implement the watchlist as a local-only PR07 schema/object-builder artifact later. Do not add crawling, scheduled jobs, model calls, external APIs, external writes, or autonomous research execution.

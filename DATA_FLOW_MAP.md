@@ -8,6 +8,8 @@ Runtime repos consume these contracts. They do not mutate canon.
 
 PR07 roadmap extension: decision intelligence will add stakes profiles, reversibility scoring, decision escalation records, and local-only Research Radar watchlists/briefs. These outputs remain candidate evidence and decision support only.
 
+Initial PR07 watchlist seed: `research-radar-frontier-ai-001` tracks frontier AI capability signals that may affect harness policy, autonomy lanes, green-lane assumptions, and Codex task generation. It is roadmap-only until PR07 implementation.
+
 ## Current Object Flow
 
 ```text
@@ -34,10 +36,13 @@ flowchart LR
     HUM["Human Governance\nGreen Restoration + Promotion"]
     SIG["Signals\nExceptions + Research + Ideas"]
     DEC["PR07 Decision Intelligence\nStakes + Reversibility + Frequency"]
+    RR["PR07 Research Radar Seed\nfrontier_ai_capability watchlist"]
 
     SS -->|"schemas, policies, registries"| OR
     SS -->|"contract exports + validation policy"| EL
     SIG -->|"evidence inputs"| OR
+    SS -->|"planned local-only watchlist seed"| RR
+    RR -->|"candidate evidence and downgrade recommendations only"| DEC
     SS -->|"planned PR07 decision/stakes policy"| DEC
     DEC -->|"planned escalation sensitivity inputs"| OR
     OR -->|"opportunity, scorecard, autonomy decision, harness plan, task packet"| EL
@@ -106,7 +111,7 @@ sequenceDiagram
 - Date: 2026-05-06
 - Changed by: Codex
 - What changed: Added Phase 2 Innovation Autonomy + Harness authority surfaces and reserved PR07 for Decision Intelligence, Stakes Model, and local-only Research Radar seeding.
-- Objects added: autonomy decision records, assumption watch records, harness plans, Codex task packets, research request/brief objects, incident analogies, opportunity scorecards, idea objects. Planned PR07 objects include decision models, stakes profiles, reversibility/decision contexts, escalation records, Research Radar items, watchlists, and briefs.
+- Objects added: autonomy decision records, assumption watch records, harness plans, Codex task packets, research request/brief objects, incident analogies, opportunity scorecards, idea objects. Planned PR07 objects include decision models, stakes profiles, reversibility/decision contexts, escalation records, Research Radar items, watchlists, and briefs. Initial planned watchlist seed: `research-radar-frontier-ai-001`.
 - Repos affected: control-plane repo only in PR01.
 - Risk color: yellow governance/schema change; human review required before treating new authority as stable canon.
 - Harness level: H2 local schema/policy update plus validation.

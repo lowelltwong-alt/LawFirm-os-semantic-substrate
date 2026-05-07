@@ -106,3 +106,24 @@ Research Radar PR07 boundaries:
 - Research Radar outputs are candidate evidence and decision support only.
 - Research Radar may recommend green-to-yellow or green-to-red reclassification.
 - Research Radar may not restore green or promote canon.
+
+Initial local-only Research Radar watchlist seed:
+
+```json
+{
+  "watchlist_id": "research-radar-frontier-ai-001",
+  "topic": "frontier_ai_capability",
+  "why_it_matters": "May change harness intensity, autonomy assumptions, and feasible iteration cadence.",
+  "affected_os_surfaces": [
+    "harness-policy-registry",
+    "autonomy-lane-registry",
+    "green-lane-watch-policy",
+    "codex-task-generation"
+  ],
+  "default_action": "create_research_radar_item",
+  "may_downgrade_green_lanes": true,
+  "human_required_for_green_restoration": true
+}
+```
+
+This seed is roadmap evidence only until PR07 creates the schema and local object builders. It must not trigger crawling, scheduled jobs, live model calls, external API calls, external writes, or autonomous research execution.
