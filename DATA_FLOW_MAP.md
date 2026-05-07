@@ -4,6 +4,8 @@
 
 This repo is the LawFirm OS control-plane authority surface. It owns Phase 2 schemas, registries, red/yellow/green policy, harness policy, green-lane assumptions, and promotion boundaries.
 
+Canonical machine name: `LawFirm-os-semantic-substrate`. Sibling runtime repos (`LawFirm-os-orchestrator` execution plane and `exceptions-lake-runtime-main` evidence plane) and authority order across repos are defined in `governance/CROSS_REPO_MAP.md`.
+
 Runtime repos consume these contracts. They do not mutate canon.
 
 PR07 roadmap extension: decision intelligence will add stakes profiles, reversibility scoring, decision escalation records, and local-only Research Radar watchlists/briefs. These outputs remain candidate evidence and decision support only. Research Radar may recommend green-to-yellow or green-to-red downgrades, but may not restore green or promote canon.

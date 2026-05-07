@@ -1,5 +1,7 @@
 # LawFirm OS Semantic Substrate
 
+Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm OS Semantic Substrate. Sibling repos and authority order across repos are defined in `governance/CROSS_REPO_MAP.md`.
+
 Law Firm is the semantic-governance substrate and Innovation OS contract repository for this project.
 
 It is the canonical home for machine-readable meaning, evidence structure, change policy, and governed operating contracts. It is not a production runtime, a system-of-record deployment, or the canonical store for embeddings, indexes, OCR model specifics, GraphRAG summaries, or answer caches.

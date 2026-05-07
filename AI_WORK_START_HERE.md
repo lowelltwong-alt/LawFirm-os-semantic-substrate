@@ -10,10 +10,12 @@ Before any AI-assisted edit, read:
 2. `AGENTS.md`
 3. `registry/source-of-truth.json`
 4. `registry/design-authority.json`
-5. `governance/AI_CONTROL_PLANE_BOUNDARY.md`
-6. `governance/EXCEPTIONS_LAKE_BOUNDARY.md` when the task touches Exceptions Lake contracts
-7. this file
-8. the selected route template under `docs/governance/ai-workflow/templates/`
+5. `governance/CROSS_REPO_MAP.md` for sibling-repo names and authority order across repos
+6. `governance/AI_CONTROL_PLANE_BOUNDARY.md`
+7. `governance/EXCEPTIONS_LAKE_BOUNDARY.md` when the task touches Exceptions Lake contracts
+8. `governance/ORCHESTRATOR_BOUNDARY.md` when the task touches Orchestrator contracts
+9. this file
+10. the selected route template under `docs/governance/ai-workflow/templates/`
 
 ## Universal work cycle
 

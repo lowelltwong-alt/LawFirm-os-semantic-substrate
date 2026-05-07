@@ -1,5 +1,38 @@
 # Recent Work
 
+## 2026-05-06 — Cross-Repo Coherence Patch 1: source-of-truth Phase 2 Enumeration And Cross-Repo Map
+
+Codex task / PR: Cross-repo coherence fix train Patch 1.
+
+Files changed:
+- Updated `registry/source-of-truth.json` to enumerate Phase 2 registries, governance docs, and grouped schema surfaces. Added `canonical_repo_name`, `human_label`, and `sibling_repos` keys. Added a `phase_2_innovation_autonomy_layer` and `pre_pr07_draft_scaffolds` section to `layer_model`. Inserted Phase 2 entries into `precedence_order`.
+- Added `governance/CROSS_REPO_MAP.md` defining canonical machine names and human labels for the substrate, orchestrator, and evidence-lake repos; plane responsibilities; authority order across repos; pin-and-refresh discipline; and hard prohibitions.
+- Cross-linked the cross-repo map from `README.md`, `AI_WORK_START_HERE.md`, `AI_TABLE_OF_CONTENTS.md`, `DATA_FLOW_MAP.md`, and this file.
+
+Schemas changed:
+- None.
+
+Commands/endpoints changed:
+- None.
+
+Data flow changed:
+- None. Cross-repo identity disambiguation only.
+
+Tests added/updated:
+- None. Existing validation suite re-run.
+
+Risk color:
+- Yellow. Front-door authority surface change requiring human review before broader downstream adoption.
+
+Hardness/harness level:
+- H1 documentation/registry update plus existing validation.
+
+Leverage rationale:
+- Resolves the five-name identity sprawl across repos by naming `LawFirm-os-semantic-substrate` as canonical machine name and `Law Firm OS Semantic Substrate` as canonical human label. Lets PR02–PR06 reference Phase 2 surfaces from a single discoverable index.
+
+Follow-up:
+- Patch 2 will publish `manifests/contract_manifest.v1.json`, `governance/ORCHESTRATOR_BOUNDARY.md`, and `docs/ORCHESTRATION_LAYER_DATA_FLOW.md`.
+
 ## 2026-05-06 — Phase 2 Doc Hygiene: schema/ vs schemas/ Distinction And Pre-PR07 Draft Registry Disclosure
 
 Codex task / PR: Documentation-only hygiene pass on `phase2/pr01-control-plane-schemas-policies`.

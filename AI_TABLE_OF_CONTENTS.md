@@ -2,8 +2,11 @@
 
 This repo is the LawFirm OS control-plane and semantic-substrate authority surface.
 
+Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm OS Semantic Substrate. For sibling-repo names, plane responsibilities, and authority order across repos, see `governance/CROSS_REPO_MAP.md`.
+
 ## Start Here
 
+- `governance/CROSS_REPO_MAP.md`
 - `AI_WORK_START_HERE.md`
 - `AI_START_HERE.md`
 - `AGENTS.md`
