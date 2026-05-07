@@ -43,12 +43,14 @@ Runtime implementations may consume these contracts, but they must not redefine 
 
 For Phase 2 Innovation Autonomy + Harness work:
 
+- `schemas/` (plural) is the canonical machine-readable JSON Schema authority layer. All new Phase 2 machine-readable schemas go under `schemas/` unless a future compatibility-preserving governance change says otherwise.
+- `schema/` (singular) is a legacy / Phase 1 / draft doctrinal-comparison substrate. It does **not** replace `schemas/` and is non-canonical for Phase 2 work. Do not author new Phase 2 schemas there. Any future migration or renaming of `schema/` must be a separate compatibility-preserving cleanup PR.
 - Existing root-level Innovation OS schemas remain at `schemas/*.schema.json`.
 - New autonomy schemas live under `schemas/autonomy/`.
 - New harness schemas live under `schemas/harness/`.
 - New local-only research lifecycle schemas live under `schemas/research/`.
 - New Innovation OS objects that did not already exist at root live under `schemas/innovation/`.
-- Registry discovery lives under `registry/`; do not create a parallel `registries/` root.
+- `registry/` is the canonical discovery surface for schema and governance references; do not create a parallel `registries/` root.
 
 Start Phase 2 control-plane work from:
 
@@ -68,7 +70,9 @@ Do not duplicate an existing root schema into a grouped folder unless a compatib
 
 PR07 is reserved for Decision Intelligence, Stakes Model, and Research Radar Seeding. Do not pull PR07 work into PR01-PR06 unless a small compatibility hook is required. PR07 is still local-only: no live crawling, scheduled jobs, model calls, external APIs, external writes, autonomous research execution, or production research automation.
 
-The roadmap names `research-radar-frontier-ai-001` as the initial planned local-only Research Radar watchlist seed. Treat it as roadmap evidence only until PR07 creates a schema and local object builder.
+The roadmap names `research-radar-frontier-ai-001` as the initial detailed local-only Research Radar watchlist seed and reserves an expanded PR07 topic set. Treat all PR07 watchlist seeds as roadmap evidence only until PR07 creates schemas and local object builders.
+
+`registry/research-radar-source-registry.json` already exists as **pre-PR07 draft scaffolding**. It is metadata-only and non-authorizing. It does not authorize live crawling, scheduled jobs, model calls, external APIs, external writes, or production research automation. PR07 may later formalize, supersede, or reconcile it. Research Radar outputs are candidate evidence only; they may recommend green-to-yellow or green-to-red downgrades, but may not restore green or promote canon.
 
 ## AI interaction audit principle
 

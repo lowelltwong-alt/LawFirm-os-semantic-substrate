@@ -1,6 +1,9 @@
 {
   "registry_scope": "orchestrator_external_discovery_sources_draft",
   "status": "draft_metadata_only",
+  "phase": "pre-pr07-draft",
+  "non_authoritative": true,
+  "boundary_note": "Pre-PR07 draft scaffolding. Metadata-only and non-authorizing. Does not authorize live crawling, scheduled jobs, model calls, external APIs, external writes, or production research automation. PR07 may later formalize, supersede, or reconcile this draft. Research Radar outputs are candidate evidence only; they may recommend green-to-yellow or green-to-red downgrades, but may not restore green or promote canon.",
   "owner": "semantic-control-plane",
   "purpose": "Define source classes for research-radar discovery. Sources are method evidence only and do not authorize direct code, contract, or policy mutation.",
   "sources": [

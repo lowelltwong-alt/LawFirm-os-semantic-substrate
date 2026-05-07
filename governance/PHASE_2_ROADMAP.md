@@ -107,7 +107,11 @@ Research Radar PR07 boundaries:
 - Research Radar may recommend green-to-yellow or green-to-red reclassification.
 - Research Radar may not restore green or promote canon.
 
-Initial local-only Research Radar watchlist seed:
+Pre-PR07 draft scaffolding already in the repository:
+
+- `registry/research-radar-source-registry.json` exists as pre-PR07 draft scaffolding. It is metadata-only and non-authorizing, marked `non_authoritative: true` and `phase: "pre-pr07-draft"`. It does not authorize live crawling, scheduled jobs, model calls, external APIs, external writes, or production research automation. PR07 may later formalize, supersede, or reconcile it.
+
+Initial local-only Research Radar watchlist seed set:
 
 ```json
 {
@@ -126,4 +130,21 @@ Initial local-only Research Radar watchlist seed:
 }
 ```
 
-This seed is roadmap evidence only until PR07 creates the schema and local object builders. It must not trigger crawling, scheduled jobs, live model calls, external API calls, external writes, or autonomous research execution.
+Additional seed topics reserved for PR07:
+
+```text
+frontier_math_algorithmic_breakthrough
+agent_failure_incident
+ai_security_prompt_injection
+legal_ai_ethics_guidance
+model_provider_policy_change
+coding_agent_harness_design
+retrieval_eval_rag_quality
+workflow_orchestration_patterns
+decision_science_and_risk
+creativity_with_ai
+law_firm_reputation_risk
+billing_guideline_and_carrier_changes
+```
+
+The detailed `research-radar-frontier-ai-001` item and the additional topics are roadmap evidence only until PR07 creates schemas and local object builders. They must not trigger crawling, scheduled jobs, live model calls, external API calls, external writes, or autonomous research execution.

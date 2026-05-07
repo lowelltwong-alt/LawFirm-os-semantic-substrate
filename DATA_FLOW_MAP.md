@@ -6,9 +6,18 @@ This repo is the LawFirm OS control-plane authority surface. It owns Phase 2 sch
 
 Runtime repos consume these contracts. They do not mutate canon.
 
-PR07 roadmap extension: decision intelligence will add stakes profiles, reversibility scoring, decision escalation records, and local-only Research Radar watchlists/briefs. These outputs remain candidate evidence and decision support only.
+PR07 roadmap extension: decision intelligence will add stakes profiles, reversibility scoring, decision escalation records, and local-only Research Radar watchlists/briefs. These outputs remain candidate evidence and decision support only. Research Radar may recommend green-to-yellow or green-to-red downgrades, but may not restore green or promote canon.
 
-Initial PR07 watchlist seed: `research-radar-frontier-ai-001` tracks frontier AI capability signals that may affect harness policy, autonomy lanes, green-lane assumptions, and Codex task generation. It is roadmap-only until PR07 implementation.
+Initial PR07 watchlist seed set: `research-radar-frontier-ai-001` tracks frontier AI capability signals, and the roadmap reserves related topics for math breakthroughs, agent failures, prompt injection, legal AI ethics, model policy changes, harness design, RAG quality, orchestration patterns, decision science, creativity with AI, law-firm reputation risk, and billing/carrier changes. The set is roadmap-only until PR07 implementation.
+
+## Pre-PR07 Draft Scaffolds (non-canonical)
+
+These artifacts already exist in the repository and are explicitly outside Phase 2 canonical authority:
+
+- `registry/research-radar-source-registry.json` — pre-PR07 draft source-class scaffold. Marked `non_authoritative: true` and `phase: "pre-pr07-draft"`. Metadata-only and non-authorizing. Does not authorize live crawling, scheduled jobs, model calls, external APIs, external writes, or production research automation. PR07 may later formalize, supersede, or reconcile it.
+- `schema/` (singular) — legacy Phase 1 doctrinal-comparison substrate. Does not replace the canonical `schemas/` JSON Schema authority layer. Any future migration or renaming of `schema/` must be a separate compatibility-preserving cleanup PR.
+
+`schemas/` (plural) remains the canonical machine-readable JSON Schema authority layer for Phase 2. `registry/` is the canonical discovery surface for schema and governance references.
 
 ## Current Object Flow
 
@@ -36,7 +45,7 @@ flowchart LR
     HUM["Human Governance\nGreen Restoration + Promotion"]
     SIG["Signals\nExceptions + Research + Ideas"]
     DEC["PR07 Decision Intelligence\nStakes + Reversibility + Frequency"]
-    RR["PR07 Research Radar Seed\nfrontier_ai_capability watchlist"]
+    RR["PR07 Research Radar Seeds\nlocal-only watchlist topics"]
 
     SS -->|"schemas, policies, registries"| OR
     SS -->|"contract exports + validation policy"| EL
@@ -111,7 +120,7 @@ sequenceDiagram
 - Date: 2026-05-06
 - Changed by: Codex
 - What changed: Added Phase 2 Innovation Autonomy + Harness authority surfaces and reserved PR07 for Decision Intelligence, Stakes Model, and local-only Research Radar seeding.
-- Objects added: autonomy decision records, assumption watch records, harness plans, Codex task packets, research request/brief objects, incident analogies, opportunity scorecards, idea objects. Planned PR07 objects include decision models, stakes profiles, reversibility/decision contexts, escalation records, Research Radar items, watchlists, and briefs. Initial planned watchlist seed: `research-radar-frontier-ai-001`.
+- Objects added: autonomy decision records, assumption watch records, harness plans, Codex task packets, research request/brief objects, incident analogies, opportunity scorecards, idea objects. Planned PR07 objects include decision models, stakes profiles, reversibility/decision contexts, escalation records, Research Radar items, watchlists, and briefs. Initial planned watchlist seed set: `research-radar-frontier-ai-001` plus reserved PR07 topic seeds.
 - Repos affected: control-plane repo only in PR01.
 - Risk color: yellow governance/schema change; human review required before treating new authority as stable canon.
 - Harness level: H2 local schema/policy update plus validation.

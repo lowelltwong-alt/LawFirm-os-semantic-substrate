@@ -45,15 +45,27 @@ This repo is the LawFirm OS control-plane and semantic-substrate authority surfa
 - Future decision registries: `registry/decision-model-registry.json`, `registry/stakes-profile-registry.json`
 - Future Research Radar registry: `registry/research-radar-registry.json`
 - Future governance docs: `governance/DECISION_INTELLIGENCE_MODEL.md`, `governance/STAKES_AND_REVERSIBILITY_POLICY.md`, `governance/RESEARCH_RADAR_OPERATING_MODEL.md`
-- Initial local-only watchlist seed: `research-radar-frontier-ai-001` in `governance/PHASE_2_ROADMAP.md`
+- Initial local-only watchlist seed set: `research-radar-frontier-ai-001` plus reserved PR07 seed topics in `governance/PHASE_2_ROADMAP.md`
 
 ## Schema Locations
 
+- `schemas/` is the canonical machine-readable JSON Schema authority layer.
+- `schema/` (singular) is a legacy / Phase 1 / draft doctrinal-comparison substrate. It does **not** replace `schemas/` and is non-canonical for Phase 2 work. Any future migration or renaming of `schema/` must be a separate compatibility-preserving cleanup PR.
+- New Phase 2 machine-readable schemas go under `schemas/` unless a future compatibility-preserving governance change says otherwise.
+- `registry/` is the canonical discovery surface for schema and governance references.
 - Existing Innovation OS schemas: `schemas/*.schema.json`
 - New Phase 2 autonomy schemas: `schemas/autonomy/`
 - New Phase 2 harness schemas: `schemas/harness/`
 - New Phase 2 research lifecycle schemas: `schemas/research/`
 - New Phase 2-only innovation schemas: `schemas/innovation/`
+- Legacy Phase 1 doctrinal-comparison substrate (draft, non-canonical): `schema/` (`schema/manifest.yaml`, `schema/interfaces/`, `schema/types/`, `schema/enums/`, `schema/contracts/`, `schema/invariants/`).
+
+## Pre-PR07 Draft Scaffolds (non-canonical)
+
+These artifacts already exist in the repository as pre-PR07 draft scaffolding. They are metadata-only and non-authorizing. They do not authorize live crawling, scheduled jobs, model calls, external APIs, external writes, or production research automation. PR07 may later formalize, supersede, or reconcile them.
+
+- `registry/research-radar-source-registry.json` — pre-PR07 draft source-class scaffold for Research Radar discovery. Marked `non_authoritative: true` and `phase: "pre-pr07-draft"`.
+- `schema/` (singular) — Phase 1 doctrinal-comparison draft substrate (see Schema Locations).
 
 ## Front Doors
 

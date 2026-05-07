@@ -35,6 +35,10 @@ Reversibility controls autonomy.
 Frequency controls compounding value.
 ```
 
+`schemas/` (plural) is the canonical machine-readable JSON Schema authority layer. New Phase 2 machine-readable schemas go under `schemas/` unless a future compatibility-preserving governance change says otherwise. `registry/` is the canonical discovery surface for schema and governance references.
+
+A separate `schema/` (singular) directory exists as a legacy / Phase 1 / draft doctrinal-comparison substrate. It does **not** replace `schemas/` and is non-canonical for Phase 2 work. Any future migration or renaming of `schema/` must be a separate compatibility-preserving cleanup PR.
+
 Existing root-level Innovation OS schemas remain in place for backward compatibility and remain discoverable through `registry/schema-registry.json` and `registry/innovation-object-registry.json`. New Phase 2 schema families are grouped by concern:
 
 - `schemas/autonomy/` for red/yellow/green lane, assumption watch, reclassification, and restoration records.
@@ -57,7 +61,9 @@ See:
 
 Roadmap note: PR07 is reserved for Decision Intelligence, Stakes Model, and Research Radar Seeding. It is local-only and schema-first. It must not add live web crawling, scheduled jobs, model calls, external APIs, external writes, autonomous research execution, or production research automation.
 
-The first planned PR07 Research Radar watchlist seed is `research-radar-frontier-ai-001` for `frontier_ai_capability`. It is roadmap evidence only until PR07 adds schemas and local object builders.
+The first planned PR07 Research Radar watchlist seed is `research-radar-frontier-ai-001` for `frontier_ai_capability`. The roadmap also reserves additional local-only seed topics for math breakthroughs, agent failures, prompt injection, legal AI ethics, model provider policy changes, harness design, RAG quality, workflow orchestration, decision science, creativity with AI, law-firm reputation risk, and billing/carrier changes. These are roadmap evidence only until PR07 adds schemas and local object builders.
+
+`registry/research-radar-source-registry.json` already exists as pre-PR07 draft scaffolding. It is metadata-only and non-authorizing, and does not authorize live crawling, scheduled jobs, model calls, external APIs, external writes, or production research automation. PR07 may later formalize, supersede, or reconcile it.
 
 ## Mutation Boundary
 
