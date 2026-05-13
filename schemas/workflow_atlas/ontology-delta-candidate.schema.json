@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/workflow_atlas/ontology-delta-candidate.schema.json",
+  "title": "Ontology Delta Candidate",
+  "description": "Candidate concepts, relationships, and synonyms extracted from workflow intake. Must not promote itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ontology_delta_candidate_id", "schema_type", "schema_version", "source_workflow_fragment_id", "candidate_concepts", "candidate_relationships", "promotion_allowed", "human_review_required"],
+  "properties": {
+    "ontology_delta_candidate_id": {"type": "string"},
+    "schema_type": {"const": "ontology-delta-candidate"},
+    "schema_version": {"const": "v1"},
+    "source_workflow_fragment_id": {"type": "string"},
+    "candidate_concepts": {"type": "array", "items": {"type": "object"}},
+    "candidate_relationships": {"type": "array", "items": {"type": "object"}},
+    "promotion_allowed": {"const": false},
+    "human_review_required": {"const": true}
+  }
+}

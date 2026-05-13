@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/workflow_atlas/workflow-integrity-report.schema.json",
+  "title": "Workflow Integrity Report",
+  "description": "Evidence-quality and contradiction report for Workflow Atlas candidate maps.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["integrity_report_id", "schema_type", "schema_version", "workflow_fragment_id", "source_count", "same_job_role_source_count", "source_diversity_score", "contradiction_count", "confidence_score", "findings", "recommended_integrity_action"],
+  "properties": {
+    "integrity_report_id": {"type": "string"},
+    "schema_type": {"const": "workflow-integrity-report"},
+    "schema_version": {"const": "v1"},
+    "workflow_fragment_id": {"type": "string"},
+    "source_count": {"type": "integer", "minimum": 0},
+    "same_job_role_source_count": {"type": "integer", "minimum": 0},
+    "source_diversity_score": {"type": "number", "minimum": 0, "maximum": 1},
+    "contradiction_count": {"type": "integer", "minimum": 0},
+    "confidence_score": {"type": "number", "minimum": 0, "maximum": 1},
+    "findings": {"type": "array", "items": {"type": "object"}},
+    "recommended_integrity_action": {"type": "string"}
+  }
+}

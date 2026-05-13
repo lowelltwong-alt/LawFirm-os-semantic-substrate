@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/workflow_atlas/workflow-fragment.schema.json",
+  "title": "Workflow Fragment Candidate",
+  "description": "Candidate workflow puzzle piece discovered by Workflow Atlas. Candidate-only until reviewed and promoted.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["workflow_fragment_id", "schema_type", "schema_version", "title", "status", "source_intake_ids", "trigger", "steps", "authority_boundary"],
+  "properties": {
+    "workflow_fragment_id": {"type": "string", "pattern": "^wf_frag_[a-f0-9]+$"},
+    "schema_type": {"const": "workflow-fragment"},
+    "schema_version": {"const": "v1"},
+    "title": {"type": "string", "minLength": 3},
+    "status": {"enum": ["draft", "corrected", "reviewed", "approved_candidate", "canonicalized", "superseded"]},
+    "source_intake_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "trigger": {"type": "string"},
+    "roles": {"type": "array", "items": {"type": "string"}},
+    "systems": {"type": "array", "items": {"type": "string"}},
+    "artifacts": {"type": "array", "items": {"type": "string"}},
+    "steps": {"type": "array", "items": {"type": "object"}},
+    "decision_points": {"type": "array", "items": {"type": "object"}},
+    "exception_points": {"type": "array", "items": {"type": "object"}},
+    "handoffs": {"type": "array", "items": {"type": "string"}},
+    "metrics_affected": {"type": "array", "items": {"type": "string"}},
+    "open_questions": {"type": "array", "items": {"type": "string"}},
+    "confidence": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}},
+    "human_review_required": {"type": "boolean"},
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_only", "no_canonical_mutation", "human_review_required"],
+      "properties": {
+        "candidate_only": {"const": true},
+        "no_canonical_mutation": {"const": true},
+        "human_review_required": {"const": true}
+      }
+    }
+  }
+}

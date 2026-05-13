@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/workflow_atlas/workflow-correction-event.schema.json",
+  "title": "Workflow Correction Event",
+  "description": "Append-only correction to a candidate workflow diagram or fragment.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["correction_event_id", "workflow_fragment_id", "correction_type", "before", "after", "created_at", "authority_boundary"],
+  "properties": {
+    "correction_event_id": {"type": "string"},
+    "workflow_fragment_id": {"type": "string"},
+    "source_role": {"type": "string"},
+    "correction_type": {"enum": ["step_order", "missing_step", "missing_actor", "wrong_actor", "wrong_system", "wrong_artifact", "exception_branch", "terminology", "impact", "frequency", "evidence"]},
+    "before": {},
+    "after": {},
+    "requires_ontology_review": {"type": "boolean"},
+    "created_at": {"type": "string"},
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["append_only", "candidate_only", "no_canonical_mutation"],
+      "properties": {
+        "append_only": {"const": true},
+        "candidate_only": {"const": true},
+        "no_canonical_mutation": {"const": true}
+      }
+    }
+  }
+}

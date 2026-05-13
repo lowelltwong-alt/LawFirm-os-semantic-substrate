@@ -1,0 +1,16 @@
+{
+  "registry_scope": "workflow_atlas_candidate_objects",
+  "status": "draft_metadata_only",
+  "objects": [
+    {"schema_key": "workflow-fragment-v1", "path": "schemas/workflow_atlas/workflow-fragment.schema.json", "authority": "candidate_only"},
+    {"schema_key": "workflow-correction-event-v1", "path": "schemas/workflow_atlas/workflow-correction-event.schema.json", "authority": "append_only_candidate"},
+    {"schema_key": "ontology-delta-candidate-v1", "path": "schemas/workflow_atlas/ontology-delta-candidate.schema.json", "authority": "candidate_only"},
+    {"schema_key": "workflow-integrity-report-v1", "path": "schemas/workflow_atlas/workflow-integrity-report.schema.json", "authority": "evidence_quality_only"}
+  ],
+  "global_controls": {
+    "workflow_atlas_may_emit_candidates": true,
+    "workflow_atlas_may_mutate_canon": false,
+    "promotion_decision_required_for_canonical_change": true,
+    "raw_transcript_storage_in_exception_lake_allowed": false
+  }
+}
