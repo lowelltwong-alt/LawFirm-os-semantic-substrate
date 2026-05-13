@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "version": "0.1.0",
+  "name": "Active Custom Threat Rules",
+  "description": "Approved active custom threat-rule extension point for governed skill intake. The initial rule set is intentionally empty until candidate rules pass schema, regex safety, and human approval gates.",
+  "source": "LawFirm OS Semantic Substrate",
+  "rules": []
+}
