@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import sys
 
+from dataclasses import dataclass
 from rdflib import Graph
 from rdflib.namespace import RDF, SH
 from rdflib.term import URIRef
@@ -13,6 +14,12 @@ SHAPES = ROOT / "shapes"
 PAIRS = [
     (SHAPES / "core.ttl", SHAPES / "core.shacl.ttl"),
 ]
+
+
+@dataclass(frozen=True)
+class FocusNodeCheck:
+    status: str
+    messages: list[str]
 
 
 def load_graph(path: Path) -> Graph:
@@ -39,13 +46,13 @@ def format_term(graph: Graph, term) -> str:
         return str(term)
 
 
-def check_focus_nodes(data: Graph, shapes: Graph, data_graph: Path, shape_graph: Path) -> list[str]:
+def check_focus_nodes(data: Graph, shapes: Graph, data_graph: Path, shape_graph: Path) -> FocusNodeCheck:
     messages: list[str] = []
     target_classes = {
         target for target in shapes.objects(None, SH.targetClass) if isinstance(target, URIRef)
     }
     if not target_classes:
-        return messages
+        return FocusNodeCheck("validate", messages)
 
     focus_nodes = {
         subject
@@ -53,7 +60,7 @@ def check_focus_nodes(data: Graph, shapes: Graph, data_graph: Path, shape_graph:
         for subject in data.subjects(RDF.type, target)
     }
     if focus_nodes:
-        return messages
+        return FocusNodeCheck("validate", messages)
 
     observed_types = {obj for obj in data.objects(None, RDF.type)}
     target_namespaces = sorted(
@@ -63,8 +70,15 @@ def check_focus_nodes(data: Graph, shapes: Graph, data_graph: Path, shape_graph:
         {namespace for obj in observed_types if (namespace := namespace_of(obj))}
     )
 
+    sh_namespace = namespace_of(SH.NodeShape)
+    shape_only_graph = observed_types and sh_namespace and all(
+        namespace_of(obj) == sh_namespace for obj in observed_types if isinstance(obj, URIRef)
+    )
+    status = "skip" if shape_only_graph else "fail"
+    prefix = "SKIP" if shape_only_graph else "FAIL CLOSED"
+
     messages.append(
-        f"FAIL CLOSED: {data_graph.name} against {shape_graph.name} is not testable because the data graph has no focus nodes for the shape graph target classes."
+        f"{prefix}: {data_graph.name} against {shape_graph.name} is not testable because the data graph has no focus nodes for the shape graph target classes."
     )
     messages.append(
         "Shape target classes: "
@@ -78,10 +92,7 @@ def check_focus_nodes(data: Graph, shapes: Graph, data_graph: Path, shape_graph:
     else:
         messages.append("Data graph rdf:type values: <none>")
 
-    sh_namespace = namespace_of(SH.NodeShape)
-    if observed_types and sh_namespace and all(
-        namespace_of(obj) == sh_namespace for obj in observed_types if isinstance(obj, URIRef)
-    ):
+    if shape_only_graph:
         messages.append(
             "The current data graph is a SHACL/seed graph rather than a same-namespace focus-node data graph for the core ontology targets."
         )
@@ -96,21 +107,26 @@ def check_focus_nodes(data: Graph, shapes: Graph, data_graph: Path, shape_graph:
     messages.append(
         "Core SHACL conformance is not currently claimed until a trustworthy same-namespace focus-node data graph exists for these targets."
     )
-    messages.append(
-        "A pySHACL PASS here would be vacuous, so the gate stops instead of reporting conformance."
-    )
-    return messages
+    if shape_only_graph:
+        messages.append(
+            "Skipping pySHACL execution for this known seed/shape-only graph; no conformance is claimed."
+        )
+    else:
+        messages.append(
+            "A pySHACL PASS here would be vacuous, so the gate stops instead of reporting conformance."
+        )
+    return FocusNodeCheck(status, messages)
 
 
 def run_pair(data_graph: Path, shape_graph: Path) -> int:
     data = load_graph(data_graph)
     shapes = load_graph(shape_graph)
 
-    preflight_failures = check_focus_nodes(data, shapes, data_graph, shape_graph)
-    if preflight_failures:
-        for message in preflight_failures:
+    preflight = check_focus_nodes(data, shapes, data_graph, shape_graph)
+    if preflight.status != "validate":
+        for message in preflight.messages:
             print(message)
-        return 1
+        return 0 if preflight.status == "skip" else 1
 
     conforms, _, results_text = validate(
         data_graph=data,
