@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/legal-corpus-access-policy.schema.json",
+  "title": "LawFirm OS Legal Corpus Access Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_type",
+    "schema_version",
+    "access_policy_ref",
+    "scope",
+    "default_decision",
+    "rules",
+    "created_at"
+  ],
+  "properties": {
+    "schema_type": {
+      "const": "legal-corpus-access-policy"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "access_policy_ref": {
+      "type": "string",
+      "minLength": 3
+    },
+    "scope": {
+      "enum": [
+        "synthetic",
+        "matter",
+        "client",
+        "firm",
+        "public"
+      ]
+    },
+    "default_decision": {
+      "enum": [
+        "deny",
+        "allow_synthetic_only",
+        "allow"
+      ]
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/legal-retrieval-trace.schema.json",
+  "title": "LawFirm OS Legal Retrieval Trace",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_type",
+    "schema_version",
+    "retrieval_trace_id",
+    "run_id",
+    "retrieval_plan_id",
+    "retrievers_used",
+    "source_manifest_refs",
+    "access_policy_ref",
+    "result_span_refs",
+    "created_at"
+  ],
+  "properties": {
+    "schema_type": {
+      "const": "legal-retrieval-trace"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "retrieval_trace_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "retrieval_plan_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "retrievers_used": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "metadata",
+          "lexical",
+          "document_tree",
+          "vector",
+          "graph",
+          "compiled_bundle"
+        ]
+      }
+    },
+    "source_manifest_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "access_policy_ref": {
+      "type": "string"
+    },
+    "result_span_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "omitted_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

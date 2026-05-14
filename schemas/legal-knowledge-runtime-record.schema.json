@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/legal-knowledge-runtime-record.schema.json",
+  "title": "LawFirm OS Legal Knowledge Runtime Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_type",
+    "schema_version",
+    "record_id",
+    "run_id",
+    "trace_id",
+    "operation",
+    "status",
+    "synthetic",
+    "created_at"
+  ],
+  "properties": {
+    "schema_type": {
+      "const": "legal-knowledge-runtime-record"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "record_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "operation": {
+      "enum": [
+        "ingest_preflight",
+        "parse_structure",
+        "build_index",
+        "plan_retrieval",
+        "assemble_bundle",
+        "quality_eval"
+      ]
+    },
+    "status": {
+      "enum": [
+        "started",
+        "success",
+        "blocked",
+        "failed",
+        "needs_review"
+      ]
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "artifact_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

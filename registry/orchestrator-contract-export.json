@@ -24,7 +24,9 @@
     "governance/CROSS_REPO_MAP.md",
     "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
     "governance/ORCHESTRATOR_BOUNDARY.md",
-    "governance/AI_CONTROL_PLANE_BOUNDARY.md"
+    "governance/AI_CONTROL_PLANE_BOUNDARY.md",
+    "registry/legal-knowledge-runtime-contract-export.json",
+    "governance/LEGAL_KNOWLEDGE_RUNTIME_BOUNDARY.md"
   ],
   "draft_schema_keys": [
     "evidence-packet-v1",
@@ -32,20 +34,36 @@
     "tool-call-trace-v1",
     "human-approval-record-v1",
     "discovery-signal-v1",
-    "upgrade-proposal-v1"
+    "upgrade-proposal-v1",
+    "legal-document-ingestion-manifest-v1",
+    "legal-document-node-v1",
+    "legal-document-span-ref-v1",
+    "legal-retrieval-plan-v1",
+    "legal-context-bundle-v1",
+    "legal-retrieval-trace-v1",
+    "legal-corpus-access-policy-v1",
+    "legal-knowledge-runtime-record-v1"
   ],
   "draft_registries": [
     "registry/model-policy-registry.json",
     "registry/tool-authority-registry.json",
     "registry/human-approval-registry.json",
-    "registry/research-radar-source-registry.json"
+    "registry/research-radar-source-registry.json",
+    "registry/legal-knowledge-runtime-contract-export.json",
+    "registry/legal-document-type-registry.json",
+    "registry/legal-index-profile-registry.json",
+    "registry/legal-context-bundle-registry.json",
+    "registry/legal-retrieval-agent-registry.json"
   ],
   "required_docs": [
     "governance/CROSS_REPO_MAP.md",
     "governance/ORCHESTRATOR_BOUNDARY.md",
     "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
     "governance/AI_CONTROL_PLANE_BOUNDARY.md",
-    "docs/ORCHESTRATION_LAYER_DATA_FLOW.md"
+    "docs/ORCHESTRATION_LAYER_DATA_FLOW.md",
+    "governance/LEGAL_KNOWLEDGE_RUNTIME_BOUNDARY.md",
+    "governance/LEGAL_DOCUMENT_INGESTION_BOUNDARY.md",
+    "governance/LEGAL_CONTEXT_BUNDLE_DOCTRINE.md"
   ],
   "export_version": "draft-v1",
   "last_reviewed_source": "main"

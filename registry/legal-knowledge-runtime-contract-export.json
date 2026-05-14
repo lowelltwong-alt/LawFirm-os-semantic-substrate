@@ -1,0 +1,41 @@
+{
+  "contract_name": "lawfirm-os-legal-knowledge-runtime-contract-export",
+  "contract_status": "draft_metadata_only",
+  "canonical_repo_name": "LawFirm-os-semantic-substrate",
+  "runtime_repo_name": "LawFirm-os-legal-knowledge-runtime",
+  "authority_rule": "The Legal Knowledge Runtime may ingest, parse, index, retrieve, and assemble legal context bundles, but it may not define canonical legal meaning, alter route authority, or promote runtime evidence into the Semantic Substrate.",
+  "primary_runtime_boundary": "governance/LEGAL_KNOWLEDGE_RUNTIME_BOUNDARY.md",
+  "schemas": [
+    "schemas/legal-document-ingestion-manifest.schema.json",
+    "schemas/legal-document-node.schema.json",
+    "schemas/legal-document-span-ref.schema.json",
+    "schemas/legal-retrieval-plan.schema.json",
+    "schemas/legal-context-bundle.schema.json",
+    "schemas/legal-retrieval-trace.schema.json",
+    "schemas/legal-corpus-access-policy.schema.json",
+    "schemas/legal-knowledge-runtime-record.schema.json"
+  ],
+  "registries": [
+    "registry/legal-document-type-registry.json",
+    "registry/legal-index-profile-registry.json",
+    "registry/legal-context-bundle-registry.json",
+    "registry/legal-retrieval-agent-registry.json"
+  ],
+  "allowed_runtime_outputs": [
+    "legal-document-ingestion-manifest validation result",
+    "legal-retrieval-plan",
+    "legal-context-bundle",
+    "legal-retrieval-trace",
+    "legal-knowledge-runtime-record",
+    "candidate-only improvement signal"
+  ],
+  "forbidden_runtime_outputs": [
+    "canonical schema mutation",
+    "route_id mutation",
+    "event_class mutation",
+    "full raw real-client document payload to Exception Lake",
+    "promotion decision",
+    "production connector authorization"
+  ],
+  "export_version": "draft-v1"
+}

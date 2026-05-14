@@ -1,0 +1,47 @@
+{
+  "registry_scope": "legal_retrieval_agents_draft",
+  "status": "draft_metadata_only",
+  "owner": "semantic-control-plane",
+  "global_controls": {
+    "agents_are_bounded_tools_not_semantic_authorities": true,
+    "dynamic_agent_creation_in_production": false,
+    "agent_outputs_require_schema_validation": true
+  },
+  "agents": [
+    {
+      "agent_id": "legal_knowledge_runtime_manager.v1",
+      "role": "selects retrieval plan and coordinates bounded legal knowledge tools",
+      "authority": "execution_only"
+    },
+    {
+      "agent_id": "ingestion_preflight_agent.v1",
+      "role": "validates ingestion manifests and privilege/access metadata before indexing",
+      "authority": "proposal_only"
+    },
+    {
+      "agent_id": "document_structure_agent.v1",
+      "role": "builds document trees, span refs, definition maps, schedules, tables, and citation surfaces",
+      "authority": "proposal_only"
+    },
+    {
+      "agent_id": "retrieval_planner_agent.v1",
+      "role": "selects metadata, lexical, document tree, vector, graph, or compiled bundle primitives",
+      "authority": "proposal_only"
+    },
+    {
+      "agent_id": "context_bundle_agent.v1",
+      "role": "assembles legal context bundles from validated span refs and traces",
+      "authority": "proposal_only"
+    },
+    {
+      "agent_id": "privilege_boundary_agent.v1",
+      "role": "checks access labels, matter scope, privilege labels, and claim-check boundaries",
+      "authority": "gate_advisory_only"
+    },
+    {
+      "agent_id": "retrieval_quality_eval_agent.v1",
+      "role": "evaluates retrieval completeness, citation grounding, leakage risk, and bundle sufficiency",
+      "authority": "proposal_only"
+    }
+  ]
+}

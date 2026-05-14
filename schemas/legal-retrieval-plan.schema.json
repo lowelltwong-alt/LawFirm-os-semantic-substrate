@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/legal-retrieval-plan.schema.json",
+  "title": "LawFirm OS Legal Retrieval Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_type",
+    "schema_version",
+    "retrieval_plan_id",
+    "task_type",
+    "bundle_type",
+    "retrieval_primitives",
+    "access_policy_ref",
+    "created_at"
+  ],
+  "properties": {
+    "schema_type": {
+      "const": "legal-retrieval-plan"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "retrieval_plan_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "task_type": {
+      "enum": [
+        "contract_review",
+        "litigation_research",
+        "discovery_response",
+        "billing_guideline_check",
+        "matter_intake",
+        "general_legal_search"
+      ]
+    },
+    "bundle_type": {
+      "type": "string",
+      "minLength": 3
+    },
+    "query_text_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "retrieval_primitives": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "metadata",
+          "lexical",
+          "document_tree",
+          "vector",
+          "graph",
+          "compiled_bundle"
+        ]
+      }
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "access_policy_ref": {
+      "type": "string",
+      "minLength": 3
+    },
+    "human_review_required": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

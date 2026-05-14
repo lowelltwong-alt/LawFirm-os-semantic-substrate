@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/legal-document-ingestion-manifest.schema.json",
+  "title": "LawFirm OS Legal Document Ingestion Manifest",
+  "description": "Metadata-only gate before any legal document enters the Legal Knowledge Runtime. The manifest must not embed raw legal document content.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_type",
+    "schema_version",
+    "manifest_id",
+    "corpus_id",
+    "source_collection_id",
+    "data_origin",
+    "contains_real_client_data",
+    "contains_real_matter_data",
+    "default_access_policy_ref",
+    "documents",
+    "created_at",
+    "boundary_controls"
+  ],
+  "properties": {
+    "schema_type": {
+      "const": "legal-document-ingestion-manifest"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "manifest_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "corpus_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "source_collection_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "data_origin": {
+      "enum": [
+        "synthetic",
+        "non_synthetic_dry_run_preflight",
+        "production_candidate"
+      ]
+    },
+    "contains_real_client_data": {
+      "type": "boolean"
+    },
+    "contains_real_matter_data": {
+      "type": "boolean"
+    },
+    "default_access_policy_ref": {
+      "type": "string",
+      "minLength": 3
+    },
+    "documents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "document_ref",
+          "title",
+          "document_type",
+          "source_uri",
+          "source_hash",
+          "jurisdiction",
+          "confidentiality_label",
+          "privilege_label",
+          "retention_class",
+          "parser_profile",
+          "permitted_indexes",
+          "access_policy_ref"
+        ],
+        "properties": {
+          "document_ref": {
+            "type": "string",
+            "minLength": 3
+          },
+          "title": {
+            "type": "string",
+            "minLength": 3
+          },
+          "document_type": {
+            "enum": [
+              "contract",
+              "brief",
+              "court-filing",
+              "discovery",
+              "policy-document",
+              "billing-guideline",
+              "other"
+            ]
+          },
+          "source_uri": {
+            "type": "string",
+            "minLength": 3
+          },
+          "source_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "jurisdiction": {
+            "type": "string",
+            "minLength": 2
+          },
+          "matter_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "client_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "confidentiality_label": {
+            "enum": [
+              "synthetic",
+              "public",
+              "internal",
+              "confidential",
+              "restricted"
+            ]
+          },
+          "privilege_label": {
+            "enum": [
+              "none",
+              "potentially_privileged",
+              "privileged",
+              "work_product",
+              "unknown"
+            ]
+          },
+          "retention_class": {
+            "type": "string",
+            "minLength": 3
+          },
+          "parser_profile": {
+            "type": "string",
+            "minLength": 3
+          },
+          "permitted_indexes": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "metadata",
+                "lexical",
+                "document_tree",
+                "vector",
+                "graph",
+                "compiled_bundle"
+              ]
+            }
+          },
+          "access_policy_ref": {
+            "type": "string",
+            "minLength": 3
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "boundary_controls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_payload_embedded",
+        "runtime_may_write_substrate",
+        "runtime_may_emit_exception_events",
+        "full_document_payload_allowed_to_lake"
+      ],
+      "properties": {
+        "raw_payload_embedded": {
+          "const": false
+        },
+        "runtime_may_write_substrate": {
+          "const": false
+        },
+        "runtime_may_emit_exception_events": {
+          "type": "boolean"
+        },
+        "full_document_payload_allowed_to_lake": {
+          "const": false
+        }
+      }
+    }
+  }
+}

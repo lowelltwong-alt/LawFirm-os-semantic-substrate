@@ -1,0 +1,61 @@
+{
+  "registry_scope": "legal_context_bundle_types_draft",
+  "status": "draft_metadata_only",
+  "owner": "semantic-control-plane",
+  "global_controls": {
+    "bundle_is_runtime_context_not_canonical_truth": true,
+    "bundle_requires_retrieval_trace": true,
+    "bundle_requires_access_decision": true,
+    "missing_required_context_must_be_declared": true
+  },
+  "bundle_types": [
+    {
+      "bundle_type": "contract_review_context.v1",
+      "required_sections": [
+        "controlling_sections",
+        "defined_terms",
+        "amendments_or_schedules"
+      ],
+      "human_review_required_by_default": true
+    },
+    {
+      "bundle_type": "litigation_research_context.v1",
+      "required_sections": [
+        "authorities",
+        "record_refs",
+        "jurisdiction_filter"
+      ],
+      "human_review_required_by_default": true
+    },
+    {
+      "bundle_type": "discovery_response_context.v1",
+      "required_sections": [
+        "requests",
+        "responses",
+        "objections",
+        "privilege_flags"
+      ],
+      "human_review_required_by_default": true
+    },
+    {
+      "bundle_type": "billing_guideline_context.v1",
+      "required_sections": [
+        "governing_guideline",
+        "rates",
+        "exceptions",
+        "approval_rules"
+      ],
+      "human_review_required_by_default": false
+    },
+    {
+      "bundle_type": "matter_intake_context.v1",
+      "required_sections": [
+        "client_refs",
+        "conflict_refs",
+        "intake_notes",
+        "risk_flags"
+      ],
+      "human_review_required_by_default": true
+    }
+  ]
+}

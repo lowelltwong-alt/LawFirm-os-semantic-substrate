@@ -36,7 +36,15 @@
     "codex-task-packet-v1",
     "research-request-object-v1",
     "research-brief-object-v1",
-    "incident-analogy-record-v1"
+    "incident-analogy-record-v1",
+    "legal-document-ingestion-manifest-v1",
+    "legal-document-node-v1",
+    "legal-document-span-ref-v1",
+    "legal-retrieval-plan-v1",
+    "legal-context-bundle-v1",
+    "legal-retrieval-trace-v1",
+    "legal-corpus-access-policy-v1",
+    "legal-knowledge-runtime-record-v1"
   ],
   "registry_refs": [
     "registry/source-of-truth.json",
@@ -53,7 +61,12 @@
     "registry/research-signal-registry.json",
     "registry/model-policy-registry.json",
     "registry/tool-authority-registry.json",
-    "registry/human-approval-registry.json"
+    "registry/human-approval-registry.json",
+    "registry/legal-knowledge-runtime-contract-export.json",
+    "registry/legal-document-type-registry.json",
+    "registry/legal-index-profile-registry.json",
+    "registry/legal-context-bundle-registry.json",
+    "registry/legal-retrieval-agent-registry.json"
   ],
   "draft_registry_refs": [
     "registry/research-radar-source-registry.json"
@@ -71,7 +84,10 @@
     "governance/RESEARCH_SIGNAL_INGESTION_POLICY.md",
     "governance/INTERNAL_IDEA_LIFECYCLE.md",
     "governance/PHASE_2_SCHEMA_PLACEMENT.md",
-    "governance/PHASE_2_ROADMAP.md"
+    "governance/PHASE_2_ROADMAP.md",
+    "governance/LEGAL_KNOWLEDGE_RUNTIME_BOUNDARY.md",
+    "governance/LEGAL_DOCUMENT_INGESTION_BOUNDARY.md",
+    "governance/LEGAL_CONTEXT_BUNDLE_DOCTRINE.md"
   ],
   "data_flow_refs": [
     "DATA_FLOW_MAP.md",
