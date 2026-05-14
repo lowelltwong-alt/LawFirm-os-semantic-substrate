@@ -11,12 +11,19 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `AI_START_HERE.md`
 - `AGENTS.md`
 - `README.md`
+- `registry/ai-front-door-registry.json` — machine gate for AI TOC / workflow atlas integrity (see `governance/AI_FRONT_DOOR_BOUNDARY.md`)
+- `registry/registry-full-manifest.json` — full index of `registry/*.json` surfaces
+- `registry/governance-full-manifest.json` — full index of `governance/**/*.md` surfaces
 
 ## Canonical Registries
 
 - `registry/source-of-truth.json`
 - `registry/design-authority.json`
 - `registry/schema-registry.json`
+- `registry/ai-front-door-registry.json`
+- `registry/registry-full-manifest.json`
+- `registry/governance-full-manifest.json`
+- `registry/schema-surface-exclusions.json`
 - `registry/exception-route-registry.json`
 - `registry/orchestrator-contract-export.json`
 - `registry/exceptions-lake-contract-export.json`

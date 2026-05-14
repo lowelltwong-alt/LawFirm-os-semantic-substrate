@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/legal-retrieval-eval-case.schema.json",
+  "title": "Legal Retrieval Eval Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "eval_case_id",
+    "synthetic",
+    "task_type",
+    "bundle_type",
+    "query",
+    "expected_source_refs",
+    "grading_policy"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "legal_retrieval_eval_case.v1"
+    },
+    "eval_case_id": {
+      "type": "string",
+      "pattern": "^lreval_[a-z0-9_\\-]+$"
+    },
+    "synthetic": {
+      "const": true
+    },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "contract_review",
+        "litigation_research",
+        "discovery_review",
+        "citation_check",
+        "intake_triage",
+        "document_integrity"
+      ]
+    },
+    "bundle_type": {
+      "type": "string"
+    },
+    "query": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "expected_source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "must_include_span_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "must_not_include_source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "adversarial_features": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "prompt_injection_text",
+          "stale_authority",
+          "conflicting_clause",
+          "missing_schedule",
+          "cross_matter_decoy",
+          "lookalike_party",
+          "citation_hallucination_trap",
+          "definition_override"
+        ]
+      },
+      "default": []
+    },
+    "grading_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grade_on_final_bundle",
+        "require_source_coverage",
+        "require_no_forbidden_refs"
+      ],
+      "properties": {
+        "grade_on_final_bundle": {
+          "type": "boolean"
+        },
+        "require_source_coverage": {
+          "type": "boolean"
+        },
+        "require_no_forbidden_refs": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "approved_fixture",
+        "retired"
+      ],
+      "default": "draft"
+    }
+  }
+}

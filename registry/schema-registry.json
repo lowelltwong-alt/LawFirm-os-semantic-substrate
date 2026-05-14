@@ -746,6 +746,42 @@
       "layer": "legal_knowledge_runtime",
       "owner": "legal-knowledge-platform",
       "supersedes": null
+    },
+    {
+      "schema_id": "legal-agent-safety-check-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-agent-safety-check.schema.json",
+      "applies_to": [
+        "legal-agent-safety-check"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-document-integrity-check-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-document-integrity-check.schema.json",
+      "applies_to": [
+        "legal-document-integrity-check"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-retrieval-eval-case-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-retrieval-eval-case.schema.json",
+      "applies_to": [
+        "legal-retrieval-eval-case"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
     }
   ],
   "validation_rules": {

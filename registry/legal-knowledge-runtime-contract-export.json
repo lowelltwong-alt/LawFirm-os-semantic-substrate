@@ -13,13 +13,19 @@
     "schemas/legal-context-bundle.schema.json",
     "schemas/legal-retrieval-trace.schema.json",
     "schemas/legal-corpus-access-policy.schema.json",
-    "schemas/legal-knowledge-runtime-record.schema.json"
+    "schemas/legal-knowledge-runtime-record.schema.json",
+    "schemas/legal-agent-safety-check.schema.json",
+    "schemas/legal-document-integrity-check.schema.json",
+    "schemas/legal-retrieval-eval-case.schema.json"
   ],
   "registries": [
     "registry/legal-document-type-registry.json",
     "registry/legal-index-profile-registry.json",
     "registry/legal-context-bundle-registry.json",
-    "registry/legal-retrieval-agent-registry.json"
+    "registry/legal-retrieval-agent-registry.json",
+    "registry/legal-agent-safety-guardrail-registry.json",
+    "registry/legal-eval-registry.json",
+    "registry/ai-front-door-registry.json"
   ],
   "allowed_runtime_outputs": [
     "legal-document-ingestion-manifest validation result",

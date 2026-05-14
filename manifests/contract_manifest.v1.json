@@ -44,7 +44,10 @@
     "legal-context-bundle-v1",
     "legal-retrieval-trace-v1",
     "legal-corpus-access-policy-v1",
-    "legal-knowledge-runtime-record-v1"
+    "legal-knowledge-runtime-record-v1",
+    "legal-agent-safety-check-v1",
+    "legal-document-integrity-check-v1",
+    "legal-retrieval-eval-case-v1"
   ],
   "registry_refs": [
     "registry/source-of-truth.json",
@@ -66,7 +69,13 @@
     "registry/legal-document-type-registry.json",
     "registry/legal-index-profile-registry.json",
     "registry/legal-context-bundle-registry.json",
-    "registry/legal-retrieval-agent-registry.json"
+    "registry/legal-retrieval-agent-registry.json",
+    "registry/legal-agent-safety-guardrail-registry.json",
+    "registry/legal-eval-registry.json",
+    "registry/ai-front-door-registry.json",
+    "registry/governance-full-manifest.json",
+    "registry/registry-full-manifest.json",
+    "registry/schema-surface-exclusions.json"
   ],
   "draft_registry_refs": [
     "registry/research-radar-source-registry.json"
@@ -87,7 +96,9 @@
     "governance/PHASE_2_ROADMAP.md",
     "governance/LEGAL_KNOWLEDGE_RUNTIME_BOUNDARY.md",
     "governance/LEGAL_DOCUMENT_INGESTION_BOUNDARY.md",
-    "governance/LEGAL_CONTEXT_BUNDLE_DOCTRINE.md"
+    "governance/LEGAL_CONTEXT_BUNDLE_DOCTRINE.md",
+    "governance/LEGAL_AGENT_HARNESS_EVALS_AND_SAFETY.md",
+    "governance/AI_FRONT_DOOR_BOUNDARY.md"
   ],
   "data_flow_refs": [
     "DATA_FLOW_MAP.md",

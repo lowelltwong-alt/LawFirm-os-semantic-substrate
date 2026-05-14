@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/legal-agent-safety-check.schema.json",
+  "title": "Legal Agent Safety Check",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "safety_check_id",
+    "synthetic",
+    "surface",
+    "risk_flags",
+    "decision"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "legal_agent_safety_check.v1"
+    },
+    "safety_check_id": {
+      "type": "string",
+      "pattern": "^lasc_[a-z0-9_\\-]+$"
+    },
+    "synthetic": {
+      "const": true
+    },
+    "surface": {
+      "type": "string",
+      "enum": [
+        "retrieved_text",
+        "document_payload",
+        "tool_result",
+        "browser_result",
+        "model_output",
+        "context_bundle"
+      ]
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "prompt_injection",
+          "cross_matter_reference",
+          "secret_or_token",
+          "raw_privileged_payload",
+          "untrusted_instruction",
+          "stale_authority",
+          "unsupported_legal_claim",
+          "tool_instruction_in_content"
+        ]
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "allow_with_redaction",
+        "block",
+        "require_human_review"
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    }
+  }
+}

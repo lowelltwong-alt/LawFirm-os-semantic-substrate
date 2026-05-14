@@ -2,6 +2,24 @@
 
 This repository may be edited by coding agents, but agents operate under the same governance and mutation-boundary rules as human contributors.
 
+## Required AI entry behavior
+
+Before making changes in this repository, read:
+
+1. `AI_WORK_START_HERE.md`
+2. `registry/ai-front-door-registry.json`
+3. `governance/AI_FRONT_DOOR_BOUNDARY.md`
+
+This repository is one component of the LawFirm OS multi-repo kernel. Do not treat it as standalone.
+
+## Boundary rule
+
+This repository owns canonical schemas, registries, governance doctrine, published route and event authority (as defined here), and the machine-readable AI front door (`registry/ai-front-door-registry.json`). Runtime and skill repos consume these artifacts read-only unless a governed migration says otherwise. Do not duplicate canonical authority in sibling repos without an explicit compatibility plan.
+
+## Required validation
+
+Before reporting success, run `python -m pytest -q` in this repository and the AI front-door integrity gate: `python scripts/validate_ai_front_door.py` (from this repo root; optional `--substrate-root` if invoked from elsewhere).
+
 ## Read order
 
 Before editing, read:
