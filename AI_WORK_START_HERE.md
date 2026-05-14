@@ -15,7 +15,14 @@ Before any AI-assisted edit, read:
 7. `governance/EXCEPTIONS_LAKE_BOUNDARY.md` when the task touches Exceptions Lake contracts
 8. `governance/ORCHESTRATOR_BOUNDARY.md` when the task touches Orchestrator contracts
 9. this file
-10. the selected route template under `docs/governance/ai-workflow/templates/`
+10. `governance/AI_FRONT_DOOR_BOUNDARY.md` when touching registries, schemas, governance trees, or cross-repo AI entry points
+11. the selected route template under `docs/governance/ai-workflow/templates/`
+
+Machine integrity manifests (AI TOC / front door gate — run `python scripts/validate_ai_front_door.py` when changing surfaces):
+
+- `registry/ai-front-door-registry.json`
+- `registry/governance-full-manifest.json`
+- `registry/registry-full-manifest.json`
 
 ## Universal work cycle
 

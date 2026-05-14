@@ -1,0 +1,157 @@
+{
+  "schemas/artifact_stub_v1.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/artifact_v2.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/citation-audit.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/claim_stub_v3.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/evidence-packet.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/extensions/talent_intelligence/attorney.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/extensions/talent_intelligence/employment_episode.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/extensions/talent_intelligence/extension_registry.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/extensions/talent_intelligence/external_identifier.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/extensions/talent_intelligence/law_firm.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/extensions/talent_intelligence/source_profile.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/extensions/talent_intelligence/talent_signal_claim.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/gold-query.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/human-approval-record.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/nos.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/orchestrator-run-record.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/quality-gate.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/skills/algorithm-quality-review.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/skills/malicious-skill-scan.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/skills/skill-quality-review.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/skills/threat-rulepack.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/tool-call-trace.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/upgrade-proposal.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/view-evidence-bundle.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/view-graph-neighborhood.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/view-ops-queue.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/view-review-diff.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/workflow_atlas/ontology-delta-candidate.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/workflow_atlas/workflow-correction-event.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/workflow_atlas/workflow-fragment.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/workflow_atlas/workflow-integrity-report.schema.json": {
+    "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
+    "exclusion_class": "legacy_or_extension_surface"
+  }
+}

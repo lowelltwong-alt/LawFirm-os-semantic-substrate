@@ -1,0 +1,39 @@
+{
+  "schema_type": "legal-context-bundle",
+  "schema_version": "v1",
+  "bundle_id": "lkb-synthetic-0001",
+  "bundle_type": "contract_review_context.v1",
+  "run_id": "lkrun-synthetic-0001",
+  "retrieval_trace_id": "lkrt-synthetic-0001",
+  "access_decision_ref": "access.synthetic-only.v1",
+  "matter_ref": null,
+  "client_ref": null,
+  "allowed_use": "synthetic_test_only",
+  "document_refs": [
+    "synthetic://contract/msa-001"
+  ],
+  "controlling_span_refs": [
+    "synthetic://contract/msa-001#section-9.2"
+  ],
+  "related_span_refs": [
+    "synthetic://contract/msa-001#definitions.claims",
+    "synthetic://contract/msa-001#schedule-a"
+  ],
+  "entities": {
+    "parties": [
+      "Synthetic Alpha LLC",
+      "Synthetic Beta Inc."
+    ],
+    "jurisdiction": "New York"
+  },
+  "missing_or_uncertain": [
+    "No signed amendment fixture is present."
+  ],
+  "human_review_required": true,
+  "created_at": "2026-05-14T00:00:00Z",
+  "boundary_controls": {
+    "bundle_is_canonical_truth": false,
+    "may_be_used_without_human_review_for_legal_finality": false,
+    "raw_document_payload_embedded": false
+  }
+}

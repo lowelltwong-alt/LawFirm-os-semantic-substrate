@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/legal-document-integrity-check.schema.json",
+  "title": "Legal Document Integrity Check",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "check_id",
+    "synthetic",
+    "document_ref",
+    "baseline_hash",
+    "candidate_hash",
+    "check_results"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "legal_document_integrity_check.v1"
+    },
+    "check_id": {
+      "type": "string",
+      "pattern": "^ldic_[a-z0-9_\\-]+$"
+    },
+    "synthetic": {
+      "const": true
+    },
+    "document_ref": {
+      "type": "string"
+    },
+    "baseline_hash": {
+      "type": "string"
+    },
+    "candidate_hash": {
+      "type": "string"
+    },
+    "diff_ref": {
+      "type": "string"
+    },
+    "claim_refs_checked": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "check_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "check_type",
+          "status"
+        ],
+        "properties": {
+          "check_type": {
+            "type": "string",
+            "enum": [
+              "hash_match",
+              "section_order",
+              "citation_preservation",
+              "defined_term_preservation",
+              "no_unapproved_deletion",
+              "no_unapproved_addition",
+              "source_ref_preservation"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail",
+              "warn"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "human_review_required": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

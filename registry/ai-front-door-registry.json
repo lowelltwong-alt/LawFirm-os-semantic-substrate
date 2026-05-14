@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "registry_id": "ai_front_door.v1",
+  "status": "active",
+  "human_label": "Law Firm OS AI front door integrity registry",
+  "canonical_read_order": [
+    "AI_START_HERE.md",
+    "AI_WORK_START_HERE.md",
+    "AI_TABLE_OF_CONTENTS.md",
+    "AGENTS.md",
+    "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "registry/ai-front-door-registry.json",
+    "registry/schema-registry.json",
+    "registry/registry-full-manifest.json",
+    "registry/governance-full-manifest.json",
+    "registry/schema-surface-exclusions.json"
+  ],
+  "toc_files_must_reference_registry": [
+    "AI_TABLE_OF_CONTENTS.md",
+    "AI_WORK_START_HERE.md"
+  ],
+  "toc_required_substrings": [
+    "registry/ai-front-door-registry.json",
+    "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "registry/governance-full-manifest.json",
+    "registry/registry-full-manifest.json"
+  ],
+  "sibling_repo_folder_names": {
+    "orchestrator": "LawFirm-os-orchestrator",
+    "legal_knowledge_runtime": "LawFirm-os-legal-knowledge-runtime",
+    "exception_lake": "LawFirm-os-exceptions-lake-runtime-main",
+    "skills_registry": "LawFirm-os-skills-registry"
+  },
+  "integration_path_anchors": [
+    {"repo": "semantic_substrate", "path": "schemas/legal-agent-safety-check.schema.json"},
+    {"repo": "semantic_substrate", "path": "schemas/legal-document-integrity-check.schema.json"},
+    {"repo": "semantic_substrate", "path": "schemas/legal-retrieval-eval-case.schema.json"},
+    {"repo": "semantic_substrate", "path": "registry/legal-agent-safety-guardrail-registry.json"},
+    {"repo": "semantic_substrate", "path": "registry/legal-eval-registry.json"},
+    {"repo": "semantic_substrate", "path": "governance/LEGAL_AGENT_HARNESS_EVALS_AND_SAFETY.md"},
+    {"repo": "legal_knowledge_runtime", "path": "src/lawfirm_os_legal_knowledge/evals.py"},
+    {"repo": "legal_knowledge_runtime", "path": "src/lawfirm_os_legal_knowledge/safety.py"},
+    {"repo": "legal_knowledge_runtime", "path": "src/lawfirm_os_legal_knowledge/document_integrity.py"},
+    {"repo": "skills_registry", "path": "skills/draft/legal-document-integrity-verifier/SKILL.md"},
+    {"repo": "skills_registry", "path": "skills/draft/legal-adversarial-eval-builder/SKILL.md"},
+    {"repo": "skills_registry", "path": "skills/draft/legal-prompt-injection-boundary-review/SKILL.md"},
+    {"repo": "skills_registry", "path": "skills/draft/legal-subgoal-claim-verifier/SKILL.md"},
+    {"repo": "exception_lake", "path": "examples/legal_document_integrity_check_event.json"},
+    {"repo": "orchestrator", "path": "docs/LEGAL_KNOWLEDGE_RESEARCH_DELTA_INTEGRATION.md"}
+  ],
+  "event_examples": [
+    {
+      "id": "lake.legal_document_integrity_check.synthetic.v1",
+      "repo_key": "exception_lake",
+      "path": "examples/legal_document_integrity_check_event.json",
+      "purpose": "Synthetic integrity check event envelope for lake validation tests"
+    }
+  ],
+  "draft_skill_index": "registry/proposed-draft-skill-index.json",
+  "endpoints": [
+    {
+      "id": "lk.cli.ingest_preflight",
+      "owning_repo": "LawFirm-os-legal-knowledge-runtime",
+      "owning_plane": "legal_knowledge_runtime",
+      "path": "src/lawfirm_os_legal_knowledge/cli.py#ingest-preflight",
+      "purpose": "Synthetic-only legal ingestion manifest preflight against substrate contracts",
+      "side_effect_class": "write",
+      "input_schema": "schemas/legal-document-ingestion-manifest.schema.json",
+      "output_schema": "schemas/legal-knowledge-runtime-record.schema.json",
+      "human_approval_required": true,
+      "stores_raw_legal_payload": false,
+      "allowed_data_classes": ["synthetic_fixture", "metadata_only"],
+      "related_docs": ["governance/LEGAL_DOCUMENT_INGESTION_BOUNDARY.md", "governance/LEGAL_KNOWLEDGE_RUNTIME_BOUNDARY.md"]
+    },
+    {
+      "id": "lk.cli.assemble_bundle",
+      "owning_repo": "LawFirm-os-legal-knowledge-runtime",
+      "owning_plane": "legal_knowledge_runtime",
+      "path": "src/lawfirm_os_legal_knowledge/cli.py#assemble-bundle",
+      "purpose": "Assemble synthetic legal context bundle and retrieval trace artifacts locally",
+      "side_effect_class": "write",
+      "input_schema": "schemas/legal-document-ingestion-manifest.schema.json",
+      "output_schema": "schemas/legal-context-bundle.schema.json",
+      "human_approval_required": true,
+      "stores_raw_legal_payload": false,
+      "allowed_data_classes": ["synthetic_fixture", "metadata_only"],
+      "related_docs": ["governance/LEGAL_CONTEXT_BUNDLE_DOCTRINE.md"]
+    },
+    {
+      "id": "lk.module.evals",
+      "owning_repo": "LawFirm-os-legal-knowledge-runtime",
+      "owning_plane": "legal_knowledge_runtime",
+      "path": "src/lawfirm_os_legal_knowledge/evals.py",
+      "purpose": "Legal retrieval eval helpers (synthetic fixtures only)",
+      "side_effect_class": "read",
+      "input_schema": "schemas/legal-retrieval-eval-case.schema.json",
+      "output_schema": "schemas/legal-retrieval-trace.schema.json",
+      "human_approval_required": true,
+      "stores_raw_legal_payload": false,
+      "allowed_data_classes": ["synthetic_fixture"],
+      "related_docs": ["governance/LEGAL_AGENT_HARNESS_EVALS_AND_SAFETY.md"]
+    },
+    {
+      "id": "lk.module.safety",
+      "owning_repo": "LawFirm-os-legal-knowledge-runtime",
+      "owning_plane": "legal_knowledge_runtime",
+      "path": "src/lawfirm_os_legal_knowledge/safety.py",
+      "purpose": "Agent safety guardrail helpers for legal knowledge runtime",
+      "side_effect_class": "read",
+      "input_schema": "schemas/legal-agent-safety-check.schema.json",
+      "output_schema": "schemas/legal-knowledge-runtime-record.schema.json",
+      "human_approval_required": true,
+      "stores_raw_legal_payload": false,
+      "allowed_data_classes": ["synthetic_fixture", "metadata_only"],
+      "related_docs": ["governance/LEGAL_AGENT_HARNESS_EVALS_AND_SAFETY.md"]
+    },
+    {
+      "id": "lk.module.document_integrity",
+      "owning_repo": "LawFirm-os-legal-knowledge-runtime",
+      "owning_plane": "legal_knowledge_runtime",
+      "path": "src/lawfirm_os_legal_knowledge/document_integrity.py",
+      "purpose": "Structural integrity checks for legal document nodes (no raw corpus writes)",
+      "side_effect_class": "read",
+      "input_schema": "schemas/legal-document-integrity-check.schema.json",
+      "output_schema": "schemas/legal-document-node.schema.json",
+      "human_approval_required": true,
+      "stores_raw_legal_payload": false,
+      "allowed_data_classes": ["synthetic_fixture", "metadata_only"],
+      "related_docs": ["governance/LEGAL_DOCUMENT_INGESTION_BOUNDARY.md"]
+    },
+    {
+      "id": "orch.legal_knowledge.adapter.local_client",
+      "owning_repo": "LawFirm-os-orchestrator",
+      "owning_plane": "orchestrator",
+      "path": "src/lawfirm_os_orchestrator/legal_knowledge/adapter.py",
+      "purpose": "Bounded adapter to Legal Knowledge Runtime CLI (synthetic_only)",
+      "side_effect_class": "read",
+      "input_schema": "schemas/legal-document-ingestion-manifest.schema.json",
+      "output_schema": "schemas/legal-knowledge-runtime-record.schema.json",
+      "human_approval_required": true,
+      "stores_raw_legal_payload": false,
+      "allowed_data_classes": ["synthetic_fixture"],
+      "related_docs": ["docs/LEGAL_KNOWLEDGE_RUNTIME_INTEGRATION.md", "docs/LEGAL_KNOWLEDGE_RESEARCH_DELTA_INTEGRATION.md", "governance/ORCHESTRATOR_BOUNDARY.md"]
+    }
+  ]
+}

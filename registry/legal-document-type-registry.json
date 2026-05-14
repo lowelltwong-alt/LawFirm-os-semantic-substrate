@@ -1,0 +1,70 @@
+{
+  "registry_scope": "legal_document_types_draft",
+  "status": "draft_metadata_only",
+  "owner": "semantic-control-plane",
+  "global_controls": {
+    "document_type_is_not_legal_advice": true,
+    "document_type_may_not_override_access_policy": true,
+    "unknown_document_type_policy": "fail_closed_or_classify_as_other_with_review"
+  },
+  "document_types": [
+    {
+      "document_type": "contract",
+      "default_structure_profile": "legal-document-tree.contract.v1",
+      "required_related_nodes": [
+        "definitions",
+        "amendments",
+        "schedules"
+      ]
+    },
+    {
+      "document_type": "brief",
+      "default_structure_profile": "legal-document-tree.litigation-brief.v1",
+      "required_related_nodes": [
+        "authorities",
+        "record-citations"
+      ]
+    },
+    {
+      "document_type": "court-filing",
+      "default_structure_profile": "legal-document-tree.court-filing.v1",
+      "required_related_nodes": [
+        "caption",
+        "relief-requested",
+        "certificate-of-service"
+      ]
+    },
+    {
+      "document_type": "discovery",
+      "default_structure_profile": "legal-document-tree.discovery.v1",
+      "required_related_nodes": [
+        "requests",
+        "responses",
+        "objections"
+      ]
+    },
+    {
+      "document_type": "policy-document",
+      "default_structure_profile": "legal-document-tree.policy.v1",
+      "required_related_nodes": [
+        "scope",
+        "exceptions",
+        "approval-authority"
+      ]
+    },
+    {
+      "document_type": "billing-guideline",
+      "default_structure_profile": "legal-document-tree.billing-guideline.v1",
+      "required_related_nodes": [
+        "rates",
+        "task-codes",
+        "exceptions"
+      ]
+    },
+    {
+      "document_type": "other",
+      "default_structure_profile": "legal-document-tree.generic.v1",
+      "required_related_nodes": []
+    }
+  ]
+}

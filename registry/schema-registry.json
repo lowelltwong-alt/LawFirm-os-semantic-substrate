@@ -650,6 +650,138 @@
       "layer": "action_and_runtime",
       "owner": "innovation-operating-system",
       "supersedes": null
+    },
+    {
+      "schema_id": "legal-document-ingestion-manifest-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-document-ingestion-manifest.schema.json",
+      "applies_to": [
+        "legal-document-ingestion-manifest"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-document-node-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-document-node.schema.json",
+      "applies_to": [
+        "legal-document-node"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-document-span-ref-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-document-span-ref.schema.json",
+      "applies_to": [
+        "legal-document-span-ref"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-retrieval-plan-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-retrieval-plan.schema.json",
+      "applies_to": [
+        "legal-retrieval-plan"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-context-bundle-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-context-bundle.schema.json",
+      "applies_to": [
+        "legal-context-bundle"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-retrieval-trace-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-retrieval-trace.schema.json",
+      "applies_to": [
+        "legal-retrieval-trace"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-corpus-access-policy-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-corpus-access-policy.schema.json",
+      "applies_to": [
+        "legal-corpus-access-policy"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-knowledge-runtime-record-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-knowledge-runtime-record.schema.json",
+      "applies_to": [
+        "legal-knowledge-runtime-record"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-agent-safety-check-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-agent-safety-check.schema.json",
+      "applies_to": [
+        "legal-agent-safety-check"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-document-integrity-check-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-document-integrity-check.schema.json",
+      "applies_to": [
+        "legal-document-integrity-check"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "legal-retrieval-eval-case-v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "path": "schemas/legal-retrieval-eval-case.schema.json",
+      "applies_to": [
+        "legal-retrieval-eval-case"
+      ],
+      "layer": "legal_knowledge_runtime",
+      "owner": "legal-knowledge-platform",
+      "supersedes": null
     }
   ],
   "validation_rules": {

@@ -1,0 +1,28 @@
+{
+  "registry_id": "legal_eval_registry.v1",
+  "status": "draft",
+  "owner": "LawFirm-os-semantic-substrate",
+  "entries": [
+    {
+      "eval_id": "legal_retrieval_private_adversarial_eval.v1",
+      "schema_id": "legal_retrieval_eval_case.v1",
+      "purpose": "Evaluate retrieval/context bundle assembly on held-out synthetic adversarial legal cases.",
+      "default_visibility": "private_internal_only",
+      "promotion_required": true
+    },
+    {
+      "eval_id": "legal_document_integrity_eval.v1",
+      "schema_id": "legal_document_integrity_check.v1",
+      "purpose": "Detect silent document corruption across delegated drafting or transformation workflows.",
+      "default_visibility": "private_internal_only",
+      "promotion_required": true
+    },
+    {
+      "eval_id": "legal_prompt_injection_boundary_eval.v1",
+      "schema_id": "legal_agent_safety_check.v1",
+      "purpose": "Detect hostile instructions inside retrieved content, documents, or tool results.",
+      "default_visibility": "private_internal_only",
+      "promotion_required": true
+    }
+  ]
+}

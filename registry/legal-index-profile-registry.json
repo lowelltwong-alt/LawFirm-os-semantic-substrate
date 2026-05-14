@@ -1,0 +1,49 @@
+{
+  "registry_scope": "legal_index_profiles_draft",
+  "status": "draft_metadata_only",
+  "owner": "semantic-control-plane",
+  "global_controls": {
+    "index_profiles_are_runtime_accelerators": true,
+    "may_redefine_canonical_document_boundaries": false,
+    "all_indexes_require_access_filtering": true,
+    "provider_lock_in_allowed": false
+  },
+  "index_profiles": [
+    {
+      "profile_id": "legal.metadata.v1",
+      "primitive": "metadata",
+      "required_for_mvp": true,
+      "provider": "adapter.local"
+    },
+    {
+      "profile_id": "legal.lexical.v1",
+      "primitive": "lexical",
+      "required_for_mvp": true,
+      "provider": "adapter.local"
+    },
+    {
+      "profile_id": "legal.document_tree.v1",
+      "primitive": "document_tree",
+      "required_for_mvp": true,
+      "provider": "adapter.local"
+    },
+    {
+      "profile_id": "legal.vector.adapter.v1",
+      "primitive": "vector",
+      "required_for_mvp": false,
+      "provider": "adapter.portable"
+    },
+    {
+      "profile_id": "legal.graph.adapter.v1",
+      "primitive": "graph",
+      "required_for_mvp": false,
+      "provider": "adapter.portable"
+    },
+    {
+      "profile_id": "legal.compiled_bundle.v1",
+      "primitive": "compiled_bundle",
+      "required_for_mvp": false,
+      "provider": "adapter.local"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/legal-document-span-ref.schema.json",
+  "title": "LawFirm OS Legal Document Span Reference",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_type",
+    "schema_version",
+    "span_ref",
+    "document_ref",
+    "source_hash",
+    "locator"
+  ],
+  "properties": {
+    "schema_type": {
+      "const": "legal-document-span-ref"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "span_ref": {
+      "type": "string",
+      "minLength": 3
+    },
+    "document_ref": {
+      "type": "string",
+      "minLength": 3
+    },
+    "document_version_ref": {
+      "type": "string"
+    },
+    "node_ref": {
+      "type": "string"
+    },
+    "source_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "page_range",
+            "section",
+            "paragraph",
+            "table",
+            "exhibit",
+            "synthetic_ref"
+          ]
+        },
+        "page_start": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "page_end": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "section_path": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "paragraph_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "synthetic_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "access_policy_ref": {
+      "type": "string"
+    },
+    "privilege_label": {
+      "enum": [
+        "none",
+        "potentially_privileged",
+        "privileged",
+        "work_product",
+        "unknown"
+      ]
+    },
+    "confidentiality_label": {
+      "enum": [
+        "synthetic",
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    }
+  }
+}

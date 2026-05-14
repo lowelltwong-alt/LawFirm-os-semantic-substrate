@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.example/schemas/legal-context-bundle.schema.json",
+  "title": "LawFirm OS Legal Context Bundle",
+  "description": "Task-shaped legal context assembled by the Legal Knowledge Runtime. The bundle is a runtime proposal/evidence object, not canonical legal advice.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_type",
+    "schema_version",
+    "bundle_id",
+    "bundle_type",
+    "run_id",
+    "retrieval_trace_id",
+    "access_decision_ref",
+    "allowed_use",
+    "document_refs",
+    "controlling_span_refs",
+    "related_span_refs",
+    "missing_or_uncertain",
+    "human_review_required",
+    "created_at",
+    "boundary_controls"
+  ],
+  "properties": {
+    "schema_type": {
+      "const": "legal-context-bundle"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "bundle_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "bundle_type": {
+      "type": "string",
+      "minLength": 3
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "retrieval_trace_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "access_decision_ref": {
+      "type": "string",
+      "minLength": 3
+    },
+    "matter_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "client_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "allowed_use": {
+      "enum": [
+        "draft_recommendation_only",
+        "internal_review",
+        "research_support",
+        "quality_eval",
+        "synthetic_test_only"
+      ]
+    },
+    "document_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "controlling_span_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "related_span_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "entities": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "missing_or_uncertain": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "human_review_required": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "boundary_controls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundle_is_canonical_truth",
+        "may_be_used_without_human_review_for_legal_finality",
+        "raw_document_payload_embedded"
+      ],
+      "properties": {
+        "bundle_is_canonical_truth": {
+          "const": false
+        },
+        "may_be_used_without_human_review_for_legal_finality": {
+          "const": false
+        },
+        "raw_document_payload_embedded": {
+          "const": false
+        }
+      }
+    }
+  }
+}
