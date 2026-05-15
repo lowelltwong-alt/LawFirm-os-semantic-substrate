@@ -1,0 +1,65 @@
+{
+  "registry_id": "skill-agent-lifecycle-policy-registry.v1",
+  "states": [
+    "draft",
+    "candidate",
+    "active",
+    "preferred",
+    "deprecated",
+    "superseded",
+    "retired",
+    "quarantined"
+  ],
+  "allowed_transitions": [
+    {
+      "from": "draft",
+      "to": "candidate",
+      "approval": "none_if_tests_pass"
+    },
+    {
+      "from": "candidate",
+      "to": "active",
+      "approval": "human_required"
+    },
+    {
+      "from": "active",
+      "to": "preferred",
+      "approval": "human_required"
+    },
+    {
+      "from": "active",
+      "to": "deprecated",
+      "approval": "none_if_replacement_active"
+    },
+    {
+      "from": "active",
+      "to": "superseded",
+      "approval": "human_required"
+    },
+    {
+      "from": "deprecated",
+      "to": "retired",
+      "approval": "human_required"
+    },
+    {
+      "from": "any",
+      "to": "quarantined",
+      "approval": "none_if_safety_gate_fails"
+    }
+  ],
+  "auto_actions_allowed": [
+    "score",
+    "detect_gap",
+    "recommend",
+    "draft_proposal",
+    "create_draft_skill",
+    "quarantine_on_hard_failure"
+  ],
+  "auto_actions_forbidden_without_governance": [
+    "activate_high_risk_skill",
+    "promote_preferred",
+    "delete_canonical_record",
+    "expand_side_effects",
+    "grant_external_write_access"
+  ]
+}

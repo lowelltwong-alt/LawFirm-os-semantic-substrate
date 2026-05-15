@@ -1,5 +1,7 @@
 {
   "schema_version": "1.0",
+  "registry_id": "governance-full-manifest.v1",
+  "generated": true,
   "paths": [
     "governance/ADDRESS_MIGRATION_MODEL.md",
     "governance/ADDRESS_SYSTEM_EVOLUTION.md",
@@ -57,6 +59,7 @@
     "governance/LEGAL_KNOWLEDGE_RUNTIME_BOUNDARY.md",
     "governance/LIFECYCLE_POLICY.md",
     "governance/MALICIOUS_SKILL_INTAKE_POLICY.md",
+    "governance/MANAGED_PATCH_PRESERVATION_BOUNDARY.md",
     "governance/MICROSOFT_HOUSE_ADAPTER_POLICY.md",
     "governance/MUSK_DESIGN_ALGORITHM.md",
     "governance/ONTOLOGY_BOUNDARY_CONTRACT.md",
@@ -72,6 +75,8 @@
     "governance/RETRIEVAL_ARCHITECTURE.md",
     "governance/ROLE_MODEL.md",
     "governance/SCHEMA_RECONCILIATION_PLAN.md",
+    "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+    "governance/SKILL_AGENT_LIFECYCLE_AND_RECURSIVE_IMPROVEMENT.md",
     "governance/SKILL_QUALITY_DOCTRINE.md",
     "governance/SYSTEM_MAP.md",
     "governance/TALENT_INTELLIGENCE_EXTENSION.md",

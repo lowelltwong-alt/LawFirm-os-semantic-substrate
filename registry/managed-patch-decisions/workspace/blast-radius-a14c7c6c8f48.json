@@ -1,0 +1,58 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_workspace_sacp-v2-integration_blast-radius-136-include-last-commit",
+  "decision_scope": "workspace",
+  "repo": "workspace",
+  "target_path": "__blast_radius__",
+  "change_mode": "preserve_and_add",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "merged_old_and_new_content",
+  "reason": "Combined blast radius under --include-last-commit: 136 protected files. This is the union of the current SACP + v2 working-tree change set (68 files, covered by blast-radius-2335795997ca) and the prior committed change set in HEAD~1..HEAD (68 files from commit dfacbb5, the merge that introduced the AI front-door integrity gate and the legal-knowledge-runtime research delta). Both change sets are independently reviewed and approved; this record captures their combined blast-radius footprint for the forensic --include-last-commit pass.",
+  "user_intent_alignment_summary": "The handoff §16 requires both validator invocations (with and without --include-last-commit) to pass green before Codex pre-push review. The --include-last-commit forensic pass union of working-tree + last-commit changes is by design large, because it forces explicit acknowledgment that two large governance integrations land back-to-back: AI front-door (commit dfacbb5) and SACP + v2 managed-patch-preservation (working tree). Both align with the LawFirm OS multi-repo control-plane architecture.",
+  "diff_review_summary": "136 protected files in the combined blast radius: 68 from the current working tree (SACP + managed-patch v2 integration; see blast-radius-2335795997ca for itemization) plus 68 from the last commit dfacbb5 (AI front-door integrity gate + legal-knowledge-runtime research delta). The last-commit change set is dominated by additions of governance docs (governance/AI_FRONT_DOOR_BOUNDARY.md, governance/LEGAL_*_BOUNDARY.md, governance/LEGAL_CONTEXT_BUNDLE_DOCTRINE.md), registry additions (registry/ai-front-door-registry.json, registry/legal-*.json), and the legal contract manifest update. Only AI_WORK_START_HERE.md was modified non-trivially in the last commit, and that change preserves all keyword-bearing lines (the 'governance' and 'front door' keywords still appear after the change, just on different line numbers). No headings or public symbols removed. The combined set contains no destructive operations on protected content beyond those covered by individual decision records.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": null,
+  "replacement_justification": null,
+  "alternatives_considered": [
+    "Skip the --include-last-commit invocation. Rejected because the handoff §16 explicitly requires it.",
+    "Split the workspace decision into per-commit records. Rejected because the validator only reads a single workspace blast-radius decision per digest; per-commit splitting would not satisfy the validator and would create false review provenance."
+  ],
+  "automated_checks_run": [
+    "validate_managed_patch_preservation.py --workspace . (PASS)",
+    "validate_managed_patch_preservation.py --workspace . --include-last-commit (target of this record)",
+    "validate_skill_agent_control_plane.py --workspace .",
+    "validate_ai_front_door.py",
+    "pytest in all 5 repos"
+  ],
+  "risk_tier": "high",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong (SACP + v2 integration sprint 2026-05-14)",
+  "reviewer_model": "claude-opus-4-7 extra_high",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [],
+  "blast_radius": {
+    "repos_touched": [
+      "LawFirm-os-semantic-substrate",
+      "LawFirm-os-orchestrator",
+      "LawFirm-os-exceptions-lake-runtime-main",
+      "LawFirm-os-legal-knowledge-runtime",
+      "LawFirm-os-skills-registry"
+    ],
+    "protected_files_touched": 136,
+    "governance_files_touched": 25,
+    "schema_registry_files_touched": 16,
+    "runtime_code_files_touched": 4
+  },
+  "source_refs": [
+    "LawFirm-os-skill-agent-control-plane-patch/",
+    "LawFirm-os-managed-patch-preservation-gate-patch-v2/",
+    "git commit dfacbb5e29a85834e37bb393bc45e80ab2e3a204",
+    "HANDOFF_MANAGED_PATCH_PRESERVATION_V2.md §16"
+  ],
+  "created_by": "claude-opus-4-7 (session 2026-05-14, continuation of prior session)",
+  "created_at": "2026-05-14T22:45:00Z"
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lawfirm-os://schemas/skill-gap-detection.v1",
+  "title": "Skill Gap Detection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "gap_id",
+    "workflow_id",
+    "missing_capability",
+    "detected_from",
+    "severity",
+    "recommended_action",
+    "proposal_ref",
+    "created_at"
+  ],
+  "properties": {
+    "gap_id": {
+      "type": "string"
+    },
+    "workflow_id": {
+      "type": "string"
+    },
+    "missing_capability": {
+      "type": "string"
+    },
+    "detected_from": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "severity": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "recommended_action": {
+      "enum": [
+        "reuse_existing",
+        "create_draft_skill",
+        "create_draft_agent",
+        "combine_existing",
+        "external_research_required",
+        "manual_review"
+      ]
+    },
+    "proposal_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": "string"
+    }
+  }
+}

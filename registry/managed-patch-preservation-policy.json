@@ -1,0 +1,115 @@
+{
+  "schema_version": "managed_patch_preservation_policy.v2",
+  "policy_id": "lawfirm_os.managed_patch_preservation_policy.v2",
+  "canonical_schemas": [
+    "schemas/managed-patch-decision.schema.json"
+  ],
+  "default_change_mode": "preserve_and_add",
+  "research_basis": [
+    "Delegated document workflows can silently corrupt long documents; detect removed headings, keys, IDs, and public symbols.",
+    "Permission systems can miss file-edit side effects; treat protected file edits as privileged actions even when no shell command is involved.",
+    "Agent systems should be evaluated as model plus harness plus tools plus memory plus governance; preserve run ledgers, registries, and front-door maps.",
+    "Multi-agent expansion is not a free lunch; destructive changes require focused high-reasoning review rather than extra low-level agent churn."
+  ],
+  "protected_surfaces": {
+    "root_files": [
+      "AGENTS.md",
+      "AI_WORK_START_HERE.md",
+      "AI_START_HERE.md",
+      "README.md",
+      "CLAUDE.md",
+      "skill-agent-manifest.json",
+      "contracts.lock.json",
+      ".gitignore",
+      ".pre-commit-config.yaml",
+      "pyproject.toml",
+      "requirements.txt",
+      "requirements-dev.txt",
+      "uv.lock",
+      "poetry.lock",
+      "Pipfile",
+      "Pipfile.lock",
+      "package.json",
+      "package-lock.json",
+      "pnpm-lock.yaml",
+      "yarn.lock",
+      "Makefile",
+      "Dockerfile",
+      "ruff.toml",
+      "mypy.ini",
+      "pytest.ini"
+    ],
+    "path_globs": [
+      ".cursor/rules/*.mdc",
+      ".github/copilot-instructions.md",
+      ".github/workflows/*.yml",
+      ".github/workflows/*.yaml",
+      "governance/**/*.md",
+      "docs/**/*.md",
+      "docs/**/*.yml",
+      "docs/**/*.yaml",
+      "registry/**/*.json",
+      "manifests/**/*.json",
+      "exports/**/*.json",
+      "schemas/**/*.json",
+      "policies/**/*.json",
+      "prompts/**/*.md",
+      "prompts/**/*.txt",
+      "scripts/**/*.py",
+      "tests/**/*.py",
+      "src/**/*.py",
+      "skills/**/SKILL.md",
+      "skills/**/SKILL_METADATA.json",
+      ".agents/**/SKILL.md",
+      ".agents/**/SKILL_METADATA.json",
+      "**/AGENT.md",
+      "**/AGENT_METADATA.json",
+      "tools/**/*.json",
+      "workflows/**/*.json",
+      "workflow/**/*.json",
+      "examples/**/*.json"
+    ]
+  },
+  "destructive_modes": ["replace", "delete", "regenerate"],
+  "destructive_change_requires": {
+    "old_content_reviewed": true,
+    "merge_considered": true,
+    "human_review_required": true,
+    "human_review_status": "approved",
+    "model_review_level": "extra_high",
+    "replacement_justification_min_length": 30,
+    "why_merge_not_sufficient_min_length": 20,
+    "user_intent_alignment_summary_min_length": 20,
+    "diff_review_summary_min_length": 20,
+    "alternatives_considered_min_items": 1,
+    "automated_checks_run_min_items": 1
+  },
+  "suspicious_change_thresholds": {
+    "min_old_nonblank_lines": 12,
+    "removed_nonblank_lines": 10,
+    "max_similarity_ratio": 0.55,
+    "max_new_to_old_line_ratio": 0.75,
+    "markdown_removed_heading_count": 1,
+    "json_removed_key_count": 1,
+    "json_removed_identifier_count": 1,
+    "python_removed_public_symbol_count": 1,
+    "blast_radius_protected_file_threshold": 20
+  },
+  "backup_suffixes_scanned": [
+    ".managed-preservation-backup",
+    ".research-delta-backup",
+    ".backup",
+    ".bak",
+    ".orig"
+  ],
+  "repo_discovery": {
+    "include_prefixes": ["LawFirm-os-"],
+    "exclude_name_contains": ["patch", "seed-pack", "backup", "archive", ".zip"]
+  },
+  "decision_locations": [
+    "LawFirm-os-semantic-substrate/registry/managed-patch-decisions/{repo}/{sanitized_target_path}.json",
+    "{repo}/.lawfirm-os/managed-patch-decisions/{sanitized_target_path}.json",
+    "LawFirm-os-semantic-substrate/registry/managed-patch-decisions/workspace/blast-radius-{digest}.json"
+  ],
+  "stop_message": "Protected content appears to have been replaced, deleted, substantially rewritten, or changed at broad blast radius. Stop and decide whether to preserve, merge, replace, delete, or regenerate with an explicit decision record."
+}

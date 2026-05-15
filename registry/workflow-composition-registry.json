@@ -1,0 +1,31 @@
+{
+  "registry_id": "workflow-composition-registry.v1",
+  "description": "Registry of workflow chains and the skills/agents/tools/evaluators required to execute them.",
+  "workflows": [
+    {
+      "workflow_id": "legal_knowledge.contract_review_context_bundle.v1",
+      "name": "Contract review context bundle assembly",
+      "owning_repo": "LawFirm-os-legal-knowledge-runtime",
+      "risk_tier": "medium",
+      "required_skills": [
+        "legal-corpus-ingestion-preflight",
+        "legal-document-structure-builder",
+        "legal-retrieval-planner",
+        "legal-context-bundle-assembler",
+        "legal-document-integrity-verifier"
+      ],
+      "optional_skills": [
+        "legal-prompt-injection-boundary-review",
+        "legal-subgoal-claim-verifier"
+      ],
+      "quality_gates": [
+        "schema_valid",
+        "evidence_refs_present",
+        "raw_payload_not_embedded",
+        "integrity_check_passed"
+      ],
+      "gap_detection_enabled": true,
+      "updated_at": "2026-05-14T17:50:46.865556+00:00"
+    }
+  ]
+}

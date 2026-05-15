@@ -1,0 +1,58 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_workspace_sacp-v2-integration_blast-radius-68",
+  "decision_scope": "workspace",
+  "repo": "workspace",
+  "target_path": "__blast_radius__",
+  "change_mode": "preserve_and_add",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "merged_old_and_new_content",
+  "reason": "The combined SACP (Skill-Agent Control Plane) + Managed-Patch-Preservation v2 integration sprint touches 68 protected files across all five LawFirm OS repos. Changes are: (a) additions of new governance/registry/schema/validator files, (b) bootstrap-block augmentations prepended to existing AGENTS.md and AI_WORK_START_HERE.md files (original content preserved in REPO_SPECIFIC_INSTRUCTIONS blocks), (c) replacement of v1 validator/test with v2 (covered by individual decision records), (d) contracts.lock.json SHA bump (covered by individual decision record), (e) schema-surface-exclusions.json updated to enumerate SACP schemas, (f) LKR AI_WORK_START_HERE.md reconstructed after it was deleted by a prior apply step, (g) per-repo .gitignore additions for backup/noise patterns, (h) SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md extended with the schema-surface exclusion rule paragraph.",
+  "user_intent_alignment_summary": "The user's task objective for this sprint is to apply the LawFirm-os-managed-patch-preservation-gate-patch-v2 workspace-wide and close the five blockers/hardening gaps from the prior architecture review. The broad blast radius is inherent to a workspace-wide governance integration: every repo in the LawFirm OS kernel must register with the Skill-Agent Control Plane, receive a skill-agent-manifest.json, and update its AI entry points. Narrow patches cannot fulfill this objective.",
+  "diff_review_summary": "68 protected files changed across 5 repos. By category: (1) AGENTS.md + AI_WORK_START_HERE.md in all 5 repos (bootstrap blocks added, original content preserved in REPO_SPECIFIC_INSTRUCTIONS wrapper); (2) New files added: skill-agent-manifest.json in all 5 repos, governance docs in substrate and per-repo docs/, schema files in substrate schemas/, registry files in substrate registry/, scripts and tests in substrate scripts/ and tests/; (3) Existing files replaced under individual decision records: validator, test suite, contracts.lock.json, LKR AGENTS.md; (4) schema-surface-exclusions.json updated (pre-existing file, not a net removal); (5) LKR AI_WORK_START_HERE.md reconstructed from bootstrap template after deletion; (6) Per-repo .gitignore extended with backup/noise patterns; (7) SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md extended with schema-surface exclusion rule. No runtime code paths in src/ were modified. All original content preserved either in-file (REPO_SPECIFIC_INSTRUCTIONS block), as .skill-agent-control-backup, or as .managed-preservation-backup. Managed-patch decision records are normal untracked files. registry/managed-patch-decisions/** is excluded only from blast-radius count/digest; explicit plain git add <paths> works, and no force-add is required.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": null,
+  "replacement_justification": null,
+  "alternatives_considered": [
+    "Stage the integration as a series of smaller per-repo patches applied in separate sessions. Rejected because the SACP and managed-patch-preservation v2 are interdependent: the v2 validator requires SACP registries and manifests to check the workspace; splitting them would leave the workspace in a partial state where the validator catches violations it cannot yet resolve.",
+    "Apply only the v2 managed-patch-preservation gate without the SACP integration. Rejected because the prior session (before this handoff) had already applied both patches; unwinding the SACP changes would require reverting completed, verified work."
+  ],
+  "automated_checks_run": [
+    "validate_managed_patch_preservation_gate_patch.py --patch-root <v2-bundle> (PASS, pre-apply bundle validation)",
+    "validate_managed_patch_preservation.py --workspace . (final pass run)",
+    "validate_managed_patch_preservation.py --workspace . --include-last-commit (will be run at commit time)",
+    "validate_skill_agent_control_plane.py --workspace .",
+    "validate_ai_front_door.py",
+    "pytest in all 5 repos"
+  ],
+  "risk_tier": "high",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong (SACP + v2 integration sprint 2026-05-14)",
+  "reviewer_model": "claude-opus-4-7 extra_high",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [],
+  "blast_radius": {
+    "repos_touched": [
+      "LawFirm-os-semantic-substrate",
+      "LawFirm-os-orchestrator",
+      "LawFirm-os-exceptions-lake-runtime-main",
+      "LawFirm-os-legal-knowledge-runtime",
+      "LawFirm-os-skills-registry"
+    ],
+    "protected_files_touched": 68,
+    "governance_files_touched": 13,
+    "schema_registry_files_touched": 8,
+    "runtime_code_files_touched": 2
+  },
+  "source_refs": [
+    "LawFirm-os-skill-agent-control-plane-patch/",
+    "LawFirm-os-managed-patch-preservation-gate-patch-v2/",
+    "HANDOFF_MANAGED_PATCH_PRESERVATION_V2.md §10 item 5"
+  ],
+  "created_by": "claude-opus-4-7 (session 2026-05-14, continuation of prior session)",
+  "created_at": "2026-05-14T22:00:00Z"
+}

@@ -1,5 +1,7 @@
 {
   "schema_version": "1.0",
+  "registry_id": "registry-full-manifest.v1",
+  "generated": true,
   "paths": [
     "registry/ai-front-door-registry.json",
     "registry/assumption-watch-registry.json",
@@ -15,6 +17,7 @@
     "registry/harness-policy-registry.json",
     "registry/human-approval-registry.json",
     "registry/innovation-object-registry.json",
+    "registry/lawfirm-os-repo-registry.json",
     "registry/legal-agent-safety-guardrail-registry.json",
     "registry/legal-context-bundle-registry.json",
     "registry/legal-document-type-registry.json",
@@ -22,6 +25,7 @@
     "registry/legal-index-profile-registry.json",
     "registry/legal-knowledge-runtime-contract-export.json",
     "registry/legal-retrieval-agent-registry.json",
+    "registry/managed-patch-preservation-policy.json",
     "registry/model-policy-registry.json",
     "registry/object_prefix_registry.json",
     "registry/ontology-registry.json",
@@ -33,11 +37,16 @@
     "registry/schema-registry.json",
     "registry/schema-registry.vnext.json",
     "registry/schema-surface-exclusions.json",
+    "registry/skill-agent-control-plane-registry.json",
+    "registry/skill-agent-graph-index.json",
+    "registry/skill-agent-lifecycle-policy-registry.json",
+    "registry/skill-agent-quality-scoring-registry.json",
     "registry/skill-quality-rubric.json",
     "registry/source-of-truth.json",
     "registry/template-registry.json",
     "registry/threat-rulepack-registry.json",
     "registry/tool-authority-registry.json",
-    "registry/workflow-atlas-object-registry.json"
+    "registry/workflow-atlas-object-registry.json",
+    "registry/workflow-composition-registry.json"
   ]
 }

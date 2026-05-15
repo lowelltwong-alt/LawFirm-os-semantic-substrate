@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lawfirm-os://schemas/skill-agent-improvement-proposal.v1",
+  "title": "Skill Agent Improvement Proposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "proposal_id",
+    "subject_id",
+    "proposal_type",
+    "source_signal",
+    "risk_tier",
+    "proposed_changes",
+    "expected_benefit",
+    "eval_plan",
+    "promotion_gate",
+    "created_at"
+  ],
+  "properties": {
+    "proposal_id": {
+      "type": "string"
+    },
+    "subject_id": {
+      "type": "string"
+    },
+    "proposal_type": {
+      "enum": [
+        "update",
+        "delete",
+        "supersede",
+        "combine",
+        "split",
+        "create_gap_skill",
+        "quarantine",
+        "workflow_recommendation"
+      ]
+    },
+    "source_signal": {
+      "type": "string"
+    },
+    "risk_tier": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "protected"
+      ]
+    },
+    "proposed_changes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_benefit": {
+      "type": "string"
+    },
+    "eval_plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "promotion_gate": {
+      "enum": [
+        "auto_if_low_risk_and_tests_pass",
+        "human_required",
+        "dual_approval_required",
+        "not_promotable"
+      ]
+    },
+    "created_at": {
+      "type": "string"
+    }
+  }
+}

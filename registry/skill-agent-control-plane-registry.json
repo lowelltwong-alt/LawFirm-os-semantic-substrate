@@ -1,0 +1,27 @@
+{
+  "registry_id": "skill-agent-control-plane-registry.v1",
+  "canonical_schemas": [
+    "schemas/skill-agent-metadata.schema.json",
+    "schemas/skill-agent-quality-score.schema.json",
+    "schemas/skill-agent-lifecycle-record.schema.json",
+    "schemas/skill-agent-improvement-proposal.schema.json",
+    "schemas/workflow-composition.schema.json",
+    "schemas/skill-gap-detection.schema.json",
+    "schemas/repo-membership-record.schema.json"
+  ],
+  "canonical_registries": [
+    "registry/lawfirm-os-repo-registry.json",
+    "registry/skill-agent-control-plane-registry.json",
+    "registry/skill-agent-lifecycle-policy-registry.json",
+    "registry/skill-agent-quality-scoring-registry.json",
+    "registry/skill-agent-graph-index.json",
+    "registry/workflow-composition-registry.json"
+  ],
+  "validators": [
+    "scripts/validate_skill_agent_control_plane.py"
+  ],
+  "boundary_docs": [
+    "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+    "governance/SKILL_AGENT_LIFECYCLE_AND_RECURSIVE_IMPROVEMENT.md"
+  ]
+}

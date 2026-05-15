@@ -1,0 +1,27 @@
+{
+  "registry_id": "skill-agent-quality-scoring-registry.v1",
+  "score_version": "skill-quality-score.v1",
+  "metric_weights": {
+    "task_success_rate": 25,
+    "evidence_completeness": 20,
+    "schema_conformance": 15,
+    "boundary_compliance": 15,
+    "eval_coverage": 10,
+    "recency_health": 5,
+    "reuse_fit": 5,
+    "cost_efficiency": 5
+  },
+  "hard_penalties": {
+    "boundary_violation": -100,
+    "raw_privileged_payload_leak": -100,
+    "schema_invalid_output": -40,
+    "stale_front_door_entry": -30,
+    "missing_metadata": -50
+  },
+  "recommendation_thresholds": {
+    "preferred_min_score": 90,
+    "active_min_score": 75,
+    "improve_below": 70,
+    "quarantine_below": 40
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lawfirm-os://schemas/repo-membership-record.v1",
+  "title": "LawFirm OS Repo Membership Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "repo_id",
+    "repo_name",
+    "owning_plane",
+    "required_root_files",
+    "skill_agent_manifest_path",
+    "ai_front_door_required",
+    "status"
+  ],
+  "properties": {
+    "repo_id": {
+      "type": "string"
+    },
+    "repo_name": {
+      "type": "string"
+    },
+    "owning_plane": {
+      "enum": [
+        "semantic_substrate",
+        "orchestrator",
+        "exception_lake",
+        "skills_registry",
+        "legal_knowledge_runtime",
+        "other"
+      ]
+    },
+    "required_root_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "skill_agent_manifest_path": {
+      "type": "string"
+    },
+    "ai_front_door_required": {
+      "type": "boolean"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "candidate",
+        "archived",
+        "excluded"
+      ]
+    },
+    "exclusion_reason": {
+      "type": "string"
+    }
+  }
+}

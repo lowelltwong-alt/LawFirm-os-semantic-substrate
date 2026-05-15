@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lawfirm-os://schemas/skill-agent-lifecycle-record.v1",
+  "title": "Skill Agent Lifecycle Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "subject_id",
+    "from_state",
+    "to_state",
+    "reason_code",
+    "actor_type",
+    "approval_required",
+    "approval_ref",
+    "evidence_refs",
+    "created_at"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string"
+    },
+    "subject_id": {
+      "type": "string"
+    },
+    "from_state": {
+      "type": "string"
+    },
+    "to_state": {
+      "type": "string"
+    },
+    "reason_code": {
+      "type": "string"
+    },
+    "actor_type": {
+      "enum": [
+        "system",
+        "human",
+        "agent",
+        "governance_board"
+      ]
+    },
+    "approval_required": {
+      "type": "boolean"
+    },
+    "approval_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    }
+  }
+}

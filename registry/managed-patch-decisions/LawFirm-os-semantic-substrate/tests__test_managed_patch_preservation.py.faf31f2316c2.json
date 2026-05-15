@@ -1,0 +1,51 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_substrate_test-validator_v1-to-v2-upgrade",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-semantic-substrate",
+  "target_path": "tests/test_managed_patch_preservation.py",
+  "change_mode": "replace",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "replacement_intentional",
+  "reason": "The v1 test_managed_patch_preservation.py was replaced by the v2 test suite delivered in the LawFirm-os-managed-patch-preservation-gate-patch-v2 bundle, pairing with the v2 validator upgrade. v2 tests cover the five hardening gaps: decision-record enforcement, backup-content scanning, JSON-key removal detection, must_not_own weakening, governance-doc weakening, and contract-lock change detection. The v1 backup is retained at tests/test_managed_patch_preservation.py.managed-preservation-backup.",
+  "user_intent_alignment_summary": "The user's handening gaps 1-3 explicitly requested test coverage for same-count JSON identifier replacement, must_not_own removal, and governance doc weakening. The v2 test suite was purpose-built to provide that coverage. Upgrading from v1 to v2 tests is the direct fulfillment of the user's hardening requirements for this sprint.",
+  "diff_review_summary": "Old test file (v1): 51 nonblank lines. New test file (v2 plus Codex hotfix coverage): substantially rewritten, similarity ratio 0.06. Removed public Python test symbols: test_validator_accepts_merged_repo_specific_backup_content, test_validator_rejects_bootstrap_without_repo_specific_content. These two v1 tests were specific to the bootstrap-merge format tested before v2's semantic analysis engine. v2 adds tests for decision-record presence, backup-content scanning, JSON-key removal, weakening-word detection, contracts.lock change flagging, and managed-patch-decision exclusion from blast-radius accounting while preserving decision lookup. v1 backup preserved at tests/test_managed_patch_preservation.py.managed-preservation-backup.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "The two removed v1 tests (bootstrap-merge format checks) test a workflow that the v2 validator handles differently via backup-content scanning and governance-keyword analysis. Keeping them alongside v2 tests would create false confidence: the tests would pass on v1 validator semantics but not actually exercise v2's new detection paths. The v2 test suite was designed as a coherent unit paired with the v2 validator API.",
+  "replacement_justification": "The v2 test suite is the authoritative test contract for the v2 validator. The two removed v1 test cases are superseded by v2's more comprehensive backup-scanning and semantic analysis tests. The removed test logic is preserved in the .managed-preservation-backup file and in git history. The v2 test file was delivered via the same verified patch bundle as the v2 validator (validate_managed_patch_preservation_gate_patch.py PASS).",
+  "alternatives_considered": [
+    "Keep v1 tests and add v2 tests in a new file. Rejected because the v1 tests import the v1 validator API (validate_workspace with the old signature) which no longer exists in v2, so they would fail immediately.",
+    "Port the two removed v1 tests to v2 API. Rejected because the bootstrap-merge format they test is now an implementation detail inside v2's backup scanner, not a separately testable interface."
+  ],
+  "automated_checks_run": [
+    "validate_managed_patch_preservation_gate_patch.py --patch-root <v2-bundle> (PASS, pre-apply bundle validation)",
+    "validate_managed_patch_preservation.py --workspace . (run after decision records placed)",
+    "pytest in LawFirm-os-semantic-substrate (full suite including v2 tests)"
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong (v2 patch sprint 2026-05-14)",
+  "reviewer_model": "claude-sonnet-4-6 extra_high",
+  "old_content_sha256": "sha256:d6982f3edba4d0771f06d2ddc711b39183b1f4d9a1674fba7246b9d350725692",
+  "new_content_sha256": "sha256:7759675d390ffc3cff6fb046e316f93b9a9efd5c9a7498c9d695c6cd3723e777",
+  "removed_content_summary": [
+    "Public test symbol: test_validator_accepts_merged_repo_specific_backup_content",
+    "Public test symbol: test_validator_rejects_bootstrap_without_repo_specific_content"
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-semantic-substrate"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 0,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 1
+  },
+  "source_refs": [
+    "LawFirm-os-managed-patch-preservation-gate-patch-v2/LawFirm-os-managed-patch-preservation-gate-patch-v2/repos/LawFirm-os-semantic-substrate/tests/test_managed_patch_preservation.py",
+    "HANDOFF_MANAGED_PATCH_PRESERVATION_V2.md §10 item 4"
+  ],
+  "created_by": "claude-sonnet-4-6 (session 2026-05-14, continuation of prior session)",
+  "created_at": "2026-05-14T21:00:00Z"
+}

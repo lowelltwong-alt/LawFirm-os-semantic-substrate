@@ -1,0 +1,45 @@
+{
+  "registry_id": "skill-agent-graph-index.v1",
+  "description": "Canonical machine-readable graph index for skills, agents, tools, workflows, evaluators, and guardrails. Can be sharded when large.",
+  "graph_contract": "schemas/skill-agent-metadata.schema.json",
+  "node_sources": [
+    "../LawFirm-os-skills-registry/skills",
+    "../LawFirm-os-orchestrator/src",
+    "../LawFirm-os-legal-knowledge-runtime/src",
+    "../LawFirm-os-exceptions-lake-runtime/examples"
+  ],
+  "edge_types": [
+    "uses",
+    "requires",
+    "produces",
+    "validates",
+    "supersedes",
+    "superseded_by",
+    "combines_with",
+    "conflicts_with",
+    "recommended_for",
+    "fills_gap",
+    "owned_by",
+    "bounded_by"
+  ],
+  "sharding_policy": {
+    "enabled_when_nodes_exceed": 10000,
+    "shard_path_pattern": "registry/skill-agent-graph-shards/{owning_plane}/{prefix}.json"
+  },
+  "minimum_node_fields": [
+    "id",
+    "kind",
+    "owning_repo",
+    "owning_plane",
+    "address",
+    "version",
+    "lifecycle_state",
+    "quality_score_ref"
+  ],
+  "minimum_edge_fields": [
+    "from",
+    "to",
+    "edge_type",
+    "evidence_ref"
+  ]
+}

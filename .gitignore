@@ -25,3 +25,14 @@ reports/repo-drift-report.md
 .ai/local/
 .agent-runtime/
 .mcp-local/
+
+# Managed patch / SACP patch backups and noise
+*.skill-agent-control-backup
+*.managed-preservation-backup
+*.research-delta-backup
+*.bak
+*.bak.workflow_atlas
+*.backup
+*.orig
+.cursor/
+_patches/

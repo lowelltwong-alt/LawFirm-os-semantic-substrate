@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lawfirm-os://schemas/skill-agent-metadata.v1",
+  "title": "Skill Agent Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "name",
+    "owning_repo",
+    "owning_plane",
+    "address",
+    "version",
+    "lifecycle_state",
+    "risk_tier",
+    "capabilities",
+    "inputs",
+    "outputs",
+    "side_effect_class",
+    "data_classes",
+    "approval_required",
+    "quality_score_ref",
+    "graph_node_ref",
+    "related_workflows",
+    "supersedes",
+    "superseded_by",
+    "combines_with",
+    "recommended_update_policy",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]+$"
+    },
+    "kind": {
+      "enum": [
+        "skill",
+        "agent",
+        "tool",
+        "workflow",
+        "adapter",
+        "evaluator",
+        "guardrail"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "owning_repo": {
+      "type": "string"
+    },
+    "owning_plane": {
+      "enum": [
+        "semantic_substrate",
+        "orchestrator",
+        "exception_lake",
+        "skills_registry",
+        "legal_knowledge_runtime",
+        "external_adapter"
+      ]
+    },
+    "address": {
+      "type": "string",
+      "description": "Nine-layer LawFirm OS address."
+    },
+    "version": {
+      "type": "string"
+    },
+    "lifecycle_state": {
+      "enum": [
+        "draft",
+        "candidate",
+        "active",
+        "preferred",
+        "deprecated",
+        "superseded",
+        "retired",
+        "quarantined"
+      ]
+    },
+    "risk_tier": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "protected"
+      ]
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "side_effect_class": {
+      "enum": [
+        "none",
+        "read",
+        "write",
+        "external"
+      ]
+    },
+    "data_classes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_required": {
+      "type": "boolean"
+    },
+    "quality_score_ref": {
+      "type": "string"
+    },
+    "graph_node_ref": {
+      "type": "string"
+    },
+    "related_workflows": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "superseded_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "combines_with": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_update_policy": {
+      "enum": [
+        "manual_only",
+        "auto_propose",
+        "auto_patch_draft",
+        "auto_patch_low_risk",
+        "quarantine_on_failure"
+      ]
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

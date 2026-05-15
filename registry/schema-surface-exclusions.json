@@ -153,5 +153,45 @@
     "governance_doc": "governance/AI_FRONT_DOOR_BOUNDARY.md",
     "governance_reason": "Pre-primary-registry schema surface; tracked for staged registry backfill per AI front door integrity policy.",
     "exclusion_class": "legacy_or_extension_surface"
+  },
+  "schemas/repo-membership-record.schema.json": {
+    "governance_doc": "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+    "governance_reason": "Skill-Agent Control Plane membership record schema; registered via skill-agent-control-plane-registry.json pending primary schema-registry promotion.",
+    "exclusion_class": "skill_agent_control_plane_surface"
+  },
+  "schemas/skill-agent-improvement-proposal.schema.json": {
+    "governance_doc": "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+    "governance_reason": "Skill-Agent Control Plane improvement proposal schema; registered via skill-agent-control-plane-registry.json pending primary schema-registry promotion.",
+    "exclusion_class": "skill_agent_control_plane_surface"
+  },
+  "schemas/skill-agent-lifecycle-record.schema.json": {
+    "governance_doc": "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+    "governance_reason": "Skill-Agent Control Plane lifecycle record schema; registered via skill-agent-control-plane-registry.json pending primary schema-registry promotion.",
+    "exclusion_class": "skill_agent_control_plane_surface"
+  },
+  "schemas/skill-agent-metadata.schema.json": {
+    "governance_doc": "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+    "governance_reason": "Skill-Agent Control Plane metadata envelope schema; registered via skill-agent-control-plane-registry.json pending primary schema-registry promotion.",
+    "exclusion_class": "skill_agent_control_plane_surface"
+  },
+  "schemas/skill-agent-quality-score.schema.json": {
+    "governance_doc": "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+    "governance_reason": "Skill-Agent Control Plane quality score schema; registered via skill-agent-control-plane-registry.json pending primary schema-registry promotion.",
+    "exclusion_class": "skill_agent_control_plane_surface"
+  },
+  "schemas/skill-gap-detection.schema.json": {
+    "governance_doc": "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+    "governance_reason": "Skill-Agent Control Plane gap detection schema; registered via skill-agent-control-plane-registry.json pending primary schema-registry promotion.",
+    "exclusion_class": "skill_agent_control_plane_surface"
+  },
+  "schemas/workflow-composition.schema.json": {
+    "governance_doc": "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+    "governance_reason": "Skill-Agent Control Plane workflow composition schema; registered via skill-agent-control-plane-registry.json pending primary schema-registry promotion.",
+    "exclusion_class": "skill_agent_control_plane_surface"
+  },
+  "schemas/managed-patch-decision.schema.json": {
+    "governance_doc": "governance/MANAGED_PATCH_PRESERVATION_BOUNDARY.md",
+    "governance_reason": "Managed patch decision record schema; consumed by validate_managed_patch_preservation.py and registered via the managed-patch-preservation-policy registry pending primary schema-registry promotion.",
+    "exclusion_class": "managed_patch_preservation_surface"
   }
 }

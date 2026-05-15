@@ -1,0 +1,95 @@
+{
+  "registry_id": "lawfirm-os-repo-registry.v1",
+  "description": "Canonical registry of repos that belong to the LawFirm OS multi-repo kernel. New LawFirm-os-* repos fail validation until registered or explicitly excluded.",
+  "repos": [
+    {
+      "repo_id": "lawfirm-os-semantic-substrate",
+      "repo_name": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "required_root_files": [
+        "README.md",
+        "AGENTS.md",
+        "AI_WORK_START_HERE.md",
+        "skill-agent-manifest.json"
+      ],
+      "skill_agent_manifest_path": "skill-agent-manifest.json",
+      "ai_front_door_required": true,
+      "status": "active",
+      "exclusion_reason": ""
+    },
+    {
+      "repo_id": "lawfirm-os-orchestrator",
+      "repo_name": "LawFirm-os-orchestrator",
+      "owning_plane": "orchestrator",
+      "required_root_files": [
+        "README.md",
+        "AGENTS.md",
+        "AI_WORK_START_HERE.md",
+        "skill-agent-manifest.json"
+      ],
+      "skill_agent_manifest_path": "skill-agent-manifest.json",
+      "ai_front_door_required": true,
+      "status": "active",
+      "exclusion_reason": ""
+    },
+    {
+      "repo_id": "lawfirm-os-exceptions-lake-runtime",
+      "repo_name": "LawFirm-os-exceptions-lake-runtime",
+      "owning_plane": "exception_lake",
+      "required_root_files": [
+        "README.md",
+        "AGENTS.md",
+        "AI_WORK_START_HERE.md",
+        "skill-agent-manifest.json"
+      ],
+      "skill_agent_manifest_path": "skill-agent-manifest.json",
+      "ai_front_door_required": true,
+      "status": "active",
+      "exclusion_reason": ""
+    },
+    {
+      "repo_id": "lawfirm-os-legal-knowledge-runtime",
+      "repo_name": "LawFirm-os-legal-knowledge-runtime",
+      "owning_plane": "legal_knowledge_runtime",
+      "required_root_files": [
+        "README.md",
+        "AGENTS.md",
+        "AI_WORK_START_HERE.md",
+        "skill-agent-manifest.json"
+      ],
+      "skill_agent_manifest_path": "skill-agent-manifest.json",
+      "ai_front_door_required": true,
+      "status": "active",
+      "exclusion_reason": ""
+    },
+    {
+      "repo_id": "lawfirm-os-skills-registry",
+      "repo_name": "LawFirm-os-skills-registry",
+      "owning_plane": "skills_registry",
+      "required_root_files": [
+        "README.md",
+        "AGENTS.md",
+        "AI_WORK_START_HERE.md",
+        "skill-agent-manifest.json"
+      ],
+      "skill_agent_manifest_path": "skill-agent-manifest.json",
+      "ai_front_door_required": true,
+      "status": "active",
+      "exclusion_reason": ""
+    }
+  ],
+  "explicit_exclusions": [
+    {
+      "pattern": "*seed-pack*",
+      "reason": "patch/artifact folder, not project repo"
+    },
+    {
+      "pattern": "*patch*",
+      "reason": "patch/artifact folder, not project repo"
+    },
+    {
+      "pattern": "*.zip",
+      "reason": "archive, not repo"
+    }
+  ]
+}

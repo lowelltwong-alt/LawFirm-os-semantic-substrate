@@ -1,3 +1,25 @@
+# AI_WORK_START_HERE.md
+
+<!-- BEGIN LAWFIRM_OS_BOOTSTRAP -->
+Managed bootstrap for AI-assisted work in the LawFirm OS multi-repo workspace. Route through the canonical AI front door and Skill-Agent Control Plane, but preserve local repo operating doctrine.
+
+Required bootstrap read order:
+
+1. AGENTS.md
+2. skill-agent-manifest.json
+3. Semantic Substrate registry/ai-front-door-registry.json
+4. Semantic Substrate registry/skill-agent-control-plane-registry.json
+5. Semantic Substrate governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md
+
+Repo: LawFirm-os-semantic-substrate
+Plane: semantic substrate / control plane
+Repo purpose: Canonical schemas, registries, governance, AI front door, lifecycle policy, schema registry, repo registry, skill-agent graph, and workspace validators.
+This repo must not own: Runtime observations, model execution, raw legal payload storage.
+
+Run workspace preservation and control-plane validation before reporting success on managed patch work.
+<!-- END LAWFIRM_OS_BOOTSTRAP -->
+
+<!-- BEGIN REPO_SPECIFIC_INSTRUCTIONS -->
 # AI Work Start Here
 
 This is the mandatory operational router for AI-assisted work in this repository.
@@ -105,3 +127,20 @@ Law Firm defines the audit contracts and governance. Runtime systems capture and
 ## Clean-room rule
 
 Do not copy leaked code, private prompts, or leak-derived repositories. Allowed lessons are architectural only: mode separation, permissions, hooks, approval gates, auditability, source boundaries, and trust zones.
+
+<!-- END REPO_SPECIFIC_INSTRUCTIONS -->
+
+## Skill-Agent Control Plane References
+
+- skill-agent-manifest.json
+- Semantic Substrate registry/skill-agent-control-plane-registry.json
+- Semantic Substrate registry/skill-agent-lifecycle-policy-registry.json
+- Semantic Substrate registry/skill-agent-quality-scoring-registry.json
+- Semantic Substrate scripts/validate_skill_agent_control_plane.py
+
+## Validation Commands
+
+    python scripts/validate_ai_front_door.py
+    python scripts/validate_skill_agent_control_plane.py --workspace ..
+    python scripts/validate_managed_patch_preservation.py --workspace ..
+    python -m pytest -q

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lawfirm-os://schemas/skill-agent-quality-score.v1",
+  "title": "Skill Agent Quality Score",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "score_id",
+    "subject_id",
+    "score_version",
+    "overall_score",
+    "confidence",
+    "sample_size",
+    "metrics",
+    "risk_penalties",
+    "recommendation",
+    "computed_at",
+    "evidence_refs"
+  ],
+  "properties": {
+    "score_id": {
+      "type": "string"
+    },
+    "subject_id": {
+      "type": "string"
+    },
+    "score_version": {
+      "type": "string"
+    },
+    "overall_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "sample_size": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "risk_penalties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommendation": {
+      "enum": [
+        "promote_candidate",
+        "keep",
+        "improve",
+        "combine",
+        "supersede",
+        "deprecate",
+        "retire",
+        "quarantine"
+      ]
+    },
+    "computed_at": {
+      "type": "string"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

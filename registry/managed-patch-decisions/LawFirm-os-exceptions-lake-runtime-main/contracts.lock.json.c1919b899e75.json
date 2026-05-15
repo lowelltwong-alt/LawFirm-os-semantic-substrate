@@ -1,0 +1,48 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_exceptions-lake_contracts-lock_bump-to-substrate-dfacbb5",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-exceptions-lake-runtime-main",
+  "target_path": "contracts.lock.json",
+  "change_mode": "replace",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "replacement_intentional",
+  "reason": "Exception Lake contracts.lock.json was pinned to substrate SHA 35deefb5081b6b8d3ace4ad78ecd58c14965394a, which is 4 commits behind the current substrate origin/main HEAD dfacbb5e29a85834e37bb393bc45e80ab2e3a204. The lock was bumped to the current substrate HEAD to eliminate contract drift introduced during the SACP + v2 managed-patch-preservation integration sprint. A pin_rationale field was added to the lock explaining the bump.",
+  "user_intent_alignment_summary": "The user's explicit blocker 1 in the handoff was to decide the Exception Lake contracts.lock.json pin: bump vs documented rationale. Option A (bump to current substrate HEAD) was taken in the prior session and confirmed by the handoff. The bump aligns with the LawFirm OS architecture principle that the lake must track substrate contract authority without stale SHA drift.",
+  "diff_review_summary": "Old contract_sha: 35deefb5081b6b8d3ace4ad78ecd58c14965394a (4 commits behind substrate HEAD). New contract_sha: dfacbb5e29a85834e37bb393bc45e80ab2e3a204 (current substrate HEAD = local HEAD). generated_at updated to 2026-05-14T20:00:00Z. New field pin_rationale added explaining the bump. No governance keywords removed. No public symbols affected (JSON config file). Net effect: eliminates SHA drift; lake and substrate are now aligned.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "The contract lock is a single pinned SHA value; there is no meaningful merge between two SHA identifiers. The old SHA must be replaced with the new one. The old SHA is preserved in git history and in the pin_rationale field.",
+  "replacement_justification": "The old SHA was 4 commits stale against the substrate origin/main HEAD. Keeping the stale SHA would allow the Exception Lake to import governance contracts that pre-date the SACP + managed-patch-preservation integration, violating the substrate-authority principle. The bump is provenance-verified: the new SHA is the current local substrate HEAD, confirmed by git log before the bump.",
+  "alternatives_considered": [
+    "Option B: Leave old SHA with a prose comment documenting why drift is acceptable. Rejected because prose comments in JSON are non-standard and the lock validator would still flag drift indefinitely.",
+    "Option C: Remove contracts.lock.json and rely on runtime detection. Rejected because the lock provides a static integrity gate checked during pytest; removing it degrades the safety guarantee."
+  ],
+  "automated_checks_run": [
+    "validate_managed_patch_preservation.py --workspace . (run after this decision record is in place)",
+    "pytest in LawFirm-os-exceptions-lake-runtime-main with EXCEPTIONS_LAKE_CONTRACT_REPO_PATH set to substrate"
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong (session 2026-05-14, handoff §11 confirmed Option A taken)",
+  "reviewer_model": "claude-sonnet-4-6 extra_high",
+  "old_content_sha256": "sha256:bdf28fd6d7226ef17cc06350643ddbdc06cf58120b612314f2da1c098f1cff0a",
+  "new_content_sha256": "sha256:7a781da5c89249e0c0486b352c59847e4f0dcc541065f0c84bd7adacb90ddf3e",
+  "removed_content_summary": [
+    "Old contract_sha: 35deefb5081b6b8d3ace4ad78ecd58c14965394a"
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-exceptions-lake-runtime-main"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 0,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 0
+  },
+  "source_refs": [
+    "HANDOFF_MANAGED_PATCH_PRESERVATION_V2.md §11"
+  ],
+  "created_by": "claude-sonnet-4-6 (session 2026-05-14, continuation of prior session)",
+  "created_at": "2026-05-14T21:00:00Z"
+}
