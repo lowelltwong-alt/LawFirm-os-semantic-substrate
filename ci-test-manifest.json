@@ -887,6 +887,65 @@
       ],
       "expected_runtime_seconds": 5,
       "full_regression_required": false
+    },
+    {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_contract_surface_locking.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_contract_surface_locking.py",
+      "runner_command": "python -m pytest tests/test_contract_surface_locking.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "contract_lock",
+        "contract_surface_locking",
+        "schema_surface",
+        "registry_integrity",
+        "governance_boundary"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "source_code_change",
+        "schema_change",
+        "registry_change",
+        "governance_doc_change",
+        "contract_lock_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_contract_surface_locking.py",
+        "scripts/contract_surface.py",
+        "scripts/compute_contract_surface_hash.py",
+        "scripts/validate_contract_surface_*.py",
+        "scripts/validate_contract_lock_drift_workspace.py",
+        "registry/contract-surface-registry.json",
+        "schemas/contract-surface*.schema.json",
+        "governance/CONTRACT_SURFACE_LOCKING_BOUNDARY.md"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "contract_surface_locking",
+        "contract_lock",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime"
+      ],
+      "must_run_when": [
+        "contract-surface registry/schema/scripts change",
+        "consumer contract-lock behavior changes"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "consumer-owned routing authority"
+      ],
+      "expected_runtime_seconds": 10,
+      "full_regression_required": false
     }
   ],
   "explicit_test_artifact_exclusions": [

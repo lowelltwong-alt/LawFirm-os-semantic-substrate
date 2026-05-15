@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/contract-surface-lock.schema.json",
+  "title": "LawFirm OS Contract Surface Lock",
+  "type": "object",
+  "required": [
+    "surface_id",
+    "surface_sha256",
+    "surface_registry_path",
+    "hash_algorithm",
+    "computed_from_repo",
+    "computed_from_commit"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "surface_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "surface_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "surface_registry_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hash_algorithm": {
+      "const": "lawfirm_os_contract_surface_sha256.v1"
+    },
+    "computed_from_repo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "computed_from_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "included_file_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "included_files_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

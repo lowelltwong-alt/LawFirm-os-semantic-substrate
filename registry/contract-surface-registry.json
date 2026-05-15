@@ -1,0 +1,78 @@
+{
+  "schema_version": "contract_surface_registry.v1",
+  "registry_id": "contract-surface-registry.v1",
+  "default_surface_id": "lawfirm_os_semantic_substrate.consumer_contract_surface.v1",
+  "hash_algorithm": "lawfirm_os_contract_surface_sha256.v1",
+  "notes": [
+    "Consumers should validate contract_surface_lock.surface_sha256 when present.",
+    "Substrate repo commit SHA remains provenance; it is not the only consumer authority gate once a contract surface lock exists.",
+    "Managed-patch decisions and audit/review records are intentionally excluded from this surface to prevent recursive lock bumps."
+  ],
+  "surfaces": [
+    {
+      "surface_id": "lawfirm_os_semantic_substrate.consumer_contract_surface.v1",
+      "description": "Default contract-authority surface consumed by LawFirm OS runtime repos.",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "hash_algorithm": "lawfirm_os_contract_surface_sha256.v1",
+      "include_patterns": [
+        "schemas/*.schema.json",
+        "schemas/*.json",
+        "registry/schema-registry.json",
+        "registry/exceptions-schema-registry.json",
+        "registry/governed-learning-schema-registry.json",
+        "registry/exception-route-registry.json",
+        "registry/exceptions-lake-contract-export.json",
+        "registry/orchestrator-contract-export.json",
+        "registry/ai-front-door-registry.json",
+        "registry/skill-agent-control-plane-registry.json",
+        "registry/skill-agent-lifecycle-policy-registry.json",
+        "registry/skill-agent-quality-scoring-registry.json",
+        "registry/workflow-composition-registry.json",
+        "registry/lawfirm-os-repo-registry.json",
+        "registry/ci-test-route-registry.json",
+        "registry/test-architecture-registry.json",
+        "registry/test-framework-adapter-registry.json",
+        "registry/contract-surface-registry.json",
+        "manifests/*.json",
+        "governance/*BOUNDARY*.md",
+        "governance/*DOCTRINE*.md",
+        "governance/CONTRACT_SURFACE_LOCKING_BOUNDARY.md",
+        "governance/AI_CONTROL_PLANE_BOUNDARY.md",
+        "governance/AI_FRONT_DOOR_BOUNDARY.md",
+        "governance/ORCHESTRATOR_BOUNDARY.md",
+        "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
+        "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+        "governance/CI_TEST_ROUTING_BOUNDARY.md"
+      ],
+      "exclude_patterns": [
+        "registry/managed-patch-decisions/**",
+        "reports/**",
+        "docs/**",
+        "tests/**",
+        "scripts/**",
+        ".cursor/**",
+        ".pytest_cache/**",
+        "__pycache__/**",
+        "*.bak",
+        "*.backup",
+        "*.ci-router-backup",
+        "*.research-delta-backup",
+        "*.skill-agent-control-backup"
+      ],
+      "consumer_repos": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime",
+        "LawFirm-os-exceptions-lake-runtime-main",
+        "LawFirm-os-legal-knowledge-runtime",
+        "LawFirm-os-skills-registry"
+      ],
+      "unknown_path_policy": "ignore_unless_included",
+      "contract_authority_notes": [
+        "Changing an included file changes the surface digest and can require consumer lock updates.",
+        "Changing an excluded managed-patch decision/audit/report file should not change the surface digest.",
+        "Changing this registry itself changes the surface digest and requires Codex/human review."
+      ]
+    }
+  ]
+}
