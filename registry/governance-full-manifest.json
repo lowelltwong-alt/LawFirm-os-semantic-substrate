@@ -25,6 +25,7 @@
     "governance/CANONICAL_SPINE_POLICY.md",
     "governance/CHANGE_TAXONOMY.md",
     "governance/CHUNKING_POLICY.md",
+    "governance/CI_TEST_ROUTING_BOUNDARY.md",
     "governance/CLAIM_LAYER_MODEL.md",
     "governance/CLAIM_SCHEMA.md",
     "governance/CODEX_DESKTOP_RUNBOOK.md",

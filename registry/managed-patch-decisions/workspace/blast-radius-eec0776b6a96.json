@@ -1,0 +1,65 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_workspace_ci-test-router-governance-patch_blast-radius-23-with-lake-lock-bump",
+  "decision_scope": "workspace",
+  "repo": "workspace",
+  "target_path": "__blast_radius__",
+  "change_mode": "preserve_and_add",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "merged_old_and_new_content",
+  "reason": "Workspace blast radius for the LawFirm OS CI Test Router Governance patch + cross-repo lock bumps: now 23 protected files (was 22). The additional file is LawFirm-os-exceptions-lake-runtime-main/contracts.lock.json, bumped from substrate SHA dfacbb5 to substrate HEAD 590e18c to match the orchestrator bump done in the same session. All other elements of the change set are identical to blast-radius-f5d792407b8c.json (the prior workspace decision for this session, now superseded by this record).",
+  "user_intent_alignment_summary": "The user's continuation handoff explicitly required rerunning every validator after the orchestrator lock bump (Blocker 2 Option A). validate_contract_lock_drift_workspace.py was added to required_validators by the new route decision precisely because contracts.lock.json changed. That validator then surfaced the lake as a downstream-affected repo whose pin still lagged substrate HEAD. The consistent application of Option A across all consumer repos matches the user's intent and the LawFirm OS architecture rule that the entire workspace reads contracts at a single substrate commit.",
+  "diff_review_summary": "Same 22-file diff as blast-radius-f5d792407b8c.json (CI router governance patch surfaces + front-door manifest extensions + orchestrator lock bump + 2 orchestrator test SHA assertions), plus one additional file: LawFirm-os-exceptions-lake-runtime-main/contracts.lock.json (three-line change: contract_sha, generated_at, pin_rationale). No protected content removed across the 23-file set. No public symbols deleted. All governance keywords preserved.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": null,
+  "replacement_justification": null,
+  "alternatives_considered": [
+    "Keep the lake on dfacbb5 and ship a 22-file patch. Rejected because validate_contract_lock_drift_workspace.py would fail closed and the workspace would not pass the route decision's required validators.",
+    "Split the lake bump into a separate patch session. Rejected because the lake bump is causally and temporally tied to the orchestrator bump (both triggered by the substrate moving to 590e18c during the SACP + v2 integration). Splitting would create two near-duplicate governance records for the same root cause."
+  ],
+  "automated_checks_run": [
+    "apply_ci_test_router_patch.py --workspace . --commit (PASS, 22 files written)",
+    "validate_ci_test_router_patch.py (PASS)",
+    "discover_test_artifacts.py --workspace . (PASS, 57 artifacts)",
+    "validate_test_artifact_registration.py --workspace . (PASS)",
+    "validate_new_repo_ci_onboarding.py --workspace . (PASS)",
+    "validate_ai_front_door.py (PASS after CI router front-door registration)",
+    "validate_skill_agent_control_plane.py --workspace . (PASS)",
+    "validate_contract_lock_drift_workspace.py --workspace . (PASS after both lock bumps)",
+    "validate_managed_patch_preservation.py --workspace . (target of this record)",
+    "route_ci_tests.py --workspace . --base-ref origin/main --out .ci-route-decision.json",
+    "pytest in all 5 repos with EXCEPTIONS_LAKE_CONTRACT_REPO_PATH set for the lake"
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong (session 2026-05-15, continuation handoff approved Blocker 1 + Blocker 2 fixes; explicit 'do not push'; consistent Option A bump pattern across affected repos)",
+  "reviewer_model": "claude-opus-4-7 extra_high",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [],
+  "blast_radius": {
+    "repos_touched": [
+      "LawFirm-os-semantic-substrate",
+      "LawFirm-os-orchestrator",
+      "LawFirm-os-exceptions-lake-runtime-main",
+      "LawFirm-os-legal-knowledge-runtime",
+      "LawFirm-os-skills-registry"
+    ],
+    "protected_files_touched": 23,
+    "governance_files_touched": 2,
+    "schema_registry_files_touched": 6,
+    "runtime_code_files_touched": 9
+  },
+  "source_refs": [
+    "LawFirm-os-ci-test-router-governance-patch/README.md",
+    "LawFirm-os-ci-test-router-governance-patch/APPLY_ORDER.md",
+    "LawFirm-os-ci-test-router-governance-patch/SEED_PACK_MANIFEST.json",
+    "User handoff 2026-05-15 (Blocker 1 + Blocker 2 fixes)",
+    "Supersedes blast-radius-f5d792407b8c.json (same session, prior to lake lock bump)"
+  ],
+  "created_by": "claude-opus-4-7 (session 2026-05-15, CI router governance patch continuation)",
+  "created_at": "2026-05-15T15:43:00Z"
+}

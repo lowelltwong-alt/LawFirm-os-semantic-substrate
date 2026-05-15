@@ -1,0 +1,55 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_orchestrator_contracts-lock_bump-to-substrate-590e18c",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-orchestrator",
+  "target_path": "contracts.lock.json",
+  "change_mode": "replace",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "replacement_intentional",
+  "reason": "Orchestrator contracts.lock.json was pinned to substrate SHA dfacbb5e29a85834e37bb393bc45e80ab2e3a204. The current committed substrate origin/main HEAD is 590e18c9e197bf5308846ad3944430d27522c0ea (the SACP + v2 managed-patch-preservation integration commit), which is the live contract authority the orchestrator must read. The stale pin caused tests/test_cross_repo_contract.py::test_real_sibling_substrate_classify_exception_dry_run_packet_integrity to fail closed with exit code 3 because validate_contract_checkout observed substrate HEAD 590e18c against locked SHA dfacbb5. Option A from the user handoff was taken: bump the lock to current committed substrate HEAD; recompute archive_tree_sha256 over the committed HEAD tree (not the working tree); update the two hardcoded test assertions that intentionally pin the validated_ref.",
+  "user_intent_alignment_summary": "The user's continuation handoff explicitly named Blocker 2 (orchestrator contract-lock drift), preferred Option A (bump to current committed substrate HEAD), and required that the recomputed archive_tree_sha256 reflect committed content only, not uncommitted local working-tree files. This change implements exactly that path: the new contract_sha matches `git -C LawFirm-os-semantic-substrate rev-parse HEAD`, and the new archive_tree_sha256 was computed over `git -C LawFirm-os-semantic-substrate archive HEAD` materialized into a temp dir, using the same algorithm orchestrator's substrate.contract_lock.archive_tree_sha256 applies at runtime.",
+  "diff_review_summary": "Three lines changed in contracts.lock.json: contract_sha (dfacbb5e29a85834e37bb393bc45e80ab2e3a204 -> 590e18c9e197bf5308846ad3944430d27522c0ea), archive_tree_sha256 (e7e6df880407e82db5d6a02c6c30969e159ac602d2ec6017df036fe4419dff1f -> 214c12c5077463f2a24f72b66eca474fb96a3985a978b4ca683c55d1224ed63d), and generated_at (2026-05-14T00:00:00Z -> 2026-05-15T15:30:00Z). No keys added or removed. All other fields preserved (manifest_first_loading.preferred_path, fallback_allowed_when_manifest_absent=false, policy_bundle_id_required=true, non_claims list). Two test assertions updated to match: tests/test_cross_repo_contract.py:37 and tests/test_classify_exception.py:84 (fixture-mode assertion). No headings, public symbols, or governance keywords removed.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "The contract lock is a single pinned SHA value; there is no meaningful three-way merge between two SHA identifiers. The old SHA must be replaced with the new one. The old SHA remains in git history.",
+  "replacement_justification": "Keeping the stale SHA would force orchestrator to validate against a non-existent contract state (HEAD is now 590e18c, not dfacbb5), permanently failing the cross-repo contract test and silently degrading the contract-lock safety guarantee. The new SHA is provenance-verified against `git -C LawFirm-os-semantic-substrate rev-parse HEAD`, and archive_tree_sha256 is recomputed over committed HEAD content only, not the local working tree which contains uncommitted CI router patch files.",
+  "alternatives_considered": [
+    "Option B: leave old SHA with an explicit pin_rationale field. Rejected because the substrate has actually advanced; preserving dfacbb5 indefinitely would freeze the orchestrator at a substrate state that no longer matches origin/main, accumulating drift.",
+    "Hash over working-tree rather than git HEAD. Rejected because the workspace currently has uncommitted CI router patch files in the substrate working copy; hashing those would pin orchestrator to local-only content, violating the user's 'Do not point locks to uncommitted local content' constraint."
+  ],
+  "automated_checks_run": [
+    "git -C LawFirm-os-semantic-substrate rev-parse HEAD (590e18c9e197bf5308846ad3944430d27522c0ea)",
+    "Recomputed archive_tree_sha256 via git archive HEAD + tarfile extraction + orchestrator's archive_tree_sha256 algorithm",
+    "validate_managed_patch_preservation.py --workspace . (target of this record)",
+    "validate_ai_front_door.py (PASS after CI router front-door registration)",
+    "pytest in LawFirm-os-orchestrator (re-run after this record)",
+    "Re-verified 2026-05-15: git archive of committed substrate HEAD + lawfirm_os_orchestrator.substrate.contract_lock.archive_tree_sha256 on extracted tree (214c12c5077463f2a24f72b66eca474fb96a3985a978b4ca683c55d1224ed63d); working tree not used"
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong (session 2026-05-15, continuation handoff Blocker 2 explicitly approved Option A)",
+  "reviewer_model": "claude-opus-4-7 extra_high",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [
+    "Old contract_sha: dfacbb5e29a85834e37bb393bc45e80ab2e3a204",
+    "Old archive_tree_sha256: e7e6df880407e82db5d6a02c6c30969e159ac602d2ec6017df036fe4419dff1f"
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-orchestrator"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 0,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 0
+  },
+  "source_refs": [
+    "User handoff 2026-05-15 Blocker 2 (Orchestrator contract-lock drift, Option A preferred)",
+    "git commit 590e18c9e197bf5308846ad3944430d27522c0ea (substrate origin/main HEAD)",
+    "Post CI-router hardening handoff: consumer contracts.lock alignment check (2026-05-15)"
+  ],
+  "created_by": "claude-opus-4-7 (session 2026-05-15, CI router governance patch continuation)",
+  "created_at": "2026-05-15T15:35:00Z"
+}

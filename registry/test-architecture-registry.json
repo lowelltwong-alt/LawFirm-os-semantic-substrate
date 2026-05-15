@@ -1,0 +1,80 @@
+{
+  "registry_id": "test-architecture-registry.v1",
+  "description": "Architecture surfaces and risk semantics used by ci-test-manifest.json and CI routing decisions.",
+  "owner_plane": "semantic_substrate",
+  "architecture_surfaces": [
+    {
+      "surface": "semantic_substrate_control_plane",
+      "owning_plane": "semantic_substrate",
+      "risk_tier": "protected"
+    },
+    {
+      "surface": "orchestrator_execution_plane",
+      "owning_plane": "orchestrator",
+      "risk_tier": "high"
+    },
+    {
+      "surface": "exception_lake_evidence_plane",
+      "owning_plane": "exception_lake",
+      "risk_tier": "high"
+    },
+    {
+      "surface": "skills_registry",
+      "owning_plane": "skills_registry",
+      "risk_tier": "high"
+    },
+    {
+      "surface": "legal_knowledge_runtime",
+      "owning_plane": "legal_knowledge_runtime",
+      "risk_tier": "high"
+    },
+    {
+      "surface": "contract_lock",
+      "owning_plane": "semantic_substrate",
+      "risk_tier": "protected"
+    },
+    {
+      "surface": "ai_front_door",
+      "owning_plane": "semantic_substrate",
+      "risk_tier": "protected"
+    },
+    {
+      "surface": "skill_agent_control_plane",
+      "owning_plane": "semantic_substrate",
+      "risk_tier": "protected"
+    },
+    {
+      "surface": "managed_patch_preservation",
+      "owning_plane": "semantic_substrate",
+      "risk_tier": "protected"
+    },
+    {
+      "surface": "schema_surface",
+      "owning_plane": "semantic_substrate",
+      "risk_tier": "protected"
+    },
+    {
+      "surface": "registry_integrity",
+      "owning_plane": "semantic_substrate",
+      "risk_tier": "protected"
+    },
+    {
+      "surface": "governance_boundary",
+      "owning_plane": "semantic_substrate",
+      "risk_tier": "protected"
+    },
+    {
+      "surface": "cross_repo_integration",
+      "owning_plane": "workspace",
+      "risk_tier": "protected"
+    }
+  ],
+  "runtime_must_not_own": [
+    "canonical schemas",
+    "canonical route authority",
+    "canonical lifecycle states",
+    "promotion authority",
+    "AI front-door authority"
+  ],
+  "notes": "A test may verify that a runtime does not own canon; it must not make the runtime the owner of canon."
+}

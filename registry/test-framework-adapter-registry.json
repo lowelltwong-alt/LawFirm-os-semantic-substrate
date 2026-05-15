@@ -1,0 +1,138 @@
+{
+  "registry_id": "test-framework-adapter-registry.v1",
+  "description": "Language/framework discovery adapters supported by the CI test router. Unknown frameworks fail closed and require human/Codex review.",
+  "adapters": [
+    {
+      "adapter_id": "python_pytest",
+      "languages": [
+        "python"
+      ],
+      "frameworks": [
+        "pytest"
+      ],
+      "patterns": [
+        "tests/test_*.py",
+        "tests/**/*_test.py",
+        "scripts/validation/tests/test_*.py"
+      ]
+    },
+    {
+      "adapter_id": "javascript_jest_vitest",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "frameworks": [
+        "jest",
+        "vitest",
+        "jest_or_vitest",
+        "vitest_or_jest"
+      ],
+      "patterns": [
+        "**/*.test.js",
+        "**/*.test.ts"
+      ]
+    },
+    {
+      "adapter_id": "playwright",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "frameworks": [
+        "playwright",
+        "playwright_or_jest",
+        "playwright_or_vitest"
+      ],
+      "patterns": [
+        "**/*.spec.ts",
+        "**/*.spec.js"
+      ]
+    },
+    {
+      "adapter_id": "go_test",
+      "languages": [
+        "go"
+      ],
+      "frameworks": [
+        "go_test"
+      ],
+      "patterns": [
+        "**/*_test.go"
+      ]
+    },
+    {
+      "adapter_id": "rust_cargo",
+      "languages": [
+        "rust"
+      ],
+      "frameworks": [
+        "cargo_test"
+      ],
+      "patterns": [
+        "**/*_test.rs"
+      ]
+    },
+    {
+      "adapter_id": "java_junit",
+      "languages": [
+        "java"
+      ],
+      "frameworks": [
+        "junit",
+        "maven",
+        "gradle"
+      ],
+      "patterns": [
+        "**/*Test.java",
+        "**/src/test/**/*.java"
+      ]
+    },
+    {
+      "adapter_id": "dotnet_test",
+      "languages": [
+        "csharp",
+        "fsharp"
+      ],
+      "frameworks": [
+        "dotnet_test",
+        "xunit",
+        "nunit"
+      ],
+      "patterns": [
+        "**/*Tests.cs",
+        "**/*Test.cs"
+      ]
+    },
+    {
+      "adapter_id": "shell_smoke",
+      "languages": [
+        "shell"
+      ],
+      "frameworks": [
+        "bash",
+        "bats"
+      ],
+      "patterns": [
+        "**/*.bats",
+        "**/test_*.sh",
+        "**/smoke_*.sh"
+      ]
+    },
+    {
+      "adapter_id": "generic_schema_eval",
+      "languages": [
+        "json",
+        "yaml"
+      ],
+      "frameworks": [
+        "schema_eval",
+        "golden_file_eval"
+      ],
+      "patterns": [
+        "**/evals/**/*.json",
+        "**/golden/**/*.json"
+      ]
+    }
+  ]
+}

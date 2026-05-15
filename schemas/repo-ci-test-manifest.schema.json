@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/repo-ci-test-manifest.schema.json",
+  "title": "LawFirm OS repo CI test manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "repo",
+    "owning_plane",
+    "architecture_role",
+    "canonical_authority_allowed",
+    "central_router_authority",
+    "test_artifacts",
+    "must_not_own"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "repo_ci_test_manifest.v1"
+    },
+    "repo": {
+      "type": "string"
+    },
+    "owning_plane": {
+      "type": "string"
+    },
+    "architecture_role": {
+      "type": "string"
+    },
+    "canonical_authority_allowed": {
+      "type": "boolean"
+    },
+    "central_router_authority": {
+      "type": "string"
+    },
+    "test_artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "test-artifact-metadata.schema.json"
+      }
+    },
+    "explicit_test_artifact_exclusions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "no_tests_yet_rationale": {
+      "type": "string"
+    },
+    "temporary_until": {
+      "type": "string"
+    },
+    "must_not_own": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": true
+}

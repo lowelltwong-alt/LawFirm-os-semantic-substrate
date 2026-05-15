@@ -1,6 +1,6 @@
 {
   "schema_version": "managed_patch_decision.v2",
-  "decision_id": "mpd_exceptions-lake_contracts-lock_bump-to-substrate-dfacbb5",
+  "decision_id": "mpd_exceptions-lake_contracts-lock_bump-to-substrate-590e18c",
   "decision_scope": "file",
   "repo": "LawFirm-os-exceptions-lake-runtime-main",
   "target_path": "contracts.lock.json",
@@ -8,30 +8,33 @@
   "protected_surface": true,
   "old_content_reviewed": true,
   "preservation_strategy": "replacement_intentional",
-  "reason": "Exception Lake contracts.lock.json was pinned to substrate SHA 35deefb5081b6b8d3ace4ad78ecd58c14965394a, which is 4 commits behind the current substrate origin/main HEAD dfacbb5e29a85834e37bb393bc45e80ab2e3a204. The lock was bumped to the current substrate HEAD to eliminate contract drift introduced during the SACP + v2 managed-patch-preservation integration sprint. A pin_rationale field was added to the lock explaining the bump.",
-  "user_intent_alignment_summary": "The user's explicit blocker 1 in the handoff was to decide the Exception Lake contracts.lock.json pin: bump vs documented rationale. Option A (bump to current substrate HEAD) was taken in the prior session and confirmed by the handoff. The bump aligns with the LawFirm OS architecture principle that the lake must track substrate contract authority without stale SHA drift.",
-  "diff_review_summary": "Old contract_sha: 35deefb5081b6b8d3ace4ad78ecd58c14965394a (4 commits behind substrate HEAD). New contract_sha: dfacbb5e29a85834e37bb393bc45e80ab2e3a204 (current substrate HEAD = local HEAD). generated_at updated to 2026-05-14T20:00:00Z. New field pin_rationale added explaining the bump. No governance keywords removed. No public symbols affected (JSON config file). Net effect: eliminates SHA drift; lake and substrate are now aligned.",
+  "reason": "Exception Lake contracts.lock.json was pinned to substrate SHA dfacbb5e29a85834e37bb393bc45e80ab2e3a204. After the Orchestrator lock was bumped to current committed substrate origin/main HEAD 590e18c9e197bf5308846ad3944430d27522c0ea during the CI router governance patch session, the workspace contract-lock-drift validator (newly required by the route decision because of the orchestrator contract_lock_change) flagged the Exception Lake as the remaining repo whose pin lags substrate HEAD. The lake was bumped to substrate HEAD to keep the entire workspace coherent: all consumer repos now read contracts at the same substrate commit. Previous bump history is preserved in pin_rationale: 35deefb -> dfacbb5 (legal knowledge runtime + AI front-door integration, prior session), and now dfacbb5 -> 590e18c (this session).",
+  "user_intent_alignment_summary": "The user's continuation handoff for the CI router governance patch did not name Exception Lake explicitly, but the workspace contract-lock-drift validator is part of the required validators selected by the route decision, and it fails closed when any active consumer's lock lags substrate HEAD. Bumping the lake is the consistent application of Blocker 2 Option A across the entire workspace (the user said 'Update Orchestrator contracts.lock.json to current committed Semantic Substrate HEAD' and 'Do not point locks to uncommitted local content'); leaving the lake stale would silently degrade the same safety guarantee on the lake side. No uncommitted content is encoded in the lake lock.",
+  "diff_review_summary": "Three lines changed in Exception Lake contracts.lock.json: contract_sha (dfacbb5e29a85834e37bb393bc45e80ab2e3a204 -> 590e18c9e197bf5308846ad3944430d27522c0ea), generated_at (2026-05-14T20:00:00Z -> 2026-05-15T15:40:00Z), pin_rationale (text updated to record the new bump while preserving prior bump history). No fields added or removed. All other fields preserved (manifest_first_loading.preferred_path, fallback_allowed_when_export_absent, fallback_paths list, non_claims list). No public symbols affected. No governance keywords removed.",
   "merge_considered": true,
-  "why_merge_not_sufficient": "The contract lock is a single pinned SHA value; there is no meaningful merge between two SHA identifiers. The old SHA must be replaced with the new one. The old SHA is preserved in git history and in the pin_rationale field.",
-  "replacement_justification": "The old SHA was 4 commits stale against the substrate origin/main HEAD. Keeping the stale SHA would allow the Exception Lake to import governance contracts that pre-date the SACP + managed-patch-preservation integration, violating the substrate-authority principle. The bump is provenance-verified: the new SHA is the current local substrate HEAD, confirmed by git log before the bump.",
+  "why_merge_not_sufficient": "The contract lock is a single pinned SHA value; there is no meaningful three-way merge between SHA identifiers. The old SHA must be replaced with the new one. Prior bump rationale is preserved in pin_rationale text and in git history.",
+  "replacement_justification": "Keeping the stale SHA would split the workspace: orchestrator at 590e18c, lake at dfacbb5. The two cannot validate against the same substrate state, breaking the cross-repo contract guarantees the LawFirm OS multi-repo kernel depends on. The new SHA is provenance-verified against `git -C LawFirm-os-semantic-substrate rev-parse HEAD`.",
   "alternatives_considered": [
-    "Option B: Leave old SHA with a prose comment documenting why drift is acceptable. Rejected because prose comments in JSON are non-standard and the lock validator would still flag drift indefinitely.",
-    "Option C: Remove contracts.lock.json and rely on runtime detection. Rejected because the lock provides a static integrity gate checked during pytest; removing it degrades the safety guarantee."
+    "Option B: leave the lake on dfacbb5 with extended pin_rationale. Rejected because validate_contract_lock_drift_workspace.py fails closed against substrate HEAD; keeping it stale would require permanently bypassing that validator.",
+    "Bump only orchestrator, freeze lake. Rejected because event examples and registry refs in the lake reference substrate paths that have evolved between dfacbb5 and 590e18c; staying stale risks silent path drift."
   ],
   "automated_checks_run": [
-    "validate_managed_patch_preservation.py --workspace . (run after this decision record is in place)",
-    "pytest in LawFirm-os-exceptions-lake-runtime-main with EXCEPTIONS_LAKE_CONTRACT_REPO_PATH set to substrate"
+    "git -C LawFirm-os-semantic-substrate rev-parse HEAD (590e18c9e197bf5308846ad3944430d27522c0ea)",
+    "validate_contract_lock_drift_workspace.py --workspace . (re-run after this record to confirm green)",
+    "validate_managed_patch_preservation.py --workspace . (target of this record)",
+    "pytest in LawFirm-os-exceptions-lake-runtime-main with EXCEPTIONS_LAKE_CONTRACT_REPO_PATH set",
+    "Re-verified 2026-05-15: orchestrator archive_tree_sha256 algorithm on git-archive extract of substrate committed HEAD (lake lock pins same contract_sha as orchestrator; lake lock has no archive_tree_sha256 field by design)"
   ],
   "risk_tier": "protected",
   "human_review_required": true,
   "human_review_status": "approved",
   "model_review_level": "extra_high",
-  "approver": "Lowell Wong (session 2026-05-14, handoff §11 confirmed Option A taken)",
-  "reviewer_model": "claude-sonnet-4-6 extra_high",
-  "old_content_sha256": "sha256:bdf28fd6d7226ef17cc06350643ddbdc06cf58120b612314f2da1c098f1cff0a",
-  "new_content_sha256": "sha256:7a781da5c89249e0c0486b352c59847e4f0dcc541065f0c84bd7adacb90ddf3e",
+  "approver": "Lowell Wong (session 2026-05-15, continuation handoff: same Option A bump pattern applied consistently across affected repos)",
+  "reviewer_model": "claude-opus-4-7 extra_high",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
   "removed_content_summary": [
-    "Old contract_sha: 35deefb5081b6b8d3ace4ad78ecd58c14965394a"
+    "Old contract_sha: dfacbb5e29a85834e37bb393bc45e80ab2e3a204"
   ],
   "blast_radius": {
     "repos_touched": ["LawFirm-os-exceptions-lake-runtime-main"],
@@ -41,8 +44,11 @@
     "runtime_code_files_touched": 0
   },
   "source_refs": [
-    "HANDOFF_MANAGED_PATCH_PRESERVATION_V2.md §11"
+    "User handoff 2026-05-15 Blocker 2 (Option A bump pattern)",
+    "git commit 590e18c9e197bf5308846ad3944430d27522c0ea (substrate origin/main HEAD)",
+    "Prior decision record at this same path documented the 35deefb -> dfacbb5 bump (session 2026-05-14); now superseded by 590e18c",
+    "Post CI-router hardening handoff: consumer contracts.lock alignment check (2026-05-15)"
   ],
-  "created_by": "claude-sonnet-4-6 (session 2026-05-14, continuation of prior session)",
-  "created_at": "2026-05-14T21:00:00Z"
+  "created_by": "claude-opus-4-7 (session 2026-05-15, CI router governance patch continuation)",
+  "created_at": "2026-05-15T15:42:00Z"
 }

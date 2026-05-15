@@ -1,0 +1,121 @@
+{
+  "registry_id": "ci-test-route-registry.v1",
+  "description": "Canonical LawFirm OS CI/test routing policy. The router runs first, classifies changed files, and selects the minimum required validators/tests with fail-closed defaults.",
+  "owner_repo": "LawFirm-os-semantic-substrate",
+  "owner_plane": "semantic_substrate",
+  "default_behavior": "fail_closed",
+  "always_run": [
+    "discover_test_artifacts",
+    "validate_test_artifact_registration",
+    "validate_new_repo_ci_onboarding"
+  ],
+  "risk_tiers": [
+    "low",
+    "medium",
+    "high",
+    "protected"
+  ],
+  "change_class_routes": {
+    "ai_instruction_change": [
+      "validate_managed_patch_preservation",
+      "validate_ai_front_door"
+    ],
+    "governance_doc_change": [
+      "validate_managed_patch_preservation",
+      "validate_ai_front_door"
+    ],
+    "registry_change": [
+      "validate_managed_patch_preservation",
+      "validate_ai_front_door",
+      "validate_skill_agent_control_plane"
+    ],
+    "schema_change": [
+      "validate_test_artifact_registration",
+      "validate_ai_front_door"
+    ],
+    "contract_lock_change": [
+      "validate_contract_lock_drift_workspace"
+    ],
+    "skill_metadata_change": [
+      "validate_skill_agent_control_plane"
+    ],
+    "skill_definition_change": [
+      "validate_skill_agent_control_plane"
+    ],
+    "repo_boundary_change": [
+      "validate_skill_agent_control_plane",
+      "validate_new_repo_ci_onboarding"
+    ],
+    "ci_router_change": [
+      "validate_ci_route_decision",
+      "validate_test_artifact_registration"
+    ],
+    "test_artifact_change": [
+      "validate_test_artifact_registration"
+    ],
+    "test_manifest_change": [
+      "validate_test_artifact_registration",
+      "validate_ci_route_decision"
+    ],
+    "workflow_change": [
+      "validate_ci_route_decision"
+    ],
+    "source_code_change": [
+      "repo_local_pytest"
+    ],
+    "unknown_change": [
+      "discover_test_artifacts",
+      "validate_test_artifact_registration",
+      "validate_new_repo_ci_onboarding",
+      "validate_ai_front_door",
+      "validate_managed_patch_preservation",
+      "validate_skill_agent_control_plane",
+      "validate_contract_lock_drift_workspace",
+      "full_workspace_review",
+      "codex_review",
+      "human_review"
+    ]
+  },
+  "protected_change_classes": [
+    "ai_instruction_change",
+    "governance_doc_change",
+    "registry_change",
+    "schema_change",
+    "contract_lock_change",
+    "repo_boundary_change",
+    "ci_router_change",
+    "unknown_change"
+  ],
+  "full_workspace_triggers": [
+    "ci_router_change",
+    "repo_membership_change",
+    "central_policy_change",
+    "unknown_change"
+  ],
+  "unknown_change_policy": {
+    "risk_tier": "protected",
+    "requires_full_workspace_tests": true,
+    "requires_cross_repo_validation": true,
+    "requires_codex_review": true,
+    "requires_human_review": true,
+    "required_pytest_repos": "all_active_repos",
+    "required_validators": [
+      "discover_test_artifacts",
+      "validate_test_artifact_registration",
+      "validate_new_repo_ci_onboarding",
+      "validate_ai_front_door",
+      "validate_managed_patch_preservation",
+      "validate_skill_agent_control_plane",
+      "validate_contract_lock_drift_workspace"
+    ],
+    "rationale": "Unknown / ambiguous changes never silently pass as medium. They escalate to full workspace validation and human + Codex review."
+  },
+  "final_verifier_required": true,
+  "final_verifier_run_evidence": {
+    "validators": "required_validators must all appear in --ran-validator at strict verification",
+    "test_artifacts": "required_test_artifacts must all appear in --ran-test-artifact at strict verification",
+    "pytest_repos": "required_pytest_repos must all appear in --ran-pytest-repo at strict verification",
+    "unknown_evidence_rejected": true
+  },
+    "notes": "Do not add independent routers in runtime repos. Runtime repos provide ci-test-manifest.json only. Router must fail closed; final verifier must prove validators, test artifacts, and per-repo pytest suites actually ran. validate_ci_route_decision.py enforces unknown_change validator and active-repo pytest completeness against lawfirm-os-repo-registry.json."
+}

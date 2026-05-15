@@ -782,6 +782,42 @@
       "layer": "legal_knowledge_runtime",
       "owner": "legal-knowledge-platform",
       "supersedes": null
+    },
+    {
+      "schema_id": "ci-test-route-decision-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/ci-test-route-decision.schema.json",
+      "applies_to": [
+        "ci-test-route-decision"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "semantic-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "repo-ci-test-manifest-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/repo-ci-test-manifest.schema.json",
+      "applies_to": [
+        "repo-ci-test-manifest"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "semantic-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "test-artifact-metadata-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/test-artifact-metadata.schema.json",
+      "applies_to": [
+        "test-artifact-metadata"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "semantic-platform",
+      "supersedes": null
     }
   ],
   "validation_rules": {

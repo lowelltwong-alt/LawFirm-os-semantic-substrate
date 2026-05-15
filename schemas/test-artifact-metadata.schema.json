@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/test-artifact-metadata.schema.json",
+  "title": "LawFirm OS test artifact metadata",
+  "type": "object",
+  "required": [
+    "test_id",
+    "language",
+    "framework",
+    "artifact_type",
+    "path",
+    "runner_command",
+    "owning_repo",
+    "owning_plane",
+    "architecture_surface",
+    "risk_tier",
+    "change_classes_covered",
+    "trigger_patterns",
+    "markers",
+    "upstream_dependencies",
+    "downstream_dependencies",
+    "must_run_when",
+    "must_not_validate",
+    "expected_runtime_seconds",
+    "full_regression_required"
+  ],
+  "properties": {
+    "test_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "language": {
+      "type": "string"
+    },
+    "framework": {
+      "type": "string"
+    },
+    "artifact_type": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "runner_command": {
+      "type": "string"
+    },
+    "owning_repo": {
+      "type": "string"
+    },
+    "owning_plane": {
+      "type": "string"
+    },
+    "architecture_surface": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "risk_tier": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "protected"
+      ]
+    },
+    "change_classes_covered": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "trigger_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "markers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "upstream_dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "downstream_dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "must_run_when": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "must_not_validate": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_runtime_seconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "full_regression_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": true
+}

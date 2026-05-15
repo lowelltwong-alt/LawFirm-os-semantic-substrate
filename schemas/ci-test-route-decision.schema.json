@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/ci-test-route-decision.schema.json",
+  "title": "LawFirm OS CI test route decision",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "decision_id",
+    "created_at",
+    "workspace_root",
+    "base_ref",
+    "changed_files",
+    "change_classes",
+    "risk_tier",
+    "affected_repos",
+    "required_validators",
+    "required_pytest_repos",
+    "required_test_artifacts",
+    "requires_cross_repo_validation",
+    "requires_full_workspace_tests",
+    "requires_codex_review",
+    "requires_human_review",
+    "reason_codes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ci_test_route_decision.v1"
+    },
+    "decision_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "workspace_root": {
+      "type": "string"
+    },
+    "base_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "changed_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "change_classes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_tier": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "protected"
+      ]
+    },
+    "affected_repos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_validators": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_pytest_repos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_test_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requires_cross_repo_validation": {
+      "type": "boolean"
+    },
+    "requires_full_workspace_tests": {
+      "type": "boolean"
+    },
+    "requires_codex_review": {
+      "type": "boolean"
+    },
+    "requires_human_review": {
+      "type": "boolean"
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

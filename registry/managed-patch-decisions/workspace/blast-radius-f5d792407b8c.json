@@ -1,0 +1,63 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_workspace_ci-test-router-governance-patch_blast-radius-22",
+  "decision_scope": "workspace",
+  "repo": "workspace",
+  "target_path": "__blast_radius__",
+  "change_mode": "preserve_and_add",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "merged_old_and_new_content",
+  "reason": "Workspace blast radius for the LawFirm OS CI Test Router Governance patch (v1): 22 protected files touched across five repos. The patch installs the central deterministic CI/test router owned by Semantic Substrate (new schemas, registries, governance doc, scripts, and tests) and a local ci-test-manifest.json in each runtime repo. Additionally, this same workspace change set includes the Orchestrator contracts.lock.json bump to substrate HEAD 590e18c (covered by its own file-scope decision record). The full surface is intentionally broad because the router is a workspace-level control plane; per the patch's APPLY_ORDER.md and README, it must land coherently across all five repos.",
+  "user_intent_alignment_summary": "The user's continuation handoff after the initial router-patch validation explicitly required fixing two blockers and rerunning all validators against the updated workspace. The patch was applied non-destructively (every router file is an add; no protected file was overwritten without a backup) and the front-door manifests were extended to register the new schemas/registries/governance doc per the user's Blocker 1 instructions. The Orchestrator lock bump implements the user's Blocker 2 Option A. The blast radius decision records all of this as a coherent governance package and aligns with LawFirm OS architecture: Semantic Substrate owns central routing authority; runtime repos declare local inventory only.",
+  "diff_review_summary": "22 protected files in the working-tree blast radius for this patch session: (a) Semantic Substrate additions: docs/CI_TEST_ROUTER_ARCHITECTURE.md, governance/CI_TEST_ROUTING_BOUNDARY.md, schemas/ci-test-route-decision.schema.json, schemas/repo-ci-test-manifest.schema.json, schemas/test-artifact-metadata.schema.json, registry/ci-test-route-registry.json, registry/test-architecture-registry.json, registry/test-framework-adapter-registry.json, scripts/{route_ci_tests,validate_ci_route_decision,discover_test_artifacts,validate_test_artifact_registration,validate_new_repo_ci_onboarding,validate_contract_lock_drift_workspace}.py, tests/test_ci_test_routing.py, tests/test_test_artifact_registration.py, ci-test-manifest.json. (b) Semantic Substrate edits to extend front-door manifests: registry/schema-registry.json (3 CI router schema entries appended at end of array), registry/registry-full-manifest.json (3 CI router registry paths inserted in sorted positions), registry/governance-full-manifest.json (CI_TEST_ROUTING_BOUNDARY.md inserted in sorted position), governance/CI_TEST_ROUTING_BOUNDARY.md (cross-references section appended; original content preserved). (c) Each runtime repo: a new ci-test-manifest.json. (d) Orchestrator contracts.lock.json: three-field bump (covered by its own file decision record). (e) Orchestrator tests/test_cross_repo_contract.py and tests/test_classify_exception.py: SHA assertion updated from dfacbb5 to 590e18c to match the new lock. No protected content removed. No public symbols deleted. All governance keywords preserved.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": null,
+  "replacement_justification": null,
+  "alternatives_considered": [
+    "Apply the patch piecemeal across multiple sessions. Rejected because the router is by design a coherent unit (central registries + per-repo manifests + verifier) and partial application fails validate_new_repo_ci_onboarding.py and validate_test_artifact_registration.py.",
+    "Apply only the substrate side and defer per-repo manifests. Rejected because validate_test_artifact_registration.py fails closed for any repo with discovered test artifacts but no ci-test-manifest.json."
+  ],
+  "automated_checks_run": [
+    "apply_ci_test_router_patch.py --workspace . --commit (PASS, 22 files written, no backups required)",
+    "validate_ci_test_router_patch.py --patch-root .\\LawFirm-os-ci-test-router-governance-patch (PASS)",
+    "discover_test_artifacts.py --workspace . (PASS, 57 artifacts in 5 repos)",
+    "validate_test_artifact_registration.py --workspace . (PASS)",
+    "validate_new_repo_ci_onboarding.py --workspace . (PASS)",
+    "validate_ai_front_door.py (PASS after CI router front-door registration)",
+    "validate_skill_agent_control_plane.py --workspace . (PASS)",
+    "validate_managed_patch_preservation.py --workspace . (target of this record)",
+    "route_ci_tests.py --workspace . --base-ref origin/main --out .ci-route-decision.json",
+    "pytest in all 5 repos (with EXCEPTIONS_LAKE_CONTRACT_REPO_PATH set for the lake repo)"
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong (session 2026-05-15, CI router governance patch continuation: approved Blocker 1 and Blocker 2 fixes; explicit 'do not push')",
+  "reviewer_model": "claude-opus-4-7 extra_high",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [],
+  "blast_radius": {
+    "repos_touched": [
+      "LawFirm-os-semantic-substrate",
+      "LawFirm-os-orchestrator",
+      "LawFirm-os-exceptions-lake-runtime-main",
+      "LawFirm-os-legal-knowledge-runtime",
+      "LawFirm-os-skills-registry"
+    ],
+    "protected_files_touched": 22,
+    "governance_files_touched": 2,
+    "schema_registry_files_touched": 6,
+    "runtime_code_files_touched": 9
+  },
+  "source_refs": [
+    "LawFirm-os-ci-test-router-governance-patch/README.md",
+    "LawFirm-os-ci-test-router-governance-patch/APPLY_ORDER.md",
+    "LawFirm-os-ci-test-router-governance-patch/SEED_PACK_MANIFEST.json",
+    "User handoff 2026-05-15 (Blocker 1 + Blocker 2 fixes)"
+  ],
+  "created_by": "claude-opus-4-7 (session 2026-05-15, CI router governance patch continuation)",
+  "created_at": "2026-05-15T15:36:00Z"
+}
