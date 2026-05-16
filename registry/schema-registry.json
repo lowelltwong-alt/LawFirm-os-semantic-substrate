@@ -818,6 +818,30 @@
       "layer": "policy_and_governance",
       "owner": "semantic-platform",
       "supersedes": null
+    },
+    {
+      "schema_id": "contract-surface-registry-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/contract-surface-registry.schema.json",
+      "applies_to": [
+        "contract_surface_registry"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "semantic-platform",
+      "supersedes": null
+    },
+    {
+      "schema_id": "contract-surface-lock-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/contract-surface-lock.schema.json",
+      "applies_to": [
+        "contract_surface_lock"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "semantic-platform",
+      "supersedes": null
     }
   ],
   "validation_rules": {

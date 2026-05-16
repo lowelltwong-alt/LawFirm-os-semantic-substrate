@@ -67,6 +67,11 @@
       "surface": "cross_repo_integration",
       "owning_plane": "workspace",
       "risk_tier": "protected"
+    },
+    {
+      "surface": "contract_surface_locking",
+      "owning_plane": "semantic_substrate",
+      "risk_tier": "protected"
     }
   ],
   "runtime_must_not_own": [
