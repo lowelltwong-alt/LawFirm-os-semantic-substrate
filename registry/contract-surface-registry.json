@@ -34,6 +34,7 @@
         "registry/test-architecture-registry.json",
         "registry/test-framework-adapter-registry.json",
         "registry/contract-surface-registry.json",
+        "registry/runtime-reason-codes-registry.json",
         "manifests/*.json",
         "governance/*BOUNDARY*.md",
         "governance/*DOCTRINE*.md",

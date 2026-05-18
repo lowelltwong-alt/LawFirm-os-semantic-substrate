@@ -37,6 +37,7 @@
     "registry/registry-full-manifest.json",
     "registry/research-radar-source-registry.json",
     "registry/research-signal-registry.json",
+    "registry/runtime-reason-codes-registry.json",
     "registry/schema-registry.json",
     "registry/schema-registry.vnext.json",
     "registry/schema-surface-exclusions.json",

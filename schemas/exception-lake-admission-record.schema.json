@@ -25,7 +25,19 @@
     "contract_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "admitted_at": {"type": "string", "format": "date-time"},
     "admission_status": {"enum": ["admitted", "quarantined", "rejected"]},
-    "admission_reason_code": {"type": "string", "description": "Substrate-registered admission reason; consumers MUST NOT invent."},
+    "admission_reason_code": {
+      "type": "string",
+      "description": "Substrate-registered admission reason from runtime-reason-codes-registry.json#/vocabularies/exception_lake.admission_reason_codes. Consumers MUST NOT invent. CI validator scripts/validate_runtime_reason_codes.py enforces.",
+      "enum": [
+        "passed_dry_run_admission",
+        "wrong_packet_schema",
+        "missing_contract_surface",
+        "contract_surface_mismatch",
+        "missing_context_bundle_ref",
+        "missing_execution_authority",
+        "packet_hash_mismatch"
+      ]
+    },
     "admission_explanation_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "source_repo": {"type": "string"},
     "defect_records_minted": {"type": "array", "items": {"type": "string"}}

@@ -25,7 +25,20 @@
     "severity": {"enum": ["low", "medium", "high", "critical"]},
     "defect_class": {
       "type": "string",
-      "description": "Substrate-registered defect class; consumers MUST NOT invent. Examples: route_mismatch, evidence_gap, unsupported_citation, prompt_injection, stale_law, approval_bypass, destination_privilege, passport_denial."
+      "description": "Substrate-registered defect class from runtime-reason-codes-registry.json#/vocabularies/defect_record.defect_classes. Consumers MUST NOT invent. CI validator scripts/validate_runtime_reason_codes.py enforces.",
+      "enum": [
+        "route_mismatch",
+        "evidence_gap",
+        "unsupported_citation",
+        "prompt_injection",
+        "stale_law",
+        "approval_bypass",
+        "destination_privilege",
+        "passport_denial",
+        "hash_mismatch",
+        "missing_passport",
+        "denied_action_recorded"
+      ]
     },
     "source_repo": {"type": "string"},
     "evidence_packet_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},

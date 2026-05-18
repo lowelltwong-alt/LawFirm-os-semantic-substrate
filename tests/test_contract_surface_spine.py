@@ -10,6 +10,7 @@ per-consumer drift against the substrate).
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +18,27 @@ import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE_ROOT = REPO_ROOT.parent
+
+
+def _integrated_workspace() -> bool:
+    """True iff this run expects sibling runtime repos. Set
+    LFOS_INTEGRATED_WORKSPACE=1 in CI to promote any missing-lock condition
+    from skip to fail. Auto-detected when at least one runtime repo is a
+    sibling of this substrate checkout (the standard 5-repo layout).
+    """
+    if os.environ.get("LFOS_INTEGRATED_WORKSPACE") == "1":
+        return True
+    return any(
+        (WORKSPACE_ROOT / name).is_dir()
+        for name in ("LawFirm-os-orchestrator", "LawFirm-os-orchestrator-main")
+    )
+
+
+def _missing_lock_outcome(message: str) -> None:
+    """Skip in substrate-standalone CI; fail in the integrated workspace."""
+    if _integrated_workspace():
+        pytest.fail(message)
+    pytest.skip(message)
 
 CONSUMER_REPO_ALIASES: dict[str, list[str]] = {
     "LawFirm-os-orchestrator": ["LawFirm-os-orchestrator", "LawFirm-os-orchestrator-main"],
@@ -77,7 +99,7 @@ def _surface_block(lock: dict[str, Any]) -> dict[str, Any]:
 def test_all_present_consumer_locks_share_surface_sha256() -> None:
     locks = _discover_consumer_locks()
     if not locks:
-        pytest.skip(
+        _missing_lock_outcome(
             "no consumer locks discoverable from substrate sibling layout; "
             "this test requires the LawFirm OS workspace layout"
         )
@@ -92,7 +114,7 @@ def test_all_present_consumer_locks_share_surface_sha256() -> None:
 def test_all_present_consumer_locks_share_surface_id() -> None:
     locks = _discover_consumer_locks()
     if not locks:
-        pytest.skip("no consumer locks discoverable")
+        _missing_lock_outcome("no consumer locks discoverable")
     ids = {name: _surface_block(lock).get("surface_id") for name, lock in locks.items()}
     distinct = sorted({i for i in ids.values() if i})
     assert len(distinct) == 1, (
@@ -103,7 +125,7 @@ def test_all_present_consumer_locks_share_surface_id() -> None:
 def test_all_present_consumer_locks_share_hash_algorithm() -> None:
     locks = _discover_consumer_locks()
     if not locks:
-        pytest.skip("no consumer locks discoverable")
+        _missing_lock_outcome("no consumer locks discoverable")
     algos = {name: _surface_block(lock).get("hash_algorithm") for name, lock in locks.items()}
     distinct = sorted({a for a in algos.values() if a})
     assert distinct == ["lawfirm_os_contract_surface_sha256.v1"], (
@@ -116,7 +138,7 @@ def test_all_four_runtime_consumers_have_locks() -> None:
     """PR-01 acceptance: every runtime consumer either has a lock or is staged with a TODO."""
     locks = _discover_consumer_locks()
     if not locks:
-        pytest.skip("no consumer locks discoverable in sibling layout")
+        _missing_lock_outcome("no consumer locks discoverable in sibling layout")
     expected = set(CONSUMER_REPO_ALIASES)
     present = set(locks)
     missing = expected - present

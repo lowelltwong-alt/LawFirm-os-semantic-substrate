@@ -29,7 +29,20 @@
     "run_id": {"type": "string", "minLength": 1},
     "decided_at": {"type": "string", "format": "date-time"},
     "decision": {"enum": ["allowed", "denied", "requires_approval"]},
-    "reason_code": {"type": "string", "description": "Substrate-registered reason code; consumers MUST NOT invent."},
+    "reason_code": {
+      "type": "string",
+      "description": "Substrate-registered reason code from runtime-reason-codes-registry.json#/vocabularies/execution_decision.reason_codes. Consumers MUST NOT invent. CI validator scripts/validate_runtime_reason_codes.py enforces.",
+      "enum": [
+        "allowed_under_authority_policy",
+        "unknown_tool",
+        "unknown_route",
+        "unknown_event_class",
+        "semantic_mutation_forbidden",
+        "external_writes_forbidden_in_mvp",
+        "write_requires_human_approval",
+        "write_requires_explicit_approval_policy"
+      ]
+    },
     "evaluator": {"type": "string", "description": "Component identifier that produced the decision."},
     "policy_ref": {
       "type": "object",

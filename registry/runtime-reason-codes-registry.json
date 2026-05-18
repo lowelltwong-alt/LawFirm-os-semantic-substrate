@@ -1,0 +1,72 @@
+{
+  "schema_version": "runtime_reason_codes_registry.v1",
+  "registry_id": "runtime-reason-codes-registry.v1",
+  "owning_plane": "semantic_substrate",
+  "purpose": "Canonical controlled vocabulary for runtime-emitted enum-shaped strings: ExecutionDecision.reason_code, ExceptionLakeAdmissionRecord.admission_reason_code, DefectRecord.defect_class, and the semantic-mutation action deny-list consulted by the orchestrator's execution_authority.",
+  "authority_rule": "Runtime repos (orchestrator, exceptions-lake-runtime, legal-knowledge-runtime, skills-registry) MUST NOT invent values for these fields. They consume from this registry via generated/loaded constants and emit only registered values.",
+  "non_claims": [
+    "this registry does not authorize runtime actions",
+    "this registry does not change object schemas at runtime",
+    "this registry is content-addressed via the contract surface; modifying it forces a consumer lock refresh"
+  ],
+  "vocabularies": {
+    "execution_decision.reason_codes": {
+      "field": "schemas/execution-decision.schema.json#/properties/reason_code",
+      "values": [
+        "allowed_under_authority_policy",
+        "unknown_tool",
+        "unknown_route",
+        "unknown_event_class",
+        "semantic_mutation_forbidden",
+        "external_writes_forbidden_in_mvp",
+        "write_requires_human_approval",
+        "write_requires_explicit_approval_policy"
+      ]
+    },
+    "exception_lake.admission_reason_codes": {
+      "field": "schemas/exception-lake-admission-record.schema.json#/properties/admission_reason_code",
+      "values": [
+        "passed_dry_run_admission",
+        "wrong_packet_schema",
+        "missing_contract_surface",
+        "contract_surface_mismatch",
+        "missing_context_bundle_ref",
+        "missing_execution_authority",
+        "packet_hash_mismatch"
+      ]
+    },
+    "defect_record.defect_classes": {
+      "field": "schemas/defect-record.schema.json#/properties/defect_class",
+      "values": [
+        "route_mismatch",
+        "evidence_gap",
+        "unsupported_citation",
+        "prompt_injection",
+        "stale_law",
+        "approval_bypass",
+        "destination_privilege",
+        "passport_denial",
+        "hash_mismatch",
+        "missing_passport",
+        "denied_action_recorded"
+      ]
+    },
+    "runtime.semantic_mutation_actions": {
+      "field": "schemas/execution-request.schema.json#/properties/requested_action (deny-list, not enum)",
+      "values": [
+        "substrate_write",
+        "registry_mutate",
+        "schema_mutate",
+        "route_mutate",
+        "event_class_mutate",
+        "policy_mutate",
+        "promotion_decision"
+      ]
+    }
+  },
+  "validator_contract": {
+    "validator_path": "scripts/validate_runtime_reason_codes.py",
+    "test_path": "tests/test_runtime_reason_codes.py",
+    "scan_rule": "AST scan of each runtime repo's src/ tree. Any kwarg-style string literal at reason_code=, admission_reason_code=, defect_class= must be a member of the corresponding vocabulary. The deny-list runtime.semantic_mutation_actions is asserted by tests that read the runtime constants module and compare to this registry."
+  }
+}
