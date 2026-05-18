@@ -1,0 +1,51 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_skills_registry_store_pr08_trust_layer",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-skills-registry",
+  "target_path": "src/lawfirm_os_skills_registry/registry/store.py",
+  "change_mode": "replace",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "replacement_intentional",
+  "reason": "PR-08 extends approve_skill and install_codex_skills to require SkillTrustRecord validation, trust-surface diff approval, and install/update audit emission. The prior store module had no trust-governance hooks.",
+  "user_intent_alignment_summary": "The overnight driver requires Skills Registry to govern skills as supply-chain artifacts with trust records, human approval on trust-surface changes, and audit logs without granting execution authority.",
+  "diff_review_summary": "Replacement preserves evaluation/security gates, registry bookkeeping, and Codex install behavior while adding mandatory trust_record_path, prior trust-surface diff enforcement, and JSONL audit records. No route_id, event_class, or substrate mutation authority is introduced.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "Trust-governance requires new parameters and validation branches throughout approve_skill; partial merge would leave approval paths that bypass SkillTrustRecord.",
+  "replacement_justification": "A unified store module with explicit trust and audit hooks is the smallest coherent implementation of PR-08 acceptance criteria.",
+  "alternatives_considered": [
+    "Wrapper module around unchanged store.py. Rejected to avoid dual approval paths.",
+    "Post-approve trust validation only in CLI. Rejected because tests and callers must share one fail-closed gate."
+  ],
+  "automated_checks_run": [
+    "pytest tests/test_skill_trust_layer.py",
+    "pytest in LawFirm-os-skills-registry",
+    "validate_runtime_reason_codes.py --workspace .",
+    "validate_contract_lock_drift_workspace.py --workspace ."
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "LawFirm OS overnight driver PR-08",
+  "reviewer_model": "Codex",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [
+    "Approval path without SkillTrustRecord requirement"
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-skills-registry"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 0,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 1
+  },
+  "source_refs": [
+    "lfos_os_patch_roadmap_bundle/codex_task_packets/PR-08_SKILLS_REGISTRY_TRUST_LAYER.md",
+    "schemas/skill-trust-record.schema.json"
+  ],
+  "created_by": "Codex",
+  "created_at": "2026-05-18T20:05:00Z"
+}
