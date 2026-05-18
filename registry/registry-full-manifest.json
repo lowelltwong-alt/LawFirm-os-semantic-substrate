@@ -5,6 +5,7 @@
   "paths": [
     "registry/ai-front-door-registry.json",
     "registry/architecture-flow-registry.json",
+    "registry/architecture-object-coverage-registry.json",
     "registry/assumption-watch-registry.json",
     "registry/autonomy-lane-registry.json",
     "registry/ci-test-route-registry.json",

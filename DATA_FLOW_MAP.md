@@ -126,6 +126,26 @@ The substrate publishes a canonical manifest for orchestrator consumption:
 - `governance/ORCHESTRATOR_BOUNDARY.md` — orchestrator boundary doctrine (manifest-first loading, pin-and-refresh discipline, hard prohibitions).
 - `docs/ORCHESTRATION_LAYER_DATA_FLOW.md` — Mermaid flow and sequence for the execution-plane interaction with substrate and Exception Lake.
 
+## OS Contract Spine Flow (PR-06 through PR-08)
+
+Post-admission operating loop (synthetic/fixture paths only in MVP):
+
+```text
+Legal source (fixture)
+  -> SourceRef + PassageRef (Legal Knowledge Runtime; graph-ready passage_ref_id)
+  -> ClaimRef + CoverageRecord + VerificationRecord
+  -> ContextBundle + ExecutionPassport (Orchestrator)
+  -> EvidencePacket v2 (hash chain + stub refs)
+  -> ExceptionLakeAdmissionRecord + DefectRecord (Exception Lake)
+  -> SkillTrustRecord + skill QA / trust-surface diff (Skills Registry supply chain)
+```
+
+**PassageRef** (`passage-ref.v1`) anchors hashed span text to a SourceRef with locators and `canonical_status=external_source_not_canon`. It is not fixed-token chunking and does not promote external law to canon.
+
+**SkillTrustRecord** (`skill-trust-record.v1`) attests skill package trust surfaces; `approve-skill` requires `--trust-record`. Claude/OpenAI identifiers stay in skill `provider_metadata`, not core schemas.
+
+Validator: `python scripts/validate_architecture_object_coverage.py --workspace ..` (Substrate).
+
 ## Latest Data-Flow Change
 
 - Date: 2026-05-06

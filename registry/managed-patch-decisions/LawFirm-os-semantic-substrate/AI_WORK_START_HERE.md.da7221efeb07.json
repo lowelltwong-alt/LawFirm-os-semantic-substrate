@@ -1,0 +1,32 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_substrate_ai_work_start_here_pr09_architecture_sync",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-semantic-substrate",
+  "target_path": "AI_WORK_START_HERE.md",
+  "change_mode": "merge",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "preserve-and-add",
+  "reason": "PR-09 adds an architecture sync gate section to the mandatory read order without removing existing governance routing content.",
+  "user_intent_alignment_summary": "Overnight driver PR-09 requires documenting validate_architecture_object_coverage.py in the AI work-start router.",
+  "diff_review_summary": "Additive block only: architecture-flow registry, architecture-object-coverage registry, and validator command. No removal of governance/agent keyword sections.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "N/A — change is additive merge.",
+  "replacement_justification": "N/A",
+  "alternatives_considered": [
+    "Document PR-09 only in ENDPOINTS_AND_COMMANDS.md. Rejected because AI_WORK_START_HERE is the operational router."
+  ],
+  "automated_checks_run": [
+    "validate_architecture_object_coverage.py --workspace ..",
+    "validate_managed_patch_preservation.py --workspace ."
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "LawFirm OS overnight driver PR-09",
+  "reviewer_model": "Codex",
+  "created_by": "Codex",
+  "created_at": "2026-05-18T20:40:00Z"
+}

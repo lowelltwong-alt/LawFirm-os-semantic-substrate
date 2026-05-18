@@ -27,6 +27,9 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `registry/exception-route-registry.json`
 - `registry/orchestrator-contract-export.json`
 - `registry/exceptions-lake-contract-export.json`
+- `registry/legal-knowledge-runtime-contract-export.json`
+- `registry/architecture-flow-registry.json` — OS contract spine catalog (ContextBundle, EvidencePacket, SourceRef, PassageRef, ClaimRef, SkillTrustRecord, …)
+- `registry/architecture-object-coverage-registry.json` — PR-09 sync-gate expectations
 
 ## Canonical Manifests
 
@@ -84,6 +87,26 @@ These artifacts already exist in the repository as pre-PR07 draft scaffolding. T
 
 - `registry/research-radar-source-registry.json` — pre-PR07 draft source-class scaffold for Research Radar discovery. Marked `non_authoritative: true` and `phase: "pre-pr07-draft"`.
 - `schema/` (singular) — Phase 1 doctrinal-comparison draft substrate (see Schema Locations).
+
+## OS Contract Spine (PR-06–PR-08)
+
+Governed runtime evidence objects (validated by `scripts/validate_architecture_object_coverage.py`):
+
+| Object | Schema | Owning plane |
+|--------|--------|----------------|
+| ContextBundle | context-bundle-v1 | orchestrator |
+| ExecutionRequest | execution-request-v1 | orchestrator |
+| ExecutionDecision | execution-decision-v1 | orchestrator |
+| ExecutionPassport | execution-passport-v1 | orchestrator |
+| ExecutionResult | execution-result-v1 | orchestrator |
+| EvidencePacket | evidence-packet-v2 | orchestrator |
+| ExceptionLakeAdmissionRecord | exception-lake-admission-record-v1 | exception_lake |
+| DefectRecord / EvalCandidate | defect-record-v1 / eval-candidate-v1 | exception_lake |
+| SourceRef / PassageRef / ClaimRef / CoverageRecord / VerificationRecord | source-ref-v1 … verification-record-v1 | legal_knowledge_runtime |
+| UntrustedContentAnomalyRecord | untrusted-content-anomaly-record-v1 | legal_knowledge_runtime |
+| SkillTrustRecord | skill-trust-record-v1 | skills_registry |
+
+External legal data and PassageRef spans are **evidence**, not canon. Provider-specific runner metadata (Claude plugin IDs, etc.) belongs in `provider_metadata` at the skill package edge only.
 
 ## Front Doors
 

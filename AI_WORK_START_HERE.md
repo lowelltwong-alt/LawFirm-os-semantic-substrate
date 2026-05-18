@@ -40,6 +40,12 @@ Before any AI-assisted edit, read:
 10. `governance/AI_FRONT_DOOR_BOUNDARY.md` when touching registries, schemas, governance trees, or cross-repo AI entry points
 11. the selected route template under `docs/governance/ai-workflow/templates/`
 
+Architecture sync gate (PR-09 — run when changing spine schemas, exports, or cross-repo commands):
+
+- `registry/architecture-flow-registry.json`
+- `registry/architecture-object-coverage-registry.json`
+- `python scripts/validate_architecture_object_coverage.py --workspace ..`
+
 Machine integrity manifests (AI TOC / front door gate — run `python scripts/validate_ai_front_door.py` when changing surfaces):
 
 - `registry/ai-front-door-registry.json`

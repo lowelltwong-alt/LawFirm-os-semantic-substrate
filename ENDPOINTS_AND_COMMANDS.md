@@ -36,6 +36,36 @@ Phase 2 schema directories:
 - `schemas/research/`
 - `schemas/innovation/`
 
+## PR-09 Architecture Sync Gate
+
+```bash
+python scripts/validate_architecture_object_coverage.py --workspace ..
+```
+
+Fails closed when a governed spine object drifts across schema registry, architecture-flow registry, AI docs, contract exports, or actionable command maps.
+
+## Cross-Repo CLI Surfaces (synthetic / local only)
+
+Legal Knowledge Runtime (`lawfirm-os-legal-knowledge`):
+
+- `ingest-preflight` — emits SourceRef / coverage / anomaly checks on synthetic manifests
+- `assemble-bundle` — emits PassageRef-backed `controlling_span_refs`, `passage_ref`, and retrieval trace refs
+
+Skills Registry (`lawfirm-os-skills`):
+
+- `skill-qa` — Skill QA report (trust surface + freshness + authority scan)
+- `emit-trust-record` — SkillTrustRecord / `skill_trust_record` emission
+- `trust-surface-diff` — trust surface change detection (human approval when required)
+- `approve-skill --trust-record` — approval gate requiring SkillTrustRecord
+
+Orchestrator:
+
+- `preflight-execution` — ExecutionPassport / authority chain (EvidencePacket v2 consumer)
+
+Exception Lake:
+
+- `tests/test_central_admission.py` / `admit_dry_run` — EvidencePacket v2 admission; ExceptionLakeAdmissionRecord (PR-06 central admission)
+
 ## Consumer Responsibilities
 
 Orchestrator and Exception Lake consumers may read these files to validate and route proposal-only operating objects. They must not mutate this repo at runtime and must not treat evidence objects as canonical promotion authority.

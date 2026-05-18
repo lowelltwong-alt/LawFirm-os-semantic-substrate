@@ -1,0 +1,116 @@
+{
+  "schema_version": "architecture_object_coverage_registry.v1",
+  "registry_id": "architecture-object-coverage-registry.v1",
+  "purpose": "PR-09 coverage expectations for governed OS spine objects. Consumed by scripts/validate_architecture_object_coverage.py.",
+  "doc_surfaces": [
+    "AI_TABLE_OF_CONTENTS.md",
+    "AI_WORK_START_HERE.md",
+    "DATA_FLOW_MAP.md",
+    "ENDPOINTS_AND_COMMANDS.md"
+  ],
+  "architecture_flow_registry_path": "registry/architecture-flow-registry.json",
+  "schema_registry_path": "registry/schema-registry.json",
+  "report_output_path": "reports/architecture_object_coverage_report.json",
+  "contract_exports": {
+    "orchestrator": {
+      "export_path": "registry/orchestrator-contract-export.json",
+      "schema_key_field": "draft_schema_keys"
+    },
+    "exception_lake": {
+      "export_path": "registry/exceptions-lake-contract-export.json",
+      "schema_key_field": "draft_schema_keys"
+    },
+    "legal_knowledge_runtime": {
+      "export_path": "registry/legal-knowledge-runtime-contract-export.json",
+      "schema_paths_field": "schemas",
+      "allowed_outputs_field": "allowed_runtime_outputs"
+    },
+    "skills_registry": {
+      "export_path": "registry/orchestrator-contract-export.json",
+      "schema_key_field": "draft_schema_keys",
+      "notes": "Skills Registry consumes SkillTrustRecord via shared contract surface lock; orchestrator export lists skill-trust-record-v1."
+    }
+  },
+  "object_doc_aliases": {
+    "PassageRef": ["passage-ref", "passage_ref", "PassageRef"],
+    "SkillTrustRecord": ["skill-trust-record", "skill_trust_record", "SkillTrustRecord"],
+    "UntrustedContentAnomalyRecord": ["untrusted-content-anomaly", "UntrustedContentAnomalyRecord"],
+    "SourceRef": ["source-ref", "SourceRef"],
+    "ClaimRef": ["claim-ref", "ClaimRef"],
+    "CoverageRecord": ["coverage-record", "CoverageRecord"],
+    "VerificationRecord": ["verification-record", "VerificationRecord"],
+    "EvidencePacket": ["evidence-packet", "EvidencePacket", "evidence_packet.v2"],
+    "ExecutionPassport": ["execution-passport", "ExecutionPassport"],
+    "ExceptionLakeAdmissionRecord": ["exception-lake-admission", "ExceptionLakeAdmissionRecord"],
+    "DefectRecord": ["defect-record", "DefectRecord"],
+    "EvalCandidate": ["eval-candidate", "EvalCandidate"],
+    "ContextBundle": ["context-bundle", "ContextBundle"],
+    "ExecutionRequest": ["execution-request", "ExecutionRequest"],
+    "ExecutionDecision": ["execution-decision", "ExecutionDecision"],
+    "ExecutionResult": ["execution-result", "ExecutionResult"]
+  },
+  "actionable_commands": [
+    {
+      "command_id": "lkr.ingest_preflight",
+      "repo": "LawFirm-os-legal-knowledge-runtime",
+      "tokens": ["ingest-preflight", "lawfirm-os-legal-knowledge"],
+      "related_objects": ["SourceRef", "PassageRef", "CoverageRecord"]
+    },
+    {
+      "command_id": "lkr.assemble_bundle",
+      "repo": "LawFirm-os-legal-knowledge-runtime",
+      "tokens": ["assemble-bundle", "passage_ref", "PassageRef"],
+      "related_objects": ["PassageRef", "ClaimRef", "CoverageRecord"]
+    },
+    {
+      "command_id": "skills.skill_qa",
+      "repo": "LawFirm-os-skills-registry",
+      "tokens": ["skill-qa", "lawfirm-os-skills"],
+      "related_objects": ["SkillTrustRecord"]
+    },
+    {
+      "command_id": "skills.emit_trust_record",
+      "repo": "LawFirm-os-skills-registry",
+      "tokens": ["emit-trust-record", "skill_trust_record"],
+      "related_objects": ["SkillTrustRecord"]
+    },
+    {
+      "command_id": "skills.trust_surface_diff",
+      "repo": "LawFirm-os-skills-registry",
+      "tokens": ["trust-surface-diff"],
+      "related_objects": ["SkillTrustRecord"]
+    },
+    {
+      "command_id": "skills.approve_skill_trust",
+      "repo": "LawFirm-os-skills-registry",
+      "tokens": ["approve-skill", "trust-record", "--trust-record"],
+      "related_objects": ["SkillTrustRecord"]
+    },
+    {
+      "command_id": "orchestrator.preflight_execution",
+      "repo": "LawFirm-os-orchestrator",
+      "tokens": ["preflight-execution", "ExecutionPassport", "EvidencePacket"],
+      "related_objects": ["ExecutionPassport", "EvidencePacket", "ContextBundle"]
+    },
+    {
+      "command_id": "lake.central_admission",
+      "repo": "LawFirm-os-exceptions-lake-runtime-main",
+      "tokens": ["central_admission", "admit_dry_run", "ExceptionLakeAdmissionRecord"],
+      "related_objects": ["ExceptionLakeAdmissionRecord", "DefectRecord", "EvidencePacket"]
+    }
+  ],
+  "forbidden_top_level_schema_properties": [
+    "claude_plugin_id",
+    "claude_workflow_id",
+    "anthropic_trace_id",
+    "openai_run_id",
+    "harvey_matter_id",
+    "route_id",
+    "event_class"
+  ],
+  "model_policy_registry_path": "registry/model-policy-registry.json",
+  "trust_governance": {
+    "skill_trust_schema_id": "skill-trust-record-v1",
+    "required_schema_export": "registry/orchestrator-contract-export.json"
+  }
+}

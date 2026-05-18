@@ -1,96 +1,114 @@
 {
-  "schema_version": "architecture_flow_registry.v1",
-  "registry_id": "architecture-flow-registry.v1",
-  "purpose": "Catalogs governed objects in the OS contract spine and binds each to its owning plane. Validated by scripts/validate_architecture_object_coverage.py (PR-09).",
-  "spine": [
+  "schema_version": "architecture_object_coverage_report.v1",
+  "workspace": "C:\\Users\\lowel\\OneDrive\\Desktop\\Git Projects\\00_LawFirm_OS",
+  "substrate_root": "C:\\Users\\lowel\\OneDrive\\Desktop\\Git Projects\\00_LawFirm_OS\\LawFirm-os-semantic-substrate",
+  "ok": true,
+  "error_count": 0,
+  "warning_count": 0,
+  "errors": [],
+  "warnings": [],
+  "objects_checked": [
     {
       "object": "contract_surface_sha256",
-      "owning_plane": "semantic_substrate"
+      "schema_id": null,
+      "owning_plane": "semantic_substrate",
+      "status": "ok"
     },
     {
       "object": "ContextBundle",
+      "schema_id": "context-bundle-v1",
       "owning_plane": "orchestrator",
-      "schema_id": "context-bundle-v1"
+      "status": "ok"
     },
     {
       "object": "ExecutionRequest",
+      "schema_id": "execution-request-v1",
       "owning_plane": "orchestrator",
-      "schema_id": "execution-request-v1"
+      "status": "ok"
     },
     {
       "object": "ExecutionDecision",
+      "schema_id": "execution-decision-v1",
       "owning_plane": "orchestrator",
-      "schema_id": "execution-decision-v1"
+      "status": "ok"
     },
     {
       "object": "ExecutionPassport",
+      "schema_id": "execution-passport-v1",
       "owning_plane": "orchestrator",
-      "schema_id": "execution-passport-v1"
+      "status": "ok"
     },
     {
       "object": "ExecutionResult",
+      "schema_id": "execution-result-v1",
       "owning_plane": "orchestrator",
-      "schema_id": "execution-result-v1"
+      "status": "ok"
     },
     {
       "object": "EvidencePacket",
+      "schema_id": "evidence-packet-v2",
       "owning_plane": "orchestrator",
-      "schema_id": "evidence-packet-v2"
+      "status": "ok"
     },
     {
       "object": "ExceptionLakeAdmissionRecord",
+      "schema_id": "exception-lake-admission-record-v1",
       "owning_plane": "exception_lake",
-      "schema_id": "exception-lake-admission-record-v1"
+      "status": "ok"
     },
     {
       "object": "DefectRecord",
+      "schema_id": "defect-record-v1",
       "owning_plane": "exception_lake",
-      "schema_id": "defect-record-v1"
+      "status": "ok"
     },
     {
       "object": "EvalCandidate",
+      "schema_id": "eval-candidate-v1",
       "owning_plane": "exception_lake",
-      "schema_id": "eval-candidate-v1"
+      "status": "ok"
     },
     {
       "object": "SourceRef",
+      "schema_id": "source-ref-v1",
       "owning_plane": "legal_knowledge_runtime",
-      "schema_id": "source-ref-v1"
+      "status": "ok"
     },
     {
       "object": "PassageRef",
+      "schema_id": "passage-ref-v1",
       "owning_plane": "legal_knowledge_runtime",
-      "schema_id": "passage-ref-v1"
+      "status": "ok"
     },
     {
       "object": "ClaimRef",
+      "schema_id": "claim-ref-v1",
       "owning_plane": "legal_knowledge_runtime",
-      "schema_id": "claim-ref-v1"
+      "status": "ok"
     },
     {
       "object": "CoverageRecord",
+      "schema_id": "coverage-record-v1",
       "owning_plane": "legal_knowledge_runtime",
-      "schema_id": "coverage-record-v1"
+      "status": "ok"
     },
     {
       "object": "VerificationRecord",
+      "schema_id": "verification-record-v1",
       "owning_plane": "legal_knowledge_runtime",
-      "schema_id": "verification-record-v1"
+      "status": "ok"
     },
     {
       "object": "UntrustedContentAnomalyRecord",
+      "schema_id": "untrusted-content-anomaly-record-v1",
       "owning_plane": "legal_knowledge_runtime",
-      "schema_id": "untrusted-content-anomaly-record-v1"
+      "status": "ok"
     },
     {
       "object": "SkillTrustRecord",
+      "schema_id": "skill-trust-record-v1",
       "owning_plane": "skills_registry",
-      "schema_id": "skill-trust-record-v1"
+      "status": "ok"
     }
-  ],
-  "notes": [
-    "This registry is intentionally OUTSIDE the substrate contract surface (PR-09). Keeping it outside avoids consumer lock churn; coverage is enforced by validate_architecture_object_coverage.py instead.",
-    "Each entry binds a governed-object NAME to its owning plane. Schema IDs reference entries in schema-registry.json.",
-    "PassageRef (passage-ref-v1) and SkillTrustRecord (skill-trust-record-v1) are spine objects added in PR-07.5 and PR-08."
   ]
 }
