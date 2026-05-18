@@ -980,6 +980,7 @@
         "semantic_substrate",
         "contract_surface_locking",
         "contract_lock",
+        "cross_repo",
         "protected"
       ],
       "upstream_dependencies": [],
