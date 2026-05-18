@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/passage-ref.schema.json",
+  "title": "PassageRef",
+  "description": "Source-grounded passage / span pointer linking hashed excerpt text to a SourceRef. Runtime evidence only; not canonical law. Graph-ready IDs support source→passage→claim→verification edges.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "passage_ref_id",
+    "source_ref_id",
+    "source_kind",
+    "text_sha256",
+    "span_type",
+    "canonical_status",
+    "run_id"
+  ],
+  "properties": {
+    "schema_version": {"const": "passage_ref.v1"},
+    "passage_ref_id": {"type": "string", "minLength": 1},
+    "source_ref_id": {"type": "string", "minLength": 1},
+    "source_kind": {
+      "enum": ["statute", "regulation", "case_law", "secondary", "internal_memo", "synthetic_fixture"],
+      "description": "Mirrors SourceRef.source_kind for the backing retrieval."
+    },
+    "jurisdiction": {"type": "string", "description": "Jurisdiction label from the source manifest when present."},
+    "citation_label": {"type": "string", "description": "Human-or-provider citation label when available."},
+    "citation_anchor": {"type": "string", "description": "Stable citation anchor / pinpoint when available."},
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "start_offset": {"type": "integer", "minimum": 0},
+        "end_offset": {"type": "integer", "minimum": 0},
+        "heading_path": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "span_type": {
+      "enum": [
+        "holding",
+        "rule",
+        "facts",
+        "reasoning",
+        "statute_section",
+        "regulation_paragraph",
+        "clause",
+        "docket_event",
+        "argument_section",
+        "unknown"
+      ]
+    },
+    "text_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "parent_passage_ref_id": {"type": "string"},
+    "related_passage_ref_ids": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "cites_passage_ref_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Other passage refs cited by this passage when citation structure exists."
+    },
+    "canonical_status": {"const": "external_source_not_canon"},
+    "provider_metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Connector-specific or parser-specific details only."
+    },
+    "run_id": {"type": "string"}
+  }
+}

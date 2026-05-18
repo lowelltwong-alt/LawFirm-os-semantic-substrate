@@ -44,6 +44,16 @@
     "evidence_packet_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "execution_request_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "source_refs": {"type": "array", "items": {"type": "object", "required": ["source_ref_id"], "properties": {"source_ref_id": {"type": "string"}}}},
+    "passage_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["passage_ref_id"],
+        "properties": {"passage_ref_id": {"type": "string"}}
+      },
+      "description": "Optional passage-level linkage when the defect relates to grounded spans."
+    },
     "detected_at": {"type": "string", "format": "date-time"},
     "description_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "run_id": {"type": "string"},

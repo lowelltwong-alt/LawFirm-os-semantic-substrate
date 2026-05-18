@@ -26,6 +26,16 @@
     "freshness_window_days": {"type": "integer", "minimum": 0},
     "verified_at": {"type": "string", "format": "date-time"},
     "defect_record_id": {"type": "string", "description": "Required when verdict=refuted."},
+    "passage_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["passage_ref_id"],
+        "properties": {"passage_ref_id": {"type": "string"}}
+      },
+      "description": "Optional passages examined during verification."
+    },
     "run_id": {"type": "string"}
   },
   "allOf": [

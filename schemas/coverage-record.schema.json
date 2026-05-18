@@ -24,6 +24,7 @@
     "partial_read": {"type": "boolean"},
     "reviewer_note_required": {"type": "boolean"},
     "coverage_quality": {"enum": ["complete", "sampled", "partial", "headers_only", "metadata_only"]},
+    "passage_ref_id": {"type": "string", "description": "When set, coverage accounting applies to this passage (span-level partial reads)."},
     "run_id": {"type": "string"}
   },
   "allOf": [

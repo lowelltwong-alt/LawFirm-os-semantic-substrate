@@ -58,6 +58,11 @@
       "schema_id": "source-ref-v1"
     },
     {
+      "object": "PassageRef",
+      "owning_plane": "legal_knowledge_runtime",
+      "schema_id": "passage-ref-v1"
+    },
+    {
       "object": "ClaimRef",
       "owning_plane": "legal_knowledge_runtime",
       "schema_id": "claim-ref-v1"

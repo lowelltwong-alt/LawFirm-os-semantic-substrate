@@ -940,6 +940,18 @@
       "supersedes": null
     },
     {
+      "schema_id": "passage-ref-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/passage-ref.schema.json",
+      "applies_to": [
+        "passage-ref"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "legal-knowledge-source-grounding-plane",
+      "supersedes": null
+    },
+    {
       "schema_id": "claim-ref-v1",
       "version": "1.0.0",
       "status": "active",

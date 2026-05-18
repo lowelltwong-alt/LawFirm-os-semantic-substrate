@@ -30,6 +30,16 @@
       }
     },
     "defect_record_id": {"type": "string", "description": "Required when support_status=unsupported or verified_status=refuted."},
+    "passage_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["passage_ref_id"],
+        "properties": {"passage_ref_id": {"type": "string"}}
+      },
+      "description": "Optional passage-level support pointers graph-linking claims to PassageRef records."
+    },
     "run_id": {"type": "string"}
   },
   "allOf": [
