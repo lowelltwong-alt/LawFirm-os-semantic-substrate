@@ -28,7 +28,9 @@
     "registry/legal-knowledge-runtime-contract-export.json",
     "governance/LEGAL_KNOWLEDGE_RUNTIME_BOUNDARY.md",
     "governance/LEGAL_AGENT_HARNESS_EVALS_AND_SAFETY.md",
-    "governance/AI_FRONT_DOOR_BOUNDARY.md"
+    "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "registry/architecture-flow-registry.json",
+    "governance/CONTRACT_SURFACE_HASH_SPINE.md"
   ],
   "draft_schema_keys": [
     "evidence-packet-v1",
@@ -47,7 +49,21 @@
     "legal-knowledge-runtime-record-v1",
     "legal-agent-safety-check-v1",
     "legal-document-integrity-check-v1",
-    "legal-retrieval-eval-case-v1"
+    "legal-retrieval-eval-case-v1",
+    "context-bundle-v1",
+    "execution-request-v1",
+    "execution-decision-v1",
+    "execution-passport-v1",
+    "execution-result-v1",
+    "evidence-packet-v2",
+    "exception-lake-admission-record-v1",
+    "source-ref-v1",
+    "claim-ref-v1",
+    "coverage-record-v1",
+    "verification-record-v1",
+    "defect-record-v1",
+    "skill-trust-record-v1",
+    "eval-candidate-v1"
   ],
   "draft_registries": [
     "registry/model-policy-registry.json",

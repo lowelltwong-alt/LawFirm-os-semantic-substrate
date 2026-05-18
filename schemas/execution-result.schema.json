@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/execution-result.schema.json",
+  "title": "ExecutionResult",
+  "description": "Outcome of a bounded action that was authorized by an ExecutionPassport. Also used to record denied or quarantined attempts as result records (status fields differ).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "execution_result_id",
+    "execution_result_hash",
+    "execution_request_hash",
+    "execution_decision_hash",
+    "context_bundle_hash",
+    "contract_surface_sha256",
+    "run_id",
+    "started_at",
+    "ended_at",
+    "status"
+  ],
+  "properties": {
+    "schema_version": {"const": "execution_result.v1"},
+    "execution_result_id": {"type": "string", "minLength": 1},
+    "execution_result_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_passport_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$", "description": "Required when status=succeeded or status=failed; omitted when status=denied or quarantined."},
+    "execution_request_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_decision_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "context_bundle_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "contract_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "run_id": {"type": "string", "minLength": 1},
+    "started_at": {"type": "string", "format": "date-time"},
+    "ended_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["succeeded", "failed", "denied", "quarantined"]},
+    "result_payload_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "error_reason_code": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "succeeded"}}, "required": ["status"]},
+      "then": {"required": ["execution_passport_hash", "result_payload_hash"]}
+    },
+    {
+      "if": {"properties": {"status": {"const": "failed"}}, "required": ["status"]},
+      "then": {"required": ["execution_passport_hash", "error_reason_code"]}
+    },
+    {
+      "if": {"properties": {"status": {"const": "denied"}}, "required": ["status"]},
+      "then": {"required": ["error_reason_code"]}
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/context-bundle.schema.json",
+  "title": "ContextBundle",
+  "description": "Governed, deterministic context provided to a bounded runtime action. Refs and hashes only; never carries raw privileged payloads.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "context_bundle_id",
+    "context_bundle_hash",
+    "contract_surface_sha256",
+    "substrate_repo_commit_sha",
+    "generated_at",
+    "run_id",
+    "task",
+    "source_refs",
+    "policy_refs",
+    "tool_refs",
+    "context_budget"
+  ],
+  "properties": {
+    "schema_version": {"const": "context_bundle.v1"},
+    "context_bundle_id": {"type": "string", "minLength": 1},
+    "context_bundle_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$", "description": "SHA-256 of the canonical-JSON serialization of this bundle, with context_bundle_hash field excluded."},
+    "contract_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "substrate_repo_commit_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "run_id": {"type": "string", "minLength": 1},
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_id", "task_kind", "task_description_hash"],
+      "properties": {
+        "task_id": {"type": "string"},
+        "task_kind": {"type": "string"},
+        "task_description_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_ref_id", "source_id", "content_hash"],
+        "properties": {
+          "source_ref_id": {"type": "string"},
+          "source_id": {"type": "string"},
+          "content_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "policy_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["policy_ref_id", "policy_id"],
+        "properties": {
+          "policy_ref_id": {"type": "string"},
+          "policy_id": {"type": "string"},
+          "policy_version": {"type": "string"}
+        }
+      }
+    },
+    "tool_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tool_ref_id", "tool_id"],
+        "properties": {
+          "tool_ref_id": {"type": "string"},
+          "tool_id": {"type": "string"},
+          "tool_version": {"type": "string"}
+        }
+      }
+    },
+    "context_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_input_bytes", "max_steps"],
+      "properties": {
+        "max_input_bytes": {"type": "integer", "minimum": 1},
+        "max_steps": {"type": "integer", "minimum": 1},
+        "max_tool_calls": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

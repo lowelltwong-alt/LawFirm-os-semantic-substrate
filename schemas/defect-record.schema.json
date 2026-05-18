@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/defect-record.schema.json",
+  "title": "DefectRecord",
+  "description": "Durable record of a quality, correctness, or policy defect detected during runtime. Stored by Exception Lake; never mutates Semantic Substrate. High-severity defects are eligible to become EvalCandidates.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "defect_record_id",
+    "defect_record_hash",
+    "contract_surface_sha256",
+    "severity",
+    "defect_class",
+    "source_repo",
+    "detected_at",
+    "description_hash",
+    "run_id"
+  ],
+  "properties": {
+    "schema_version": {"const": "defect_record.v1"},
+    "defect_record_id": {"type": "string", "minLength": 1},
+    "defect_record_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "contract_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "severity": {"enum": ["low", "medium", "high", "critical"]},
+    "defect_class": {
+      "type": "string",
+      "description": "Substrate-registered defect class; consumers MUST NOT invent. Examples: route_mismatch, evidence_gap, unsupported_citation, prompt_injection, stale_law, approval_bypass, destination_privilege, passport_denial."
+    },
+    "source_repo": {"type": "string"},
+    "evidence_packet_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_request_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_refs": {"type": "array", "items": {"type": "object", "required": ["source_ref_id"], "properties": {"source_ref_id": {"type": "string"}}}},
+    "detected_at": {"type": "string", "format": "date-time"},
+    "description_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "run_id": {"type": "string"},
+    "eval_candidate_id": {"type": "string", "description": "Populated by PR-11 defect-to-eval loop when the defect produces an EvalCandidate."}
+  }
+}

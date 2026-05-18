@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/evidence-packet.v2.schema.json",
+  "title": "EvidencePacket (v2)",
+  "description": "Cross-boundary evidence envelope binding a ContextBundle, execution authority chain, source/claim/coverage/verification refs, approvals, and defects to a single content-addressed packet. Successor to evidence-packet.schema.json (v1).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "evidence_packet_id",
+    "evidence_packet_hash",
+    "contract_surface_sha256",
+    "context_bundle_ref",
+    "execution_authority_records",
+    "source_refs",
+    "claim_refs",
+    "coverage_records",
+    "verification_records",
+    "approval_records",
+    "defect_records",
+    "manifest_hash",
+    "generated_at",
+    "run_id",
+    "source_repo"
+  ],
+  "properties": {
+    "schema_version": {"const": "evidence_packet.v2"},
+    "evidence_packet_id": {"type": "string", "minLength": 1},
+    "evidence_packet_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$", "description": "SHA-256 of canonical payload with this field excluded (matches fix in commit 7bf7fd7)."},
+    "contract_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "context_bundle_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["context_bundle_id", "context_bundle_hash"],
+      "properties": {
+        "context_bundle_id": {"type": "string"},
+        "context_bundle_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "execution_authority_records": {
+      "type": "array",
+      "description": "Chain of one or more ExecutionRequest/Decision/Passport/Result records covering every bounded action included in this packet.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["execution_request_hash", "execution_decision_hash"],
+        "properties": {
+          "execution_request_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "execution_decision_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "execution_passport_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "execution_result_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "source_refs": {"type": "array", "items": {"type": "object", "required": ["source_ref_id"], "properties": {"source_ref_id": {"type": "string"}}}},
+    "claim_refs": {"type": "array", "items": {"type": "object", "required": ["claim_ref_id"], "properties": {"claim_ref_id": {"type": "string"}}}},
+    "coverage_records": {"type": "array", "items": {"type": "object", "required": ["coverage_record_id"], "properties": {"coverage_record_id": {"type": "string"}}}},
+    "verification_records": {"type": "array", "items": {"type": "object", "required": ["verification_record_id"], "properties": {"verification_record_id": {"type": "string"}}}},
+    "approval_records": {"type": "array", "items": {"type": "object", "required": ["approval_record_id"], "properties": {"approval_record_id": {"type": "string"}}}},
+    "defect_records": {"type": "array", "items": {"type": "object", "required": ["defect_record_id"], "properties": {"defect_record_id": {"type": "string"}}}},
+    "manifest_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$", "description": "Hash of the artifact manifest (rel_path, blob_sha256, byte_count) covering every file artifact this packet references."},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "run_id": {"type": "string", "minLength": 1},
+    "source_repo": {"type": "string", "description": "Repo that built the packet (typically the orchestrator)."}
+  }
+}

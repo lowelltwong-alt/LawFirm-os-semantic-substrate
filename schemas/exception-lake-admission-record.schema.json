@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/exception-lake-admission-record.schema.json",
+  "title": "ExceptionLakeAdmissionRecord",
+  "description": "Durable admission decision emitted by the Exception Lake for every incoming EvidencePacket. Always emitted: admitted, quarantined, or rejected. Quarantined and rejected packets are still stored as records.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "admission_record_id",
+    "admission_record_hash",
+    "evidence_packet_hash",
+    "contract_surface_sha256",
+    "admitted_at",
+    "admission_status",
+    "admission_reason_code",
+    "source_repo"
+  ],
+  "properties": {
+    "schema_version": {"const": "exception_lake_admission_record.v1"},
+    "admission_record_id": {"type": "string", "minLength": 1},
+    "admission_record_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evidence_packet_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "context_bundle_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "contract_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "admitted_at": {"type": "string", "format": "date-time"},
+    "admission_status": {"enum": ["admitted", "quarantined", "rejected"]},
+    "admission_reason_code": {"type": "string", "description": "Substrate-registered admission reason; consumers MUST NOT invent."},
+    "admission_explanation_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_repo": {"type": "string"},
+    "defect_records_minted": {"type": "array", "items": {"type": "string"}}
+  }
+}

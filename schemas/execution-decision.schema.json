@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/execution-decision.schema.json",
+  "title": "ExecutionDecision",
+  "description": "Deterministic authorization outcome for an ExecutionRequest. Always emitted, even when the decision is deny or requires_approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "execution_decision_id",
+    "execution_decision_hash",
+    "execution_request_hash",
+    "context_bundle_hash",
+    "contract_surface_sha256",
+    "run_id",
+    "decided_at",
+    "decision",
+    "reason_code",
+    "evaluator",
+    "policy_ref"
+  ],
+  "properties": {
+    "schema_version": {"const": "execution_decision.v1"},
+    "execution_decision_id": {"type": "string", "minLength": 1},
+    "execution_decision_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_request_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "context_bundle_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "contract_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "run_id": {"type": "string", "minLength": 1},
+    "decided_at": {"type": "string", "format": "date-time"},
+    "decision": {"enum": ["allowed", "denied", "requires_approval"]},
+    "reason_code": {"type": "string", "description": "Substrate-registered reason code; consumers MUST NOT invent."},
+    "evaluator": {"type": "string", "description": "Component identifier that produced the decision."},
+    "policy_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id"],
+      "properties": {
+        "policy_id": {"type": "string"},
+        "policy_version": {"type": "string"}
+      }
+    },
+    "requires_human_approval": {"type": "boolean"},
+    "denial_explanation_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$", "description": "Hash of a human-readable denial explanation, if any."}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"decision": {"const": "denied"}}, "required": ["decision"]},
+      "then": {"required": ["denial_explanation_hash"]}
+    },
+    {
+      "if": {"properties": {"decision": {"const": "requires_approval"}}, "required": ["decision"]},
+      "then": {"properties": {"requires_human_approval": {"const": true}}, "required": ["requires_human_approval"]}
+    }
+  ]
+}

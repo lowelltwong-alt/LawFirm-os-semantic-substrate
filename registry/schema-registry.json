@@ -842,6 +842,174 @@
       "layer": "policy_and_governance",
       "owner": "semantic-platform",
       "supersedes": null
+    },
+    {
+      "schema_id": "context-bundle-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/context-bundle.schema.json",
+      "applies_to": [
+        "context-bundle"
+      ],
+      "layer": "authority_and_execution",
+      "owner": "orchestrator-execution-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "execution-request-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/execution-request.schema.json",
+      "applies_to": [
+        "execution-request"
+      ],
+      "layer": "authority_and_execution",
+      "owner": "orchestrator-execution-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "execution-decision-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/execution-decision.schema.json",
+      "applies_to": [
+        "execution-decision"
+      ],
+      "layer": "authority_and_execution",
+      "owner": "orchestrator-execution-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "execution-passport-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/execution-passport.schema.json",
+      "applies_to": [
+        "execution-passport"
+      ],
+      "layer": "authority_and_execution",
+      "owner": "orchestrator-execution-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "execution-result-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/execution-result.schema.json",
+      "applies_to": [
+        "execution-result"
+      ],
+      "layer": "authority_and_execution",
+      "owner": "orchestrator-execution-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "evidence-packet-v2",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "schemas/evidence-packet.v2.schema.json",
+      "applies_to": [
+        "evidence-packet"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "orchestrator-execution-plane",
+      "supersedes": "evidence-packet-v1"
+    },
+    {
+      "schema_id": "exception-lake-admission-record-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/exception-lake-admission-record.schema.json",
+      "applies_to": [
+        "exception-lake-admission-record"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "exception-lake-evidence-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "source-ref-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/source-ref.schema.json",
+      "applies_to": [
+        "source-ref"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "legal-knowledge-source-grounding-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "claim-ref-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/claim-ref.schema.json",
+      "applies_to": [
+        "claim-ref"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "legal-knowledge-source-grounding-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "coverage-record-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/coverage-record.schema.json",
+      "applies_to": [
+        "coverage-record"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "legal-knowledge-source-grounding-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "verification-record-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/verification-record.schema.json",
+      "applies_to": [
+        "verification-record"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "legal-knowledge-source-grounding-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "defect-record-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/defect-record.schema.json",
+      "applies_to": [
+        "defect-record"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "exception-lake-evidence-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "skill-trust-record-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/skill-trust-record.schema.json",
+      "applies_to": [
+        "skill-trust-record"
+      ],
+      "layer": "workflow_governance",
+      "owner": "skills-registry-workflow-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "eval-candidate-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/eval-candidate.schema.json",
+      "applies_to": [
+        "eval-candidate"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "exception-lake-evidence-plane",
+      "supersedes": null
     }
   ],
   "validation_rules": {

@@ -13,7 +13,16 @@ REPO_ALIASES = {
     "LawFirm-os-semantic-substrate": ["LawFirm-os-semantic-substrate", "LawFirm-os-semantic-substrate-main"],
     "LawFirm-os-orchestrator": ["LawFirm-os-orchestrator", "LawFirm-os-orchestrator-main"],
     "LawFirm-os-exceptions-lake-runtime": ["LawFirm-os-exceptions-lake-runtime", "LawFirm-os-exceptions-lake-runtime-main"],
+    "LawFirm-os-legal-knowledge-runtime": ["LawFirm-os-legal-knowledge-runtime", "LawFirm-os-legal-knowledge-runtime-main"],
+    "LawFirm-os-skills-registry": ["LawFirm-os-skills-registry", "LawFirm-os-skills-registry-main"],
 }
+
+CONSUMER_REPOS = (
+    "LawFirm-os-orchestrator",
+    "LawFirm-os-exceptions-lake-runtime",
+    "LawFirm-os-legal-knowledge-runtime",
+    "LawFirm-os-skills-registry",
+)
 
 
 def find_repo(workspace: Path, logical: str) -> Path | None:
@@ -75,7 +84,7 @@ def main() -> int:
         raise SystemExit("missing substrate repo")
     commit_sha = git_head(substrate)
     surface = compute_contract_surface_from_git_tree(substrate, commit_sha, args.surface_id)
-    for repo_name in ("LawFirm-os-orchestrator", "LawFirm-os-exceptions-lake-runtime"):
+    for repo_name in CONSUMER_REPOS:
         repo = find_repo(workspace, repo_name)
         if repo is None:
             print(f"SKIP missing {repo_name}")

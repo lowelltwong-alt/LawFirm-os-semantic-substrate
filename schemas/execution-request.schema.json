@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/execution-request.schema.json",
+  "title": "ExecutionRequest",
+  "description": "A bounded request for authorization to perform exactly one model/tool/connector/adapter action. Must reference its ContextBundle and the substrate contract surface it was produced under.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "execution_request_id",
+    "execution_request_hash",
+    "context_bundle_hash",
+    "contract_surface_sha256",
+    "run_id",
+    "requested_at",
+    "requested_action",
+    "requested_tool_id",
+    "requested_route_id",
+    "requested_event_class",
+    "requested_side_effect_class",
+    "request_payload_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "execution_request.v1"},
+    "execution_request_id": {"type": "string", "minLength": 1},
+    "execution_request_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "context_bundle_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "contract_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "run_id": {"type": "string", "minLength": 1},
+    "requested_at": {"type": "string", "format": "date-time"},
+    "requested_action": {"type": "string", "description": "Substrate-registered action verb; consumers MUST NOT invent."},
+    "requested_tool_id": {"type": "string"},
+    "requested_route_id": {"type": "string", "description": "Substrate-registered route_id; consumers MUST NOT invent."},
+    "requested_event_class": {"type": "string", "description": "Substrate-registered event_class; consumers MUST NOT invent."},
+    "requested_side_effect_class": {"enum": ["none", "read", "write", "external"]},
+    "request_payload_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "requester": {"type": "string", "description": "Caller identifier (model id, agent id, operator)."}
+  }
+}

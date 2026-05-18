@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/coverage-record.schema.json",
+  "title": "CoverageRecord",
+  "description": "Explicit accounting of how much of a SourceRef was read/considered. Partial-read coverage MUST set reviewer_note_required=true.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "coverage_record_id",
+    "source_ref_id",
+    "units_requested",
+    "units_read",
+    "partial_read",
+    "reviewer_note_required",
+    "run_id"
+  ],
+  "properties": {
+    "schema_version": {"const": "coverage_record.v1"},
+    "coverage_record_id": {"type": "string", "minLength": 1},
+    "source_ref_id": {"type": "string", "minLength": 1},
+    "units_requested": {"type": "integer", "minimum": 0},
+    "units_read": {"type": "integer", "minimum": 0},
+    "partial_read": {"type": "boolean"},
+    "reviewer_note_required": {"type": "boolean"},
+    "coverage_quality": {"enum": ["complete", "sampled", "partial", "headers_only", "metadata_only"]},
+    "run_id": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"partial_read": {"const": true}}, "required": ["partial_read"]},
+      "then": {"properties": {"reviewer_note_required": {"const": true}}, "required": ["reviewer_note_required"]}
+    }
+  ]
+}

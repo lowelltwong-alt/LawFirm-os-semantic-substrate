@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/eval-candidate.schema.json",
+  "title": "EvalCandidate",
+  "description": "Synthetic evaluation candidate minted from a DefectRecord (typically high-severity). Stored by Exception Lake; never mutates Semantic Substrate. Drives regression test creation in PR-11.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "eval_candidate_id",
+    "eval_candidate_hash",
+    "contract_surface_sha256",
+    "source_defect_record_hash",
+    "eval_class",
+    "generated_at",
+    "source_repo"
+  ],
+  "properties": {
+    "schema_version": {"const": "eval_candidate.v1"},
+    "eval_candidate_id": {"type": "string", "minLength": 1},
+    "eval_candidate_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "contract_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_defect_record_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evidence_packet_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "eval_class": {
+      "type": "string",
+      "description": "One of the eight defect-class eval suites: route_mismatch, evidence_gap, unsupported_citation, prompt_injection, stale_law, approval_bypass, destination_privilege, passport_denial."
+    },
+    "suggested_test_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["step_id", "step_description_hash"],
+        "properties": {
+          "step_id": {"type": "string"},
+          "step_description_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "generated_at": {"type": "string", "format": "date-time"},
+    "source_repo": {"type": "string"},
+    "promotion_status": {"enum": ["candidate", "accepted_for_eval_suite", "rejected", "promoted_to_substrate_proposal"], "default": "candidate"}
+  }
+}

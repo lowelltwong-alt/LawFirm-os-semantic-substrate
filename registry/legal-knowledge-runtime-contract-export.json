@@ -16,7 +16,11 @@
     "schemas/legal-knowledge-runtime-record.schema.json",
     "schemas/legal-agent-safety-check.schema.json",
     "schemas/legal-document-integrity-check.schema.json",
-    "schemas/legal-retrieval-eval-case.schema.json"
+    "schemas/legal-retrieval-eval-case.schema.json",
+    "schemas/source-ref.schema.json",
+    "schemas/claim-ref.schema.json",
+    "schemas/coverage-record.schema.json",
+    "schemas/verification-record.schema.json"
   ],
   "registries": [
     "registry/legal-document-type-registry.json",
@@ -25,7 +29,8 @@
     "registry/legal-retrieval-agent-registry.json",
     "registry/legal-agent-safety-guardrail-registry.json",
     "registry/legal-eval-registry.json",
-    "registry/ai-front-door-registry.json"
+    "registry/ai-front-door-registry.json",
+    "registry/architecture-flow-registry.json"
   ],
   "allowed_runtime_outputs": [
     "legal-document-ingestion-manifest validation result",
@@ -33,7 +38,12 @@
     "legal-context-bundle",
     "legal-retrieval-trace",
     "legal-knowledge-runtime-record",
-    "candidate-only improvement signal"
+    "candidate-only improvement signal",
+    "source-ref",
+    "claim-ref",
+    "coverage-record",
+    "verification-record",
+    "untrusted-content-anomaly-record"
   ],
   "forbidden_runtime_outputs": [
     "canonical schema mutation",
@@ -43,5 +53,8 @@
     "promotion decision",
     "production connector authorization"
   ],
-  "export_version": "draft-v1"
+  "export_version": "draft-v1",
+  "governance_refs": [
+    "governance/CONTRACT_SURFACE_HASH_SPINE.md"
+  ]
 }

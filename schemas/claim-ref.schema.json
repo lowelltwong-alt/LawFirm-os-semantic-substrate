@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/claim-ref.schema.json",
+  "title": "ClaimRef",
+  "description": "Reference to a single factual or legal claim made by a model or operator, together with its support state and verification state. Does not carry the claim's raw assertion; only its hash and provenance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "claim_ref_id",
+    "claim_text_hash",
+    "support_status",
+    "verified_status",
+    "source_refs",
+    "run_id"
+  ],
+  "properties": {
+    "schema_version": {"const": "claim_ref.v1"},
+    "claim_ref_id": {"type": "string", "minLength": 1},
+    "claim_text_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "support_status": {"enum": ["supported", "unsupported", "partial", "disputed"]},
+    "verified_status": {"enum": ["verified", "unverified", "pending", "refuted"]},
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_ref_id"],
+        "properties": {"source_ref_id": {"type": "string"}}
+      }
+    },
+    "defect_record_id": {"type": "string", "description": "Required when support_status=unsupported or verified_status=refuted."},
+    "run_id": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"support_status": {"const": "unsupported"}}, "required": ["support_status"]},
+      "then": {"required": ["defect_record_id"]}
+    },
+    {
+      "if": {"properties": {"verified_status": {"const": "refuted"}}, "required": ["verified_status"]},
+      "then": {"required": ["defect_record_id"]}
+    }
+  ]
+}

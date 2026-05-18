@@ -50,5 +50,11 @@
     "docs/EXCEPTIONS_LAKE_RUNTIME_REPO_SKELETON.md"
   ],
   "export_version": "v1",
-  "last_reviewed_source": "main"
+  "last_reviewed_source": "main",
+  "draft_schema_keys": [
+    "evidence-packet-v2",
+    "exception-lake-admission-record-v1",
+    "defect-record-v1",
+    "eval-candidate-v1"
+  ]
 }

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/skill-trust-record.schema.json",
+  "title": "SkillTrustRecord",
+  "description": "Trust attestation for a skill definition managed by Skills Registry. Required for any skill to be approved. Trust-surface changes (added tools, hooks, write paths, URLs, purpose drift) require human approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "skill_trust_record_id",
+    "skill_id",
+    "skill_version",
+    "source",
+    "trust_surface",
+    "qa_verdict",
+    "approval_required",
+    "contract_surface_sha256",
+    "generated_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "skill_trust_record.v1"},
+    "skill_trust_record_id": {"type": "string", "minLength": 1},
+    "skill_id": {"type": "string", "minLength": 1},
+    "skill_version": {"type": "string", "minLength": 1},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origin", "uri_hash"],
+      "properties": {
+        "origin": {"enum": ["first_party", "internal_team", "vendor", "open_source", "synthetic_fixture"]},
+        "uri_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "publisher_id": {"type": "string"}
+      }
+    },
+    "trust_surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["declared_tools", "declared_hooks", "declared_write_paths", "declared_urls", "declared_purpose_hash"],
+      "properties": {
+        "declared_tools": {"type": "array", "items": {"type": "string"}},
+        "declared_hooks": {"type": "array", "items": {"type": "string"}},
+        "declared_write_paths": {"type": "array", "items": {"type": "string"}},
+        "declared_urls": {"type": "array", "items": {"type": "string"}},
+        "declared_purpose_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "qa_verdict": {"enum": ["passed", "failed", "needs_human_review"]},
+    "freshness_status": {"enum": ["fresh", "stale", "unknown"]},
+    "approval_required": {"type": "boolean"},
+    "approved_by": {"type": "string"},
+    "approved_at": {"type": "string", "format": "date-time"},
+    "contract_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "trust_surface_diff_record_id": {"type": "string", "description": "Required when updating an existing skill; produced by qa/trust_surface_diff.py."}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"qa_verdict": {"const": "needs_human_review"}}, "required": ["qa_verdict"]},
+      "then": {"properties": {"approval_required": {"const": true}}, "required": ["approval_required"]}
+    }
+  ]
+}

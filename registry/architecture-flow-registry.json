@@ -1,0 +1,85 @@
+{
+  "schema_version": "architecture_flow_registry.v1",
+  "registry_id": "architecture-flow-registry.v1",
+  "purpose": "Catalogs governed objects in the OS contract spine and binds each to its owning plane. PR-09 will extend this with the architecture-object-coverage validator.",
+  "spine": [
+    {
+      "object": "contract_surface_sha256",
+      "owning_plane": "semantic_substrate"
+    },
+    {
+      "object": "ContextBundle",
+      "owning_plane": "orchestrator",
+      "schema_id": "context-bundle-v1"
+    },
+    {
+      "object": "ExecutionRequest",
+      "owning_plane": "orchestrator",
+      "schema_id": "execution-request-v1"
+    },
+    {
+      "object": "ExecutionDecision",
+      "owning_plane": "orchestrator",
+      "schema_id": "execution-decision-v1"
+    },
+    {
+      "object": "ExecutionPassport",
+      "owning_plane": "orchestrator",
+      "schema_id": "execution-passport-v1"
+    },
+    {
+      "object": "ExecutionResult",
+      "owning_plane": "orchestrator",
+      "schema_id": "execution-result-v1"
+    },
+    {
+      "object": "EvidencePacket",
+      "owning_plane": "orchestrator",
+      "schema_id": "evidence-packet-v2"
+    },
+    {
+      "object": "ExceptionLakeAdmissionRecord",
+      "owning_plane": "exception_lake",
+      "schema_id": "exception-lake-admission-record-v1"
+    },
+    {
+      "object": "DefectRecord",
+      "owning_plane": "exception_lake",
+      "schema_id": "defect-record-v1"
+    },
+    {
+      "object": "EvalCandidate",
+      "owning_plane": "exception_lake",
+      "schema_id": "eval-candidate-v1"
+    },
+    {
+      "object": "SourceRef",
+      "owning_plane": "legal_knowledge_runtime",
+      "schema_id": "source-ref-v1"
+    },
+    {
+      "object": "ClaimRef",
+      "owning_plane": "legal_knowledge_runtime",
+      "schema_id": "claim-ref-v1"
+    },
+    {
+      "object": "CoverageRecord",
+      "owning_plane": "legal_knowledge_runtime",
+      "schema_id": "coverage-record-v1"
+    },
+    {
+      "object": "VerificationRecord",
+      "owning_plane": "legal_knowledge_runtime",
+      "schema_id": "verification-record-v1"
+    },
+    {
+      "object": "SkillTrustRecord",
+      "owning_plane": "skills_registry",
+      "schema_id": "skill-trust-record-v1"
+    }
+  ],
+  "notes": [
+    "This registry is intentionally OUTSIDE the substrate contract surface in PR-02. PR-09 will decide whether to include it (a change would require all consumer locks to refresh).",
+    "Each entry binds a governed-object NAME to its owning plane. Schema IDs reference entries in schema-registry.json."
+  ]
+}
