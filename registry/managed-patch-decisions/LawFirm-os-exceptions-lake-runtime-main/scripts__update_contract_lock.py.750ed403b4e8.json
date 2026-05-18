@@ -1,0 +1,51 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_exceptions_lake_update_contract_lock_contract_surface_locking",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-exceptions-lake-runtime-main",
+  "target_path": "scripts/update_contract_lock.py",
+  "change_mode": "replace",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "replacement_intentional",
+  "reason": "scripts/update_contract_lock.py was changed from whole-commit lock generation to contract_surface_lock generation. The follow-up repair makes the surface hash come from the committed Semantic Substrate git tree identified by contract_sha, not from uncommitted working-tree files.",
+  "user_intent_alignment_summary": "The user explicitly required consumer locks to validate the Semantic Substrate contract authority surface rather than every Substrate repo commit, and required generated locks not to encode dirty working-tree state.",
+  "diff_review_summary": "The script still resolves EXCEPTIONS_LAKE_CONTRACT_REPO_PATH, builds a deterministic contracts.lock.json document, and writes contracts.lock.json. The replacement adds committed-tree hashing via git show and git ls-tree, records contract_surface_lock metadata, and keeps deterministic document construction. It does not add runtime authority, schema ownership, lifecycle authority, or front-door authority to the Exception Lake.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "Keeping the old working-tree hash path would preserve the exact provenance bug found by Codex: a lock could claim a committed SHA while carrying a hash computed from uncommitted local files.",
+  "replacement_justification": "A committed-tree hash is required for a truthful lock. The old logic could not safely support contract_surface_lock.computed_from_commit because it read files from disk. The new logic preserves the lock update workflow while narrowing the contract authority surface to the registry-defined files.",
+  "alternatives_considered": [
+    "Leave the script unchanged and rely only on the central Substrate updater. Rejected because the local consumer updater would still be capable of producing misleading locks.",
+    "Validate whole Substrate commit SHA only. Rejected because that reintroduces recursive drift from non-authority audit and decision records."
+  ],
+  "automated_checks_run": [
+    "validate_contract_lock_drift_workspace.py --workspace .",
+    "validate_managed_patch_preservation.py --workspace .",
+    "pytest in LawFirm-os-exceptions-lake-runtime-main after repair"
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong (Codex repair session 2026-05-15)",
+  "reviewer_model": "Codex extra-high",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [
+    "Prior whole-tree or working-tree surface computation path",
+    "Implicit trust that the working tree matched the stamped commit"
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-exceptions-lake-runtime-main"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 0,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 1
+  },
+  "source_refs": [
+    "Codex FAIL blocker: consumer lock provenance mismatch",
+    "registry/contract-surface-registry.json"
+  ],
+  "created_by": "Codex",
+  "created_at": "2026-05-15T22:30:00Z"
+}

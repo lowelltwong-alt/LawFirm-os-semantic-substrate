@@ -7,7 +7,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from contract_surface import compute_contract_surface
+from contract_surface import compute_contract_surface_from_git_tree
 
 REPO_ALIASES = {
     "LawFirm-os-semantic-substrate": ["LawFirm-os-semantic-substrate", "LawFirm-os-semantic-substrate-main"],
@@ -74,8 +74,7 @@ def main() -> int:
     if substrate is None:
         raise SystemExit("missing substrate repo")
     commit_sha = git_head(substrate)
-    surface = compute_contract_surface(substrate, args.surface_id)
-    surface["computed_from_commit"] = commit_sha
+    surface = compute_contract_surface_from_git_tree(substrate, commit_sha, args.surface_id)
     for repo_name in ("LawFirm-os-orchestrator", "LawFirm-os-exceptions-lake-runtime"):
         repo = find_repo(workspace, repo_name)
         if repo is None:

@@ -7,7 +7,13 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from contract_surface import ContractSurfaceError, compute_contract_surface
+from contract_surface import (
+    ContractSurfaceError,
+    compute_contract_surface_from_git_tree,
+    is_contract_surface_path,
+    load_surface_registry,
+    select_surface,
+)
 
 REPO_ALIASES = {
     "LawFirm-os-semantic-substrate": ["LawFirm-os-semantic-substrate", "LawFirm-os-semantic-substrate-main"],
@@ -45,6 +51,29 @@ def git_head(repo: Path) -> str | None:
         return None
 
 
+def git_changed_paths(repo: Path) -> list[str]:
+    try:
+        raw = subprocess.run(
+            ["git", "status", "--porcelain=v1", "-z", "--untracked-files=all"],
+            cwd=repo,
+            capture_output=True,
+            check=True,
+        ).stdout
+    except Exception:
+        return []
+    entries = [entry for entry in raw.decode("utf-8", errors="replace").split("\0") if entry]
+    paths: list[str] = []
+    idx = 0
+    while idx < len(entries):
+        entry = entries[idx]
+        status = entry[:2]
+        path = entry[3:] if len(entry) > 3 else ""
+        if path:
+            paths.append(path)
+        idx += 2 if status and status[0] in {"R", "C"} else 1
+    return paths
+
+
 def validate_lock(lock_path: Path, substrate: Path) -> list[str]:
     errors: list[str] = []
     lock = read_json(lock_path)
@@ -62,14 +91,43 @@ def validate_lock(lock_path: Path, substrate: Path) -> list[str]:
         if not isinstance(expected, str) or len(expected) != 64:
             errors.append(f"{lock_path}: surface_sha256 invalid")
             return errors
+        computed_from_commit = surface_lock.get("computed_from_commit") or lock.get("substrate_repo_commit_sha") or lock.get("contract_sha")
+        if isinstance(computed_from_commit, str) and computed_from_commit:
+            try:
+                provenance = compute_contract_surface_from_git_tree(substrate, computed_from_commit, surface_id, Path(str(registry_path)))
+            except ContractSurfaceError as exc:
+                errors.append(f"{lock_path}: cannot verify contract_surface_lock.computed_from_commit {computed_from_commit}: {exc}")
+                return errors
+            if provenance["surface_sha256"] != expected:
+                errors.append(
+                    f"{lock_path}: contract surface provenance mismatch: committed tree {computed_from_commit} has "
+                    f"{provenance['surface_sha256']} expected {expected}"
+                )
+        head = git_head(substrate)
+        if head:
+            try:
+                observed = compute_contract_surface_from_git_tree(substrate, head, surface_id, Path(str(registry_path)))
+            except ContractSurfaceError as exc:
+                errors.append(f"{lock_path}: cannot verify current committed substrate HEAD {head}: {exc}")
+                return errors
+            if observed["surface_sha256"] != expected:
+                errors.append(
+                    f"{lock_path}: committed substrate HEAD contract surface hash drift: observed "
+                    f"{observed['surface_sha256']} expected {expected}"
+                )
         try:
-            observed = compute_contract_surface(substrate, surface_id, Path(str(registry_path)))
+            registry = load_surface_registry(substrate, Path(str(registry_path)))
+            surface = select_surface(registry, surface_id)
         except ContractSurfaceError as exc:
             errors.append(f"{lock_path}: {exc}")
             return errors
-        if observed["surface_sha256"] != expected:
+        changed_surface_paths = sorted(
+            path for path in git_changed_paths(substrate) if is_contract_surface_path(path, surface)
+        )
+        if changed_surface_paths:
             errors.append(
-                f"{lock_path}: contract surface hash drift: observed {observed['surface_sha256']} expected {expected}"
+                f"{lock_path}: uncommitted contract surface path(s) require a committed surface lock refresh: "
+                + ", ".join(changed_surface_paths)
             )
         return errors
     # Legacy fallback: whole-repo commit lock.

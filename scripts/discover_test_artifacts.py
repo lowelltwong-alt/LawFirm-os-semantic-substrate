@@ -103,7 +103,19 @@ TEST_PATTERNS = [
     ('shell','bats','bats_test_file', re.compile(r'.+\.bats$'), 'bats {path}'),
     ('shell','bash','shell_test_script', re.compile(r'.*/test_[^/]*\.sh$|.*/smoke_[^/]*\.sh$|^test_[^/]*\.sh$|^smoke_[^/]*\.sh$'), 'bash {path}'),
 ]
-EXCLUDE_DIRS = {'.git','__pycache__','.pytest_cache','node_modules','target','.venv','venv','.mypy_cache'}
+EXCLUDE_DIRS = {
+    '.git',
+    '__pycache__',
+    '.pytest_cache',
+    '.pytest-tmp-root',
+    '.cursor',
+    'codex_manual_temp',
+    'node_modules',
+    'target',
+    '.venv',
+    'venv',
+    '.mypy_cache',
+}
 
 def is_excluded_path(rel: str) -> bool:
     return any(part in EXCLUDE_DIRS for part in rel.split('/'))
@@ -127,9 +139,14 @@ def detect_test_artifact(rel: str) -> dict[str, Any] | None:
 def discover_test_artifacts_for_repo(repo_dir: Path) -> list[dict[str, Any]]:
     artifacts = []
     for p in repo_dir.rglob('*'):
-        if not p.is_file():
-            continue
         rel = p.relative_to(repo_dir).as_posix()
+        if is_excluded_path(rel):
+            continue
+        try:
+            if not p.is_file():
+                continue
+        except OSError:
+            continue
         art = detect_test_artifact(rel)
         if art:
             artifacts.append(art)

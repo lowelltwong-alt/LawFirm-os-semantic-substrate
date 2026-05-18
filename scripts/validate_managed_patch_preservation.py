@@ -176,6 +176,14 @@ JSON_IDENTIFIER_KEYS = {
 }
 
 WORKSPACE_EXCLUDE_CONTAINS = ["patch", "seed-pack", "backup", "archive"]
+LOCAL_NOISE_DIRS = {
+    ".git",
+    "__pycache__",
+    ".pytest_cache",
+    ".pytest-tmp-root",
+    ".cursor",
+    "codex_manual_temp",
+}
 BACKUP_SUFFIXES = [
     ".managed-preservation-backup",
     ".research-delta-backup",
@@ -753,7 +761,16 @@ def backup_counterpart(path: Path) -> Path | None:
 def scan_backup_violations(workspace: Path, repo: Path, create_stubs: bool) -> list[Violation]:
     violations: list[Violation] = []
     for backup in repo.rglob("*"):
-        if backup.is_dir() or ".git" in backup.parts:
+        try:
+            rel_backup_path = backup.relative_to(repo)
+        except ValueError:
+            continue
+        if any(part in LOCAL_NOISE_DIRS for part in rel_backup_path.parts):
+            continue
+        try:
+            if backup.is_dir():
+                continue
+        except OSError:
             continue
         counterpart = backup_counterpart(backup)
         if counterpart is None:

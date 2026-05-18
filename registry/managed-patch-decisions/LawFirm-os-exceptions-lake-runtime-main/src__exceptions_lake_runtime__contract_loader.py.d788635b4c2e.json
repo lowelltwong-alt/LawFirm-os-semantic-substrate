@@ -1,0 +1,51 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_exceptions_lake_contract_loader_contract_surface_locking",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-exceptions-lake-runtime-main",
+  "target_path": "src/exceptions_lake_runtime/contract_loader.py",
+  "change_mode": "replace",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "replacement_intentional",
+  "reason": "contract_loader.py was changed to validate contract_surface_lock.surface_sha256 when present, while preserving fail-closed loading for required schemas, registries, boundary docs, malformed manifests, and legacy git-SHA locks.",
+  "user_intent_alignment_summary": "The user required Exception Lake to consume pinned contracts and evidence without owning canonical meaning. Surface-lock validation keeps Exception Lake as a consumer and removes recursive drift from non-authority Substrate changes.",
+  "diff_review_summary": "The loader continues to load the export manifest first, falls back only where already allowed, validates required schema/doc paths, and rejects malformed locks. The replacement adds contract surface hash validation and returns validated_ref_type=contract_surface_sha256 for surface locks. It does not grant Exception Lake canonical schema, routing, lifecycle, promotion, or AI front-door authority.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "The old git-SHA-only validation path could not express the new contract boundary. A direct extension was needed so surface locks and legacy locks fail closed through a single loader contract.",
+  "replacement_justification": "The new loader behavior is necessary for consumers to validate the registry-defined contract authority surface instead of every Substrate commit. This prevents managed-patch decisions, reports, docs, scripts, tests, and audit artifacts from forcing consumer lock drift unless the contract-surface registry includes them.",
+  "alternatives_considered": [
+    "Keep Exception Lake on whole-commit validation. Rejected because it preserves lock recursion.",
+    "Let Exception Lake define its own contract-surface registry. Rejected because Semantic Substrate owns canonical contract authority."
+  ],
+  "automated_checks_run": [
+    "validate_contract_lock_drift_workspace.py --workspace .",
+    "validate_managed_patch_preservation.py --workspace .",
+    "pytest in LawFirm-os-exceptions-lake-runtime-main after repair"
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong (Codex repair session 2026-05-15)",
+  "reviewer_model": "Codex extra-high",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [
+    "Whole-commit-only consumer validation behavior",
+    "Archive or git SHA validation as the only accepted runtime reference"
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-exceptions-lake-runtime-main"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 0,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 1
+  },
+  "source_refs": [
+    "Codex FAIL blocker: consumer lock provenance mismatch",
+    "registry/contract-surface-registry.json"
+  ],
+  "created_by": "Codex",
+  "created_at": "2026-05-15T22:30:00Z"
+}

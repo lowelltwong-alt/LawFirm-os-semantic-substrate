@@ -1,0 +1,51 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_orchestrator_contract_lock_contract_surface_locking",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-orchestrator",
+  "target_path": "src/lawfirm_os_orchestrator/substrate/contract_lock.py",
+  "change_mode": "replace",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "replacement_intentional",
+  "reason": "contract_lock.py was changed so Orchestrator validates contract_surface_lock.surface_sha256 when present, while preserving fail-closed legacy git SHA and archive-tree behavior for older locks and non-fixture checkouts.",
+  "user_intent_alignment_summary": "The user required Orchestrator to consume contract authority and execute workflows without owning canonical meaning. Surface-lock validation lets Orchestrator consume the Semantic Substrate contract surface without pinning every audit or decision-record commit.",
+  "diff_review_summary": "The replacement preserves lock loading, manifest-first requirements, fallback denial, policy_bundle_id enforcement, fixture allowance, git SHA validation, and archive-tree validation. It adds contract_surface_lock fields to the ContractLock model and validates registry-defined surface hashes before falling back to legacy lock modes. It does not add canonical schema, lifecycle, promotion, routing, or AI front-door authority to Orchestrator.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "The old lock model had no place to represent a contract surface id, surface hash, registry path, or validated contract-surface reference. A targeted replacement of the lock model and validation branch was required.",
+  "replacement_justification": "The Orchestrator must fail closed on contract authority drift while ignoring non-authority Substrate changes. contract_surface_lock validation is the narrow mechanism that preserves that boundary and fixes recursive lock drift.",
+  "alternatives_considered": [
+    "Continue validating whole Substrate commit SHA. Rejected because non-authority managed-patch/audit commits would keep forcing lock bumps.",
+    "Let Orchestrator compute its own surface policy. Rejected because Semantic Substrate owns the canonical contract-surface registry."
+  ],
+  "automated_checks_run": [
+    "validate_contract_lock_drift_workspace.py --workspace .",
+    "validate_managed_patch_preservation.py --workspace .",
+    "pytest in LawFirm-os-orchestrator after repair"
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong (Codex repair session 2026-05-15)",
+  "reviewer_model": "Codex extra-high",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [
+    "Whole-commit-only validation as the primary lock path",
+    "Archive-tree validation as the only non-git fallback"
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-orchestrator"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 0,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 1
+  },
+  "source_refs": [
+    "Codex FAIL blocker: consumer lock provenance mismatch",
+    "registry/contract-surface-registry.json"
+  ],
+  "created_by": "Codex",
+  "created_at": "2026-05-15T22:30:00Z"
+}

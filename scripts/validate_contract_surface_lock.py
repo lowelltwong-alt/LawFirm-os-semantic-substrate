@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
 
-from contract_surface import ContractSurfaceError, compute_contract_surface
+from contract_surface import ContractSurfaceError, compute_contract_surface_from_git_tree
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -17,6 +18,13 @@ def load_json(path: Path) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise RuntimeError(f"{path} must contain a JSON object")
     return data
+
+
+def git_head(repo: Path) -> str | None:
+    try:
+        return subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo, text=True, capture_output=True, check=True).stdout.strip()
+    except Exception:
+        return None
 
 
 def validate_lock(lock_path: Path, substrate: Path, allow_legacy: bool) -> list[str]:
@@ -38,14 +46,28 @@ def validate_lock(lock_path: Path, substrate: Path, allow_legacy: bool) -> list[
         errors.append(f"{lock_path} contract_surface_lock.surface_sha256 invalid")
     if errors:
         return errors
-    try:
-        observed = compute_contract_surface(substrate, surface_id, Path(registry_path))
-    except ContractSurfaceError as exc:
-        return [f"{lock_path}: {exc}"]
-    if observed["surface_sha256"] != expected:
-        errors.append(
-            f"{lock_path} contract surface hash {observed['surface_sha256']} does not match lock {expected}"
-        )
+    computed_from_commit = surface_lock.get("computed_from_commit") or lock.get("substrate_repo_commit_sha") or lock.get("contract_sha")
+    if isinstance(computed_from_commit, str) and computed_from_commit:
+        try:
+            provenance = compute_contract_surface_from_git_tree(substrate, computed_from_commit, surface_id, Path(registry_path))
+        except ContractSurfaceError as exc:
+            return [f"{lock_path}: cannot verify contract_surface_lock.computed_from_commit {computed_from_commit}: {exc}"]
+        if provenance["surface_sha256"] != expected:
+            errors.append(
+                f"{lock_path} committed tree {computed_from_commit} contract surface hash "
+                f"{provenance['surface_sha256']} does not match lock {expected}"
+            )
+    head = git_head(substrate)
+    if head:
+        try:
+            observed = compute_contract_surface_from_git_tree(substrate, head, surface_id, Path(registry_path))
+        except ContractSurfaceError as exc:
+            return [f"{lock_path}: cannot verify current committed substrate HEAD {head}: {exc}"]
+        if observed["surface_sha256"] != expected:
+            errors.append(
+                f"{lock_path} committed substrate HEAD contract surface hash "
+                f"{observed['surface_sha256']} does not match lock {expected}"
+            )
     return errors
 
 
