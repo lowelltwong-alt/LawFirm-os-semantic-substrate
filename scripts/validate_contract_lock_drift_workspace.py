@@ -23,7 +23,12 @@ REPO_ALIASES = {
     "LawFirm-os-skills-registry": ["LawFirm-os-skills-registry", "LawFirm-os-skills-registry-main"],
 }
 
-CONSUMER_REPOS = ["LawFirm-os-orchestrator", "LawFirm-os-exceptions-lake-runtime"]
+CONSUMER_REPOS = [
+    "LawFirm-os-orchestrator",
+    "LawFirm-os-exceptions-lake-runtime",
+    "LawFirm-os-legal-knowledge-runtime",
+    "LawFirm-os-skills-registry",
+]
 
 
 def find_repo(workspace: Path, logical: str) -> Path | None:
