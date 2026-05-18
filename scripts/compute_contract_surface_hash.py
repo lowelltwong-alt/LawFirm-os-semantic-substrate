@@ -38,10 +38,21 @@ def main() -> int:
     commit_sha = git_ref(substrate, args.ref)
     if args.working_tree or commit_sha is None:
         result = compute_contract_surface(substrate, args.surface_id, Path(args.registry_path))
+        result["computed_from_repo"] = substrate.name
+        result["computed_from_commit"] = None
+        result["provenance_mode"] = "working_tree"
+        result["provenance_warning"] = (
+            "This surface_sha256 was computed from mutable working-tree filesystem bytes. "
+            "Do NOT use it as a contracts.lock.json contract_surface_lock.surface_sha256 with "
+            "computed_from_commit / substrate_repo_commit_sha set, because consumers validate "
+            "committed Git-tree blob bytes (LF semantics) which can differ from the working tree "
+            "on platforms with line-ending normalisation (e.g. Windows core.autocrlf=true)."
+        )
     else:
         result = compute_contract_surface_from_git_tree(substrate, commit_sha, args.surface_id, Path(args.registry_path))
-    result["computed_from_repo"] = substrate.name
-    result["computed_from_commit"] = commit_sha
+        result["computed_from_repo"] = substrate.name
+        result["computed_from_commit"] = commit_sha
+        result["provenance_mode"] = "committed_tree"
     payload = json.dumps(result, indent=2, sort_keys=False) + "\n"
     if args.out:
         Path(args.out).write_text(payload, encoding="utf-8")

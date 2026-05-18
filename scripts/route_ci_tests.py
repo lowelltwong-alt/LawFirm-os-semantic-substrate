@@ -418,7 +418,7 @@ def main() -> int:
         reasons.append(f'{f}: {",".join(sorted(c))}')
     expand_affected_repos_from_contract_lock(changed, repos, affected)
     affected_surfaces = collect_affected_surfaces(changed) | surfaces_from_manifest_triggers(changed, workspace)
-    validators = {'discover_test_artifacts','validate_test_artifact_registration','validate_new_repo_ci_onboarding'}
+    validators = {'discover_test_artifacts','validate_test_artifact_registration','validate_new_repo_ci_onboarding','validate_contract_surface_provenance_modes'}
     cross = False
     full = False
     codex = False
@@ -430,7 +430,7 @@ def main() -> int:
     if 'registry_change' in classes or 'repo_boundary_change' in classes:
         validators |= {'validate_skill_agent_control_plane'}; cross=True
     if 'contract_lock_change' in classes:
-        validators |= {'validate_contract_lock_drift_workspace'}; cross=True; human=True
+        validators |= {'validate_contract_lock_drift_workspace','validate_contract_surface_provenance_modes'}; cross=True; human=True
     if classes & {'skill_definition_change','skill_metadata_change'}:
         validators |= {'validate_skill_agent_control_plane'}
     if classes & {'ci_router_change','test_manifest_change'}:
@@ -443,7 +443,7 @@ def main() -> int:
     if 'cross_repo_integration' in affected_surfaces:
         full = True; cross = True; codex = True; human = True
     if 'contract_lock' in affected_surfaces:
-        validators |= {'validate_contract_lock_drift_workspace'}; cross = True; human = True
+        validators |= {'validate_contract_lock_drift_workspace','validate_contract_surface_provenance_modes'}; cross = True; human = True
     cross, full, codex, human, risk = apply_registry_surface_policy(
         affected_surfaces, workspace, cross, full, codex, human, risk
     )
@@ -457,6 +457,7 @@ def main() -> int:
             'validate_managed_patch_preservation',
             'validate_skill_agent_control_plane',
             'validate_contract_lock_drift_workspace',
+            'validate_contract_surface_provenance_modes',
         }
         cross = True; full = True; codex = True; human = True
         risk = max_risk(risk, 'protected')
@@ -513,6 +514,8 @@ def main() -> int:
             decision['recommended_commands'].append('python .\\LawFirm-os-semantic-substrate\\scripts\\validate_managed_patch_preservation.py --workspace .')
         elif v == 'validate_contract_lock_drift_workspace':
             decision['recommended_commands'].append('python .\\LawFirm-os-semantic-substrate\\scripts\\validate_contract_lock_drift_workspace.py --workspace .')
+        elif v == 'validate_contract_surface_provenance_modes':
+            decision['recommended_commands'].append('python .\\LawFirm-os-semantic-substrate\\scripts\\validate_contract_surface_provenance_modes.py --workspace .')
     for repo in pytest_repos:
         repo_dir = repos.get(repo)
         if repo_dir:

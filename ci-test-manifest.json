@@ -946,6 +946,58 @@
       ],
       "expected_runtime_seconds": 10,
       "full_regression_required": false
+    },
+    {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_validate_contract_surface_provenance_modes.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_validate_contract_surface_provenance_modes.py",
+      "runner_command": "python -m pytest tests/test_validate_contract_surface_provenance_modes.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "contract_lock",
+        "contract_surface_locking",
+        "cross_repo_integration"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "source_code_change",
+        "contract_lock_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_validate_contract_surface_provenance_modes.py",
+        "scripts/validate_contract_surface_provenance_modes.py",
+        "scripts/compute_contract_surface_hash.py",
+        "scripts/contract_surface.py",
+        "scripts/update_consumer_contract_surface_locks.py"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "contract_surface_locking",
+        "contract_lock",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime"
+      ],
+      "must_run_when": [
+        "contract-surface producer/validator scripts change",
+        "consumer contract_loader / contract_lock validator changes",
+        "any new test fixture writes contract_surface_lock metadata"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "consumer-owned routing authority"
+      ],
+      "expected_runtime_seconds": 5,
+      "full_regression_required": false
     }
   ],
   "explicit_test_artifact_exclusions": [
