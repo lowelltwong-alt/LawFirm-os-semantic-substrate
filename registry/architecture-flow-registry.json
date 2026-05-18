@@ -73,6 +73,11 @@
       "schema_id": "verification-record-v1"
     },
     {
+      "object": "UntrustedContentAnomalyRecord",
+      "owning_plane": "legal_knowledge_runtime",
+      "schema_id": "untrusted-content-anomaly-record-v1"
+    },
+    {
       "object": "SkillTrustRecord",
       "owning_plane": "skills_registry",
       "schema_id": "skill-trust-record-v1"

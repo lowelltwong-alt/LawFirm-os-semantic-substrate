@@ -20,7 +20,8 @@
     "schemas/source-ref.schema.json",
     "schemas/claim-ref.schema.json",
     "schemas/coverage-record.schema.json",
-    "schemas/verification-record.schema.json"
+    "schemas/verification-record.schema.json",
+    "schemas/untrusted-content-anomaly-record.schema.json"
   ],
   "registries": [
     "registry/legal-document-type-registry.json",

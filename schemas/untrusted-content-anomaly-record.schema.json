@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/untrusted-content-anomaly-record.schema.json",
+  "title": "UntrustedContentAnomalyRecord",
+  "description": "Evidence-only signal emitted when retrieved legal content contains instruction-like or hostile text. Retrieved content remains data, not instruction, and raw content is not embedded.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "anomaly_record_id",
+    "source_ref_id",
+    "run_id",
+    "detected_at",
+    "risk_flag",
+    "decision",
+    "detail_hash",
+    "raw_content_included",
+    "retrieved_content_treated_as_instruction"
+  ],
+  "properties": {
+    "schema_version": {"const": "untrusted_content_anomaly_record.v1"},
+    "anomaly_record_id": {"type": "string", "minLength": 1},
+    "source_ref_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "detected_at": {"type": "string", "format": "date-time"},
+    "risk_flag": {"type": "string", "minLength": 1},
+    "decision": {"type": "string", "minLength": 1},
+    "detail_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "raw_content_included": {"const": false},
+    "retrieved_content_treated_as_instruction": {"const": false}
+  }
+}

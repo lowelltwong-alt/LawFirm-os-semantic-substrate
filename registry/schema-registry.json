@@ -976,6 +976,18 @@
       "supersedes": null
     },
     {
+      "schema_id": "untrusted-content-anomaly-record-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/untrusted-content-anomaly-record.schema.json",
+      "applies_to": [
+        "untrusted-content-anomaly-record"
+      ],
+      "layer": "evidence_and_provenance",
+      "owner": "legal-knowledge-source-grounding-plane",
+      "supersedes": null
+    },
+    {
       "schema_id": "defect-record-v1",
       "version": "1.0.0",
       "status": "active",
