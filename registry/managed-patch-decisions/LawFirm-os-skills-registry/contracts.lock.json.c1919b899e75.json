@@ -1,0 +1,50 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_pr11_5_skills_contract_lock_refresh_to_5e701cb",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-skills-registry",
+  "target_path": "contracts.lock.json",
+  "change_mode": "replace",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "replacement_intentional",
+  "reason": "PR-11.5 expanded the Substrate SkillTrustRecord schema and architecture coverage registry. Skills Registry consumes that schema, so its contract lock must pin the new committed Substrate surface.",
+  "user_intent_alignment_summary": "The user required intentional consumer lock refreshes after Substrate schema changes. The lock refresh keeps Skills Registry aligned with the trust-surface fields that PR-11.5 now extracts and diffs.",
+  "diff_review_summary": "contracts.lock.json updates contract_sha, substrate_repo_commit_sha, generated_at, contract_surface_lock.surface_sha256, computed_from_commit, and included_files_manifest_sha256. No executable product logic changed in this file.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "The lock represents a specific committed tree and surface hash; the prior and current pins are mutually exclusive.",
+  "replacement_justification": "Leaving Skills Registry on the old surface would make its new trust-surface fields out of sync with Substrate schema authority and would fail contract-lock drift validation.",
+  "alternatives_considered": [
+    "Keep the old lock. Rejected because SkillTrustRecord schema changed in the contract surface.",
+    "Use a working-tree hash. Rejected because consumer locks must use committed-tree provenance."
+  ],
+  "automated_checks_run": [
+    "python scripts/update_consumer_contract_surface_locks.py --workspace .. --commit",
+    "python LawFirm-os-semantic-substrate/scripts/validate_contract_lock_drift_workspace.py --workspace .",
+    "python -m pytest in LawFirm-os-skills-registry: 44 passed"
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong requested PR-11.5 pre-push governance hardening",
+  "reviewer_model": "Codex high reasoning",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [
+    "Old contract surface SHA: 8bd20599d49fe29b2570be1e43c665399d90536d22126a1408eb22dffb1dcfb5"
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-skills-registry"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 0,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 0
+  },
+  "source_refs": [
+    "Semantic Substrate commit 5e701cb51c80a45d45ce413398b6e611985c08f7",
+    "PR-11.5 user execution prompt"
+  ],
+  "created_by": "Codex",
+  "created_at": "2026-05-19T15:20:00Z"
+}

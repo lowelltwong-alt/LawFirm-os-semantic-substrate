@@ -1,0 +1,52 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_pr11_5_lake_substrate_mutation_guard_contract_surface_watch",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-exceptions-lake-runtime-main",
+  "target_path": "src/exceptions_lake_runtime/governance/substrate_mutation_guard.py",
+  "change_mode": "merge",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "merge_preserve_intent",
+  "reason": "PR-11.5 fixes MF-4 from the Claude Max red-team review. The prior guard watched five hardcoded Substrate paths, which left contract-surface-included schemas and registries outside the mutation tripwire. The replacement keeps the same runtime invariant, but derives watched files from registry/contract-surface-registry.json include/exclude patterns.",
+  "user_intent_alignment_summary": "The user explicitly requested PR-11.5 pre-push governance hardening and named MF-4 as a real blocker. The requested minimal fix was to derive watched Substrate files from the active contract surface and fence eval candidate paths, without overbuilding OS-level ACLs.",
+  "diff_review_summary": "The hardcoded watch list was replaced with contract-surface-registry loading, active-surface selection, include/exclude pattern expansion, and deterministic hashing of every included file. The module docstring now states that this Python guard is not a substitute for process/filesystem isolation.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "Keeping the hardcoded five-file watch list would preserve the exact blocker. The old invariant was preserved, but the implementation had to be generalized to the contract surface.",
+  "replacement_justification": "Any file included in the Substrate consumer contract surface can now trigger mutation detection during eval minting. This matches the pre-push red-team fix request without adding new product scope.",
+  "alternatives_considered": [
+    "Add more hardcoded files. Rejected because it would still drift as the contract surface evolves.",
+    "Implement OS-level filesystem ACLs. Rejected as explicitly out of scope for PR-11.5."
+  ],
+  "automated_checks_run": [
+    "python -m pytest tests/test_eval_candidate_minting.py tests/test_central_admission.py",
+    "Lake full suite executed as sequential file groups due shared contracts.lock fixture: 26 passed, 23 passed, 39 passed, 24 passed",
+    "python LawFirm-os-semantic-substrate/scripts/validate_runtime_reason_codes.py --workspace .",
+    "python LawFirm-os-semantic-substrate/scripts/validate_contract_lock_drift_workspace.py --workspace .",
+    "python LawFirm-os-semantic-substrate/scripts/validate_architecture_object_coverage.py --workspace .."
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "high",
+  "approver": "Lowell Wong requested PR-11.5 pre-push governance hardening",
+  "reviewer_model": "Codex high reasoning",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [
+    "Removed five-entry hardcoded Substrate watch list in favor of active contract-surface expansion."
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-exceptions-lake-runtime-main"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 1,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 1
+  },
+  "source_refs": [
+    "lfos_os_patch_roadmap_bundle/CLAUDE_REVIEW_PR06_PR11.md MF-4",
+    "PR-11.5 user execution prompt"
+  ],
+  "created_by": "Codex",
+  "created_at": "2026-05-19T15:20:00Z"
+}

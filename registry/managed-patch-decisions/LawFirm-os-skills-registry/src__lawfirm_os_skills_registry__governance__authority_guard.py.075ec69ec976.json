@@ -1,0 +1,50 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_pr11_5_skills_authority_guard_provider_metadata_containment",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-skills-registry",
+  "target_path": "src/lawfirm_os_skills_registry/governance/authority_guard.py",
+  "change_mode": "merge",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "merge_preserve_intent",
+  "reason": "PR-11.5 fixes MF-5 by preventing skill provider_metadata from carrying authority fields while preserving the existing checks that skill metadata/body cannot claim canonical authority.",
+  "user_intent_alignment_summary": "The user requested provider_metadata containment without adding product scope. This edit keeps provider-specific data opaque and non-authoritative at the edge.",
+  "diff_review_summary": "The forbidden core key set was expanded to controlled reason/model/connector/approval authority names, and the guard now delegates provider_metadata shape/key validation to the shared trust_surface validator.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "The old guard only checked top-level skill metadata keys and body text. It had to be extended to inspect provider_metadata itself.",
+  "replacement_justification": "Without this extension, provider_metadata could remain a latent side door for route, event, trust, admission, model-policy, or connector-authority fields.",
+  "alternatives_considered": [
+    "Leave provider_metadata unbounded. Rejected by MF-5.",
+    "Remove provider_metadata entirely. Rejected because Claude-ready and future provider fixtures still need bounded opaque external refs."
+  ],
+  "automated_checks_run": [
+    "python -m pytest tests/test_skill_trust_layer.py",
+    "python -m pytest in LawFirm-os-skills-registry: 44 passed",
+    "python LawFirm-os-semantic-substrate/scripts/validate_skill_agent_control_plane.py --workspace ."
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "high",
+  "approver": "Lowell Wong requested PR-11.5 pre-push governance hardening",
+  "reviewer_model": "Codex high reasoning",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [
+    "No intentional authority check was removed; provider_metadata validation was added and the forbidden key set broadened."
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-skills-registry"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 1,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 1
+  },
+  "source_refs": [
+    "lfos_os_patch_roadmap_bundle/CLAUDE_REVIEW_PR06_PR11.md MF-5",
+    "PR-11.5 user execution prompt"
+  ],
+  "created_by": "Codex",
+  "created_at": "2026-05-19T15:20:00Z"
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_pr11_5_lkr_contract_lock_refresh_to_5e701cb",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-legal-knowledge-runtime",
+  "target_path": "contracts.lock.json",
+  "change_mode": "replace",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "replacement_intentional",
+  "reason": "PR-11.5 bounded passage-ref provider_metadata and expanded SkillTrustRecord trust-surface fields in Semantic Substrate. Those files are included in the consumer contract surface, so Legal Knowledge Runtime's lock had to be refreshed to committed Substrate HEAD 5e701cb51c80a45d45ce413398b6e611985c08f7.",
+  "user_intent_alignment_summary": "The user required any Substrate schema change to refresh consumer locks intentionally and rerun lock-drift validation. This lock update is limited to the contract-surface provenance fields.",
+  "diff_review_summary": "contracts.lock.json updates contract_sha, substrate_repo_commit_sha, generated_at, contract_surface_lock.surface_sha256, computed_from_commit, and included_files_manifest_sha256. No product behavior fields were added.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "A lock pin is a single committed-tree provenance value; stale and current pins cannot be merged.",
+  "replacement_justification": "Leaving LKR on the old surface would fail the workspace contract-lock drift gate and split PassageRef schema authority from the consuming runtime.",
+  "alternatives_considered": [
+    "Do not refresh LKR. Rejected because schema/passageref changes are in the contract surface.",
+    "Point to uncommitted Substrate content. Rejected because locks must pin committed tree bytes."
+  ],
+  "automated_checks_run": [
+    "python scripts/update_consumer_contract_surface_locks.py --workspace .. --commit",
+    "python LawFirm-os-semantic-substrate/scripts/validate_contract_lock_drift_workspace.py --workspace .",
+    "python -m pytest in LawFirm-os-legal-knowledge-runtime: 25 passed"
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "Lowell Wong requested PR-11.5 pre-push governance hardening",
+  "reviewer_model": "Codex high reasoning",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [
+    "Old contract surface SHA: 8bd20599d49fe29b2570be1e43c665399d90536d22126a1408eb22dffb1dcfb5"
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-legal-knowledge-runtime"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 0,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 0
+  },
+  "source_refs": [
+    "Semantic Substrate commit 5e701cb51c80a45d45ce413398b6e611985c08f7",
+    "PR-11.5 user execution prompt"
+  ],
+  "created_by": "Codex",
+  "created_at": "2026-05-19T15:20:00Z"
+}
