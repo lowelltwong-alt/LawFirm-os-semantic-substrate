@@ -19,6 +19,7 @@
         "unknown_event_class",
         "semantic_mutation_forbidden",
         "external_writes_forbidden_in_mvp",
+        "tool_manifest_invalid",
         "write_requires_human_approval",
         "write_requires_explicit_approval_policy"
       ]

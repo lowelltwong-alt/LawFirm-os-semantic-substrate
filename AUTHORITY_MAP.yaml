@@ -14,6 +14,7 @@ authority_tiers:
       - registry/source-of-truth.json is the primary precedence surface.
       - registry/design-authority.json defines posture and non-negotiables.
       - governance/AI_CONTROL_PLANE_BOUNDARY.md defines neutral AI control-plane rules.
+      - governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md defines canonical prompt/tool/endpoint/identity/revocation control contracts for runtime consumers.
 
   operational:
     description: Implements and enforces the canonical layer.

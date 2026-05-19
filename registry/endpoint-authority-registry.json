@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "registry_id": "endpoint_authority_registry.v1",
+  "registry_scope": "canonical_endpoint_authority",
+  "status": "active",
+  "owner": "semantic-control-plane",
+  "schema_ref": "endpoint-authority-v1",
+  "global_controls": {
+    "endpoint_authority_must_be_allowlisted": true,
+    "unknown_endpoint_policy": "fail_closed",
+    "agent_callable_endpoints_require_agent_identity": true,
+    "agent_callable_endpoints_require_audit_event": true,
+    "side_effects_require_human_approval": true
+  },
+  "endpoints": [
+    {
+      "schema_version": "endpoint_authority.v1",
+      "endpoint_id": "orchestrator.endpoint.classify_exception.local_cli.v1",
+      "owning_repo": "LawFirm-os-orchestrator",
+      "owning_plane": "orchestrator",
+      "surface_kind": "cli_command",
+      "path": "python -m lawfirm_os_orchestrator classify-exception",
+      "purpose": "Local synthetic exception classification command surface that consumes pinned substrate contracts and emits evidence.",
+      "allowed_actor_types": [
+        "agent",
+        "human"
+      ],
+      "auth_required": true,
+      "agent_identity_required": true,
+      "audit_event_required": true,
+      "risk_class": "transform",
+      "side_effect_class": "none",
+      "approval_policy": {
+        "approval_required": false,
+        "approval_policy_id": "approval.policy.synthetic_transform.preapproved.v1"
+      },
+      "input_schema_ref": "exception-event-v1",
+      "output_schema_ref": "evidence-packet-v2",
+      "allowed_data_classes": [
+        "synthetic_fixture",
+        "metadata_only"
+      ],
+      "related_docs": [
+        "governance/ORCHESTRATOR_BOUNDARY.md",
+        "governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md"
+      ]
+    }
+  ],
+  "non_claims": [
+    "does not publish a production endpoint",
+    "does not authorize production connectors",
+    "does not authorize real client or matter data"
+  ]
+}

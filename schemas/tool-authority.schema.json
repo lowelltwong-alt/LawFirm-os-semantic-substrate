@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/tool-authority.schema.json",
+  "title": "ToolAuthority",
+  "description": "Canonical authority contract for an agent-callable or human-callable tool surface.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool_id",
+    "version",
+    "risk_class",
+    "side_effect_class",
+    "allowed_actor_types",
+    "auth_required",
+    "agent_identity_required",
+    "audit_event_required",
+    "approval_policy",
+    "input_schema_ref",
+    "output_schema_ref",
+    "allowed_data_classes"
+  ],
+  "properties": {
+    "schema_version": {"const": "tool_authority.v1"},
+    "tool_id": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "class_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["active", "draft_metadata_only", "deprecated"]},
+    "risk_class": {"enum": ["read", "transform", "draft", "write", "execute"]},
+    "side_effect_class": {"enum": ["none", "read", "write", "external"]},
+    "allowed_actor_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"enum": ["human", "agent", "system"]}
+    },
+    "auth_required": {"type": "boolean"},
+    "agent_identity_required": {"type": "boolean"},
+    "audit_event_required": {"type": "boolean"},
+    "approval_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approval_required", "approval_policy_id"],
+      "properties": {
+        "approval_required": {"type": "boolean"},
+        "approval_policy_id": {"type": "string", "minLength": 1},
+        "approval_reason": {"type": "string"}
+      }
+    },
+    "input_schema_ref": {"type": ["string", "null"]},
+    "output_schema_ref": {"type": ["string", "null"]},
+    "allowed_data_classes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "timeout_seconds": {"type": "integer", "minimum": 1},
+    "retry_policy_ref": {"type": "string"}
+  }
+}

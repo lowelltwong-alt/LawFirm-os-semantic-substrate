@@ -1,0 +1,54 @@
+{
+  "contract_name": "lawfirm-os-agent-control-contract-export",
+  "contract_status": "active",
+  "canonical_repo_name": "LawFirm-os-semantic-substrate",
+  "human_label": "Law Firm OS Semantic Substrate",
+  "contract_repo_role": "semantic_control_plane_for_agent_hostile_control_contracts",
+  "orchestrator_repo_role": "execution_plane_enforcing_agent_hostile_controls_read_only",
+  "evidence_repo_role": "evidence_plane_recording_append_only_audit_and_validation_evidence",
+  "authority_rule": "Substrate owns canonical agent-hostile schemas and registries. Runtime repos enforce or record under pinned contracts; runtime observations and model outputs are proposals/evidence only.",
+  "schema_keys": [
+    "agent-identity-v1",
+    "prompt-version-v1",
+    "tool-authority-v1",
+    "endpoint-authority-v1",
+    "revocation-policy-v1",
+    "agent-hostile-control-bundle-v1"
+  ],
+  "schema_paths": [
+    "schemas/agent-identity.schema.json",
+    "schemas/prompt-version.schema.json",
+    "schemas/tool-authority.schema.json",
+    "schemas/endpoint-authority.schema.json",
+    "schemas/revocation-policy.schema.json",
+    "schemas/agent-hostile-control-bundle.schema.json"
+  ],
+  "registry_paths": [
+    "registry/prompt-registry.json",
+    "registry/tool-authority-registry.json",
+    "registry/endpoint-authority-registry.json",
+    "registry/agent-hostile-control-registry.json"
+  ],
+  "governance_paths": [
+    "governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md",
+    "governance/ORCHESTRATOR_BOUNDARY.md",
+    "governance/CROSS_REPO_MAP.md"
+  ],
+  "example_safe_entries": [
+    "orchestrator.prompt.classify_exception.synthetic.v1",
+    "orchestrator.tool.synthetic_classify_exception.v1",
+    "orchestrator.endpoint.classify_exception.local_cli.v1"
+  ],
+  "non_claims": [
+    "no autonomous writes",
+    "no live connectors",
+    "no live model calls",
+    "no scheduled jobs",
+    "no external APIs",
+    "no external writes",
+    "no production data",
+    "no real client data",
+    "no real matter data"
+  ],
+  "export_version": "1.0.0"
+}

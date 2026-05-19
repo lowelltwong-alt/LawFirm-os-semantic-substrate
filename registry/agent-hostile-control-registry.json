@@ -1,0 +1,35 @@
+{
+  "schema_version": "agent_hostile_control_bundle.v1",
+  "bundle_id": "agent_hostile_control_bundle.v1",
+  "bundle_version": "1.0.0",
+  "status": "active",
+  "owner": "semantic-control-plane",
+  "schema_refs": [
+    "agent-identity-v1",
+    "prompt-version-v1",
+    "tool-authority-v1",
+    "endpoint-authority-v1",
+    "revocation-policy-v1",
+    "agent-hostile-control-bundle-v1"
+  ],
+  "registry_refs": [
+    "registry/prompt-registry.json",
+    "registry/tool-authority-registry.json",
+    "registry/endpoint-authority-registry.json",
+    "registry/agent-hostile-control-registry.json",
+    "registry/agent-control-contract-export.json"
+  ],
+  "governance_refs": [
+    "governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md",
+    "governance/ORCHESTRATOR_BOUNDARY.md",
+    "governance/CROSS_REPO_MAP.md"
+  ],
+  "global_controls": {
+    "default_deny": true,
+    "agent_identity_required_for_agent_surfaces": true,
+    "audit_required_for_agent_surfaces": true,
+    "runtime_observations_are_not_canon": true,
+    "no_autonomous_writes": true,
+    "synthetic_examples_only": true
+  }
+}

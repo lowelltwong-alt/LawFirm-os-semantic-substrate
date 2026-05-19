@@ -904,6 +904,78 @@
       "supersedes": null
     },
     {
+      "schema_id": "agent-identity-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/agent-identity.schema.json",
+      "applies_to": [
+        "agent-identity"
+      ],
+      "layer": "authority_and_execution",
+      "owner": "semantic-control-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "prompt-version-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/prompt-version.schema.json",
+      "applies_to": [
+        "prompt-version"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "semantic-control-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "tool-authority-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/tool-authority.schema.json",
+      "applies_to": [
+        "tool-authority"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "semantic-control-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "endpoint-authority-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/endpoint-authority.schema.json",
+      "applies_to": [
+        "endpoint-authority"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "semantic-control-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "revocation-policy-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/revocation-policy.schema.json",
+      "applies_to": [
+        "revocation-policy"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "semantic-control-plane",
+      "supersedes": null
+    },
+    {
+      "schema_id": "agent-hostile-control-bundle-v1",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "schemas/agent-hostile-control-bundle.schema.json",
+      "applies_to": [
+        "agent-hostile-control-bundle"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "semantic-control-plane",
+      "supersedes": null
+    },
+    {
       "schema_id": "evidence-packet-v2",
       "version": "2.0.0",
       "status": "active",

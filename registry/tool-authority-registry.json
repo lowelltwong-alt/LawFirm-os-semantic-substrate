@@ -1,12 +1,18 @@
 {
-  "registry_scope": "orchestrator_tool_authority_draft",
-  "status": "draft_metadata_only",
+  "schema_version": "1.0",
+  "registry_id": "tool_authority_registry.v1",
+  "registry_scope": "canonical_tool_authority",
+  "status": "active",
   "owner": "semantic-control-plane",
+  "schema_ref": "tool-authority-v1",
   "global_controls": {
     "tool_authority_must_be_allowlisted": true,
     "side_effects_require_human_approval": true,
+    "agent_callable_tools_require_agent_identity": true,
+    "agent_callable_tools_require_audit_event": true,
+    "unknown_tool_policy": "fail_closed",
     "mcp_compatibility_target_only": true,
-    "no_mcp_server_in_mvp": true
+    "no_mcp_server_authorized_by_this_registry": true
   },
   "tool_classes": [
     {
@@ -16,7 +22,8 @@
       "examples": [
         "normalize input",
         "hash artifact",
-        "validate schema"
+        "validate schema",
+        "classify synthetic exception"
       ]
     },
     {
@@ -30,7 +37,7 @@
     },
     {
       "class_id": "tool.class.write.external.v1",
-      "side_effect_class": "external_write",
+      "side_effect_class": "external",
       "default_policy": "forbidden_in_mvp",
       "examples": [
         "send email",
@@ -41,20 +48,96 @@
   ],
   "tools": [
     {
-      "tool_id": "orchestrator.tool.hash_artifact.v1",
+      "schema_version": "tool_authority.v1",
+      "tool_id": "orchestrator.tool.synthetic_classify_exception.v1",
+      "version": "1.0.0",
       "class_id": "tool.class.transform.local.v1",
-      "status": "draft_metadata_only",
-      "input_schema_ref": null,
-      "output_schema_ref": null,
-      "approval_required": false
+      "status": "active",
+      "risk_class": "transform",
+      "side_effect_class": "none",
+      "allowed_actor_types": [
+        "agent",
+        "human"
+      ],
+      "auth_required": true,
+      "agent_identity_required": true,
+      "audit_event_required": true,
+      "approval_policy": {
+        "approval_required": false,
+        "approval_policy_id": "approval.policy.synthetic_transform.preapproved.v1",
+        "approval_reason": "Synthetic local transform; no external write and no production data."
+      },
+      "input_schema_ref": "exception-event-v1",
+      "output_schema_ref": "evidence-packet-v2",
+      "allowed_data_classes": [
+        "synthetic_fixture",
+        "metadata_only"
+      ],
+      "timeout_seconds": 30,
+      "retry_policy_ref": "retry.policy.none.mvp.v1"
     },
     {
-      "tool_id": "orchestrator.tool.load_pinned_manifest.v1",
-      "class_id": "tool.class.evidence.readonly.v1",
+      "schema_version": "tool_authority.v1",
+      "tool_id": "orchestrator.tool.hash_artifact.v1",
+      "version": "1.0.0",
+      "class_id": "tool.class.transform.local.v1",
       "status": "draft_metadata_only",
+      "risk_class": "transform",
+      "side_effect_class": "none",
+      "allowed_actor_types": [
+        "agent",
+        "human"
+      ],
+      "auth_required": true,
+      "agent_identity_required": true,
+      "audit_event_required": true,
+      "approval_policy": {
+        "approval_required": false,
+        "approval_policy_id": "approval.policy.synthetic_transform.preapproved.v1"
+      },
       "input_schema_ref": null,
       "output_schema_ref": null,
-      "approval_required": false
+      "allowed_data_classes": [
+        "synthetic_fixture",
+        "metadata_only"
+      ],
+      "timeout_seconds": 30,
+      "retry_policy_ref": "retry.policy.none.mvp.v1"
+    },
+    {
+      "schema_version": "tool_authority.v1",
+      "tool_id": "orchestrator.tool.load_pinned_manifest.v1",
+      "version": "1.0.0",
+      "class_id": "tool.class.evidence.readonly.v1",
+      "status": "draft_metadata_only",
+      "risk_class": "read",
+      "side_effect_class": "read",
+      "allowed_actor_types": [
+        "agent",
+        "human"
+      ],
+      "auth_required": true,
+      "agent_identity_required": true,
+      "audit_event_required": true,
+      "approval_policy": {
+        "approval_required": false,
+        "approval_policy_id": "approval.policy.pinned_contract_read.preapproved.v1"
+      },
+      "input_schema_ref": null,
+      "output_schema_ref": null,
+      "allowed_data_classes": [
+        "synthetic_fixture",
+        "metadata_only"
+      ],
+      "timeout_seconds": 30,
+      "retry_policy_ref": "retry.policy.none.mvp.v1"
     }
+  ],
+  "non_claims": [
+    "does not authorize production connectors",
+    "does not authorize real client data",
+    "does not authorize real matter data",
+    "does not authorize external writes",
+    "does not create an MCP server"
   ]
 }

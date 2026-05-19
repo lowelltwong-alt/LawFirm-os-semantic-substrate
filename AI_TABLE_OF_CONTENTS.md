@@ -26,6 +26,11 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `registry/schema-surface-exclusions.json`
 - `registry/exception-route-registry.json`
 - `registry/orchestrator-contract-export.json`
+- `registry/agent-control-contract-export.json`
+- `registry/agent-hostile-control-registry.json`
+- `registry/prompt-registry.json`
+- `registry/tool-authority-registry.json`
+- `registry/endpoint-authority-registry.json`
 - `registry/exceptions-lake-contract-export.json`
 - `registry/legal-knowledge-runtime-contract-export.json`
 - `registry/architecture-flow-registry.json` — OS contract spine catalog (ContextBundle, EvidencePacket, SourceRef, PassageRef, ClaimRef, SkillTrustRecord, …)
@@ -48,6 +53,7 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 
 - `governance/CROSS_REPO_MAP.md`
 - `governance/ORCHESTRATOR_BOUNDARY.md`
+- `governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md`
 - `governance/EXCEPTIONS_LAKE_BOUNDARY.md`
 - `governance/PHASE_2_SCHEMA_PLACEMENT.md`
 - `governance/PHASE_2_ROADMAP.md`
@@ -99,6 +105,11 @@ Governed runtime evidence objects (validated by `scripts/validate_architecture_o
 | ExecutionDecision | execution-decision-v1 | orchestrator |
 | ExecutionPassport | execution-passport-v1 | orchestrator |
 | ExecutionResult | execution-result-v1 | orchestrator |
+| AgentIdentity | agent-identity-v1 | semantic_substrate |
+| PromptVersion | prompt-version-v1 | semantic_substrate |
+| ToolAuthority / EndpointAuthority | tool-authority-v1 / endpoint-authority-v1 | semantic_substrate |
+| RevocationPolicy | revocation-policy-v1 | semantic_substrate |
+| AgentHostileControlBundle | agent-hostile-control-bundle-v1 | semantic_substrate |
 | EvidencePacket | evidence-packet-v2 | orchestrator |
 | ExceptionLakeAdmissionRecord | exception-lake-admission-record-v1 | exception_lake |
 | DefectRecord / EvalCandidate | defect-record-v1 / eval-candidate-v1 | exception_lake |

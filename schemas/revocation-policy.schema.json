@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/revocation-policy.schema.json",
+  "title": "RevocationPolicyRecord",
+  "description": "Canonical shape for revoking or pausing an agent-hostile control subject. Runtime state may live elsewhere, but this schema governs meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "revocation_id",
+    "subject_type",
+    "subject_id",
+    "revocation_reason",
+    "effective_at",
+    "issued_by",
+    "status"
+  ],
+  "properties": {
+    "schema_version": {"const": "revocation_policy.v1"},
+    "revocation_id": {"type": "string", "minLength": 1},
+    "subject_type": {"enum": ["agent", "route", "tool", "prompt", "endpoint"]},
+    "subject_id": {"type": "string", "minLength": 1},
+    "revocation_reason": {"type": "string", "minLength": 1},
+    "effective_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "issued_by": {"type": "string", "minLength": 1},
+    "status": {"enum": ["active", "expired", "superseded", "draft_example"]},
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tenant_scope": {"type": "array", "items": {"type": "string"}},
+        "matter_scope": {"type": "array", "items": {"type": "string"}},
+        "route_scope": {"type": "array", "items": {"type": "string"}},
+        "tool_scope": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

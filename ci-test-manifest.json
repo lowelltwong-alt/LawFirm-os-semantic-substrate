@@ -648,6 +648,64 @@
       "full_regression_required": false
     },
     {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_agent_hostile_contracts.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_agent_hostile_contracts.py",
+      "runner_command": "python -m pytest tests/test_agent_hostile_contracts.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "schema_surface",
+        "registry_integrity",
+        "governance_boundary"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "schema_change",
+        "registry_change",
+        "governance_doc_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_agent_hostile_contracts.py",
+        "schemas/agent-identity.schema.json",
+        "schemas/prompt-version.schema.json",
+        "schemas/tool-authority.schema.json",
+        "schemas/endpoint-authority.schema.json",
+        "schemas/revocation-policy.schema.json",
+        "schemas/agent-hostile-control-bundle.schema.json",
+        "registry/agent-hostile-control-registry.json",
+        "registry/agent-control-contract-export.json",
+        "governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "schema_surface",
+        "registry_integrity",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime"
+      ],
+      "must_run_when": [
+        "agent-hostile control schemas or registries change",
+        "agent-hostile control boundary changes"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "production data handling",
+        "promotion authority without governance decision"
+      ],
+      "expected_runtime_seconds": 5,
+      "full_regression_required": false
+    },
+    {
       "test_id": "LawFirm-os-semantic-substrate.tests.test_ai_front_door_integrity.v1",
       "language": "python",
       "framework": "pytest",

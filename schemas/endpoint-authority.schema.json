@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/endpoint-authority.schema.json",
+  "title": "EndpointAuthority",
+  "description": "Canonical authority contract for a command, API route, module entrypoint, or endpoint-like runtime surface.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "endpoint_id",
+    "owning_repo",
+    "owning_plane",
+    "surface_kind",
+    "allowed_actor_types",
+    "auth_required",
+    "agent_identity_required",
+    "audit_event_required",
+    "risk_class",
+    "side_effect_class",
+    "approval_policy",
+    "input_schema_ref",
+    "output_schema_ref",
+    "allowed_data_classes"
+  ],
+  "properties": {
+    "schema_version": {"const": "endpoint_authority.v1"},
+    "endpoint_id": {"type": "string", "minLength": 1},
+    "owning_repo": {"type": "string", "minLength": 1},
+    "owning_plane": {"enum": ["semantic_substrate", "orchestrator", "exception_lake", "legal_knowledge_runtime", "skills_registry"]},
+    "surface_kind": {"enum": ["cli_command", "module_entrypoint", "api_route", "workflow_step"]},
+    "path": {"type": "string"},
+    "purpose": {"type": "string", "minLength": 1},
+    "allowed_actor_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"enum": ["human", "agent", "system"]}
+    },
+    "auth_required": {"type": "boolean"},
+    "agent_identity_required": {"type": "boolean"},
+    "audit_event_required": {"type": "boolean"},
+    "risk_class": {"enum": ["read", "transform", "draft", "write", "execute"]},
+    "side_effect_class": {"enum": ["none", "read", "write", "external"]},
+    "approval_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approval_required", "approval_policy_id"],
+      "properties": {
+        "approval_required": {"type": "boolean"},
+        "approval_policy_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "input_schema_ref": {"type": ["string", "null"]},
+    "output_schema_ref": {"type": ["string", "null"]},
+    "allowed_data_classes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "related_docs": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}
