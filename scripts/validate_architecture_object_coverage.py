@@ -44,6 +44,21 @@ REPO_ALIASES: dict[str, list[str]] = {
 MODEL_POLICY_LITERAL_RE = re.compile(
     r"""(?P<field>model_policy(?:_id)?|policy_id)\s*=\s*["']([^"']+)["']""",
 )
+CAMEL_BOUNDARY_RE = re.compile(r"(?<=[a-z0-9])(?=[A-Z])")
+SCALAR_JSON_TYPES = {"string", "number", "integer", "boolean", "null"}
+PROVIDER_METADATA_AUTHORITY_READ_RE = re.compile(
+    r"(provider_metadata.*(?:route_id|event_class|admission|trust|approval|model_policy|connector_authority)|"
+    r"(?:route_id|event_class|admission|trust|approval|model_policy|connector_authority).*provider_metadata)",
+    re.IGNORECASE,
+)
+PROVIDER_METADATA_VALIDATOR_PATHS = {
+    "src/lawfirm_os_skills_registry/domain/trust_surface.py",
+    "src/lawfirm_os_skills_registry/domain/skill_trust_record.py",
+    "src/lawfirm_os_skills_registry/governance/authority_guard.py",
+}
+PROVIDER_NAMESPACE_FIELD_EXCEPTIONS = {
+    "declared_mcp_servers",
+}
 
 
 @dataclass
@@ -198,8 +213,216 @@ def validate_actionable_commands(workspace: Path, substrate: Path, coverage_cfg:
                 )
 
 
+def _schema_tokens(value: str) -> set[str]:
+    with_boundaries = CAMEL_BOUNDARY_RE.sub("_", value)
+    return {token for token in re.split(r"[^A-Za-z0-9]+", with_boundaries.lower()) if token}
+
+
+def _contains_namespace(value: str, namespaces: set[str]) -> bool:
+    if value.lower() in PROVIDER_NAMESPACE_FIELD_EXCEPTIONS:
+        return False
+    tokens = _schema_tokens(value)
+    return any(token == namespace or token.startswith(namespace) for token in tokens for namespace in namespaces)
+
+
+def _is_authority_name(value: str, authority_names: set[str]) -> bool:
+    normalized = value.lower()
+    if normalized in authority_names:
+        return True
+    return normalized.replace("-", "_") in authority_names
+
+
+def _is_provider_metadata_path(path: tuple[str, ...]) -> bool:
+    return "provider_metadata" in path
+
+
+def _location(path: tuple[str, ...]) -> str:
+    return ".".join(path) if path else "<schema>"
+
+
+def _additional_properties_scalar(additional: Any) -> bool:
+    if additional is False:
+        return True
+    if not isinstance(additional, dict):
+        return False
+    typ = additional.get("type")
+    if isinstance(typ, str):
+        return typ in SCALAR_JSON_TYPES
+    if isinstance(typ, list):
+        return set(typ).issubset(SCALAR_JSON_TYPES)
+    return False
+
+
+def _validate_provider_metadata_schema(schema: dict[str, Any], schema_id: str, path: tuple[str, ...], result: CoverageResult) -> None:
+    if schema.get("type") != "object":
+        result.errors.append(f"{schema_id}: provider_metadata at {_location(path)} must be an object")
+    max_props = schema.get("maxProperties")
+    if not isinstance(max_props, int) or max_props > 16:
+        result.errors.append(f"{schema_id}: provider_metadata at {_location(path)} must set maxProperties <= 16")
+    if not _additional_properties_scalar(schema.get("additionalProperties")):
+        result.errors.append(
+            f"{schema_id}: provider_metadata at {_location(path)} must allow only scalar opaque values"
+        )
+    if "propertyNames" not in schema:
+        result.errors.append(f"{schema_id}: provider_metadata at {_location(path)} must constrain property names")
+
+
+def _check_schema_string(
+    *,
+    schema_id: str,
+    value: str,
+    path: tuple[str, ...],
+    result: CoverageResult,
+    provider_namespaces: set[str],
+    authority_names: set[str],
+    metadata_authority_names: set[str],
+) -> None:
+    in_provider_metadata = _is_provider_metadata_path(path)
+    forbidden_names = authority_names | (metadata_authority_names if in_provider_metadata else set())
+    if _is_authority_name(value, forbidden_names):
+        result.errors.append(f"{schema_id}: forbidden authority name {value!r} at {_location(path)}")
+    if not in_provider_metadata and _contains_namespace(value, provider_namespaces):
+        result.errors.append(f"{schema_id}: forbidden provider namespace {value!r} at {_location(path)}")
+
+
+def _walk_schema_forbidden(
+    *,
+    schema_id: str,
+    node: Any,
+    path: tuple[str, ...],
+    result: CoverageResult,
+    provider_namespaces: set[str],
+    authority_names: set[str],
+    metadata_authority_names: set[str],
+) -> None:
+    if "propertyNames" in path:
+        return
+    if isinstance(node, dict):
+        if path and path[-1] == "provider_metadata":
+            _validate_provider_metadata_schema(node, schema_id, path, result)
+        properties = node.get("properties")
+        if isinstance(properties, dict):
+            for prop_name, child in properties.items():
+                prop_path = path + (str(prop_name),)
+                if prop_name != "provider_metadata":
+                    _check_schema_string(
+                        schema_id=schema_id,
+                        value=str(prop_name),
+                        path=prop_path,
+                        result=result,
+                        provider_namespaces=provider_namespaces,
+                        authority_names=authority_names,
+                        metadata_authority_names=metadata_authority_names,
+                    )
+                _walk_schema_forbidden(
+                    schema_id=schema_id,
+                    node=child,
+                    path=prop_path,
+                    result=result,
+                    provider_namespaces=provider_namespaces,
+                    authority_names=authority_names,
+                    metadata_authority_names=metadata_authority_names,
+                )
+        pattern_props = node.get("patternProperties")
+        if isinstance(pattern_props, dict):
+            for prop_name, child in pattern_props.items():
+                prop_path = path + (f"patternProperties[{prop_name}]",)
+                _check_schema_string(
+                    schema_id=schema_id,
+                    value=str(prop_name),
+                    path=prop_path,
+                    result=result,
+                    provider_namespaces=provider_namespaces,
+                    authority_names=authority_names,
+                    metadata_authority_names=metadata_authority_names,
+                )
+                _walk_schema_forbidden(
+                    schema_id=schema_id,
+                    node=child,
+                    path=prop_path,
+                    result=result,
+                    provider_namespaces=provider_namespaces,
+                    authority_names=authority_names,
+                    metadata_authority_names=metadata_authority_names,
+                )
+        required = node.get("required")
+        if isinstance(required, list):
+            for item in required:
+                if isinstance(item, str) and item != "provider_metadata":
+                    _check_schema_string(
+                        schema_id=schema_id,
+                        value=item,
+                        path=path + ("required", item),
+                        result=result,
+                        provider_namespaces=provider_namespaces,
+                        authority_names=authority_names,
+                        metadata_authority_names=metadata_authority_names,
+                    )
+        enum = node.get("enum")
+        if isinstance(enum, list):
+            for item in enum:
+                if isinstance(item, str):
+                    _check_schema_string(
+                        schema_id=schema_id,
+                        value=item,
+                        path=path + ("enum",),
+                        result=result,
+                        provider_namespaces=provider_namespaces,
+                        authority_names=authority_names,
+                        metadata_authority_names=metadata_authority_names,
+                    )
+        const = node.get("const")
+        if isinstance(const, str):
+            _check_schema_string(
+                schema_id=schema_id,
+                value=const,
+                path=path + ("const",),
+                result=result,
+                provider_namespaces=provider_namespaces,
+                authority_names=authority_names,
+                metadata_authority_names=metadata_authority_names,
+            )
+        for key in ("items", "additionalProperties", "propertyNames", "contains", "not", "if", "then", "else"):
+            if key in node:
+                _walk_schema_forbidden(
+                    schema_id=schema_id,
+                    node=node[key],
+                    path=path + (key,),
+                    result=result,
+                    provider_namespaces=provider_namespaces,
+                    authority_names=authority_names,
+                    metadata_authority_names=metadata_authority_names,
+                )
+        for key in ("anyOf", "allOf", "oneOf", "prefixItems"):
+            values = node.get(key)
+            if isinstance(values, list):
+                for index, child in enumerate(values):
+                    _walk_schema_forbidden(
+                        schema_id=schema_id,
+                        node=child,
+                        path=path + (f"{key}[{index}]",),
+                    result=result,
+                    provider_namespaces=provider_namespaces,
+                    authority_names=authority_names,
+                    metadata_authority_names=metadata_authority_names,
+                )
+    elif isinstance(node, list):
+        for index, child in enumerate(node):
+            _walk_schema_forbidden(
+                schema_id=schema_id,
+                node=child,
+                path=path + (f"[{index}]",),
+                result=result,
+                provider_namespaces=provider_namespaces,
+                authority_names=authority_names,
+                metadata_authority_names=metadata_authority_names,
+            )
+
+
 def validate_forbidden_schema_properties(substrate: Path, coverage_cfg: dict[str, Any], result: CoverageResult) -> None:
-    forbidden = set(coverage_cfg.get("forbidden_top_level_schema_properties", []))
+    provider_namespaces = {str(v).lower() for v in coverage_cfg.get("forbidden_provider_namespaces", [])}
+    authority_names = {str(v).lower() for v in coverage_cfg.get("forbidden_top_level_schema_properties", [])}
+    metadata_authority_names = {str(v).lower() for v in coverage_cfg.get("forbidden_authority_field_names", [])}
     reg_index = schema_registry_index(substrate)
     spine_ids = {
         str(e.get("schema_id"))
@@ -211,12 +434,15 @@ def validate_forbidden_schema_properties(substrate: Path, coverage_cfg: dict[str
         if not meta:
             continue
         schema = read_json(substrate / meta["path"])
-        props = schema.get("properties") or {}
-        for prop in forbidden:
-            if prop in props:
-                result.errors.append(
-                    f"{schema_id}: forbidden provider/authority property {prop!r} at schema top level"
-                )
+        _walk_schema_forbidden(
+            schema_id=schema_id,
+            node=schema,
+            path=(),
+            result=result,
+            provider_namespaces=provider_namespaces,
+            authority_names=authority_names,
+            metadata_authority_names=metadata_authority_names,
+        )
 
 
 def validate_trust_governance(substrate: Path, coverage_cfg: dict[str, Any], result: CoverageResult) -> None:
@@ -252,6 +478,27 @@ def validate_model_policy_literals(workspace: Path, substrate: Path, coverage_cf
                 result.errors.append(
                     f"model policy: {py_file.relative_to(orchestrator)} uses unregistered policy_id {policy_id!r}"
                 )
+
+
+def validate_provider_metadata_authority_reads(workspace: Path, result: CoverageResult) -> None:
+    """Prevent runtime authority paths from treating provider_metadata as authority."""
+    for logical in REPO_ALIASES:
+        repo = find_repo(workspace, logical)
+        if repo is None:
+            continue
+        src_root = repo / "src"
+        if not src_root.is_dir():
+            continue
+        for py_file in src_root.rglob("*.py"):
+            rel = py_file.relative_to(repo).as_posix()
+            if rel in PROVIDER_METADATA_VALIDATOR_PATHS:
+                continue
+            text = py_file.read_text(encoding="utf-8", errors="replace")
+            for line_number, line in enumerate(text.splitlines(), start=1):
+                if PROVIDER_METADATA_AUTHORITY_READ_RE.search(line):
+                    result.errors.append(
+                        f"provider_metadata authority read: {repo.name}/{rel}:{line_number} must not use provider_metadata for routing, admission, trust, approval, model-policy, or connector authority"
+                    )
 
 
 def validate_runtime_reason_codes(workspace: Path, substrate: Path) -> list[str]:
@@ -310,6 +557,7 @@ def validate(
     validate_forbidden_schema_properties(substrate, coverage_cfg, result)
     validate_trust_governance(substrate, coverage_cfg, result)
     validate_model_policy_literals(workspace, substrate, coverage_cfg, result)
+    validate_provider_metadata_authority_reads(workspace, result)
 
     if include_workspace_validators:
         result.errors.extend(validate_runtime_reason_codes(workspace, substrate))

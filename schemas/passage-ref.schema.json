@@ -66,8 +66,31 @@
     "canonical_status": {"const": "external_source_not_canon"},
     "provider_metadata": {
       "type": "object",
-      "additionalProperties": true,
-      "description": "Connector-specific or parser-specific details only."
+      "maxProperties": 16,
+      "propertyNames": {
+        "allOf": [
+          {"pattern": "^[A-Za-z0-9_.:-]{1,80}$"},
+          {
+            "not": {
+              "enum": [
+                "route_id",
+                "event_class",
+                "defect_class",
+                "admission_reason_code",
+                "reason_code",
+                "semantic_mutation_action",
+                "model_policy",
+                "model_policy_id",
+                "connector_authority",
+                "approval_state",
+                "approval_status"
+              ]
+            }
+          }
+        ]
+      },
+      "additionalProperties": {"type": ["string", "number", "integer", "boolean", "null"]},
+      "description": "Bounded connector-specific or parser-specific opaque metadata only; never route, event, admission, trust, model-policy, connector-authority, or other governance authority."
     },
     "run_id": {"type": "string"}
   }

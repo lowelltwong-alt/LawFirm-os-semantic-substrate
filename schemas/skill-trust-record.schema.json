@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://lawfirm-os.local/schemas/skill-trust-record.schema.json",
   "title": "SkillTrustRecord",
-  "description": "Trust attestation for a skill definition managed by Skills Registry. Required for any skill to be approved. Trust-surface changes (added tools, hooks, write paths, URLs, purpose drift) require human approval.",
+  "description": "Trust attestation for a skill definition managed by Skills Registry. Required for any skill to be approved. Trust-surface changes (tools, MCP servers, connectors, env vars, secret refs, models, data classes, hooks, write paths, URLs, freshness, purpose drift) require human approval.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -35,13 +35,32 @@
     "trust_surface": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["declared_tools", "declared_hooks", "declared_write_paths", "declared_urls", "declared_purpose_hash"],
+      "required": [
+        "declared_tools",
+        "declared_mcp_servers",
+        "declared_hooks",
+        "declared_connectors",
+        "declared_env_vars",
+        "declared_secret_refs",
+        "declared_models",
+        "declared_data_classes",
+        "declared_write_paths",
+        "declared_urls",
+        "declared_purpose_hash"
+      ],
       "properties": {
         "declared_tools": {"type": "array", "items": {"type": "string"}},
+        "declared_mcp_servers": {"type": "array", "items": {"type": "string"}},
         "declared_hooks": {"type": "array", "items": {"type": "string"}},
+        "declared_connectors": {"type": "array", "items": {"type": "string"}},
+        "declared_env_vars": {"type": "array", "items": {"type": "string"}},
+        "declared_secret_refs": {"type": "array", "items": {"type": "string"}},
+        "declared_models": {"type": "array", "items": {"type": "string"}},
+        "declared_data_classes": {"type": "array", "items": {"type": "string"}},
         "declared_write_paths": {"type": "array", "items": {"type": "string"}},
         "declared_urls": {"type": "array", "items": {"type": "string"}},
-        "declared_purpose_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        "declared_purpose_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "declared_freshness_window_days": {"type": "integer", "minimum": 0}
       }
     },
     "qa_verdict": {"enum": ["passed", "failed", "needs_human_review"]},

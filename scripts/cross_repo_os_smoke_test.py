@@ -265,12 +265,19 @@ def _build_skill_trust_record(repos: WorkspaceRepos, *, contract_surface_sha256:
         "source_uri_hash": "c" * 64,
         "trust_surface": {
             "declared_tools": ["read_file"],
+            "declared_mcp_servers": [],
             "declared_hooks": [],
+            "declared_connectors": [],
+            "declared_env_vars": [],
+            "declared_secret_refs": [],
+            "declared_models": [],
+            "declared_data_classes": [],
             "declared_write_paths": [],
             "declared_urls": [],
         },
         "provider_metadata": {
-            "claude": {"plugin_id": "claude-plugin-pr10-smoke", "workflow_id": "wf-pr10-smoke"},
+            "claude_plugin_ref": "claude-plugin-pr10-smoke",
+            "claude_workflow_ref": "wf-pr10-smoke",
         },
     }
     (skill_dir / "SKILL_METADATA.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
@@ -287,8 +294,8 @@ def _build_skill_trust_record(repos: WorkspaceRepos, *, contract_surface_sha256:
         raise ValueError("SkillTrustRecord must not carry route_id authority")
     if record.get("provider_metadata"):
         raise ValueError("provider_metadata must not appear on SkillTrustRecord canon fields")
-    claude = meta.get("provider_metadata", {}).get("claude", {})
-    assert claude.get("plugin_id") == "claude-plugin-pr10-smoke"
+    provider = meta.get("provider_metadata", {})
+    assert provider.get("claude_plugin_ref") == "claude-plugin-pr10-smoke"
     return record
 
 

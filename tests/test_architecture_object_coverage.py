@@ -106,6 +106,143 @@ def test_forbidden_top_level_schema_property_detected(coverage_cfg: dict, tmp_pa
     assert any("route_id" in err for err in result.errors)
 
 
+def _run_forbidden_schema_case(coverage_cfg: dict, tmp_path: Path, schema: dict) -> CoverageResult:
+    from validate_architecture_object_coverage import validate_forbidden_schema_properties
+
+    substrate = tmp_path / "substrate"
+    (substrate / "registry").mkdir(parents=True)
+    (substrate / "schemas").mkdir()
+    (substrate / "registry" / "architecture-flow-registry.json").write_text(
+        json.dumps(
+            {
+                "spine": [
+                    {
+                        "object": "SourceRef",
+                        "owning_plane": "legal_knowledge_runtime",
+                        "schema_id": "source-ref-v1",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    (substrate / "registry" / "schema-registry.json").write_text(
+        json.dumps({"schemas": [{"schema_id": "source-ref-v1", "path": "schemas/source-ref.schema.json"}]}),
+        encoding="utf-8",
+    )
+    (substrate / "schemas" / "source-ref.schema.json").write_text(json.dumps(schema), encoding="utf-8")
+    result = CoverageResult()
+    validate_forbidden_schema_properties(substrate, coverage_cfg, result)
+    return result
+
+
+@pytest.mark.parametrize(
+    "property_name",
+    [
+        "claude_plugin_id",
+        "Claude_Plugin_Id",
+        "claudePluginId",
+        "claude_plugin_ids",
+        "mcp_server_id",
+        "mcp_tool_id",
+    ],
+)
+def test_recursive_provider_property_leakage_detected(coverage_cfg: dict, tmp_path: Path, property_name: str) -> None:
+    schema = {
+        "type": "object",
+        "properties": {
+            "outer": {
+                "type": "object",
+                "properties": {
+                    property_name: {"type": "string"},
+                },
+            }
+        },
+    }
+    result = _run_forbidden_schema_case(coverage_cfg, tmp_path, schema)
+    assert not result.ok
+    assert any(property_name in err for err in result.errors)
+
+
+def test_recursive_provider_enum_const_array_and_combinator_leakage_detected(
+    coverage_cfg: dict, tmp_path: Path
+) -> None:
+    schema = {
+        "type": "object",
+        "properties": {
+            "records": {
+                "type": "array",
+                "items": {
+                    "anyOf": [
+                        {"type": "object", "properties": {"safe": {"const": "claude_plugin_fixture"}}},
+                        {"type": "object", "properties": {"mode": {"enum": ["mock", "mcp_tool_fixture"]}}},
+                    ]
+                },
+            }
+        },
+    }
+    result = _run_forbidden_schema_case(coverage_cfg, tmp_path, schema)
+    assert not result.ok
+    joined = "\n".join(result.errors)
+    assert "claude_plugin_fixture" in joined
+    assert "mcp_tool_fixture" in joined
+
+
+def test_provider_metadata_allowed_only_when_bounded_and_non_authoritative(
+    coverage_cfg: dict, tmp_path: Path
+) -> None:
+    schema = {
+        "type": "object",
+        "properties": {
+            "provider_metadata": {
+                "type": "object",
+                "maxProperties": 16,
+                "propertyNames": {"pattern": "^[A-Za-z0-9_.:-]{1,80}$"},
+                "additionalProperties": {"type": ["string", "number", "integer", "boolean", "null"]},
+            }
+        },
+    }
+    result = _run_forbidden_schema_case(coverage_cfg, tmp_path, schema)
+    assert result.ok, result.errors
+
+
+def test_provider_metadata_authority_keys_and_unbounded_values_fail(
+    coverage_cfg: dict, tmp_path: Path
+) -> None:
+    schema = {
+        "type": "object",
+        "properties": {
+            "provider_metadata": {
+                "type": "object",
+                "additionalProperties": True,
+                "properties": {"route_id": {"type": "string"}},
+            }
+        },
+    }
+    result = _run_forbidden_schema_case(coverage_cfg, tmp_path, schema)
+    assert not result.ok
+    joined = "\n".join(result.errors)
+    assert "provider_metadata" in joined
+    assert "route_id" in joined
+
+
+def test_provider_metadata_authority_path_read_fails(tmp_path: Path) -> None:
+    from validate_architecture_object_coverage import validate_provider_metadata_authority_reads
+
+    workspace = tmp_path / "workspace"
+    target = workspace / "LawFirm-os-orchestrator" / "src" / "lawfirm_os_orchestrator" / "model_router"
+    target.mkdir(parents=True)
+    (target / "router.py").write_text(
+        "def route(packet):\n"
+        "    return packet.get('provider_metadata', {}).get('route_id')\n",
+        encoding="utf-8",
+    )
+    result = CoverageResult()
+    validate_provider_metadata_authority_reads(workspace, result)
+    assert not result.ok
+    assert "provider_metadata authority read" in result.errors[0]
+
+
 def test_validator_script_cli_passes() -> None:
     import subprocess
 

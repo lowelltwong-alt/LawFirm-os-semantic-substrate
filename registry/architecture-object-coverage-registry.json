@@ -108,6 +108,32 @@
     "route_id",
     "event_class"
   ],
+  "forbidden_provider_namespaces": [
+    "claude",
+    "anthropic",
+    "openai",
+    "gemini",
+    "vertex",
+    "bedrock",
+    "gpt",
+    "chatgpt",
+    "mcp"
+  ],
+  "forbidden_authority_field_names": [
+    "route_id",
+    "event_class",
+    "defect_class",
+    "admission_reason_code",
+    "reason_code",
+    "semantic_mutation_action",
+    "model_policy",
+    "model_policy_id",
+    "connector_authority",
+    "approval_state",
+    "approval_status",
+    "mcp_server_id",
+    "mcp_tool_id"
+  ],
   "model_policy_registry_path": "registry/model-policy-registry.json",
   "trust_governance": {
     "skill_trust_schema_id": "skill-trust-record-v1",
