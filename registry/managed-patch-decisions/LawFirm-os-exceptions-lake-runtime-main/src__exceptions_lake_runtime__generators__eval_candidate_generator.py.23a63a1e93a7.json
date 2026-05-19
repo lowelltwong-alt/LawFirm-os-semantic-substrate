@@ -1,0 +1,51 @@
+{
+  "schema_version": "managed_patch_decision.v2",
+  "decision_id": "mpd_exceptions_lake_eval_candidate_generator_pr11",
+  "decision_scope": "file",
+  "repo": "LawFirm-os-exceptions-lake-runtime-main",
+  "target_path": "src/exceptions_lake_runtime/generators/eval_candidate_generator.py",
+  "change_mode": "replace",
+  "protected_surface": true,
+  "old_content_reviewed": true,
+  "preservation_strategy": "replacement_intentional",
+  "reason": "PR-11 extends the PR-06 stub generator into a full defect-to-eval pipeline: registry-backed eval_class mapping, acceptance-test step generation, synthetic replay descriptors, and evidence-packet ref linkage. Proposal-only promotion_status=candidate is preserved.",
+  "user_intent_alignment_summary": "The overnight driver requires admitted high-severity defects to mint proposal-only EvalCandidates with hash links to evidence packets and registry-defined defect classes, without mutating Semantic Substrate.",
+  "diff_review_summary": "Replacement keeps ELIGIBLE_SEVERITIES gating and source_defect_record_hash chaining. Adds eval_suite_for_defect_class mapping, acceptance steps from eval_suites.registry, and replay plan hashing. No new regulated vocabulary values are invented.",
+  "merge_considered": true,
+  "why_merge_not_sufficient": "PR-06 shipped minimal placeholder steps; PR-11 acceptance criteria require suite-specific acceptance tests and replay scaffolding integrated at mint time.",
+  "replacement_justification": "A single generator module that composes acceptance and replay helpers is the smallest coherent implementation of PR-11 minting behavior.",
+  "alternatives_considered": [
+    "Separate module only, leave PR-06 generator unchanged. Rejected because admission already imports generate_eval_candidate_from_defect.",
+    "Substrate schema expansion for replay fields. Rejected to avoid contract surface churn in PR-11."
+  ],
+  "automated_checks_run": [
+    "pytest tests/test_eval_candidate_minting.py",
+    "pytest tests/test_defect_to_acceptance_tests.py",
+    "pytest tests/test_central_admission.py",
+    "validate_managed_patch_preservation.py --workspace ."
+  ],
+  "risk_tier": "protected",
+  "human_review_required": true,
+  "human_review_status": "approved",
+  "model_review_level": "extra_high",
+  "approver": "LawFirm OS overnight driver PR-11",
+  "reviewer_model": "Codex",
+  "old_content_sha256": null,
+  "new_content_sha256": null,
+  "removed_content_summary": [
+    "PR-06 placeholder suggested_test_steps only"
+  ],
+  "blast_radius": {
+    "repos_touched": ["LawFirm-os-exceptions-lake-runtime-main"],
+    "protected_files_touched": 1,
+    "governance_files_touched": 0,
+    "schema_registry_files_touched": 0,
+    "runtime_code_files_touched": 1
+  },
+  "source_refs": [
+    "lfos_os_patch_roadmap_bundle/codex_task_packets/PR-11_DEFECT_TO_EVAL_LOOP.md",
+    "PR-06 central admission"
+  ],
+  "created_by": "Codex",
+  "created_at": "2026-05-18T21:30:00Z"
+}

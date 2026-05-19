@@ -589,13 +589,16 @@ def _run_denied_action_path(repos: WorkspaceRepos, *, bundle, lake_storage: Path
         admitted_at=FIXED_AT,
     )
     assert outcome.admission_record["admission_status"] == "admitted"
-    assert outcome.defects == []
     assert outcome.execution_record is not None
     assert outcome.execution_record.get("denied_action_evidence") == [denied_record]
+    assert any(d.get("defect_class") == "denied_action_recorded" for d in outcome.defects)
+    assert outcome.eval_candidates
     return {
         "decision": decision.decision,
         "admission_status": outcome.admission_record["admission_status"],
         "denied_action_preserved": bool(outcome.execution_record.get("denied_action_evidence")),
+        "denied_action_defect_minted": True,
+        "eval_candidate_count": len(outcome.eval_candidates),
     }
 
 
