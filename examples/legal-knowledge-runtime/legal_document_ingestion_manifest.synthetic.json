@@ -1,6 +1,17 @@
 {
   "schema_type": "legal-document-ingestion-manifest",
   "schema_version": "v1",
+  "address": "/example/internal_general/data/legal/legal_knowledge_runtime/source_ingestion_manifest/SIM-lkim-synthetic-0001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "data",
+    "domain": "legal",
+    "module": "legal_knowledge_runtime",
+    "object_type": "source_ingestion_manifest",
+    "object_id": "SIM-lkim-synthetic-0001",
+    "version": "v1"
+  },
   "manifest_id": "lkim-synthetic-0001",
   "corpus_id": "synthetic-legal-corpus-0001",
   "source_collection_id": "synthetic-contract-fixtures",

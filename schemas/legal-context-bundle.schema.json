@@ -29,6 +29,69 @@
     "schema_version": {
       "const": "v1"
     },
+    "address": {
+      "type": "string",
+      "pattern": "^\\/(example|production)\\/(public|internal_general|restricted|experimental)\\/(governance|ontology|schema|data|retrieval)\\/[a-z0-9]+(?:_[a-z0-9]+)*\\/[a-z0-9]+(?:_[a-z0-9]+)*\\/[a-z0-9]+(?:_[a-z0-9]+)*\\/[A-Z][A-Z0-9_]*-[a-z0-9_]+(?:-[a-z0-9_]+)*\\/v[0-9]+$"
+    },
+    "address_struct": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "environment",
+        "authority_zone",
+        "layer",
+        "domain",
+        "module",
+        "object_type",
+        "object_id",
+        "version"
+      ],
+      "properties": {
+        "environment": {
+          "enum": [
+            "example",
+            "production"
+          ]
+        },
+        "authority_zone": {
+          "enum": [
+            "public",
+            "internal_general",
+            "restricted",
+            "experimental"
+          ]
+        },
+        "layer": {
+          "enum": [
+            "governance",
+            "ontology",
+            "schema",
+            "data",
+            "retrieval"
+          ]
+        },
+        "domain": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+        },
+        "module": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+        },
+        "object_type": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+        },
+        "object_id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*-[a-z0-9_]+(?:-[a-z0-9_]+)*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^v[0-9]+$"
+        }
+      }
+    },
     "bundle_id": {
       "type": "string",
       "minLength": 3

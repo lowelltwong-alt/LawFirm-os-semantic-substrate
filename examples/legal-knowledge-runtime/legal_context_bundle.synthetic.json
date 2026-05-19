@@ -1,6 +1,17 @@
 {
   "schema_type": "legal-context-bundle",
   "schema_version": "v1",
+  "address": "/example/internal_general/retrieval/legal/legal_knowledge_runtime/artifact/ART-legal-context-bundle-synthetic-0001/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "internal_general",
+    "layer": "retrieval",
+    "domain": "legal",
+    "module": "legal_knowledge_runtime",
+    "object_type": "artifact",
+    "object_id": "ART-legal-context-bundle-synthetic-0001",
+    "version": "v1"
+  },
   "bundle_id": "lkb-synthetic-0001",
   "bundle_type": "contract_review_context.v1",
   "run_id": "lkrun-synthetic-0001",
