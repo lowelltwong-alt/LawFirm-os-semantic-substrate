@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "registry_id": "prompt_registry.v1",
+  "registry_scope": "canonical_prompt_authority",
+  "status": "active",
+  "owner": "semantic-control-plane",
+  "schema_ref": "prompt-version-v1",
+  "global_controls": {
+    "prompts_are_control_artifacts": true,
+    "prompt_hash_required": true,
+    "prompt_approval_required": true,
+    "model_outputs_are_proposals_only": true,
+    "unknown_prompt_policy": "fail_closed"
+  },
+  "prompts": [
+    {
+      "schema_version": "prompt_version.v1",
+      "prompt_ref": "orchestrator.prompt.classify_exception.synthetic.v1",
+      "prompt_version": "1.0.0",
+      "prompt_sha256": "sha256:75c7f5a2585fd7333ae71d86f21e6e417218d3414a6a546ebab1cb5ef629abc7",
+      "prompt_approved": true,
+      "approved_by": "semantic-control-plane.synthetic-approval",
+      "approved_at": "2026-05-19T00:00:00Z",
+      "policy_bundle_id": "runtime-policy-v1",
+      "allowed_runtime_surfaces": [
+        "orchestrator.endpoint.classify_exception.local_cli.v1"
+      ],
+      "allowed_data_classes": [
+        "synthetic_fixture",
+        "metadata_only"
+      ],
+      "notes": "Synthetic/local MVP classifier prompt entry. The hash binds an approved prompt artifact but does not authorize production data or live model calls."
+    }
+  ],
+  "non_claims": [
+    "does not store production prompt transcripts",
+    "does not authorize live model calls",
+    "does not authorize real client or matter data"
+  ]
+}

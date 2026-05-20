@@ -28,6 +28,11 @@ Control-plane registries:
 - `registry/harness-policy-registry.json`
 - `registry/red-flag-trigger-registry.json`
 - `registry/research-signal-registry.json`
+- `registry/prompt-registry.json`
+- `registry/tool-authority-registry.json`
+- `registry/endpoint-authority-registry.json`
+- `registry/agent-hostile-control-registry.json`
+- `registry/agent-control-contract-export.json`
 
 Phase 2 schema directories:
 
@@ -69,3 +74,9 @@ Exception Lake:
 ## Consumer Responsibilities
 
 Orchestrator and Exception Lake consumers may read these files to validate and route proposal-only operating objects. They must not mutate this repo at runtime and must not treat evidence objects as canonical promotion authority.
+
+## Agent-Hostile Control Surfaces
+
+- `classify-exception` - synthetic/local Orchestrator command surface governed by agent identity, prompt, tool, endpoint, and revocation contracts.
+- `registry/endpoint-authority-registry.json` - canonical endpoint authority entry for the local classify-exception surface.
+- `governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md` - runtime-control boundary for identity, prompt, tool, endpoint, and revocation policy meaning.

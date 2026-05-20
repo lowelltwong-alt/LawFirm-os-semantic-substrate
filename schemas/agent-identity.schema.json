@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/agent-identity.schema.json",
+  "title": "AgentIdentity",
+  "description": "Canonical control-plane shape for an agent actor identity and its delegated runtime scope. Runtime systems enforce this shape; they do not define its meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "agent_instance_id",
+    "agent_type",
+    "delegating_user_id",
+    "tenant_scope",
+    "matter_scope",
+    "route_scope",
+    "data_scope",
+    "tool_scope",
+    "issued_at",
+    "expires_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "agent_identity.v1"},
+    "agent_instance_id": {"type": "string", "minLength": 1},
+    "agent_type": {"type": "string", "minLength": 1},
+    "delegating_user_id": {"type": ["string", "null"], "description": "Human or service principal on whose behalf the agent acts."},
+    "tenant_scope": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "matter_scope": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "description": "Synthetic or governed matter identifiers only; public MVP examples must not contain real matter IDs."
+    },
+    "route_scope": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "data_scope": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "tool_scope": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "revoked_at": {"type": ["string", "null"], "format": "date-time"},
+    "approval_ref": {"type": ["string", "null"], "description": "Optional reference to a human approval or preapproved authority record."}
+  }
+}

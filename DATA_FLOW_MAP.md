@@ -8,6 +8,8 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Sibling runtime repos (
 
 Runtime repos consume these contracts. They do not mutate canon.
 
+Agent-hostile control contracts now live in the control plane as canonical schemas, registries, and governance. The Orchestrator may enforce agent identity, prompt integrity, tool authority, endpoint authority, and revocation gates, but the meaning and registry surfaces are owned here.
+
 PR07 roadmap extension: decision intelligence will add stakes profiles, reversibility scoring, decision escalation records, and local-only Research Radar watchlists/briefs. These outputs remain candidate evidence and decision support only. Research Radar may recommend green-to-yellow or green-to-red downgrades, but may not restore green or promote canon.
 
 Initial PR07 watchlist seed set: `research-radar-frontier-ai-001` tracks frontier AI capability signals, and the roadmap reserves related topics for math breakthroughs, agent failures, prompt injection, legal AI ethics, model policy changes, harness design, RAG quality, orchestration patterns, decision science, creativity with AI, law-firm reputation risk, and billing/carrier changes. The set is roadmap-only until PR07 implementation.
@@ -48,8 +50,11 @@ flowchart LR
     SIG["Signals\nExceptions + Research + Ideas"]
     DEC["PR07 Decision Intelligence\nStakes + Reversibility + Frequency"]
     RR["PR07 Research Radar Seeds\nlocal-only watchlist topics"]
+    AHC["Agent-Hostile Controls\nidentity + prompt + tool + endpoint + revocation"]
 
     SS -->|"schemas, policies, registries"| OR
+    SS -->|"agent-hostile control contracts"| AHC
+    AHC -->|"read-only enforcement inputs"| OR
     SS -->|"contract exports + validation policy"| EL
     SIG -->|"evidence inputs"| OR
     SS -->|"planned local-only watchlist seed"| RR
@@ -99,6 +104,7 @@ sequenceDiagram
 
 - Phase 2 schemas.
 - Phase 2 registries.
+- Agent-hostile prompt, tool, endpoint, identity, and revocation control registries.
 - RYG autonomy policy.
 - Harness policy.
 - Red-flag trigger registry.
@@ -118,6 +124,12 @@ sequenceDiagram
 - Drift check via `scripts/check_repo_drift.py`.
 
 ## Orchestrator-Facing Surfaces
+
+Agent-hostile additions:
+
+- `registry/agent-control-contract-export.json` - agent-hostile control contract export for identity, prompts, tools, endpoints, revocation, and bundle discovery.
+- `registry/agent-hostile-control-registry.json` - canonical control bundle for agent-hostile MVP surfaces.
+- `governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md` - control-plane boundary for prompt/tool/endpoint/identity/revocation contracts.
 
 The substrate publishes a canonical manifest for orchestrator consumption:
 

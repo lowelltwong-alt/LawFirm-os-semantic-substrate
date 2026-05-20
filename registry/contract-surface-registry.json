@@ -24,6 +24,10 @@
         "registry/exception-route-registry.json",
         "registry/exceptions-lake-contract-export.json",
         "registry/orchestrator-contract-export.json",
+        "registry/agent-control-contract-export.json",
+        "registry/agent-hostile-control-registry.json",
+        "registry/prompt-registry.json",
+        "registry/endpoint-authority-registry.json",
         "registry/ai-front-door-registry.json",
         "registry/skill-agent-control-plane-registry.json",
         "registry/skill-agent-lifecycle-policy-registry.json",
@@ -42,6 +46,7 @@
         "governance/AI_CONTROL_PLANE_BOUNDARY.md",
         "governance/AI_FRONT_DOOR_BOUNDARY.md",
         "governance/ORCHESTRATOR_BOUNDARY.md",
+        "governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md",
         "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
         "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
         "governance/CI_TEST_ROUTING_BOUNDARY.md"

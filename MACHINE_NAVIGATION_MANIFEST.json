@@ -57,6 +57,16 @@
       "role": "active schema key to file mapping used by live validators"
     },
     {
+      "path": "registry/agent-hostile-control-registry.json",
+      "authority": "high",
+      "role": "canonical prompt, tool, endpoint, identity, and revocation control bundle"
+    },
+    {
+      "path": "governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md",
+      "authority": "high",
+      "role": "agent-hostile control-plane boundary for runtime consumers"
+    },
+    {
       "path": "scripts/check_registry_refs.py",
       "authority": "high-operational",
       "role": "verifies authoritative path references exist"
