@@ -63,6 +63,13 @@ See:
 
 Roadmap note: PR07 is reserved for Decision Intelligence, Stakes Model, and Research Radar Seeding. It is local-only and schema-first. It must not add live web crawling, scheduled jobs, model calls, external APIs, external writes, autonomous research execution, or production research automation.
 
+Current AI strategy and decision-bottleneck doctrine:
+
+- `governance/AI_STRATEGY_DOCTRINE.md`
+- `governance/DECISION_BOTTLENECK_AND_DECISION_MODELS.md`
+- `registry/decision-model-registry.schema.json`
+- `registry/decision-model-registry.seed.json`
+
 The first planned PR07 Research Radar watchlist seed is `research-radar-frontier-ai-001` for `frontier_ai_capability`. The roadmap also reserves additional local-only seed topics for math breakthroughs, agent failures, prompt injection, legal AI ethics, model provider policy changes, harness design, RAG quality, workflow orchestration, decision science, creativity with AI, law-firm reputation risk, and billing/carrier changes. These are roadmap evidence only until PR07 adds schemas and local object builders.
 
 `registry/research-radar-source-registry.json` already exists as pre-PR07 draft scaffolding. It is metadata-only and non-authorizing, and does not authorize live crawling, scheduled jobs, model calls, external APIs, external writes, or production research automation. PR07 may later formalize, supersede, or reconcile it.

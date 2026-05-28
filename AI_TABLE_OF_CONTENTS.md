@@ -33,6 +33,8 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `registry/endpoint-authority-registry.json`
 - `registry/exceptions-lake-contract-export.json`
 - `registry/legal-knowledge-runtime-contract-export.json`
+- `registry/decision-model-registry.schema.json` - canonical schema for decision-model registry entries
+- `registry/decision-model-registry.seed.json` - initial decision-model seed registry
 - `registry/architecture-flow-registry.json` — OS contract spine catalog (ContextBundle, EvidencePacket, SourceRef, PassageRef, ClaimRef, SkillTrustRecord, …)
 - `registry/architecture-object-coverage-registry.json` — PR-09 sync-gate expectations
 
@@ -69,8 +71,11 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 ## Planned PR07 Decision Intelligence
 
 - Future control-plane schemas: `schemas/decision/`
+- Decision model seed registry: `registry/decision-model-registry.seed.json`
+- Decision model registry schema: `registry/decision-model-registry.schema.json`
 - Future decision registries: `registry/decision-model-registry.json`, `registry/stakes-profile-registry.json`
 - Future Research Radar registry: `registry/research-radar-registry.json`
+- Canonical strategy and decision-bottleneck doctrine: `governance/AI_STRATEGY_DOCTRINE.md`, `governance/DECISION_BOTTLENECK_AND_DECISION_MODELS.md`
 - Future governance docs: `governance/DECISION_INTELLIGENCE_MODEL.md`, `governance/STAKES_AND_REVERSIBILITY_POLICY.md`, `governance/RESEARCH_RADAR_OPERATING_MODEL.md`
 - Initial local-only watchlist seed set: `research-radar-frontier-ai-001` plus reserved PR07 seed topics in `governance/PHASE_2_ROADMAP.md`
 
