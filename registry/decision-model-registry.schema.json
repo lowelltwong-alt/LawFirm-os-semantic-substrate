@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lawfirm-os.local/schemas/decision-model-registry.schema.json",
+  "title": "LawFirm OS Decision Model Registry",
+  "type": "object",
+  "required": ["schema_version", "registry_id", "status", "decision_models"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "registry_id": {"type": "string"},
+    "status": {"type": "string"},
+    "authority_plane": {"type": "string", "const": "semantic_substrate"},
+    "decision_models": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/DecisionModel"}
+    }
+  },
+  "$defs": {
+    "DecisionModel": {
+      "type": "object",
+      "required": [
+        "decision_model_id",
+        "decision_name",
+        "decision_owner_role",
+        "task_class",
+        "decision_type",
+        "alternatives",
+        "criteria",
+        "evidence_minimums",
+        "risk_tier",
+        "reversibility",
+        "autonomy_allowed",
+        "approval_required",
+        "metrics",
+        "promotion_path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "decision_model_id": {"type": "string", "pattern": "^decision\\.[a-z0-9_.-]+$"},
+        "decision_name": {"type": "string"},
+        "description": {"type": "string"},
+        "decision_owner_role": {"type": "string"},
+        "task_class": {"type": "string"},
+        "decision_type": {
+          "type": "string",
+          "enum": ["route", "classify", "approve", "escalate", "automate", "defer", "reject", "promote", "source", "spend", "disclose", "send", "file"]
+        },
+        "alternatives": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "criteria": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "evidence_minimums": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "risk_tier": {"type": "string", "enum": ["low", "medium", "high", "protected"]},
+        "reversibility": {"type": "string", "enum": ["reversible", "partially_reversible", "irreversible"]},
+        "stakes_size": {"type": "string", "enum": ["small", "moderate", "large", "existential"]},
+        "autonomy_allowed": {"type": "string", "enum": ["none", "recommend", "draft", "act_with_approval", "act_autonomously"]},
+        "approval_required": {
+          "type": "object",
+          "required": ["required", "approver_role"],
+          "additionalProperties": false,
+          "properties": {
+            "required": {"type": "boolean"},
+            "approver_role": {"type": ["string", "null"]},
+            "reason": {"type": "string"}
+          }
+        },
+        "latency_target": {"type": "string"},
+        "defect_modes": {"type": "array", "items": {"type": "string"}},
+        "metrics": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "promotion_path": {"type": "string"}
+      }
+    }
+  }
+}

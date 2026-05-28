@@ -39,7 +39,10 @@ Before any AI-assisted edit, read:
 9. `governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md` when the task touches prompt, tool, endpoint, identity, or revocation authority
 10. this file
 11. `governance/AI_FRONT_DOOR_BOUNDARY.md` when touching registries, schemas, governance trees, or cross-repo AI entry points
-12. the selected route template under `docs/governance/ai-workflow/templates/`
+12. `governance/AI_STRATEGY_DOCTRINE.md` when touching AI strategy, model/vendor posture, or cross-repo AI operating doctrine
+13. `governance/DECISION_BOTTLENECK_AND_DECISION_MODELS.md` when touching decision models, approval gates, evidence minimums, or autonomy authority
+14. `registry/decision-model-registry.seed.json` when routing or validating decision-model coverage
+15. the selected route template under `docs/governance/ai-workflow/templates/`
 
 Architecture sync gate (PR-09 — run when changing spine schemas, exports, or cross-repo commands):
 

@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.1",
+  "registry_id": "lawfirm_os.decision_model_registry.v0_1",
+  "status": "seed_proposed",
+  "authority_plane": "semantic_substrate",
+  "decision_models": [
+    {
+      "decision_model_id": "decision.exception.classification.acceptance.v1",
+      "decision_name": "Accept or reject a proposed exception classification",
+      "description": "Determines whether a model-proposed route_id/event_class pair is sufficient to emit a decision-ready evidence packet.",
+      "decision_owner_role": "governance_reviewer",
+      "task_class": "exception_classification",
+      "decision_type": "classify",
+      "alternatives": ["accept_packet", "needs_review", "reject_packet", "abstain"],
+      "criteria": [
+        "route_id exists in canonical route registry",
+        "event_class exists in allowed event-class registry",
+        "route/event_class combination is valid",
+        "contract manifest is pinned and hash-valid",
+        "evidence packet is complete",
+        "model output is structured and schema-valid",
+        "confidence is not used as substitute for evidence"
+      ],
+      "evidence_minimums": [
+        "contract_manifest_id",
+        "contract_manifest_sha256",
+        "route_id",
+        "event_class",
+        "validation_results",
+        "raw_input_sha256",
+        "model_output_sha256",
+        "authz_decisions",
+        "revocation_snapshot"
+      ],
+      "risk_tier": "medium",
+      "reversibility": "reversible",
+      "stakes_size": "moderate",
+      "autonomy_allowed": "recommend",
+      "approval_required": {
+        "required": true,
+        "approver_role": "governance_reviewer",
+        "reason": "Classification affects downstream evidence and learning but must not become canon automatically."
+      },
+      "latency_target": "same_business_day_for_manual_review",
+      "defect_modes": ["wrong_route", "wrong_event_class", "weak_evidence", "semantic_fork", "missing_contract_pin", "false_confidence"],
+      "metrics": ["first_pass_acceptance_rate", "reviewer_edit_rate", "route_match_rate", "event_class_match_rate", "evidence_completeness_score"],
+      "promotion_path": "runtime_evidence -> pressure_vector -> adaptation_proposal -> human_governed_promotion"
+    },
+    {
+      "decision_model_id": "decision.ai.vendor.selection.v1",
+      "decision_name": "Select approved AI provider or runtime for a bounded task",
+      "description": "Routes work to an approved model/provider/runtime class without letting vendor choice become semantic authority.",
+      "decision_owner_role": "model_policy_owner",
+      "task_class": "model_routing",
+      "decision_type": "source",
+      "alternatives": ["local_model", "approved_cloud_model", "hybrid_route", "mock_adapter", "abstain"],
+      "criteria": [
+        "task risk tier",
+        "data sensitivity",
+        "required reasoning depth",
+        "cost per accepted packet",
+        "latency target",
+        "provider availability",
+        "zero/low data-retention requirements",
+        "eval performance by cohort",
+        "fallback availability"
+      ],
+      "evidence_minimums": [
+        "task_class",
+        "risk_tier",
+        "data_scope",
+        "model_policy_ref",
+        "provider_allowlist_ref",
+        "eval_baseline_ref",
+        "estimated_cost",
+        "fallback_route"
+      ],
+      "risk_tier": "medium",
+      "reversibility": "partially_reversible",
+      "stakes_size": "moderate",
+      "autonomy_allowed": "recommend",
+      "approval_required": {
+        "required": false,
+        "approver_role": null,
+        "reason": "Runtime router may choose inside an approved provider/model class; policy changes require governance."
+      },
+      "latency_target": "per_task_policy",
+      "defect_modes": ["vendor_lock_in", "policy_mismatch", "data_boundary_violation", "cost_runaway", "no_fallback", "eval_gap"],
+      "metrics": ["cost_per_accepted_packet", "latency_p95", "quality_by_model_class", "fallback_success_rate", "provider_error_rate"],
+      "promotion_path": "router_metrics -> model_policy_change_proposal -> governance_approval -> substrate_policy_update"
+    },
+    {
+      "decision_model_id": "decision.external.action.authorization.v1",
+      "decision_name": "Authorize or block an external side-effecting action",
+      "description": "Determines whether an AI-assisted workflow may send, file, publish, write, execute, or otherwise create external effects.",
+      "decision_owner_role": "authorized_human_approver",
+      "task_class": "external_action",
+      "decision_type": "approve",
+      "alternatives": ["approve", "deny", "request_more_evidence", "escalate"],
+      "criteria": [
+        "action type",
+        "legal risk",
+        "data classification",
+        "matter scope",
+        "client visibility",
+        "reversibility",
+        "approver authority",
+        "idempotency key present",
+        "audit packet complete"
+      ],
+      "evidence_minimums": [
+        "actor_id",
+        "delegating_user_id",
+        "tool_spec_id",
+        "action_type",
+        "idempotency_key",
+        "approval_packet",
+        "evidence_packet_id",
+        "redaction_report",
+        "blast_radius"
+      ],
+      "risk_tier": "protected",
+      "reversibility": "partially_reversible",
+      "stakes_size": "large",
+      "autonomy_allowed": "act_with_approval",
+      "approval_required": {
+        "required": true,
+        "approver_role": "authorized_human_approver",
+        "reason": "External side effects require explicit human finality."
+      },
+      "latency_target": "policy_defined_by_action_type",
+      "defect_modes": ["approval_bypass", "wrong_approver", "missing_idempotency", "privacy_leak", "irreversible_action_misclassified", "audit_gap"],
+      "metrics": ["approval_cycle_time", "approval_bypass_rate", "denial_rate", "post_action_defect_rate", "audit_completeness_rate"],
+      "promotion_path": "incident_or_metrics -> policy_change_request -> governance_approval -> substrate_update"
+    }
+  ]
+}

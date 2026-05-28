@@ -12,6 +12,8 @@
     "registry/autonomy-lane-registry.json",
     "registry/ci-test-route-registry.json",
     "registry/contract-surface-registry.json",
+    "registry/decision-model-registry.schema.json",
+    "registry/decision-model-registry.seed.json",
     "registry/deprecation-registry.json",
     "registry/design-algorithm-registry.json",
     "registry/design-authority.json",
