@@ -75,9 +75,19 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - Decision model registry schema: `registry/decision-model-registry.schema.json`
 - Future decision registries: `registry/decision-model-registry.json`, `registry/stakes-profile-registry.json`
 - Future Research Radar registry: `registry/research-radar-registry.json`
-- Canonical strategy and decision-bottleneck doctrine: `governance/AI_STRATEGY_DOCTRINE.md`, `governance/DECISION_BOTTLENECK_AND_DECISION_MODELS.md`
+- Proposed AI strategy doctrine, not canon until approved: `governance/AI_STRATEGY_DOCTRINE.md`
+- Decision-bottleneck doctrine and local seed scaffolds: `governance/DECISION_BOTTLENECK_AND_DECISION_MODELS.md`
 - Future governance docs: `governance/DECISION_INTELLIGENCE_MODEL.md`, `governance/STAKES_AND_REVERSIBILITY_POLICY.md`, `governance/RESEARCH_RADAR_OPERATING_MODEL.md`
 - Initial local-only watchlist seed set: `research-radar-frontier-ai-001` plus reserved PR07 seed topics in `governance/PHASE_2_ROADMAP.md`
+
+## AI Strategy Doctrine and Context Quality Governance
+
+- [governance/AI_STRATEGY_DOCTRINE.md](governance/AI_STRATEGY_DOCTRINE.md) is the proposed controlling doctrine for vendor-agnostic AI strategy, proprietary context, decision models, Legal Context Bundles, Evidence Packets, model/provider adapters, skill trust records, and governed promotion paths.
+- [governance/STRATEGIC_REFERENCE_PROPRIETARY_CONTEXT.md](governance/STRATEGIC_REFERENCE_PROPRIETARY_CONTEXT.md) is a strategy reference, not an implementation mandate.
+- [governance/SHANNON_INFORMATION_THEORY_CROSSWALK.md](governance/SHANNON_INFORMATION_THEORY_CROSSWALK.md) is a technical crosswalk and must not be used as legal-truth math.
+- [governance/CONTEXT_QUALITY_DOCTRINE.md](governance/CONTEXT_QUALITY_DOCTRINE.md) defines Legal Context Bundles and context-quality controls.
+- [governance/INSTITUTIONAL_KNOWLEDGE_ENCODING_STANDARD.md](governance/INSTITUTIONAL_KNOWLEDGE_ENCODING_STANDARD.md) defines how institutional knowledge must be scoped, sourced, reviewed, and governed.
+- None of these files are canon until approved through this repo's governance process.
 
 ## Schema Locations
 
