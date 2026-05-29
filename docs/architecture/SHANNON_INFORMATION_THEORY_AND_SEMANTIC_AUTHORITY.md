@@ -1,3 +1,13 @@
+---
+artifact: true
+artifact_type: technical_crosswalk
+status: proposed
+canon_status: not_canon_until_approved
+authority: explanatory_only
+review_cycle: 6 months
+stale_after: 2026-11-29
+---
+
 # Shannon Information Theory and Semantic Authority
 
 Status: Non-canonical concept note.
@@ -7,7 +17,7 @@ Authority: Explanatory only. Does not create schemas, IDs, policies, routes, reg
 
 This substrate is the control plane: it owns ontology, evidence/provenance contracts, governance, and registries. Information theory provides a precise way to describe why the substrate must exist *upstream* of runtimes. Runtime systems transmit, transform, and consume signals over a noisy channel; the substrate is what preserves signal structure, source identity, and mutation boundary so downstream evidence cannot rewrite canon. The mathematics below clarify that property; they do not produce authority.
 
-Master conceptual reference: `../_shared/SHANNON_INFORMATION_THEORY_FOR_AI_GOVERNANCE_MASTER.md` (workspace-shared, non-canonical).
+Conceptual lineage: this note draws on Shannon (1948), Cover & Thomas (*Elements of Information Theory*), and MacKay (*Information Theory, Inference, and Learning Algorithms*); see the **References** section. No file outside this repository is required to read this note.
 
 ## Boundary
 
@@ -142,4 +152,3 @@ Conceptual only. No long copyrighted excerpts.
 - Claude E. Shannon, "A Mathematical Theory of Communication," *Bell System Technical Journal*, 1948.
 - Thomas M. Cover and Joy A. Thomas, *Elements of Information Theory*, Wiley.
 - David J. C. MacKay, *Information Theory, Inference, and Learning Algorithms*, Cambridge University Press.
-- Workspace-shared master file: `../_shared/SHANNON_INFORMATION_THEORY_FOR_AI_GOVERNANCE_MASTER.md`.
