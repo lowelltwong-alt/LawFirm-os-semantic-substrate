@@ -125,3 +125,12 @@ If the full audit stops at the known truthful SHACL fail-closed gate, report tha
     python scripts/validate_skill_agent_control_plane.py --workspace ..
     python scripts/validate_managed_patch_preservation.py --workspace ..
     python -m pytest -q
+
+## AI Strategy Doctrine and Context Quality Governance
+
+- [governance/AI_STRATEGY_DOCTRINE.md](governance/AI_STRATEGY_DOCTRINE.md) is the proposed controlling doctrine for vendor-agnostic AI strategy, proprietary context, decision models, Legal Context Bundles, Evidence Packets, model/provider adapters, skill trust records, and governed promotion paths.
+- [governance/STRATEGIC_REFERENCE_PROPRIETARY_CONTEXT.md](governance/STRATEGIC_REFERENCE_PROPRIETARY_CONTEXT.md) is a strategy reference, not an implementation mandate.
+- [governance/SHANNON_INFORMATION_THEORY_CROSSWALK.md](governance/SHANNON_INFORMATION_THEORY_CROSSWALK.md) is a technical crosswalk and must not be used as legal-truth math.
+- [governance/CONTEXT_QUALITY_DOCTRINE.md](governance/CONTEXT_QUALITY_DOCTRINE.md) defines Legal Context Bundles and context-quality controls.
+- [governance/INSTITUTIONAL_KNOWLEDGE_ENCODING_STANDARD.md](governance/INSTITUTIONAL_KNOWLEDGE_ENCODING_STANDARD.md) defines how institutional knowledge must be scoped, sourced, reviewed, and governed.
+- None of these files are canon until approved through this repo's governance process.

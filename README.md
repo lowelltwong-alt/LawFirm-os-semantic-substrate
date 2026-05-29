@@ -63,9 +63,18 @@ See:
 
 Roadmap note: PR07 is reserved for Decision Intelligence, Stakes Model, and Research Radar Seeding. It is local-only and schema-first. It must not add live web crawling, scheduled jobs, model calls, external APIs, external writes, autonomous research execution, or production research automation.
 
-Current AI strategy and decision-bottleneck doctrine:
+## AI Strategy Doctrine and Context Quality Governance
 
-- `governance/AI_STRATEGY_DOCTRINE.md`
+The following Semantic Substrate governance documents are proposed doctrine or reference materials and are not canon until approved through this repo's governance process:
+
+- [governance/AI_STRATEGY_DOCTRINE.md](governance/AI_STRATEGY_DOCTRINE.md) is the proposed controlling doctrine for vendor-agnostic AI strategy, proprietary context, decision models, Legal Context Bundles, Evidence Packets, model/provider adapters, skill trust records, and governed promotion paths.
+- [governance/STRATEGIC_REFERENCE_PROPRIETARY_CONTEXT.md](governance/STRATEGIC_REFERENCE_PROPRIETARY_CONTEXT.md) is a strategy reference, not an implementation mandate.
+- [governance/SHANNON_INFORMATION_THEORY_CROSSWALK.md](governance/SHANNON_INFORMATION_THEORY_CROSSWALK.md) is a technical crosswalk and must not be used as legal-truth math.
+- [governance/CONTEXT_QUALITY_DOCTRINE.md](governance/CONTEXT_QUALITY_DOCTRINE.md) defines Legal Context Bundles and context-quality controls.
+- [governance/INSTITUTIONAL_KNOWLEDGE_ENCODING_STANDARD.md](governance/INSTITUTIONAL_KNOWLEDGE_ENCODING_STANDARD.md) defines how institutional knowledge must be scoped, sourced, reviewed, and governed.
+
+Related decision-bottleneck scaffolds remain separate from the draft doctrine above:
+
 - `governance/DECISION_BOTTLENECK_AND_DECISION_MODELS.md`
 - `registry/decision-model-registry.schema.json`
 - `registry/decision-model-registry.seed.json`
