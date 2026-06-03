@@ -13,6 +13,8 @@ stale_after: 2026-11-29
 Status: Non-canonical concept note.
 Authority: Explanatory only. Does not create schemas, IDs, policies, routes, registries, event classes, endpoint maps, or source-of-truth claims.
 
+Companion note: `governance/SHANNON_INFORMATION_THEORY_CROSSWALK.md` covers the **governance / metrics-discipline** angle — which entropy-style and information-theoretic *metrics* LawFirm OS may adopt, with the required declarations, valid uses, and forbidden uses. This note covers the **substrate-internal architecture** angle — why the control plane must sit upstream of runtimes and how the mutation boundary preserves source identity over a noisy channel. The two are complementary, not duplicative; neither is canonical until promoted through Semantic Substrate governance, and if they ever appear to conflict, substrate governance wins.
+
 ## BLUF
 
 This substrate is the control plane: it owns ontology, evidence/provenance contracts, governance, and registries. Information theory provides a precise way to describe why the substrate must exist *upstream* of runtimes. Runtime systems transmit, transform, and consume signals over a noisy channel; the substrate is what preserves signal structure, source identity, and mutation boundary so downstream evidence cannot rewrite canon. The mathematics below clarify that property; they do not produce authority.
