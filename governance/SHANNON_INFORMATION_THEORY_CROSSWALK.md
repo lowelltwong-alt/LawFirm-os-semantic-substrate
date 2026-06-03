@@ -19,6 +19,8 @@ usage_note: >
 **Applies to:** context-quality metrics, Legal Knowledge Runtime, Orchestrator context admission, Exception Lake analytics, Skills Registry trust scoring  
 **Parent doctrine:** `AI_STRATEGY_DOCTRINE.md`
 
+**Companion note:** `docs/architecture/SHANNON_INFORMATION_THEORY_AND_SEMANTIC_AUTHORITY.md` covers the **substrate-internal architecture** angle — why the control plane sits upstream of runtimes, and how the data-processing inequality formalizes the mutation boundary so downstream evidence cannot rewrite canon. This file covers the **governance / metrics-discipline** angle — which entropy-style metrics may be used, with caveats and forbidden uses. The two are complementary, not duplicative; neither is canonical until promoted through the Semantic Substrate governance process.
+
 ---
 
 ## 1. Purpose
