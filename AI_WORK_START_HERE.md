@@ -55,6 +55,8 @@ Machine integrity manifests (AI TOC / front door gate — run `python scripts/va
 - `registry/ai-front-door-registry.json`
 - `registry/governance-full-manifest.json`
 - `registry/registry-full-manifest.json`
+- `governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md`
+- `registry/governance-decision-dependency-atlas.seed.json`
 
 ## Universal work cycle
 

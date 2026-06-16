@@ -1,0 +1,833 @@
+{
+  "schema_version": "0.1",
+  "registry_id": "lawfirm_os.governance_decision_dependency_atlas.seed.v0_1",
+  "status": "seed_control_plane_map",
+  "authority_plane": "semantic_substrate",
+  "authority_posture": "indexes governance decisions and dependencies; does not promote, downgrade, or mutate canon by itself",
+  "source_snapshot": {
+    "checked_date": "2026-06-16",
+    "repos": [
+      {
+        "repo": "LawFirm-os-semantic-substrate",
+        "main_sha": "7651f8739f68c101c797ebb9f00a30ecdd8ae1e9"
+      },
+      {
+        "repo": "LawFirm-os-orchestrator",
+        "main_sha": "478b5d0d01799c0114ea1dc35fe5a95287daaebb"
+      },
+      {
+        "repo": "LawFirm-os-exceptions-lake-runtime",
+        "main_sha": "88bd8d2eaf6ded4fbbd92354bf310b775fb64a44"
+      },
+      {
+        "repo": "LawFirm-os-legal-knowledge-runtime",
+        "main_sha": "c99c3e187fbb83ff23eb825b2ca598d8e3a75194"
+      },
+      {
+        "repo": "LawFirm-os-skills-registry",
+        "main_sha": "fd3fa8f967235ce88be2856b350ffd4a51c22c2e"
+      }
+    ]
+  },
+  "source_inventories": [
+    "registry/governance-full-manifest.json",
+    "registry/registry-full-manifest.json",
+    "registry/ai-front-door-registry.json",
+    "registry/lawfirm-os-repo-registry.json",
+    "governance/CROSS_REPO_MAP.md"
+  ],
+  "coverage_target": "100_percent_governance_and_registry_surface_classification",
+  "coverage_rule": "Every governance manifest path and every top-level registry manifest path must eventually have a decision node, an edge to a decision node, or an explicit no-governance-decision classification.",
+  "contract_lock_refresh_rule": {
+    "applies_when": "A governance decision changes a file included by registry/contract-surface-registry.json.",
+    "required_sequence": [
+      "Commit the substrate contract-surface change.",
+      "Compute the contract surface hash from that committed substrate tree.",
+      "Refresh contracts.lock.json in each consumer repo.",
+      "Run contract-lock drift validation and each touched consumer repo's tests."
+    ],
+    "forbidden": [
+      "Do not refresh consumer locks from an uncommitted substrate working tree."
+    ],
+    "fail_closed_expectation": "Contract-lock drift validation must fail when contract-surface paths are dirty."
+  },
+  "node_fields": [
+    "node_id",
+    "label",
+    "decision_class",
+    "authority_status",
+    "owner_plane",
+    "primary_sources",
+    "key_settings",
+    "depends_on",
+    "downstream_consumers",
+    "likely_change_effects",
+    "validation_surfaces",
+    "experiment_notes",
+    "decision_model_id",
+    "owner_role",
+    "alternatives",
+    "evidence_minimums",
+    "approval_rule",
+    "risk_color",
+    "hard_red_triggers",
+    "harness_level",
+    "stakes_size",
+    "reversibility",
+    "blast_radius",
+    "frequency",
+    "leverage",
+    "data_class",
+    "side_effect_class",
+    "canonicality_class",
+    "lifecycle_status",
+    "contract_surface_status",
+    "lock_refresh_impact"
+  ],
+  "edge_types": [
+    "precedes",
+    "defines",
+    "constrains",
+    "consumes",
+    "exports",
+    "validates",
+    "locks",
+    "requires_approval",
+    "blocks",
+    "permits",
+    "downgrades",
+    "cannot_restore",
+    "proposes_to"
+  ],
+  "coverage_layers": [
+    {
+      "layer_id": "layer_0_surface_inventory",
+      "purpose": "Classify every governance and registry manifest path.",
+      "expected_output": "covered, decision-node-needed, or no-governance-decision"
+    },
+    {
+      "layer_id": "layer_1_registry_extraction",
+      "purpose": "Extract allowed values, booleans, thresholds, states, and global controls from registry JSON.",
+      "expected_output": "machine decision nodes and registry dependency edges"
+    },
+    {
+      "layer_id": "layer_2_prose_extraction",
+      "purpose": "Extract normative governance decisions from governance Markdown.",
+      "expected_output": "candidate prose decision nodes with source anchors"
+    },
+    {
+      "layer_id": "layer_3_downstream_consumers",
+      "purpose": "Map sibling repo consumers, contract locks, validators, examples, commands, and docs.",
+      "expected_output": "consumer edges and likely impact statements"
+    },
+    {
+      "layer_id": "layer_4_experiment_scenarios",
+      "purpose": "Define safe branch-local or proposal-local governance setting experiments.",
+      "expected_output": "experiment packets and blast-radius estimates"
+    },
+    {
+      "layer_id": "layer_5_human_review",
+      "purpose": "Resolve duplicates, authority status, and open conflicts before promotion.",
+      "expected_output": "reviewed node set or follow-up governance issues"
+    }
+  ],
+  "downstream_repo_matrix": [
+    {
+      "repo": "LawFirm-os-semantic-substrate",
+      "consumer_paths": [
+        "scripts/validate_ai_front_door.py",
+        "scripts/validate_skill_agent_control_plane.py",
+        "scripts/route_ci_tests.py",
+        "scripts/cross_repo_os_smoke_test.py"
+      ],
+      "consumed_surfaces": [
+        "registry/ai-front-door-registry.json",
+        "registry/lawfirm-os-repo-registry.json",
+        "registry/governance-full-manifest.json",
+        "registry/registry-full-manifest.json",
+        "registry/ci-test-route-registry.json",
+        "registry/contract-surface-registry.json"
+      ],
+      "likely_effects": [
+        "Cross-repo gates, route selection, manifest closure, and smoke tests change first in the substrate."
+      ],
+      "validation_focus": [
+        "front-door gate",
+        "skill-agent gate",
+        "architecture coverage",
+        "CI route validation",
+        "full substrate pytest"
+      ]
+    },
+    {
+      "repo": "LawFirm-os-orchestrator",
+      "consumer_paths": [
+        "contracts.lock.json",
+        "src/lawfirm_os_orchestrator/substrate/reader.py",
+        "src/lawfirm_os_orchestrator/substrate/contract_lock.py",
+        "src/lawfirm_os_orchestrator/commands/classify_exception.py",
+        "src/lawfirm_os_orchestrator/substrate/reason_codes.py",
+        "src/lawfirm_os_orchestrator/authority/execution_authority.py",
+        "src/lawfirm_os_orchestrator/policy/agent_hostile_controls.py",
+        "src/lawfirm_os_orchestrator/evidence/packet_v2.py",
+        "src/lawfirm_os_orchestrator/legal_knowledge/adapter.py"
+      ],
+      "consumed_surfaces": [
+        "manifests/contract_manifest.v1.json",
+        "registry/contract-surface-registry.json",
+        "registry/schema-registry.json",
+        "registry/exception-route-registry.json",
+        "registry/runtime-reason-codes-registry.json",
+        "registry/agent-control-contract-export.json",
+        "registry/model-policy-registry.json",
+        "registry/prompt-registry.json",
+        "registry/tool-authority-registry.json",
+        "registry/endpoint-authority-registry.json",
+        "registry/legal-knowledge-runtime-contract-export.json"
+      ],
+      "likely_effects": [
+        "Lock drift can block contract loading.",
+        "Route/event or reason-code changes alter classification and execution decisions.",
+        "Agent-hostile changes can reject tool/model flows.",
+        "Legal schema changes alter evidence/context packets."
+      ],
+      "validation_focus": [
+        "contract lock tests",
+        "classify exception tests",
+        "reason-code loader tests",
+        "execution authority tests",
+        "evidence/context tests",
+        "legal adapter tests"
+      ]
+    },
+    {
+      "repo": "LawFirm-os-exceptions-lake-runtime",
+      "consumer_paths": [
+        "contracts.lock.json",
+        "src/exceptions_lake_runtime/contract_loader.py",
+        "src/exceptions_lake_runtime/validation_gateway.py",
+        "src/exceptions_lake_runtime/evidence_packet_admission.py",
+        "src/exceptions_lake_runtime/validators/admission_validator.py",
+        "src/exceptions_lake_runtime/substrate/reason_codes.py",
+        "src/exceptions_lake_runtime/governance/substrate_mutation_guard.py",
+        "examples/*.json"
+      ],
+      "consumed_surfaces": [
+        "registry/exceptions-lake-contract-export.json",
+        "registry/exceptions-schema-registry.json",
+        "registry/exception-route-registry.json",
+        "schemas/evidence-packet-v2.schema.json",
+        "registry/runtime-reason-codes-registry.json",
+        "governance/EXCEPTIONS_LAKE_BOUNDARY.md",
+        "registry/ai-front-door-registry.json"
+      ],
+      "likely_effects": [
+        "Schema or route drift rejects events or quarantines packets.",
+        "Reason-code changes affect admission and defect output.",
+        "Mutation guard changes affect canon-write prevention.",
+        "Example drift breaks front-door checks."
+      ],
+      "validation_focus": [
+        "contract loader tests",
+        "validation gateway tests",
+        "event ingestion tests",
+        "evidence packet admission tests",
+        "reason-code tests",
+        "no-canon-mutation tests",
+        "front-door example checks"
+      ]
+    },
+    {
+      "repo": "LawFirm-os-legal-knowledge-runtime",
+      "consumer_paths": [
+        "contracts.lock.json",
+        "src/lawfirm_os_legal_knowledge/contracts.py",
+        "src/lawfirm_os_legal_knowledge/cli.py",
+        "src/lawfirm_os_legal_knowledge/ingestion.py",
+        "src/lawfirm_os_legal_knowledge/bundle.py",
+        "src/lawfirm_os_legal_knowledge/grounding.py",
+        "src/lawfirm_os_legal_knowledge/evals.py",
+        "src/lawfirm_os_legal_knowledge/safety.py",
+        "src/lawfirm_os_legal_knowledge/document_integrity.py",
+        "skill-agent-manifest.json"
+      ],
+      "consumed_surfaces": [
+        "registry/legal-knowledge-runtime-contract-export.json",
+        "registry/legal-context-bundle-registry.json",
+        "registry/legal-agent-safety-guardrail-registry.json",
+        "registry/legal-eval-registry.json",
+        "governance/CONTEXT_QUALITY_DOCTRINE.md",
+        "registry/ai-front-door-registry.json",
+        "registry/skill-agent-control-plane-registry.json"
+      ],
+      "likely_effects": [
+        "Schema/export changes alter ingest preflight, bundle assembly, grounding, retrieval traces, safety checks, and anchored module discovery."
+      ],
+      "validation_focus": [
+        "ingestion preflight tests",
+        "source grounding tests",
+        "front-door validation",
+        "skill-agent validation",
+        "repo pytest"
+      ]
+    },
+    {
+      "repo": "LawFirm-os-skills-registry",
+      "consumer_paths": [
+        "contracts.lock.json",
+        "src/lawfirm_os_skills_registry/contracts.py",
+        "src/lawfirm_os_skills_registry/domain/skill_trust_record.py",
+        "src/lawfirm_os_skills_registry/registry/store.py",
+        "registry/*.json",
+        "skill-agent-manifest.json",
+        "skills/draft/*/SKILL.md",
+        "src/lawfirm_os_skills_registry/factory/*.py"
+      ],
+      "consumed_surfaces": [
+        "registry/skill-agent-control-plane-registry.json",
+        "registry/skill-agent-lifecycle-policy-registry.json",
+        "registry/skill-agent-quality-scoring-registry.json",
+        "registry/lawfirm-os-repo-registry.json",
+        "registry/ai-front-door-registry.json",
+        "schemas/skill-trust-record.schema.json",
+        "registry/contract-surface-registry.json"
+      ],
+      "likely_effects": [
+        "Lifecycle/scoring changes affect candidate status, quarantine, trust records, approvals, install/update audit behavior, and generated draft skills."
+      ],
+      "validation_focus": [
+        "skill trust tests",
+        "evaluation tests",
+        "security hardening tests",
+        "draft skill index tests",
+        "gap factory tests",
+        "first-party reactor tests",
+        "front-door and skill-agent validation"
+      ]
+    }
+  ],
+  "seed_decision_nodes": [
+    {
+      "node_id": "governance.authority.precedence.v1",
+      "label": "Authority precedence and conflict resolution",
+      "decision_class": "authority_boundary",
+      "authority_status": "canonical",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "registry/source-of-truth.json",
+        "registry/design-authority.json",
+        "governance/CROSS_REPO_MAP.md"
+      ],
+      "key_settings": [
+        "source-of-truth precedes design-authority and downstream docs",
+        "runtime evidence and model output are evidence or proposals, not canonical truth",
+        "canonical meaning changes require reviewed promotion decisions"
+      ],
+      "depends_on": [],
+      "downstream_consumers": [
+        "all LawFirm OS repos",
+        "registry/ai-front-door-registry.json",
+        "manifests/contract_manifest.v1.json",
+        "runtime contracts.lock.json files"
+      ],
+      "likely_change_effects": [
+        "Changes alter conflict resolution across every governance and runtime consumer.",
+        "Runtime repos may need contract lock refreshes and boundary doc updates."
+      ],
+      "validation_surfaces": [
+        "scripts/validate_ai_front_door.py",
+        "scripts/validate_skill_agent_control_plane.py",
+        "scripts/validation/validate_source_of_truth_coherence.py"
+      ],
+      "experiment_notes": "Experiment only as a proposal or branch-local alternate authority model; do not merge without human governance approval."
+    },
+    {
+      "node_id": "governance.ai_front_door.integrity.v1",
+      "label": "AI front-door read order, manifests, anchors, and endpoint metadata",
+      "decision_class": "validation_gate",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "registry/ai-front-door-registry.json",
+        "governance/AI_FRONT_DOOR_BOUNDARY.md",
+        "AI_TABLE_OF_CONTENTS.md",
+        "AI_WORK_START_HERE.md"
+      ],
+      "key_settings": [
+        "canonical_read_order",
+        "toc_required_substrings",
+        "integration_path_anchors",
+        "endpoint metadata required fields"
+      ],
+      "depends_on": [
+        "governance.authority.precedence.v1"
+      ],
+      "downstream_consumers": [
+        "scripts/validate_ai_front_door.py",
+        "LawFirm-os-orchestrator docs and adapter anchors",
+        "LawFirm-os-legal-knowledge-runtime helper anchors",
+        "LawFirm-os-exceptions-lake-runtime event examples",
+        "LawFirm-os-skills-registry draft skill index"
+      ],
+      "likely_change_effects": [
+        "Missing or stale anchors fail the AI front-door gate.",
+        "New governance or registry surfaces may require manifest updates."
+      ],
+      "validation_surfaces": [
+        "scripts/validate_ai_front_door.py --substrate-root ."
+      ],
+      "experiment_notes": "Front-door experiments should add read-order or anchor entries in a branch and run the gate before broader mapping work depends on them."
+    },
+    {
+      "node_id": "governance.schema.surface.v1",
+      "label": "Schema registry and schema-surface exclusion policy",
+      "decision_class": "registry_setting",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "registry/schema-registry.json",
+        "registry/schema-surface-exclusions.json",
+        "governance/AI_FRONT_DOOR_BOUNDARY.md",
+        "governance/PHASE_2_SCHEMA_PLACEMENT.md"
+      ],
+      "key_settings": [
+        "schemas under schemas/ must be registered or explicitly excluded",
+        "schema/ singular remains legacy or draft unless separately migrated",
+        "new Phase 2 schemas use grouped folders under schemas/"
+      ],
+      "depends_on": [
+        "governance.authority.precedence.v1",
+        "governance.ai_front_door.integrity.v1"
+      ],
+      "downstream_consumers": [
+        "schema validators",
+        "contract exports",
+        "runtime schema loaders",
+        "architecture coverage checks"
+      ],
+      "likely_change_effects": [
+        "Schema placement or exclusion changes alter validator behavior and runtime contract expectations.",
+        "Premature promotion may lock unstable surfaces."
+      ],
+      "validation_surfaces": [
+        "scripts/validate_ai_front_door.py",
+        "python -m pytest -q"
+      ],
+      "experiment_notes": "Use staged exclusions or draft registries for experiments; avoid duplicate authoritative schemas."
+    },
+    {
+      "node_id": "governance.route_event.authority.v1",
+      "label": "Exception route and event-class authority",
+      "decision_class": "route_rule",
+      "authority_status": "canonical",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "registry/exception-route-registry.json",
+        "registry/exceptions-schema-registry.json",
+        "governance/EXCEPTIONS_LAKE_BOUNDARY.md"
+      ],
+      "key_settings": [
+        "canonical route_id values",
+        "allowed event classes",
+        "approved learning path from exception evidence to promotion decision"
+      ],
+      "depends_on": [
+        "governance.authority.precedence.v1"
+      ],
+      "downstream_consumers": [
+        "LawFirm-os-orchestrator classification workflows",
+        "LawFirm-os-exceptions-lake-runtime admission validation",
+        "evidence packet workflows"
+      ],
+      "likely_change_effects": [
+        "Route or event changes require runtime mapping updates and evidence validation checks.",
+        "Invalid route/event combinations can block lake admission or decision packets."
+      ],
+      "validation_surfaces": [
+        "exception validators",
+        "cross-repo front-door checks",
+        "runtime repo tests"
+      ],
+      "experiment_notes": "Use candidate routes only in proposal form until substrate governance approves canonical route/event changes."
+    },
+    {
+      "node_id": "governance.runtime_reason_codes.v1",
+      "label": "Runtime reason, admission, defect, and semantic mutation denial codes",
+      "decision_class": "controlled_vocabulary",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "registry/runtime-reason-codes-registry.json",
+        "schemas/execution-decision.schema.json",
+        "schemas/exception-lake-admission-record.schema.json",
+        "schemas/defect-record.schema.json"
+      ],
+      "key_settings": [
+        "canonical reason-code values for runtime execution decisions",
+        "canonical admission and defect code families",
+        "semantic mutation deny-list values"
+      ],
+      "depends_on": [
+        "governance.authority.precedence.v1",
+        "governance.route_event.authority.v1"
+      ],
+      "downstream_consumers": [
+        "LawFirm-os-orchestrator/src/lawfirm_os_orchestrator/substrate/reason_codes.py",
+        "LawFirm-os-orchestrator/src/lawfirm_os_orchestrator/authority/execution_authority.py",
+        "LawFirm-os-exceptions-lake-runtime-main/src/exceptions_lake_runtime/substrate/reason_codes.py",
+        "LawFirm-os-exceptions-lake-runtime-main/src/exceptions_lake_runtime/governance/substrate_mutation_guard.py"
+      ],
+      "likely_change_effects": [
+        "Renamed or removed codes can fail imports, deny execution decisions, or change mutation-guard outcomes.",
+        "New codes require runtime loaders, tests, and docs to recognize them."
+      ],
+      "validation_surfaces": [
+        "validate_runtime_reason_codes.py",
+        "orchestrator tests/test_reason_codes_loader.py",
+        "orchestrator tests/test_execution_authority.py",
+        "exception lake tests/test_reason_codes_loader.py",
+        "exception lake tests/test_no_canon_mutation.py"
+      ],
+      "experiment_notes": "Treat code changes as high blast-radius vocabulary experiments; add runtime compatibility checks before merge."
+    },
+    {
+      "node_id": "governance.autonomy.ryg.v1",
+      "label": "Autonomy red/yellow/green policy and downgrade rules",
+      "decision_class": "approval_gate",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "registry/autonomy-lane-registry.json",
+        "governance/AUTONOMY_RYG_POLICY.md",
+        "governance/GREEN_RESTORATION_POLICY.md",
+        "registry/assumption-watch-registry.json",
+        "registry/red-flag-trigger-registry.json"
+      ],
+      "key_settings": [
+        "risk color controls authority",
+        "agents may downgrade green to yellow or red",
+        "only humans may create or restore non-preapproved green authority"
+      ],
+      "depends_on": [
+        "governance.authority.precedence.v1",
+        "governance.human_approval.v1"
+      ],
+      "downstream_consumers": [
+        "LawFirm-os-orchestrator autonomy gates",
+        "harness planning",
+        "validation-gate records",
+        "agent review workflows"
+      ],
+      "likely_change_effects": [
+        "Changing color thresholds changes allowed autonomy and escalation behavior.",
+        "Green restoration changes affect human finality and safety posture."
+      ],
+      "validation_surfaces": [
+        "autonomy registry checks",
+        "orchestrator tests",
+        "front-door validation when anchors move"
+      ],
+      "experiment_notes": "Experiment with stricter downgrades freely in branches; green restoration experiments require human decision modeling."
+    },
+    {
+      "node_id": "governance.harness.intensity.v1",
+      "label": "Harness intensity selection and red-flag response",
+      "decision_class": "threshold",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "registry/harness-policy-registry.json",
+        "registry/red-flag-trigger-registry.json",
+        "governance/HARNESS_INTENSITY_POLICY.md",
+        "governance/CONTINUOUS_AUTONOMY_ASSURANCE.md"
+      ],
+      "key_settings": [
+        "hardness controls harness depth",
+        "red flags require escalation and stronger validation",
+        "leverage controls priority, not authority"
+      ],
+      "depends_on": [
+        "governance.autonomy.ryg.v1"
+      ],
+      "downstream_consumers": [
+        "orchestrator harness plan generation",
+        "validation gate records",
+        "CI test routing decisions"
+      ],
+      "likely_change_effects": [
+        "Higher harness levels increase validation load and review latency.",
+        "Lower harness levels may reduce evidence quality and safety margin."
+      ],
+      "validation_surfaces": [
+        "registry/harness-policy-registry.json",
+        "registry/red-flag-trigger-registry.json",
+        "scripts/route_ci_tests.py"
+      ],
+      "experiment_notes": "Run as branch-local threshold simulations before changing active policy."
+    },
+    {
+      "node_id": "governance.human_approval.v1",
+      "label": "Human approval and external action finality",
+      "decision_class": "approval_gate",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "registry/human-approval-registry.json",
+        "governance/DECISION_BOTTLENECK_AND_DECISION_MODELS.md",
+        "registry/decision-model-registry.seed.json"
+      ],
+      "key_settings": [
+        "protected or external side-effecting actions require authorized human approval",
+        "decision models define owner, alternatives, evidence minimums, reversibility, and approval"
+      ],
+      "depends_on": [
+        "governance.authority.precedence.v1"
+      ],
+      "downstream_consumers": [
+        "external action authorization workflows",
+        "orchestrator evidence packets",
+        "agent-hostile control bundle"
+      ],
+      "likely_change_effects": [
+        "Approval rule changes alter side-effect authorization and audit burden.",
+        "Weaker approval rules increase risk of automation overreach."
+      ],
+      "validation_surfaces": [
+        "human approval registry review",
+        "decision model registry review",
+        "runtime approval tests when implemented"
+      ],
+      "experiment_notes": "Do not test external side effects from this repo; use decision packet simulations only."
+    },
+    {
+      "node_id": "governance.agent_hostile_control.v1",
+      "label": "Agent-hostile prompt/tool/endpoint/identity/revocation authority",
+      "decision_class": "boundary",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md",
+        "registry/agent-hostile-control-registry.json",
+        "registry/prompt-registry.json",
+        "registry/tool-authority-registry.json",
+        "registry/endpoint-authority-registry.json",
+        "registry/model-policy-registry.json"
+      ],
+      "key_settings": [
+        "vendor adapters are consumers, not authorities",
+        "agent-callable endpoints require identity and audit controls",
+        "freeform downstream parsing is disallowed where policy says structured output is required"
+      ],
+      "depends_on": [
+        "governance.authority.precedence.v1",
+        "governance.human_approval.v1"
+      ],
+      "downstream_consumers": [
+        "orchestrator model and tool routing",
+        "runtime endpoint adapters",
+        "audit-event requirements"
+      ],
+      "likely_change_effects": [
+        "Tool or endpoint authority changes affect what agents may call and what audit evidence is required.",
+        "Prompt/model policy changes can alter routing, parsing, and provider lock-in risk."
+      ],
+      "validation_surfaces": [
+        "tests/test_agent_hostile_contracts.py",
+        "registry/agent-control-contract-export.json"
+      ],
+      "experiment_notes": "Keep experiments provider-neutral and audit-preserving; do not let adapter prompts become canonical authority."
+    },
+    {
+      "node_id": "governance.legal_knowledge.access_context.v1",
+      "label": "Legal knowledge, retrieval, access, and context bundle boundaries",
+      "decision_class": "boundary",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "governance/LEGAL_KNOWLEDGE_RUNTIME_BOUNDARY.md",
+        "governance/LEGAL_DOCUMENT_INGESTION_BOUNDARY.md",
+        "governance/LEGAL_CONTEXT_BUNDLE_DOCTRINE.md",
+        "governance/PRIVILEGE_AWARE_RETRIEVAL.md",
+        "registry/legal-context-bundle-registry.json",
+        "registry/legal-agent-safety-guardrail-registry.json"
+      ],
+      "key_settings": [
+        "synthetic-only legal ingestion in current scope",
+        "no raw legal payload storage",
+        "access decisions apply before retrieval and answer rendering",
+        "context bundles preserve provenance and authority metadata"
+      ],
+      "depends_on": [
+        "governance.schema.surface.v1",
+        "governance.human_approval.v1"
+      ],
+      "downstream_consumers": [
+        "LawFirm-os-legal-knowledge-runtime CLI and helper modules",
+        "orchestrator legal knowledge adapter",
+        "legal eval and safety fixtures"
+      ],
+      "likely_change_effects": [
+        "Changing ingestion or access rules affects legal runtime preflight and bundle assembly.",
+        "Relaxing raw payload restrictions would violate current repo boundary."
+      ],
+      "validation_surfaces": [
+        "scripts/validate_ai_front_door.py",
+        "legal knowledge runtime tests",
+        "legal safety/eval registries"
+      ],
+      "experiment_notes": "Use synthetic fixtures and metadata-only manifests; real legal payload experiments belong outside these repos under approved controls."
+    },
+    {
+      "node_id": "governance.skill_agent.control_plane.v1",
+      "label": "Skill-agent lifecycle, quality, graph, and workflow control plane",
+      "decision_class": "lifecycle_rule",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "governance/SKILL_AGENT_CONTROL_PLANE_BOUNDARY.md",
+        "registry/skill-agent-control-plane-registry.json",
+        "registry/skill-agent-lifecycle-policy-registry.json",
+        "registry/skill-agent-quality-scoring-registry.json",
+        "registry/skill-agent-graph-index.json",
+        "registry/workflow-composition-registry.json"
+      ],
+      "key_settings": [
+        "every repo has skill-agent front-door files",
+        "skill/agent metadata is required",
+        "control-plane schemas are excluded from primary schema surface until graduation criteria are met"
+      ],
+      "depends_on": [
+        "governance.ai_front_door.integrity.v1",
+        "governance.schema.surface.v1"
+      ],
+      "downstream_consumers": [
+        "LawFirm-os-skills-registry",
+        "workspace skill-agent validator",
+        "future graph discovery outputs"
+      ],
+      "likely_change_effects": [
+        "Lifecycle or scoring changes affect skill promotion, quarantine, and quality review.",
+        "Schema graduation changes primary schema surface obligations."
+      ],
+      "validation_surfaces": [
+        "scripts/validate_skill_agent_control_plane.py --workspace .."
+      ],
+      "experiment_notes": "Use candidate scoring or lifecycle proposals before changing active lifecycle transitions."
+    },
+    {
+      "node_id": "governance.contract_surface.locking.v1",
+      "label": "Contract surface hashing, locking, and managed patch preservation",
+      "decision_class": "validation_gate",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "registry/contract-surface-registry.json",
+        "governance/CONTRACT_SURFACE_LOCKING_BOUNDARY.md",
+        "governance/CONTRACT_SURFACE_HASH_SPINE.md",
+        "registry/managed-patch-preservation-policy.json",
+        "governance/MANAGED_PATCH_PRESERVATION_BOUNDARY.md"
+      ],
+      "key_settings": [
+        "consumer locks pin substrate contract surfaces",
+        "managed-patch decisions are excluded from surface hash to avoid recursive lock bumps",
+        "protected replacement, deletion, regeneration, and broad blast radius require decision records"
+      ],
+      "depends_on": [
+        "governance.authority.precedence.v1"
+      ],
+      "downstream_consumers": [
+        "runtime contracts.lock.json files",
+        "LawFirm-os-orchestrator/contracts.lock.json",
+        "LawFirm-os-exceptions-lake-runtime-main/contracts.lock.json",
+        "LawFirm-os-legal-knowledge-runtime/contracts.lock.json",
+        "LawFirm-os-skills-registry/contracts.lock.json",
+        "validate_managed_patch_preservation.py",
+        "update_consumer_contract_surface_locks.py"
+      ],
+      "likely_change_effects": [
+        "Changing included/excluded surfaces can force lock refreshes.",
+        "Weakening preservation rules increases overwrite risk for protected docs."
+      ],
+      "validation_surfaces": [
+        "scripts/validate_managed_patch_preservation.py --workspace ..",
+        "scripts/validate_contract_lock_drift_workspace.py"
+      ],
+      "experiment_notes": "Run lock and preservation changes in a clean multi-repo workspace; do not overwrite copied child folders."
+    },
+    {
+      "node_id": "governance.ci_test.routing.v1",
+      "label": "Central CI and test routing authority",
+      "decision_class": "validation_gate",
+      "authority_status": "active_contract",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "governance/CI_TEST_ROUTING_BOUNDARY.md",
+        "registry/ci-test-route-registry.json",
+        "registry/test-architecture-registry.json",
+        "registry/test-framework-adapter-registry.json"
+      ],
+      "key_settings": [
+        "central deterministic test router is substrate-owned",
+        "runtime repos provide local ci-test-manifest.json only",
+        "unknown changes fail closed"
+      ],
+      "depends_on": [
+        "governance.skill_agent.control_plane.v1",
+        "governance.harness.intensity.v1"
+      ],
+      "downstream_consumers": [
+        "all repo ci-test-manifest.json files",
+        "scripts/route_ci_tests.py",
+        "scripts/validate_ci_route_decision.py",
+        "per-repo pytest suites"
+      ],
+      "likely_change_effects": [
+        "Router rule changes alter validation selection across the workspace.",
+        "Unknown or unregistered artifacts can block completion until classified."
+      ],
+      "validation_surfaces": [
+        "scripts/route_ci_tests.py",
+        "scripts/validate_ci_route_decision.py",
+        "python -m pytest -q"
+      ],
+      "experiment_notes": "Keep routing experiments branch-local and prove affected test surfaces before reporting success."
+    },
+    {
+      "node_id": "governance.workflow_research.candidate_boundaries.v1",
+      "label": "Workflow atlas and research signal candidate boundaries",
+      "decision_class": "experiment_control",
+      "authority_status": "draft_or_candidate",
+      "owner_plane": "semantic_substrate",
+      "primary_sources": [
+        "governance/WORKFLOW_ATLAS_BOUNDARY.md",
+        "registry/workflow-atlas-object-registry.json",
+        "governance/RESEARCH_SIGNAL_INGESTION_POLICY.md",
+        "registry/research-signal-registry.json",
+        "registry/research-radar-source-registry.json"
+      ],
+      "key_settings": [
+        "candidate outputs may inform assessments but may not mutate canon",
+        "Research Radar sources are pre-PR07 draft scaffolding and non-authorizing",
+        "research signals may recommend downgrade but may not restore green"
+      ],
+      "depends_on": [
+        "governance.autonomy.ryg.v1",
+        "governance.route_event.authority.v1"
+      ],
+      "downstream_consumers": [
+        "future research radar workflows",
+        "workflow atlas candidate objects",
+        "adaptation proposal recommendations"
+      ],
+      "likely_change_effects": [
+        "Formalizing candidate surfaces may add schema and runtime contract obligations.",
+        "Confusing candidates with canon would violate promotion boundaries."
+      ],
+      "validation_surfaces": [
+        "front-door validation if paths are added",
+        "schema-surface checks if schemas graduate"
+      ],
+      "experiment_notes": "Keep outputs metadata-only, local-only, and non-authorizing until PR07 or later governance promotion."
+    }
+  ]
+}

@@ -9,7 +9,9 @@
     "AI_TABLE_OF_CONTENTS.md",
     "AGENTS.md",
     "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md",
     "registry/ai-front-door-registry.json",
+    "registry/governance-decision-dependency-atlas.seed.json",
     "registry/schema-registry.json",
     "registry/registry-full-manifest.json",
     "registry/governance-full-manifest.json",
@@ -22,6 +24,8 @@
   "toc_required_substrings": [
     "registry/ai-front-door-registry.json",
     "governance/AI_FRONT_DOOR_BOUNDARY.md",
+    "governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md",
+    "registry/governance-decision-dependency-atlas.seed.json",
     "registry/governance-full-manifest.json",
     "registry/registry-full-manifest.json"
   ],
@@ -32,6 +36,8 @@
     "skills_registry": "LawFirm-os-skills-registry"
   },
   "integration_path_anchors": [
+    {"repo": "semantic_substrate", "path": "governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md"},
+    {"repo": "semantic_substrate", "path": "registry/governance-decision-dependency-atlas.seed.json"},
     {"repo": "semantic_substrate", "path": "schemas/legal-agent-safety-check.schema.json"},
     {"repo": "semantic_substrate", "path": "schemas/legal-document-integrity-check.schema.json"},
     {"repo": "semantic_substrate", "path": "schemas/legal-retrieval-eval-case.schema.json"},

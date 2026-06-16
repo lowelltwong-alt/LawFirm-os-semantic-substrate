@@ -15,6 +15,8 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `registry/registry-full-manifest.json` — full index of `registry/*.json` surfaces
 - `registry/governance-full-manifest.json` — full index of `governance/**/*.md` surfaces
 
+- `governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md` - map home for governance decisions, dependencies, downstream effects, and safe experiment planning
+
 ## Canonical Registries
 
 - `registry/source-of-truth.json`
@@ -37,6 +39,11 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `registry/decision-model-registry.seed.json` - initial decision-model seed registry
 - `registry/architecture-flow-registry.json` — OS contract spine catalog (ContextBundle, EvidencePacket, SourceRef, PassageRef, ClaimRef, SkillTrustRecord, …)
 - `registry/architecture-object-coverage-registry.json` — PR-09 sync-gate expectations
+
+## Governance Decision Atlas
+
+- `governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md`
+- `registry/governance-decision-dependency-atlas.seed.json` - seed machine map for governance decision nodes, dependency edges, downstream consumers, and layered agent expansion
 
 ## Canonical Manifests
 
