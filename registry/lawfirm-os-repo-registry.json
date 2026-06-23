@@ -76,6 +76,21 @@
       "ai_front_door_required": true,
       "status": "active",
       "exclusion_reason": ""
+    },
+    {
+      "repo_id": "lawfirm-os-intake",
+      "repo_name": "LawFirm-os-intake",
+      "owning_plane": "vertical_workflow_composition",
+      "required_root_files": [
+        "README.md",
+        "AGENTS.md",
+        "AI_WORK_START_HERE.md",
+        "skill-agent-manifest.json"
+      ],
+      "skill_agent_manifest_path": "skill-agent-manifest.json",
+      "ai_front_door_required": true,
+      "status": "active",
+      "exclusion_reason": ""
     }
   ],
   "explicit_exclusions": [
@@ -90,6 +105,10 @@
     {
       "pattern": "*.zip",
       "reason": "archive, not repo"
+    },
+    {
+      "pattern": "LawFirm-os-talent-intelligence-private",
+      "reason": "private vertical repo not yet admitted to this LawFirm OS kernel registry"
     }
   ]
 }

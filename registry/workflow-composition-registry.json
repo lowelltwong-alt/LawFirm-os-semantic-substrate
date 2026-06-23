@@ -26,6 +26,34 @@
       ],
       "gap_detection_enabled": true,
       "updated_at": "2026-05-14T17:50:46.865556+00:00"
+    },
+    {
+      "workflow_id": "intake.prospective_matter_to_budget.v0_1",
+      "name": "Prospective matter intake to human-reviewable budget proposal",
+      "owning_repo": "LawFirm-os-intake",
+      "risk_tier": "high",
+      "required_skills": [
+        "source-reader",
+        "party-role-extractor",
+        "matter-router",
+        "deadline-gap-extractor",
+        "evidence-critic",
+        "budget-planner"
+      ],
+      "optional_skills": [
+        "frontier-adjudicator"
+      ],
+      "quality_gates": [
+        "synthetic_only",
+        "schema_valid",
+        "source_refs_present",
+        "human_intake_confirmation_required",
+        "no_conflict_conclusion",
+        "no_budget_submission",
+        "blocked_pending_conflicts_and_engagement"
+      ],
+      "gap_detection_enabled": true,
+      "updated_at": "2026-06-23T00:00:00Z"
     }
   ]
 }

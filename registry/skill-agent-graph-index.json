@@ -6,7 +6,9 @@
     "../LawFirm-os-skills-registry/skills",
     "../LawFirm-os-orchestrator/src",
     "../LawFirm-os-legal-knowledge-runtime/src",
-    "../LawFirm-os-exceptions-lake-runtime/examples"
+    "../LawFirm-os-exceptions-lake-runtime/examples",
+    "../LawFirm-os-intake/agents",
+    "../LawFirm-os-intake/workflow"
   ],
   "edge_types": [
     "uses",
