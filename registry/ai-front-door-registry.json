@@ -15,6 +15,8 @@
     "registry/schema-registry.json",
     "registry/registry-full-manifest.json",
     "registry/governance-full-manifest.json",
+    "registry/governance-dependency-map.json",
+    "governance/GOVERNANCE_DEPENDENCY_MAP.md",
     "registry/schema-surface-exclusions.json"
   ],
   "toc_files_must_reference_registry": [
@@ -27,7 +29,9 @@
     "governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md",
     "registry/governance-decision-dependency-atlas.seed.json",
     "registry/governance-full-manifest.json",
-    "registry/registry-full-manifest.json"
+    "registry/registry-full-manifest.json",
+    "registry/governance-dependency-map.json",
+    "governance/GOVERNANCE_DEPENDENCY_MAP.md"
   ],
   "sibling_repo_folder_names": {
     "orchestrator": "LawFirm-os-orchestrator",

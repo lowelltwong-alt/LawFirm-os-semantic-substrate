@@ -19,6 +19,8 @@ jobs:
           python -m pip install -e . --no-build-isolation
       - name: Run unit tests
         run: python -m unittest discover -s scripts/validation/tests -p 'test_*.py'
+      - name: Validate governance dependency map
+        run: python scripts/validate_governance_dependency_map.py --map-updated true
       - name: Validate source-of-truth coherence
         run: python scripts/validation/validate_source_of_truth_coherence.py
       - name: Run repo drift check

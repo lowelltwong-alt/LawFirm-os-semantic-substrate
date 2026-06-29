@@ -1,0 +1,19 @@
+name: Governance Dependency Map
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  validate_governance_dependency_map:
+    name: Validate governance dependency map
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate map and changed governance paths
+        run: python scripts/validate_governance_dependency_map.py --base-ref "origin/${{ github.base_ref }}"

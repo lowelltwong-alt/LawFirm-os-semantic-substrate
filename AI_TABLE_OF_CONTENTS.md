@@ -14,6 +14,8 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `registry/ai-front-door-registry.json` — machine gate for AI TOC / workflow atlas integrity (see `governance/AI_FRONT_DOOR_BOUNDARY.md`)
 - `registry/registry-full-manifest.json` — full index of `registry/*.json` surfaces
 - `registry/governance-full-manifest.json` — full index of `governance/**/*.md` surfaces
+- `registry/governance-dependency-map.json` — canonical governance-facing dependency map and child mirror update gate
+- `governance/GOVERNANCE_DEPENDENCY_MAP.md` — human-readable rule and child mirror contract template
 
 - `governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md` - map home for governance decisions, dependencies, downstream effects, and safe experiment planning
 
@@ -25,6 +27,7 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `registry/ai-front-door-registry.json`
 - `registry/registry-full-manifest.json`
 - `registry/governance-full-manifest.json`
+- `registry/governance-dependency-map.json`
 - `registry/schema-surface-exclusions.json`
 - `registry/exception-route-registry.json`
 - `registry/orchestrator-contract-export.json`
@@ -42,6 +45,8 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 
 ## Governance Decision Atlas
 
+- `registry/governance-dependency-map.json` - canonical map for governance-facing files, dependencies, downstream mirrors, validators, and PR-description gates
+- `governance/GOVERNANCE_DEPENDENCY_MAP.md` - companion human policy and child mirror template
 - `governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md`
 - `registry/governance-decision-dependency-atlas.seed.json` - seed machine map for governance decision nodes, dependency edges, downstream consumers, and layered agent expansion
 
@@ -150,5 +155,6 @@ External legal data and PassageRef spans are **evidence**, not canon. Provider-s
 ## Validation
 
 - `scripts/check_repo_drift.py`
+- `scripts/validate_governance_dependency_map.py`
 - `scripts/validate_examples.py`
 - `scripts/validation/tests/`
