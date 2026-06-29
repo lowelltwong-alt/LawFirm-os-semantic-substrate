@@ -333,8 +333,13 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         validate_dependency_map(args.map)
-        changed_files = args.changed_file or _git_changed_files(args.base_ref)
         map_updated = None if args.map_updated is None else args.map_updated == "true"
+        if args.changed_file:
+            changed_files = args.changed_file
+        elif map_updated is True:
+            changed_files = [_rel(args.map)]
+        else:
+            changed_files = _git_changed_files(args.base_ref)
         validate_changed_path_gate(changed_files=changed_files, map_path=args.map, map_updated=map_updated)
     except DependencyMapError as exc:
         print(f"Governance dependency map validation failed: {exc}", file=sys.stderr)
