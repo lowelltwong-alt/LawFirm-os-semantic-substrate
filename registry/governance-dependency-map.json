@@ -777,6 +777,107 @@
       ],
       "provenance_note": "Local mirror added to the intake vertical fresh main clone; pre-existing dirty intake work in another local clone was avoided.",
       "reason_for_inclusion": "Intake touches client-data boundaries, conflict seeds, human review, and budget proposal authority."
+    },
+    {
+      "artifact_id": "LFGD-014",
+      "title": "Intake contract promotion review docket",
+      "repo": "LawFirm-os-semantic-substrate",
+      "paths": [
+        "governance/INTAKE_CONTRACT_PROMOTION_REVIEW.md",
+        "registry/intake-contract-promotion-review-registry.json",
+        "scripts/validate_intake_contract_promotion_review.py",
+        "tests/test_intake_contract_promotion_review.py"
+      ],
+      "object_type": "candidate_contract_promotion_review_docket",
+      "trust_zone": "control_plane_candidate_review",
+      "lifecycle_status": "candidate_review_docket",
+      "authorized_by": "intake_to_budget_phase3_substrate_review_slice",
+      "owner_decision_ref": "registry/intake-contract-promotion-review-registry.json",
+      "depends_on": [
+        "LFGD-001",
+        "LFGD-002",
+        "LFGD-004",
+        "LFGD-005",
+        "LFGD-007",
+        "LFGD-008",
+        "LFGD-013"
+      ],
+      "downstream_controls": [
+        "candidate_review_required_before_canonical_promotion",
+        "no_canonical_schema_id_without_promotion_decision",
+        "no_route_or_event_class_assignment_without_substrate_decision",
+        "no_runtime_execution_or_raw_payload_storage_authorized"
+      ],
+      "mirrored_by": [
+        "LawFirm-os-intake cross-repo promotion package references",
+        "future downstream governance mirrors after promotion decision only"
+      ],
+      "validators": [
+        "scripts/validate_intake_contract_promotion_review.py",
+        "scripts/validate_governance_dependency_map.py"
+      ],
+      "update_triggers": [
+        "governance/INTAKE_CONTRACT_PROMOTION_REVIEW.md",
+        "registry/intake-contract-promotion-review-registry.json",
+        "scripts/validate_intake_contract_promotion_review.py",
+        "tests/test_intake_contract_promotion_review.py"
+      ],
+      "provenance_note": "Added 2026-06-30 from the candidate-only intake-to-budget promotion package so Substrate can review proposed intake contracts before any canonical promotion.",
+      "reason_for_inclusion": "Intake proposals touch source evidence refs, human confirmations, budget/event labels, Orchestrator handoff, Exception Lake mapping, Legal Knowledge context bundles, and skills metadata; those changes require Substrate review before promotion."
+    },
+    {
+      "artifact_id": "LFGD-015",
+      "title": "Validation runtime policy and pytest wrapper",
+      "repo": "LawFirm-os-semantic-substrate",
+      "paths": [
+        "config/validation-runtime-policy.yaml",
+        "scripts/run_full_pytest.py",
+        "tests/conftest.py",
+        "tests/test_validation_runtime_policy.py",
+        "ci-test-manifest.json",
+        "AGENTS.md",
+        "AI_WORK_START_HERE.md",
+        "README.md",
+        "ENDPOINTS_AND_COMMANDS.md",
+        "docs/ENTRYPOINT_AND_ENDPOINT_MAP.md"
+      ],
+      "object_type": "validation_runtime_policy",
+      "trust_zone": "control_plane_validation",
+      "lifecycle_status": "active_candidate_policy",
+      "authorized_by": "owner_timeout_enforcement_instruction_2026_06_30",
+      "owner_decision_ref": "config/validation-runtime-policy.yaml",
+      "depends_on": [
+        "LFGD-001",
+        "LFGD-005",
+        "LFGD-008"
+      ],
+      "downstream_controls": [
+        "full_and_focused_pytest_use_policy_wrapper",
+        "direct_pytest_fails_closed",
+        "registered_pytest_artifacts_reference_wrapper",
+        "long_timeout_ceiling_prevents_false_validation_failures"
+      ],
+      "mirrored_by": [
+        "LawFirm-os-intake validation runtime policy pattern"
+      ],
+      "validators": [
+        "tests/test_validation_runtime_policy.py",
+        "scripts/validate_governance_dependency_map.py"
+      ],
+      "update_triggers": [
+        "config/validation-runtime-policy.yaml",
+        "scripts/run_full_pytest.py",
+        "tests/conftest.py",
+        "tests/test_validation_runtime_policy.py",
+        "ci-test-manifest.json",
+        "AGENTS.md",
+        "AI_WORK_START_HERE.md",
+        "README.md",
+        "ENDPOINTS_AND_COMMANDS.md",
+        "docs/ENTRYPOINT_AND_ENDPOINT_MAP.md"
+      ],
+      "provenance_note": "Added 2026-06-30 after local full pytest exceeded a short/default 300 second ceiling; the wrapper applies the 900 second policy and blocks raw pytest.",
+      "reason_for_inclusion": "Validation command surfaces can change effective governance by turning slow tests into false failures; the timeout policy must be discoverable and enforced."
     }
   ],
   "child_mirror_contract": {

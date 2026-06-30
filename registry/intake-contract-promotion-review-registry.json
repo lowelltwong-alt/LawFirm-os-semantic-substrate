@@ -1,0 +1,146 @@
+{
+  "schema_version": "intake_contract_promotion_review_registry.v0_1",
+  "registry_id": "intake-contract-promotion-review-registry.v0_1",
+  "status": "candidate_review_docket",
+  "owner_repo": "LawFirm-os-semantic-substrate",
+  "source_repo": "LawFirm-os-intake",
+  "source_package_id": "cross-repo-promotion-package.intake-to-budget.v0_1",
+  "governance_doc": "governance/INTAKE_CONTRACT_PROMOTION_REVIEW.md",
+  "global_controls": {
+    "candidate_only": true,
+    "promotion_decision_required_for_canonical_change": true,
+    "canonical_schema_ids_assigned": false,
+    "canonical_route_ids_assigned": false,
+    "canonical_event_classes_assigned": false,
+    "runtime_execution_authorized": false,
+    "real_data_pilot_authorized": false,
+    "external_writes_authorized": false,
+    "raw_legal_payload_storage_authorized": false
+  },
+  "review_items": [
+    {
+      "proposal_id": "substrate.intake-source-and-evidence-refs.v0_1",
+      "target_repo": "LawFirm-os-semantic-substrate",
+      "review_track": "source_grounding_and_evidence_refs",
+      "candidate_contract_refs": [
+        "semantic-substrate://candidate/contracts/intake-source.v0_1",
+        "semantic-substrate://candidate/contracts/source-bound-evidence-ref.v0_1"
+      ],
+      "candidate_artifact_refs": [
+        "LawFirm-os-intake:schemas/intake-preflight-packet.schema.json",
+        "LawFirm-os-intake:schemas/ingestion-result.schema.json",
+        "LawFirm-os-intake:schemas/source-bundle.schema.json",
+        "LawFirm-os-intake:schemas/segment.schema.json",
+        "LawFirm-os-intake:schemas/evidence-completeness-report.schema.json",
+        "LawFirm-os-intake:schemas/context-boundary-report.schema.json",
+        "LawFirm-os-intake:schemas/review-package-completeness-report.schema.json"
+      ],
+      "existing_substrate_surfaces_to_compare": [
+        "schemas/source-ref.schema.json",
+        "schemas/passage-ref.schema.json",
+        "schemas/claim-ref.schema.json",
+        "schemas/coverage-record.schema.json",
+        "schemas/verification-record.schema.json",
+        "registry/schema-registry.json",
+        "registry/legal-context-bundle-registry.json"
+      ],
+      "required_acceptance_gates": [
+        "compare_against_existing_source_ref_doctrine",
+        "separate_observed_evidence_from_context_priors",
+        "preserve_source_ids_segment_ids_offsets_and_hashes",
+        "decide_local_only_fields_before_schema_registry_change",
+        "human_promotion_decision_before_canonical_schema_id"
+      ],
+      "promotion_blockers": [
+        "candidate fields may overlap existing source-ref and passage-ref surfaces",
+        "intake-local source inventory states are not yet substrate vocabulary",
+        "no real-data pilot or runtime ingestion authorization exists"
+      ],
+      "review_disposition": "needs_substrate_review",
+      "promotion_decision_required": true,
+      "direct_promotion_authorized": false
+    },
+    {
+      "proposal_id": "substrate.human-confirmation-and-candidates.v0_1",
+      "target_repo": "LawFirm-os-semantic-substrate",
+      "review_track": "human_confirmation_and_candidate_lifecycle",
+      "candidate_contract_refs": [
+        "semantic-substrate://candidate/contracts/human-confirmation.v0_1",
+        "semantic-substrate://candidate/contracts/party-role-candidate.v0_1",
+        "semantic-substrate://candidate/contracts/matter-posture-candidate.v0_1"
+      ],
+      "candidate_artifact_refs": [
+        "LawFirm-os-intake:schemas/human-confirmation.schema.json",
+        "LawFirm-os-intake:schemas/human-review-outcome-record.schema.json",
+        "LawFirm-os-intake:schemas/party-candidate.schema.json",
+        "LawFirm-os-intake:schemas/intake-preflight-packet.schema.json",
+        "LawFirm-os-intake:docs/human-review.md"
+      ],
+      "existing_substrate_surfaces_to_compare": [
+        "schemas/promotion-decision.schema.json",
+        "schemas/validation-gate-record.schema.json",
+        "registry/human-approval-registry.json",
+        "governance/DECISION_BOTTLENECK_AND_DECISION_MODELS.md",
+        "governance/LIFECYCLE_POLICY.md"
+      ],
+      "required_acceptance_gates": [
+        "map_unknown_correct_declined_and_human_only_outcomes_to_lifecycle_policy",
+        "define_correction_and_supersession_semantics",
+        "confirm_party_role_terms_against_existing_controlled_vocabularies",
+        "preserve_human_confirmation_before_budget",
+        "human_promotion_decision_before_canonical_schema_id"
+      ],
+      "promotion_blockers": [
+        "matter family and party-role labels remain intake-local candidates",
+        "human review outcome states require lifecycle approval",
+        "candidate confidence values are heuristic strength, not probability"
+      ],
+      "review_disposition": "needs_substrate_review",
+      "promotion_decision_required": true,
+      "direct_promotion_authorized": false
+    },
+    {
+      "proposal_id": "substrate.budget-and-event-labels.v0_1",
+      "target_repo": "LawFirm-os-semantic-substrate",
+      "review_track": "budget_contracts_and_event_label_boundaries",
+      "candidate_contract_refs": [
+        "semantic-substrate://candidate/contracts/legal-budget-proposal.v0_1",
+        "semantic-substrate://candidate/event-labels/intake-to-budget.v0_1"
+      ],
+      "candidate_artifact_refs": [
+        "LawFirm-os-intake:schemas/legal-budget-proposal.schema.json",
+        "LawFirm-os-intake:schemas/budget-scenario-set.schema.json",
+        "LawFirm-os-intake:schemas/budget-driver-effect.schema.json",
+        "LawFirm-os-intake:schemas/carrier-compliant-projection.schema.json",
+        "LawFirm-os-intake:schemas/budget-actual-comparison-report.schema.json",
+        "LawFirm-os-intake:schemas/reviewed-learning-gate-report.schema.json",
+        "LawFirm-os-intake:schemas/intake-vertical-readiness-audit-report.schema.json",
+        "LawFirm-os-intake:docs/cross-repo-promotion-package.md"
+      ],
+      "existing_substrate_surfaces_to_compare": [
+        "schemas/exception-event.schema.json",
+        "schemas/pressure-vector.schema.json",
+        "schemas/adaptation-proposal.schema.json",
+        "schemas/promotion-decision.schema.json",
+        "registry/exception-route-registry.json",
+        "registry/governed-learning-schema-registry.json",
+        "registry/exceptions-schema-registry.json"
+      ],
+      "required_acceptance_gates": [
+        "separate_budget_proposal_from_budget_approval_or_submission",
+        "decide_event_label_and_route_authority_before_registry_change",
+        "preserve_no_conflict_conclusion_and_no_budget_submission_boundaries",
+        "confirm_utbms_and_driver_terms_are_external_or_candidate_taxonomies",
+        "human_promotion_decision_before_canonical_event_class"
+      ],
+      "promotion_blockers": [
+        "no budget approval or submission authority exists",
+        "UTBMS, rate, guideline, and driver taxonomies remain candidate or external",
+        "actual-cost and carrier-rejection learning require owner-runtime evidence first"
+      ],
+      "review_disposition": "needs_substrate_review",
+      "promotion_decision_required": true,
+      "direct_promotion_authorized": false
+    }
+  ]
+}

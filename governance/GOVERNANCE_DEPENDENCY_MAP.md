@@ -81,3 +81,12 @@ jurisdiction/scope assumptions, human approval gates, and repository ownership.
 The map does not authorize legal advice, production automation, external writes,
 real client data ingestion, raw matter payload storage, or AI-generated
 governance authority.
+
+## Current Additions
+
+- `LFGD-014` records the intake contract promotion review docket. It is a
+  candidate-review lane only and does not assign canonical schema IDs, route IDs,
+  event classes, runtime authority, or real-data permissions.
+- `LFGD-015` records the validation runtime policy for pytest. It keeps full and
+  focused pytest behind the policy wrapper so local validation does not silently
+  inherit a short/default timeout ceiling.

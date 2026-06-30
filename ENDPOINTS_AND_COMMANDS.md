@@ -6,9 +6,12 @@ This repo is the control-plane authority surface. It publishes schemas, registri
 
 ```bash
 python -m unittest discover -s scripts/validation/tests -p 'test_*.py'
+python scripts/run_full_pytest.py
 python scripts/check_repo_drift.py
 python scripts/validate_examples.py
 ```
+
+Pytest must use `config/validation-runtime-policy.yaml` through `python scripts/run_full_pytest.py`; direct pytest is blocked to preserve the 900 second minimum ceiling for full and focused test runs.
 
 Optional full audit:
 

@@ -12,7 +12,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_check_registry_refs.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_check_registry_refs.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_check_registry_refs.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -56,7 +56,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_check_repo_drift.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_check_repo_drift.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_check_repo_drift.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -98,7 +98,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_jsonschema_registry_support.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_jsonschema_registry_support.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_jsonschema_registry_support.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -145,7 +145,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_phase2_autonomy_surface.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_phase2_autonomy_surface.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_phase2_autonomy_surface.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -187,7 +187,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_run_shacl.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_run_shacl.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_run_shacl.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -229,7 +229,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_validate_canonical_grounding_chain.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_validate_canonical_grounding_chain.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_canonical_grounding_chain.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -271,7 +271,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_validate_examples_registry.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_validate_examples_registry.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_examples_registry.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -315,7 +315,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_validate_exception_events.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_validate_exception_events.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_exception_events.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -357,7 +357,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_validate_exception_governance.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_validate_exception_governance.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_exception_governance.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -401,7 +401,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_validate_grounded_answer_evaluation_harness.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_validate_grounded_answer_evaluation_harness.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_grounded_answer_evaluation_harness.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -443,7 +443,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_validate_integrity.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_validate_integrity.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_integrity.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -485,7 +485,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_validate_learning_loop_transitions.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_validate_learning_loop_transitions.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_learning_loop_transitions.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -527,7 +527,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_validate_repository_vnext.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_validate_repository_vnext.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_repository_vnext.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -569,7 +569,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_validate_source_ingestion_manifests.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_validate_source_ingestion_manifests.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_source_ingestion_manifests.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -611,7 +611,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "scripts/validation/tests/test_validate_source_of_truth_coherence.py",
-      "runner_command": "python -m pytest scripts/validation/tests/test_validate_source_of_truth_coherence.py -q",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_source_of_truth_coherence.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -653,7 +653,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "tests/test_agent_hostile_contracts.py",
-      "runner_command": "python -m pytest tests/test_agent_hostile_contracts.py -q",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_agent_hostile_contracts.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -711,7 +711,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "tests/test_ai_front_door_integrity.py",
-      "runner_command": "python -m pytest tests/test_ai_front_door_integrity.py -q",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_ai_front_door_integrity.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -755,7 +755,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "tests/test_ci_test_routing.py",
-      "runner_command": "python -m pytest tests/test_ci_test_routing.py -q",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_ci_test_routing.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -809,7 +809,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "tests/test_managed_patch_preservation.py",
-      "runner_command": "python -m pytest tests/test_managed_patch_preservation.py -q",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_managed_patch_preservation.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -853,7 +853,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "tests/test_skill_agent_control_plane.py",
-      "runner_command": "python -m pytest tests/test_skill_agent_control_plane.py -q",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_skill_agent_control_plane.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -897,7 +897,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "tests/test_test_artifact_registration.py",
-      "runner_command": "python -m pytest tests/test_test_artifact_registration.py -q",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_test_artifact_registration.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -952,7 +952,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "tests/test_contract_surface_locking.py",
-      "runner_command": "python -m pytest tests/test_contract_surface_locking.py -q",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_contract_surface_locking.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -1011,7 +1011,7 @@
       "framework": "pytest",
       "artifact_type": "pytest_file",
       "path": "tests/test_validate_contract_surface_provenance_modes.py",
-      "runner_command": "python -m pytest tests/test_validate_contract_surface_provenance_modes.py -q",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_validate_contract_surface_provenance_modes.py -q",
       "owning_repo": "LawFirm-os-semantic-substrate",
       "owning_plane": "semantic_substrate",
       "architecture_surface": [
@@ -1056,6 +1056,117 @@
         "consumer-owned routing authority"
       ],
       "expected_runtime_seconds": 5,
+      "full_regression_required": false
+    },
+    {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_intake_contract_promotion_review.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_intake_contract_promotion_review.py",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_intake_contract_promotion_review.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "registry_integrity",
+        "governance_boundary",
+        "cross_repo_integration"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "registry_change",
+        "governance_doc_change",
+        "source_code_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_intake_contract_promotion_review.py",
+        "scripts/validate_intake_contract_promotion_review.py",
+        "registry/intake-contract-promotion-review-registry.json",
+        "governance/INTAKE_CONTRACT_PROMOTION_REVIEW.md"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "registry_integrity",
+        "governance_boundary",
+        "cross_repo",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime",
+        "LawFirm-os-legal-knowledge-runtime",
+        "LawFirm-os-skills-registry"
+      ],
+      "must_run_when": [
+        "intake contract promotion review registry changes",
+        "candidate intake contract governance docket changes"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "promotion authority without governance decision",
+        "canonical schema IDs or route IDs"
+      ],
+      "expected_runtime_seconds": 10,
+      "full_regression_required": false
+    },
+    {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_validation_runtime_policy.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_validation_runtime_policy.py",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_validation_runtime_policy.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "repo_local_regression",
+        "validation_runtime_policy"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "source_code_change",
+        "ai_instruction_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_validation_runtime_policy.py",
+        "tests/conftest.py",
+        "scripts/run_full_pytest.py",
+        "config/validation-runtime-policy.yaml",
+        "AGENTS.md",
+        "AI_WORK_START_HERE.md",
+        "README.md",
+        "ENDPOINTS_AND_COMMANDS.md",
+        "docs/ENTRYPOINT_AND_ENDPOINT_MAP.md",
+        "ci-test-manifest.json"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "validation_runtime_policy",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime"
+      ],
+      "must_run_when": [
+        "pytest runtime policy or wrapper changes",
+        "AI validation command instructions change",
+        "test manifest runner command changes"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "promotion authority without governance decision",
+        "canonical schema or route changes"
+      ],
+      "expected_runtime_seconds": 10,
       "full_regression_required": false
     }
   ],

@@ -31,6 +31,7 @@
 | Check | Command | Expected current behavior |
 |---|---|---|
 | Unit tests | `python -m unittest discover -s scripts/validation/tests -p 'test_*.py'` | Pass. |
+| Pytest suite | `python scripts/run_full_pytest.py` | Pass under `config/validation-runtime-policy.yaml`; direct pytest is blocked to preserve the 900 second minimum ceiling. |
 | Drift check | `python scripts/check_repo_drift.py` | Pass; may write generated report. |
 | Registry refs | `python scripts/check_registry_refs.py` | Pass. |
 | Examples registry | `python scripts/validate_examples_registry.py` | Pass. |

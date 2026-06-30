@@ -27,6 +27,7 @@
     "registry/governed-learning-schema-registry.json",
     "registry/harness-policy-registry.json",
     "registry/human-approval-registry.json",
+    "registry/intake-contract-promotion-review-registry.json",
     "registry/innovation-object-registry.json",
     "registry/lawfirm-os-repo-registry.json",
     "registry/legal-agent-safety-guardrail-registry.json",
