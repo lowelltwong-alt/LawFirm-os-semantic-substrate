@@ -22,6 +22,7 @@
     "registry/exceptions-lake-contract-export.json",
     "registry/exceptions-schema-registry.json",
     "registry/governance-decision-dependency-atlas.seed.json",
+    "registry/governance-dependency-map.json",
     "registry/governance-full-manifest.json",
     "registry/governed-learning-schema-registry.json",
     "registry/harness-policy-registry.json",
