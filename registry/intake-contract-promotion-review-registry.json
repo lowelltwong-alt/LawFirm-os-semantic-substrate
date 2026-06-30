@@ -141,6 +141,50 @@
       "review_disposition": "needs_substrate_review",
       "promotion_decision_required": true,
       "direct_promotion_authorized": false
+    },
+    {
+      "proposal_id": "substrate.orchestrator-lake-packet-boundary.v0_1",
+      "target_repo": "LawFirm-os-semantic-substrate",
+      "review_track": "orchestrator_lake_packet_boundary",
+      "candidate_contract_refs": [
+        "semantic-substrate://candidate/contracts/intake-owner-review-request.v0_1",
+        "semantic-substrate://candidate/contracts/intake-lake-admission-review-packet.v0_1",
+        "semantic-substrate://candidate/contracts/intake-lake-admission-review-packet-validation-report.v0_1"
+      ],
+      "candidate_artifact_refs": [
+        "LawFirm-os-intake:schemas/orchestrator-owner-review-request.schema.json",
+        "LawFirm-os-orchestrator:schemas/intake-owner-review-request.schema.json",
+        "LawFirm-os-orchestrator:src/lawfirm_os_orchestrator/intake_owner_review.py",
+        "LawFirm-os-exceptions-lake-runtime:registry/intake-lake-admission-review-registry.json",
+        "LawFirm-os-exceptions-lake-runtime:src/exceptions_lake_runtime/intake_lake_admission_review_packet.py",
+        "LawFirm-os-exceptions-lake-runtime:scripts/validate_intake_lake_admission_review_packet.py"
+      ],
+      "existing_substrate_surfaces_to_compare": [
+        "manifests/contract_manifest.v1.json",
+        "registry/orchestrator-contract-export.json",
+        "registry/exceptions-lake-contract-export.json",
+        "registry/exception-route-registry.json",
+        "schemas/evidence-packet.v2.schema.json",
+        "schemas/exception-lake-admission-record.schema.json",
+        "governance/ORCHESTRATOR_BOUNDARY.md",
+        "governance/EXCEPTIONS_LAKE_BOUNDARY.md"
+      ],
+      "required_acceptance_gates": [
+        "confirm_local_workflow_labels_are_not_canonical_route_ids",
+        "confirm_packet_validation_is_not_exception_lake_admission",
+        "preserve_no_lake_or_sqlite_write_authority",
+        "decide_orchestrator_packet_contract_surface_before_manifest_change",
+        "human_promotion_decision_before_canonical_event_class"
+      ],
+      "promotion_blockers": [
+        "orchestrator.local.intake_to_budget_owner_review is a local workflow label, not a canonical route_id",
+        "orchestrator.local.intake_lake_admission_review_packet is a local packet workflow label, not a canonical route_id",
+        "Exception Lake validation reports are review evidence only and do not mint admission records",
+        "canonical route/event assignment still requires Substrate promotion decision"
+      ],
+      "review_disposition": "needs_substrate_review",
+      "promotion_decision_required": true,
+      "direct_promotion_authorized": false
     }
   ]
 }

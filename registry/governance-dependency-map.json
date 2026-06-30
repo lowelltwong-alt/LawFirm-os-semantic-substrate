@@ -780,9 +780,10 @@
     },
     {
       "artifact_id": "LFGD-014",
-      "title": "Intake contract promotion review docket",
+      "title": "Intake contract and packet boundary promotion review docket",
       "repo": "LawFirm-os-semantic-substrate",
       "paths": [
+        "DATA_FLOW_MAP.md",
         "governance/INTAKE_CONTRACT_PROMOTION_REVIEW.md",
         "registry/intake-contract-promotion-review-registry.json",
         "scripts/validate_intake_contract_promotion_review.py",
@@ -806,6 +807,7 @@
         "candidate_review_required_before_canonical_promotion",
         "no_canonical_schema_id_without_promotion_decision",
         "no_route_or_event_class_assignment_without_substrate_decision",
+        "orchestrator_lake_packet_boundary_requires_substrate_review",
         "no_runtime_execution_or_raw_payload_storage_authorized"
       ],
       "mirrored_by": [
@@ -817,13 +819,14 @@
         "scripts/validate_governance_dependency_map.py"
       ],
       "update_triggers": [
+        "DATA_FLOW_MAP.md",
         "governance/INTAKE_CONTRACT_PROMOTION_REVIEW.md",
         "registry/intake-contract-promotion-review-registry.json",
         "scripts/validate_intake_contract_promotion_review.py",
         "tests/test_intake_contract_promotion_review.py"
       ],
-      "provenance_note": "Added 2026-06-30 from the candidate-only intake-to-budget promotion package so Substrate can review proposed intake contracts before any canonical promotion.",
-      "reason_for_inclusion": "Intake proposals touch source evidence refs, human confirmations, budget/event labels, Orchestrator handoff, Exception Lake mapping, Legal Knowledge context bundles, and skills metadata; those changes require Substrate review before promotion."
+      "provenance_note": "Added 2026-06-30 from the candidate-only intake-to-budget promotion package so Substrate can review proposed intake contracts before any canonical promotion. Updated after Orchestrator and Exception Lake landed candidate packet validation so local workflow labels and packet shapes remain review-only until promotion.",
+      "reason_for_inclusion": "Intake proposals touch source evidence refs, human confirmations, budget/event labels, Orchestrator handoff, Exception Lake mapping and packet validation, Legal Knowledge context bundles, and skills metadata; those changes require Substrate review before promotion."
     },
     {
       "artifact_id": "LFGD-015",
@@ -855,7 +858,8 @@
         "full_and_focused_pytest_use_policy_wrapper",
         "direct_pytest_fails_closed",
         "registered_pytest_artifacts_reference_wrapper",
-        "long_timeout_ceiling_prevents_false_validation_failures"
+        "long_timeout_ceiling_prevents_false_validation_failures",
+        "full_and_focused_pytest_have_3600_second_policy_floor"
       ],
       "mirrored_by": [
         "LawFirm-os-intake validation runtime policy pattern"
@@ -876,7 +880,7 @@
         "ENDPOINTS_AND_COMMANDS.md",
         "docs/ENTRYPOINT_AND_ENDPOINT_MAP.md"
       ],
-      "provenance_note": "Added 2026-06-30 after local full pytest exceeded a short/default 300 second ceiling; the wrapper applies the 900 second policy and blocks raw pytest.",
+      "provenance_note": "Added 2026-06-30 after local full pytest exceeded a short/default 300 second ceiling; updated to a 3600 second policy floor after cross-repo validation showed shorter ceilings still cause avoidable reruns. The wrapper applies the policy and blocks raw pytest.",
       "reason_for_inclusion": "Validation command surfaces can change effective governance by turning slow tests into false failures; the timeout policy must be discoverable and enforced."
     }
   ],

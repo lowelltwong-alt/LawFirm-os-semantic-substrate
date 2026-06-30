@@ -43,13 +43,29 @@ def test_intake_contract_promotion_review_registry_passes() -> None:
         "substrate.intake-source-and-evidence-refs.v0_1",
         "substrate.human-confirmation-and-candidates.v0_1",
         "substrate.budget-and-event-labels.v0_1",
+        "substrate.orchestrator-lake-packet-boundary.v0_1",
     }
     assert all(
         item["review_disposition"] == "needs_substrate_review"
         for item in registry["review_items"]
     )
     assert all(
-        item["direct_promotion_authorized"] is False for item in registry["review_items"]
+        item["direct_promotion_authorized"] is False
+        for item in registry["review_items"]
+    )
+    packet_item = next(
+        item
+        for item in registry["review_items"]
+        if item["proposal_id"] == "substrate.orchestrator-lake-packet-boundary.v0_1"
+    )
+    assert {
+        "confirm_local_workflow_labels_are_not_canonical_route_ids",
+        "confirm_packet_validation_is_not_exception_lake_admission",
+        "preserve_no_lake_or_sqlite_write_authority",
+    }.issubset(packet_item["required_acceptance_gates"])
+    assert (
+        "schemas/evidence-packet.v2.schema.json"
+        in packet_item["existing_substrate_surfaces_to_compare"]
     )
 
 
@@ -80,7 +96,9 @@ def test_intake_contract_review_blocks_direct_promotion(tmp_path: Path) -> None:
         validate_intake_contract_promotion_review(path)
 
 
-def test_intake_contract_review_requires_all_substrate_proposals(tmp_path: Path) -> None:
+def test_intake_contract_review_requires_all_substrate_proposals(
+    tmp_path: Path,
+) -> None:
     path = _mutate_registry(
         tmp_path,
         lambda data: data.__setitem__("review_items", data["review_items"][:-1]),
@@ -90,7 +108,9 @@ def test_intake_contract_review_requires_all_substrate_proposals(tmp_path: Path)
         validate_intake_contract_promotion_review(path)
 
 
-def test_intake_contract_review_blocks_non_candidate_contract_ref(tmp_path: Path) -> None:
+def test_intake_contract_review_blocks_non_candidate_contract_ref(
+    tmp_path: Path,
+) -> None:
     path = _mutate_registry(
         tmp_path,
         lambda data: data["review_items"][0]["candidate_contract_refs"].__setitem__(
@@ -100,4 +120,23 @@ def test_intake_contract_review_blocks_non_candidate_contract_ref(tmp_path: Path
     )
 
     with pytest.raises(IntakeContractPromotionReviewError, match="candidate refs"):
+        validate_intake_contract_promotion_review(path)
+
+
+def test_intake_contract_review_requires_packet_boundary_gates(tmp_path: Path) -> None:
+    def remove_packet_gate(data: dict) -> None:
+        item = next(
+            item
+            for item in data["review_items"]
+            if item["proposal_id"] == "substrate.orchestrator-lake-packet-boundary.v0_1"
+        )
+        item["required_acceptance_gates"].remove(
+            "preserve_no_lake_or_sqlite_write_authority"
+        )
+
+    path = _mutate_registry(tmp_path, remove_packet_gate)
+
+    with pytest.raises(
+        IntakeContractPromotionReviewError, match="packet-boundary gates"
+    ):
         validate_intake_contract_promotion_review(path)

@@ -154,7 +154,9 @@ External legal data and PassageRef spans are **evidence**, not canon. Provider-s
 
 ## Validation
 
+- `scripts/run_full_pytest.py` (uses `config/validation-runtime-policy.yaml`; 3600 second pytest floor)
 - `scripts/check_repo_drift.py`
 - `scripts/validate_governance_dependency_map.py`
+- `scripts/validate_intake_contract_promotion_review.py`
 - `scripts/validate_examples.py`
 - `scripts/validation/tests/`

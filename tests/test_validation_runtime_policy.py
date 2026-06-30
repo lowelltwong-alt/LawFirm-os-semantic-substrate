@@ -23,28 +23,33 @@ def _load_policy() -> dict:
 def test_validation_runtime_policy_requires_long_python_test_ceilings() -> None:
     commands = _load_policy()["commands"]
 
-    assert commands["full_pytest"]["minimum_timeout_seconds"] >= 900
-    assert commands["focused_pytest"]["minimum_timeout_seconds"] >= 900
+    assert commands["full_pytest"]["minimum_timeout_seconds"] >= 3600
+    assert commands["focused_pytest"]["minimum_timeout_seconds"] >= 3600
     assert "scripts/run_full_pytest.py" in commands["full_pytest"]["wrapper"]
     assert "scripts/run_full_pytest.py" in commands["focused_pytest"]["wrapper"]
 
 
 def test_pytest_wrapper_reads_validation_runtime_policy() -> None:
     assert run_full_pytest.POLICY_PATH == POLICY_PATH
-    assert run_full_pytest.pytest_timeout_seconds() >= 900
-    assert run_full_pytest.pytest_timeout_seconds("focused_pytest") >= 900
+    assert run_full_pytest.pytest_timeout_seconds() >= 3600
+    assert run_full_pytest.pytest_timeout_seconds("focused_pytest") >= 3600
 
 
 def test_pytest_wrapper_sets_policy_marker() -> None:
     env = run_full_pytest.validation_environment({})
 
-    assert env[run_full_pytest.POLICY_MARKER_ENV_VAR] == run_full_pytest.POLICY_MARKER_VALUE
+    assert (
+        env[run_full_pytest.POLICY_MARKER_ENV_VAR]
+        == run_full_pytest.POLICY_MARKER_VALUE
+    )
     assert env["PYTHONDONTWRITEBYTECODE"] == "1"
     assert run_full_pytest.sys.dont_write_bytecode is True
 
 
 def test_pytest_wrapper_disables_pytest_cache_provider() -> None:
-    command = run_full_pytest.pytest_command(["tests/test_validation_runtime_policy.py", "-q"])
+    command = run_full_pytest.pytest_command(
+        ["tests/test_validation_runtime_policy.py", "-q"]
+    )
 
     assert command[1:6] == ["-B", "-m", "pytest", "-p", "no:cacheprovider"]
 
@@ -70,7 +75,9 @@ def test_direct_pytest_without_policy_marker_fails_closed() -> None:
 
     assert completed.returncode == 4
     output = f"{completed.stdout}\n{completed.stderr}"
-    assert "Direct pytest invocation is blocked by the validation runtime policy" in output
+    assert (
+        "Direct pytest invocation is blocked by the validation runtime policy" in output
+    )
 
 
 def test_agent_docs_reference_pytest_policy_wrapper() -> None:
@@ -80,7 +87,9 @@ def test_agent_docs_reference_pytest_policy_wrapper() -> None:
             (REPO_ROOT / "AI_WORK_START_HERE.md").read_text(encoding="utf-8"),
             (REPO_ROOT / "README.md").read_text(encoding="utf-8"),
             (REPO_ROOT / "ENDPOINTS_AND_COMMANDS.md").read_text(encoding="utf-8"),
-            (REPO_ROOT / "docs" / "ENTRYPOINT_AND_ENDPOINT_MAP.md").read_text(encoding="utf-8"),
+            (REPO_ROOT / "docs" / "ENTRYPOINT_AND_ENDPOINT_MAP.md").read_text(
+                encoding="utf-8"
+            ),
         ]
     )
 

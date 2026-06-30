@@ -14,7 +14,7 @@ import yaml
 sys.dont_write_bytecode = True
 REPO_ROOT = Path(__file__).resolve().parents[1]
 POLICY_PATH = REPO_ROOT / "config" / "validation-runtime-policy.yaml"
-DEFAULT_MINIMUM_TIMEOUT_SECONDS = 900
+DEFAULT_MINIMUM_TIMEOUT_SECONDS = 3600
 POLICY_MARKER_ENV_VAR = "LAWFIRM_OS_VALIDATION_RUNTIME_POLICY"
 POLICY_MARKER_VALUE = "substrate-validation-runtime-policy.v1"
 
@@ -32,10 +32,14 @@ def pytest_timeout_seconds(command_key: str = "full_pytest") -> int:
 
     commands = _load_policy().get("commands", {})
     if not isinstance(commands, dict):
-        raise ValueError("Validation runtime policy commands section is missing or invalid")
+        raise ValueError(
+            "Validation runtime policy commands section is missing or invalid"
+        )
     pytest_policy = commands.get(command_key, {})
     if not isinstance(pytest_policy, dict):
-        raise ValueError(f"Validation runtime policy {command_key} section is missing or invalid")
+        raise ValueError(
+            f"Validation runtime policy {command_key} section is missing or invalid"
+        )
 
     timeout_seconds = int(
         pytest_policy.get("minimum_timeout_seconds", DEFAULT_MINIMUM_TIMEOUT_SECONDS)
@@ -56,7 +60,15 @@ def validation_environment(base_env: Mapping[str, str] | None = None) -> dict[st
 
 
 def pytest_command(pytest_args: list[str]) -> list[str]:
-    return [sys.executable, "-B", "-m", "pytest", "-p", "no:cacheprovider", *pytest_args]
+    return [
+        sys.executable,
+        "-B",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        *pytest_args,
+    ]
 
 
 def main(argv: list[str] | None = None) -> int:
