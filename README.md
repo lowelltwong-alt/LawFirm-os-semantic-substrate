@@ -221,6 +221,14 @@ Run the focused unit test suite:
 python -m unittest discover -s scripts/validation/tests -p 'test_*.py'
 ```
 
+Run pytest through the validation runtime wrapper:
+
+```bash
+python scripts/run_full_pytest.py
+```
+
+`config/validation-runtime-policy.yaml` sets a 900 second minimum ceiling for full and focused pytest. Direct `python -m pytest` is blocked so local validation cannot fail just because an agent inherited a short/default timeout.
+
 Run the repo drift gate:
 
 ```bash

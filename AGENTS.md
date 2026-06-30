@@ -40,7 +40,7 @@ This repository owns canonical schemas, registries, governance doctrine, publish
 
 ## Required validation
 
-Before reporting success, run `python -m pytest -q` in this repository and the AI front-door integrity gate: `python scripts/validate_ai_front_door.py` (from this repo root; optional `--substrate-root` if invoked from elsewhere).
+Before reporting success, run `python scripts/run_full_pytest.py` in this repository and the AI front-door integrity gate: `python scripts/validate_ai_front_door.py` (from this repo root; optional `--substrate-root` if invoked from elsewhere). Full and focused pytest must use `config/validation-runtime-policy.yaml`; direct `python -m pytest` is blocked so validation does not inherit a short 300 second ceiling.
 
 ## Read order
 
@@ -124,7 +124,7 @@ If the full audit stops at the known truthful SHACL fail-closed gate, report tha
     python scripts/validate_ai_front_door.py
     python scripts/validate_skill_agent_control_plane.py --workspace ..
     python scripts/validate_managed_patch_preservation.py --workspace ..
-    python -m pytest -q
+    python scripts/run_full_pytest.py
 
 ## AI Strategy Doctrine and Context Quality Governance
 

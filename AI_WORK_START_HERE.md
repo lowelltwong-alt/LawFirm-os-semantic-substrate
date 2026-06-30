@@ -159,7 +159,9 @@ Do not copy leaked code, private prompts, or leak-derived repositories. Allowed 
     python scripts/validate_ai_front_door.py
     python scripts/validate_skill_agent_control_plane.py --workspace ..
     python scripts/validate_managed_patch_preservation.py --workspace ..
-    python -m pytest -q
+    python scripts/run_full_pytest.py
+
+Pytest runtime policy: use `config/validation-runtime-policy.yaml`. Full and focused pytest must run through `python scripts/run_full_pytest.py`; direct pytest is blocked so local validation does not silently inherit a short 300 second ceiling.
 
 ## AI Strategy Doctrine and Context Quality Governance
 
