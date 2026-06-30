@@ -84,9 +84,10 @@ governance authority.
 
 ## Current Additions
 
-- `LFGD-014` records the intake contract promotion review docket. It is a
-  candidate-review lane only and does not assign canonical schema IDs, route IDs,
-  event classes, runtime authority, or real-data permissions.
+- `LFGD-014` records the intake contract promotion review docket and the
+  Orchestrator/Lake packet-boundary review lane. It is candidate-review only and
+  does not assign canonical schema IDs, route IDs, event classes, runtime
+  authority, Lake admission, SQLite writes, or real-data permissions.
 - `LFGD-015` records the validation runtime policy for pytest. It keeps full and
-  focused pytest behind the policy wrapper so local validation does not silently
-  inherit a short/default timeout ceiling.
+  focused pytest behind the policy wrapper with a 3600 second floor so local
+  validation does not silently inherit a short/default timeout ceiling.

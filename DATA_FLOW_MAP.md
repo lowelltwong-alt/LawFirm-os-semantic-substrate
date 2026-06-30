@@ -160,10 +160,10 @@ Validator: `python scripts/validate_architecture_object_coverage.py --workspace 
 
 ## Latest Data-Flow Change
 
-- Date: 2026-05-06
+- Date: 2026-06-30
 - Changed by: Codex
-- What changed: Added Phase 2 Innovation Autonomy + Harness authority surfaces and reserved PR07 for Decision Intelligence, Stakes Model, and local-only Research Radar seeding.
-- Objects added: autonomy decision records, assumption watch records, harness plans, Codex task packets, research request/brief objects, incident analogies, opportunity scorecards, idea objects. Planned PR07 objects include decision models, stakes profiles, reversibility/decision contexts, escalation records, Research Radar items, watchlists, and briefs. Initial planned watchlist seed set: `research-radar-frontier-ai-001` plus reserved PR07 topic seeds.
-- Repos affected: control-plane repo only in PR01.
-- Risk color: yellow governance/schema change; human review required before treating new authority as stable canon.
-- Harness level: H2 local schema/policy update plus validation.
+- What changed: Added the intake Orchestrator/Lake packet-boundary proposal to the Substrate intake contract promotion review docket and raised the pytest wrapper floor to 3600 seconds.
+- Objects added: no canonical schemas, route IDs, event classes, Lake records, or runtime objects. The added docket lane covers local `orchestrator.local.*` workflow labels and `intake_lake_admission_review_packet.v0_1` as candidate review evidence only.
+- Repos affected: control-plane repo only; downstream Orchestrator and Exception Lake packet validation remain runtime-owner evidence surfaces.
+- Risk color: yellow governance/registry change; human review required before treating any packet shape or workflow label as stable canon.
+- Harness level: H2 local registry/governance update plus validation.

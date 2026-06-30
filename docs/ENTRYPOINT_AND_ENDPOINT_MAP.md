@@ -31,10 +31,11 @@
 | Check | Command | Expected current behavior |
 |---|---|---|
 | Unit tests | `python -m unittest discover -s scripts/validation/tests -p 'test_*.py'` | Pass. |
-| Pytest suite | `python scripts/run_full_pytest.py` | Pass under `config/validation-runtime-policy.yaml`; direct pytest is blocked to preserve the 900 second minimum ceiling. |
+| Pytest suite | `python scripts/run_full_pytest.py` | Pass under `config/validation-runtime-policy.yaml`; direct pytest is blocked to preserve the 3600 second minimum ceiling. |
 | Drift check | `python scripts/check_repo_drift.py` | Pass; may write generated report. |
 | Registry refs | `python scripts/check_registry_refs.py` | Pass. |
 | Examples registry | `python scripts/validate_examples_registry.py` | Pass. |
+| Intake contract promotion review | `python scripts/validate_intake_contract_promotion_review.py` | Pass; keeps intake contract and Orchestrator/Lake packet-boundary proposals candidate-only. |
 | Integrity | `python scripts/validate_integrity.py` | Pass. |
 | Source ingestion manifests | `python scripts/validation/validate_source_ingestion_manifests.py` | Pass. |
 | Source-of-truth coherence | `python scripts/validation/validate_source_of_truth_coherence.py` | Pass. |
