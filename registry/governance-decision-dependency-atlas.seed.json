@@ -411,7 +411,7 @@
       ],
       "validation_surfaces": [
         "scripts/validate_ai_front_door.py",
-        "python -m pytest -q"
+        "python scripts/run_full_pytest.py"
       ],
       "experiment_notes": "Use staged exclusions or draft registries for experiments; avoid duplicate authoritative schemas."
     },
@@ -788,7 +788,7 @@
       "validation_surfaces": [
         "scripts/route_ci_tests.py",
         "scripts/validate_ci_route_decision.py",
-        "python -m pytest -q"
+        "python scripts/run_full_pytest.py"
       ],
       "experiment_notes": "Keep routing experiments branch-local and prove affected test surfaces before reporting success."
     },
