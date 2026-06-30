@@ -339,9 +339,16 @@
         ".github/workflows/validate.yml",
         ".github/workflows/governance-dependency-map.yml",
         ".github/workflows/pr-description-governance-checks.yml",
+        "registry/ci-test-route-registry.json",
+        "registry/governance-decision-dependency-atlas.seed.json",
         "scripts/validate_ai_front_door.py",
         "scripts/validate_skill_agent_control_plane.py",
         "scripts/validate_governance_dependency_map.py",
+        "scripts/discover_test_artifacts.py",
+        "scripts/route_ci_tests.py",
+        "scripts/validate_ci_route_decision.py",
+        "scripts/validate_new_repo_ci_onboarding.py",
+        "scripts/validate_test_artifact_registration.py",
         "scripts/validation/tests/test_validate_governance_dependency_map.py",
         "registry/registry-full-manifest.json",
         "registry/governance-full-manifest.json"
@@ -373,12 +380,17 @@
       ],
       "update_triggers": [
         ".github/workflows/",
+        "registry/ci-test-route-registry.json",
+        "registry/governance-decision-dependency-atlas.seed.json",
+        "scripts/discover_test_artifacts.py",
+        "scripts/route_ci_tests.py",
+        "scripts/validate_ci_route_decision.py",
         "scripts/validate_",
         "scripts/check_",
         "registry/registry-full-manifest.json",
         "registry/governance-full-manifest.json"
       ],
-      "provenance_note": "Added 2026-06-29 so governance-facing changes cannot pass without map, discovery, PR-body, and validator alignment.",
+      "provenance_note": "Added 2026-06-29 so governance-facing changes cannot pass without map, discovery, PR-body, and validator alignment. Updated 2026-06-30 to include CI route/test-artifact generator and validator surfaces that now route pytest recommendations through the validation runtime wrapper.",
       "reason_for_inclusion": "CI shape changes can change effective governance even when no policy text changes."
     },
     {
@@ -862,7 +874,9 @@
         "full_and_focused_pytest_have_3600_second_policy_floor"
       ],
       "mirrored_by": [
-        "LawFirm-os-intake validation runtime policy pattern"
+        "LawFirm-os-intake validation runtime policy pattern",
+        "LawFirm-os-orchestrator validation runtime policy pattern",
+        "LawFirm-os-legal-knowledge-runtime validation runtime policy pattern"
       ],
       "validators": [
         "tests/test_validation_runtime_policy.py",

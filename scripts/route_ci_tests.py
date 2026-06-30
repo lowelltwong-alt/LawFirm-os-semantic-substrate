@@ -106,7 +106,7 @@ def read_manifest(repo_dir: Path) -> dict[str, Any] | None:
     return load_json(p)
 
 TEST_PATTERNS = [
-    ('python','pytest','pytest_file', re.compile(r'(^|/)tests/test_[^/]*\.py$|(^|/)tests/.+_test\.py$|^scripts/validation/tests/test_[^/]*\.py$'), 'python -m pytest {path} -q'),
+    ('python','pytest','pytest_file', re.compile(r'(^|/)tests/test_[^/]*\.py$|(^|/)tests/.+_test\.py$|^scripts/validation/tests/test_[^/]*\.py$'), 'python scripts/run_full_pytest.py {path} -q'),
     ('typescript','vitest_or_jest','typescript_test_file', re.compile(r'.+\.test\.ts$'), 'npx vitest run {path}'),
     ('typescript','playwright_or_vitest','typescript_spec_file', re.compile(r'.+\.spec\.ts$'), 'npx playwright test {path}'),
     ('javascript','jest_or_vitest','javascript_test_file', re.compile(r'.+\.test\.js$'), 'npx jest {path}'),
@@ -519,7 +519,7 @@ def main() -> int:
     for repo in pytest_repos:
         repo_dir = repos.get(repo)
         if repo_dir:
-            decision['recommended_commands'].append(f'cd .\\{repo_dir.name} && python -m pytest -q && cd ..')
+            decision['recommended_commands'].append(f'cd .\\{repo_dir.name} && python scripts/run_full_pytest.py && cd ..')
     text = dump_json(decision)
     if args.out:
         Path(args.out).write_text(text, encoding='utf-8')

@@ -88,6 +88,8 @@ governance authority.
   Orchestrator/Lake packet-boundary review lane. It is candidate-review only and
   does not assign canonical schema IDs, route IDs, event classes, runtime
   authority, Lake admission, SQLite writes, or real-data permissions.
+- `LFGD-005` now explicitly covers CI route and test-artifact generator surfaces
+  when they change validation recommendations or required pytest evidence.
 - `LFGD-015` records the validation runtime policy for pytest. It keeps full and
   focused pytest behind the policy wrapper with a 3600 second floor so local
   validation does not silently inherit a short/default timeout ceiling.
