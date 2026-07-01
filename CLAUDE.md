@@ -25,3 +25,5 @@ This file does not override registries, doctrine, or canonical schema authority.
 ## Sensitive operations
 
 For T3 and above changes, produce or update a governed change packet before editing.
+
+@AGENTS.md
