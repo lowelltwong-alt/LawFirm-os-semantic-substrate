@@ -39,7 +39,19 @@ def canonical_repo_name(path_name: str) -> str:
             return base
     return path_name
 
-def discover_repo_dirs(workspace: Path) -> dict[str, Path]:
+def is_explicitly_excluded_repo(name: str, exclusions: list[dict[str, Any]]) -> bool:
+    candidates = {name, canonical_repo_name(name)}
+    for exclusion in exclusions or []:
+        pattern = str(exclusion.get('pattern', ''))
+        if not pattern:
+            continue
+        pattern_candidates = {pattern, pattern.lower()}
+        for candidate in candidates:
+            if any(fnmatch.fnmatch(candidate, pat) or fnmatch.fnmatch(candidate.lower(), pat) for pat in pattern_candidates):
+                return True
+    return False
+
+def discover_repo_dirs(workspace: Path, exclusions: list[dict[str, Any]] | None = None) -> dict[str, Path]:
     repos = {}
     for p in workspace.iterdir():
         if not p.is_dir():
@@ -47,6 +59,8 @@ def discover_repo_dirs(workspace: Path) -> dict[str, Path]:
         if not p.name.startswith('LawFirm-os-'):
             continue
         if is_patch_artifact(p.name):
+            continue
+        if is_explicitly_excluded_repo(p.name, exclusions or []):
             continue
         canonical = canonical_repo_name(p.name)
         repos[canonical] = p
@@ -217,8 +231,8 @@ def main() -> int:
     ap.add_argument('--workspace', default='.')
     args = ap.parse_args()
     workspace = Path(args.workspace).resolve()
-    repos = discover_repo_dirs(workspace)
     registry = load_repo_registry(workspace)
+    repos = discover_repo_dirs(workspace, registry.get('explicit_exclusions', []))
     active = active_repo_names(workspace)
     errors = []
     for repo, repo_dir in sorted(repos.items()):

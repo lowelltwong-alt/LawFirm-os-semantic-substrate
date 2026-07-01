@@ -90,6 +90,14 @@
     {
       "pattern": "*.zip",
       "reason": "archive, not repo"
+    },
+    {
+      "pattern": "LawFirm-os-intake",
+      "reason": "Wave 2 candidate repo; not active in the LawFirm OS registry until onboarding is reviewed"
+    },
+    {
+      "pattern": "LawFirm-os-talent-intelligence-private",
+      "reason": "Private Wave 2 candidate repo; not active in the LawFirm OS registry until onboarding and provenance are reviewed"
     }
   ]
 }

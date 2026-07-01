@@ -396,6 +396,53 @@
       "full_regression_required": false
     },
     {
+      "test_id": "LawFirm-os-semantic-substrate.scripts.validation.tests.test_validate_governance_dependency_map.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "scripts/validation/tests/test_validate_governance_dependency_map.py",
+      "runner_command": "python scripts/run_full_pytest.py scripts/validation/tests/test_validate_governance_dependency_map.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "repo_local_regression",
+        "governance_boundary"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "source_code_change",
+        "governance_doc_change"
+      ],
+      "trigger_patterns": [
+        "scripts/validation/tests/test_validate_governance_dependency_map.py",
+        "src/**/*.py"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime",
+        "LawFirm-os-legal-knowledge-runtime",
+        "LawFirm-os-skills-registry"
+      ],
+      "must_run_when": [
+        "LawFirm-os-semantic-substrate scripts/validation/tests/test_validate_governance_dependency_map.py changes",
+        "router selects matching architecture surface"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "promotion authority without governance decision"
+      ],
+      "expected_runtime_seconds": 10,
+      "full_regression_required": false
+    },
+    {
       "test_id": "LawFirm-os-semantic-substrate.scripts.validation.tests.test_validate_grounded_answer_evaluation_harness.v1",
       "language": "python",
       "framework": "pytest",
@@ -750,6 +797,50 @@
       "full_regression_required": false
     },
     {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_architecture_object_coverage.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_architecture_object_coverage.py",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_architecture_object_coverage.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "repo_local_regression"
+      ],
+      "risk_tier": "medium",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "source_code_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_architecture_object_coverage.py",
+        "src/**/*.py"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime",
+        "LawFirm-os-legal-knowledge-runtime",
+        "LawFirm-os-skills-registry"
+      ],
+      "must_run_when": [
+        "LawFirm-os-semantic-substrate tests/test_architecture_object_coverage.py changes",
+        "router selects matching architecture surface"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "promotion authority without governance decision"
+      ],
+      "expected_runtime_seconds": 5,
+      "full_regression_required": false
+    },
+    {
       "test_id": "LawFirm-os-semantic-substrate.tests.test_ci_test_routing.v1",
       "language": "python",
       "framework": "pytest",
@@ -804,6 +895,222 @@
       "full_regression_required": false
     },
     {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_contract_surface_locking.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_contract_surface_locking.py",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_contract_surface_locking.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "contract_lock",
+        "contract_surface_locking",
+        "schema_surface",
+        "registry_integrity",
+        "governance_boundary"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "source_code_change",
+        "schema_change",
+        "registry_change",
+        "governance_doc_change",
+        "contract_lock_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_contract_surface_locking.py",
+        "scripts/contract_surface.py",
+        "scripts/compute_contract_surface_hash.py",
+        "scripts/validate_contract_surface_*.py",
+        "scripts/validate_contract_lock_drift_workspace.py",
+        "registry/contract-surface-registry.json",
+        "schemas/contract-surface*.schema.json",
+        "governance/CONTRACT_SURFACE_LOCKING_BOUNDARY.md"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "contract_surface_locking",
+        "contract_lock",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime"
+      ],
+      "must_run_when": [
+        "contract-surface registry/schema/scripts change",
+        "consumer contract-lock behavior changes"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "consumer-owned routing authority"
+      ],
+      "expected_runtime_seconds": 10,
+      "full_regression_required": false
+    },
+    {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_contract_surface_spine.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_contract_surface_spine.py",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_contract_surface_spine.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "repo_local_regression",
+        "contract_lock",
+        "cross_repo_integration"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "source_code_change",
+        "contract_lock_change",
+        "cross_repo_integration_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_contract_surface_spine.py",
+        "src/**/*.py"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "contract_lock",
+        "cross_repo",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime",
+        "LawFirm-os-legal-knowledge-runtime",
+        "LawFirm-os-skills-registry"
+      ],
+      "must_run_when": [
+        "LawFirm-os-semantic-substrate tests/test_contract_surface_spine.py changes",
+        "router selects matching architecture surface"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "promotion authority without governance decision"
+      ],
+      "expected_runtime_seconds": 10,
+      "full_regression_required": false
+    },
+    {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_cross_repo_os_smoke.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_cross_repo_os_smoke.py",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_cross_repo_os_smoke.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "repo_local_regression",
+        "contract_lock",
+        "cross_repo_integration"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "source_code_change",
+        "contract_lock_change",
+        "cross_repo_integration_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_cross_repo_os_smoke.py",
+        "src/**/*.py"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "contract_lock",
+        "cross_repo",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime",
+        "LawFirm-os-legal-knowledge-runtime",
+        "LawFirm-os-skills-registry"
+      ],
+      "must_run_when": [
+        "LawFirm-os-semantic-substrate tests/test_cross_repo_os_smoke.py changes",
+        "router selects matching architecture surface"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "promotion authority without governance decision"
+      ],
+      "expected_runtime_seconds": 10,
+      "full_regression_required": false
+    },
+    {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_intake_contract_promotion_review.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_intake_contract_promotion_review.py",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_intake_contract_promotion_review.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "registry_integrity",
+        "governance_boundary",
+        "cross_repo_integration"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "registry_change",
+        "governance_doc_change",
+        "source_code_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_intake_contract_promotion_review.py",
+        "scripts/validate_intake_contract_promotion_review.py",
+        "registry/intake-contract-promotion-review-registry.json",
+        "governance/INTAKE_CONTRACT_PROMOTION_REVIEW.md"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "registry_integrity",
+        "governance_boundary",
+        "cross_repo",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime",
+        "LawFirm-os-legal-knowledge-runtime",
+        "LawFirm-os-skills-registry"
+      ],
+      "must_run_when": [
+        "intake contract promotion review registry changes",
+        "candidate intake contract governance docket changes"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "promotion authority without governance decision",
+        "canonical schema IDs or route IDs"
+      ],
+      "expected_runtime_seconds": 10,
+      "full_regression_required": false
+    },
+    {
       "test_id": "LawFirm-os-semantic-substrate.tests.test_managed_patch_preservation.v1",
       "language": "python",
       "framework": "pytest",
@@ -845,6 +1152,53 @@
         "promotion authority without governance decision"
       ],
       "expected_runtime_seconds": 10,
+      "full_regression_required": false
+    },
+    {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_runtime_reason_codes.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_runtime_reason_codes.py",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_runtime_reason_codes.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "repo_local_regression",
+        "evidence_boundary"
+      ],
+      "risk_tier": "high",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "source_code_change",
+        "evidence_boundary_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_runtime_reason_codes.py",
+        "src/**/*.py"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "high"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime",
+        "LawFirm-os-legal-knowledge-runtime",
+        "LawFirm-os-skills-registry"
+      ],
+      "must_run_when": [
+        "LawFirm-os-semantic-substrate tests/test_runtime_reason_codes.py changes",
+        "router selects matching architecture surface"
+      ],
+      "must_not_validate": [
+        "runtime evidence or execution side effects",
+        "promotion authority without governance decision"
+      ],
+      "expected_runtime_seconds": 5,
       "full_regression_required": false
     },
     {
@@ -947,65 +1301,6 @@
       "full_regression_required": false
     },
     {
-      "test_id": "LawFirm-os-semantic-substrate.tests.test_contract_surface_locking.v1",
-      "language": "python",
-      "framework": "pytest",
-      "artifact_type": "pytest_file",
-      "path": "tests/test_contract_surface_locking.py",
-      "runner_command": "python scripts/run_full_pytest.py tests/test_contract_surface_locking.py -q",
-      "owning_repo": "LawFirm-os-semantic-substrate",
-      "owning_plane": "semantic_substrate",
-      "architecture_surface": [
-        "semantic_substrate_control_plane",
-        "contract_lock",
-        "contract_surface_locking",
-        "schema_surface",
-        "registry_integrity",
-        "governance_boundary"
-      ],
-      "risk_tier": "protected",
-      "change_classes_covered": [
-        "test_artifact_change",
-        "source_code_change",
-        "schema_change",
-        "registry_change",
-        "governance_doc_change",
-        "contract_lock_change"
-      ],
-      "trigger_patterns": [
-        "tests/test_contract_surface_locking.py",
-        "scripts/contract_surface.py",
-        "scripts/compute_contract_surface_hash.py",
-        "scripts/validate_contract_surface_*.py",
-        "scripts/validate_contract_lock_drift_workspace.py",
-        "registry/contract-surface-registry.json",
-        "schemas/contract-surface*.schema.json",
-        "governance/CONTRACT_SURFACE_LOCKING_BOUNDARY.md"
-      ],
-      "markers": [
-        "pytest",
-        "semantic_substrate",
-        "contract_surface_locking",
-        "contract_lock",
-        "protected"
-      ],
-      "upstream_dependencies": [],
-      "downstream_dependencies": [
-        "LawFirm-os-orchestrator",
-        "LawFirm-os-exceptions-lake-runtime"
-      ],
-      "must_run_when": [
-        "contract-surface registry/schema/scripts change",
-        "consumer contract-lock behavior changes"
-      ],
-      "must_not_validate": [
-        "runtime evidence or execution side effects",
-        "consumer-owned routing authority"
-      ],
-      "expected_runtime_seconds": 10,
-      "full_regression_required": false
-    },
-    {
       "test_id": "LawFirm-os-semantic-substrate.tests.test_validate_contract_surface_provenance_modes.v1",
       "language": "python",
       "framework": "pytest",
@@ -1056,61 +1351,6 @@
         "consumer-owned routing authority"
       ],
       "expected_runtime_seconds": 5,
-      "full_regression_required": false
-    },
-    {
-      "test_id": "LawFirm-os-semantic-substrate.tests.test_intake_contract_promotion_review.v1",
-      "language": "python",
-      "framework": "pytest",
-      "artifact_type": "pytest_file",
-      "path": "tests/test_intake_contract_promotion_review.py",
-      "runner_command": "python scripts/run_full_pytest.py tests/test_intake_contract_promotion_review.py -q",
-      "owning_repo": "LawFirm-os-semantic-substrate",
-      "owning_plane": "semantic_substrate",
-      "architecture_surface": [
-        "semantic_substrate_control_plane",
-        "registry_integrity",
-        "governance_boundary",
-        "cross_repo_integration"
-      ],
-      "risk_tier": "protected",
-      "change_classes_covered": [
-        "test_artifact_change",
-        "registry_change",
-        "governance_doc_change",
-        "source_code_change"
-      ],
-      "trigger_patterns": [
-        "tests/test_intake_contract_promotion_review.py",
-        "scripts/validate_intake_contract_promotion_review.py",
-        "registry/intake-contract-promotion-review-registry.json",
-        "governance/INTAKE_CONTRACT_PROMOTION_REVIEW.md"
-      ],
-      "markers": [
-        "pytest",
-        "semantic_substrate",
-        "registry_integrity",
-        "governance_boundary",
-        "cross_repo",
-        "protected"
-      ],
-      "upstream_dependencies": [],
-      "downstream_dependencies": [
-        "LawFirm-os-orchestrator",
-        "LawFirm-os-exceptions-lake-runtime",
-        "LawFirm-os-legal-knowledge-runtime",
-        "LawFirm-os-skills-registry"
-      ],
-      "must_run_when": [
-        "intake contract promotion review registry changes",
-        "candidate intake contract governance docket changes"
-      ],
-      "must_not_validate": [
-        "runtime evidence or execution side effects",
-        "promotion authority without governance decision",
-        "canonical schema IDs or route IDs"
-      ],
-      "expected_runtime_seconds": 10,
       "full_regression_required": false
     },
     {
