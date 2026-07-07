@@ -97,12 +97,16 @@ REQUIRED_COVERED_PATHS = {
     "AI_WORK_START_HERE.md",
     "governance/CROSS_REPO_MAP.md",
     "governance/GOVERNANCE_DEPENDENCY_MAP.md",
+    "governance/LITIGATION_SIMULATION_ADAPTER_BOUNDARY.md",
+    "governance/REAL_WORK_SHADOW_MODE_PILOT_GATES.md",
     "registry/governance-dependency-map.json",
     "registry/governance-full-manifest.json",
     "registry/lawfirm-os-repo-registry.json",
     "registry/registry-full-manifest.json",
+    "scripts/validate_real_work_and_simulation_boundaries.py",
     "scripts/validate_governance_dependency_map.py",
     "scripts/validation/tests/test_validate_governance_dependency_map.py",
+    "tests/test_real_work_and_simulation_boundaries.py",
     "templates/governance-dependency-map-mirror.template.json",
 }
 

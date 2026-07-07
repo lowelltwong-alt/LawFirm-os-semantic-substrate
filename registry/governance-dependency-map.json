@@ -206,7 +206,7 @@
         "AGENTS.md",
         "registry/ai-front-door-registry.json"
       ],
-      "provenance_note": "Existing control-plane front-door surfaces, extended to discover the governance dependency map.",
+      "provenance_note": "Existing control-plane front-door surfaces, extended to discover the governance dependency map. Updated 2026-07-06 to align Exceptions Lake discovery with the live GitHub repo clone name and expose Intake as a sibling vertical repo.",
       "reason_for_inclusion": "Agents and reviewers need the map before editing governance-facing files."
     },
     {
@@ -243,7 +243,7 @@
         "registry/lawfirm-os-repo-registry.json",
         "governance/CROSS_REPO_MAP.md"
       ],
-      "provenance_note": "Records which repo owns each authority plane.",
+      "provenance_note": "Records which repo owns each authority plane. Updated 2026-07-06 to register LawFirm-os-intake as an active governed vertical workflow repo without granting canonical schema, route, event, conflict, budget-approval, or matter-opening authority.",
       "reason_for_inclusion": "Child repos cannot safely mirror governance unless repo authority is deterministic."
     },
     {
@@ -896,6 +896,56 @@
       ],
       "provenance_note": "Added 2026-06-30 after local full pytest exceeded a short/default 300 second ceiling; updated to a 3600 second policy floor after cross-repo validation showed shorter ceilings still cause avoidable reruns. The wrapper applies the policy and blocks raw pytest.",
       "reason_for_inclusion": "Validation command surfaces can change effective governance by turning slow tests into false failures; the timeout policy must be discoverable and enforced."
+    },
+    {
+      "artifact_id": "LFGD-016",
+      "title": "Litigation simulator adapter and real-work shadow-mode gates",
+      "repo": "LawFirm-os-semantic-substrate",
+      "paths": [
+        "governance/LITIGATION_SIMULATION_ADAPTER_BOUNDARY.md",
+        "governance/REAL_WORK_SHADOW_MODE_PILOT_GATES.md",
+        "scripts/validate_real_work_and_simulation_boundaries.py",
+        "tests/test_real_work_and_simulation_boundaries.py"
+      ],
+      "object_type": "simulator_adapter_and_real_work_pilot_boundary",
+      "trust_zone": "control_plane_governance",
+      "lifecycle_status": "active_candidate_policy",
+      "authorized_by": "owner_request_2026_07_06_albers_als_future_adapter_planning",
+      "owner_decision_ref": "governance/REAL_WORK_SHADOW_MODE_PILOT_GATES.md",
+      "depends_on": [
+        "LFGD-001",
+        "LFGD-002",
+        "LFGD-004",
+        "LFGD-005",
+        "LFGD-007",
+        "LFGD-008",
+        "LFGD-014",
+        "LFGD-015"
+      ],
+      "downstream_controls": [
+        "simulator_outputs_remain_decision_support_only",
+        "real_work_shadow_mode_requires_owner_attorney_privacy_and_compliance_decisions",
+        "no_client_carrier_court_or_connector_write_authority",
+        "no_trial_strategy_settlement_conflict_budget_or_matter_opening_authority",
+        "orchestrator_adapter_work_must_consume_substrate_boundary_read_only"
+      ],
+      "mirrored_by": [
+        "LawFirm-os-orchestrator future simulator adapter docs and local mirror",
+        "LawFirm-os-intake future real-work pilot package only after owner gate"
+      ],
+      "validators": [
+        "scripts/validate_real_work_and_simulation_boundaries.py",
+        "tests/test_real_work_and_simulation_boundaries.py",
+        "scripts/validate_governance_dependency_map.py"
+      ],
+      "update_triggers": [
+        "governance/LITIGATION_SIMULATION_ADAPTER_BOUNDARY.md",
+        "governance/REAL_WORK_SHADOW_MODE_PILOT_GATES.md",
+        "scripts/validate_real_work_and_simulation_boundaries.py",
+        "tests/test_real_work_and_simulation_boundaries.py"
+      ],
+      "provenance_note": "Added 2026-07-06 to plan future Albers mock-trial style and ALS simulator adapters without authorizing legal advice, trial strategy, settlement authority, real client data, external writes, Lake/SQLite writes, or production automation.",
+      "reason_for_inclusion": "Simulator adapters and real-work shadow pilots can blur legal advice, client data, privacy, compliance, and automation authority unless the control-plane boundary is explicit and validated."
     }
   ],
   "child_mirror_contract": {
@@ -923,8 +973,8 @@
         "child repos: .github/workflows/pr-description-governance-checks.yml",
         "GitHub branch protection settings for main"
       ],
-      "question": "Should the owner enable branch protection and required status checks for the governance dependency-map, child mirror, and PR-description workflows across all LawFirm OS repos so the gates cannot be bypassed by merging without checks?",
-      "reason": "Local CI workflows are present, but GitHub branch protection/required-check settings are repository settings and cannot be safely changed by code-only PRs without explicit owner permission."
+      "question": "Should the owner make LawFirm-os-intake public, upgrade the GitHub plan, or otherwise enable branch protection so the Intake governance-map mirror and PR-description workflows cannot be bypassed on main?",
+      "reason": "Branch protection and required governance checks were enabled on 2026-07-06 for the five public kernel repos. GitHub returned HTTP 403 for LawFirm-os-intake because branch protection for that private repo requires GitHub Pro or making the repo public."
     }
   ]
 }

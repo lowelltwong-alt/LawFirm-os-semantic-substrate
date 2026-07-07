@@ -76,6 +76,23 @@
       "ai_front_door_required": true,
       "status": "active",
       "exclusion_reason": ""
+    },
+    {
+      "repo_id": "lawfirm-os-intake",
+      "repo_name": "LawFirm-os-intake",
+      "owning_plane": "vertical_workflow_composition",
+      "required_root_files": [
+        "README.md",
+        "AGENTS.md",
+        "AI_WORK_START_HERE.md",
+        "GOVERNANCE_BOUNDARY.md",
+        "REPO_ROLE.md",
+        "skill-agent-manifest.json"
+      ],
+      "skill_agent_manifest_path": "skill-agent-manifest.json",
+      "ai_front_door_required": true,
+      "status": "active",
+      "exclusion_reason": ""
     }
   ],
   "explicit_exclusions": [
