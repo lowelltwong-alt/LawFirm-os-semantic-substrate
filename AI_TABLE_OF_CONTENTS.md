@@ -75,6 +75,8 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `governance/AUTONOMY_RYG_POLICY.md`
 - `governance/CONTINUOUS_AUTONOMY_ASSURANCE.md`
 - `governance/HARNESS_INTENSITY_POLICY.md`
+- `governance/LITIGATION_SIMULATION_ADAPTER_BOUNDARY.md`
+- `governance/REAL_WORK_SHADOW_MODE_PILOT_GATES.md`
 - `governance/RESEARCH_SIGNAL_INGESTION_POLICY.md`
 - `governance/GREEN_RESTORATION_POLICY.md`
 - `governance/INTERNAL_IDEA_LIFECYCLE.md`
@@ -158,5 +160,6 @@ External legal data and PassageRef spans are **evidence**, not canon. Provider-s
 - `scripts/check_repo_drift.py`
 - `scripts/validate_governance_dependency_map.py`
 - `scripts/validate_intake_contract_promotion_review.py`
+- `scripts/validate_real_work_and_simulation_boundaries.py`
 - `scripts/validate_examples.py`
 - `scripts/validation/tests/`
