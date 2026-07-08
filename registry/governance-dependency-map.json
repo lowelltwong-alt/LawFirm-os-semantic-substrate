@@ -168,6 +168,7 @@
                           "title":  "Governance front door and discovery surfaces",
                           "repo":  "LawFirm-os-semantic-substrate",
                           "paths":  [
+                                        "AI_FRONT_DOOR.md",
                                         "AI_START_HERE.md",
                                         "AI_WORK_START_HERE.md",
                                         "AI_TABLE_OF_CONTENTS.md",
@@ -202,13 +203,14 @@
                                              "scripts/validate_governance_dependency_map.py"
                                          ],
                           "update_triggers":  [
+                                                  "AI_FRONT_DOOR.md",
                                                   "AI_START_HERE.md",
                                                   "AI_WORK_START_HERE.md",
                                                   "AI_TABLE_OF_CONTENTS.md",
                                                   "AGENTS.md",
                                                   "registry/ai-front-door-registry.json"
                                               ],
-                          "provenance_note":  "Existing control-plane front-door surfaces, extended to discover the governance dependency map. Updated 2026-07-06 to align Exceptions Lake discovery with the live GitHub repo clone name and expose Intake as a sibling vertical repo.",
+                          "provenance_note":  "Existing control-plane front-door surfaces, extended to discover the governance dependency map. Updated 2026-07-06 to align Exceptions Lake discovery with the live GitHub repo clone name and expose Intake as a sibling vertical repo. Updated 2026-07-08 to cover AI_FRONT_DOOR.md as a first-class front-door/discovery surface during the DAD transport surface v1 rollout.",
                           "reason_for_inclusion":  "Agents and reviewers need the map before editing governance-facing files."
                       },
                       {
