@@ -6,6 +6,8 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 
 ## Start Here
 
+- `registry/adversity-class-registry.candidate.json` - synthetic-only PR-LL4 candidate; no legal conflict or runtime authority
+- `governance/ADVERSITY_CLASS_REGISTRY_BOUNDARY.md` - HD-4/HD-7 boundary and downstream ownership contract
 - `governance/CROSS_REPO_MAP.md`
 - `AI_WORK_START_HERE.md`
 - `AI_START_HERE.md`
@@ -21,6 +23,7 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 
 ## Canonical Registries
 
+- `registry/adversity-class-registry.candidate.json` - draft synthetic adversity vocabulary pinned to Intake PR #74
 - `registry/source-of-truth.json`
 - `registry/design-authority.json`
 - `registry/schema-registry.json`

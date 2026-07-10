@@ -6,6 +6,7 @@
     "governance/ADDRESS_MIGRATION_MODEL.md",
     "governance/ADDRESS_SYSTEM_EVOLUTION.md",
     "governance/ADDRESS_SYSTEM_SPEC.md",
+    "governance/ADVERSITY_CLASS_REGISTRY_BOUNDARY.md",
     "governance/AGENT_HOSTILE_CONTROL_BOUNDARY.md",
     "governance/AIRCA_ALIGNMENT.md",
     "governance/AI_CONTROL_PLANE_BOUNDARY.md",

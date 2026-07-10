@@ -3,6 +3,7 @@
   "registry_id": "registry-full-manifest.v1",
   "generated": true,
   "paths": [
+    "registry/adversity-class-registry.candidate.json",
     "registry/ai-front-door-registry.json",
     "registry/agent-control-contract-export.json",
     "registry/agent-hostile-control-registry.json",

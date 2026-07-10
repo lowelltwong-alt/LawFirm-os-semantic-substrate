@@ -1114,6 +1114,64 @@
       "full_regression_required": false
     },
     {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_adversity_class_registry.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_adversity_class_registry.py",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_adversity_class_registry.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "registry_integrity",
+        "governance_boundary",
+        "cross_repo_integration"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "schema_change",
+        "registry_change",
+        "governance_doc_change",
+        "source_code_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_adversity_class_registry.py",
+        "scripts/validate_adversity_class_registry.py",
+        "schemas/adversity-class-registry.schema.json",
+        "registry/adversity-class-registry.candidate.json",
+        "governance/ADVERSITY_CLASS_REGISTRY_BOUNDARY.md"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "registry_integrity",
+        "governance_boundary",
+        "cross_repo",
+        "protected"
+      ],
+      "upstream_dependencies": [
+        "LawFirm-os-intake"
+      ],
+      "downstream_dependencies": [
+        "LawFirm-os-orchestrator",
+        "LawFirm-os-exceptions-lake-runtime"
+      ],
+      "must_run_when": [
+        "candidate adversity schema, registry, boundary, or validator changes",
+        "Intake or Orchestrator Chinese-wall compatibility anchors change"
+      ],
+      "must_not_validate": [
+        "real client, matter, carrier, privileged, or work-product data",
+        "legal conflict or firm-wide imputation authority",
+        "runtime execution, lesson firing, conflict clearance, or external writes",
+        "canonical meaning, schema, registry, or promotion authority"
+      ],
+      "expected_runtime_seconds": 10,
+      "full_regression_required": false
+    },
+    {
       "test_id": "LawFirm-os-semantic-substrate.tests.test_validation_runtime_policy.v1",
       "language": "python",
       "framework": "pytest",

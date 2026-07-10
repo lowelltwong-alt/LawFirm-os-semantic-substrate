@@ -105,3 +105,7 @@ governance authority.
   authorize legal advice, trial strategy, settlement authority, real client
   data, external writes, Lake/SQLite writes, connector writes, or production
   automation.
+- `LFGD-017` records the synthetic-only adversity class candidate and its
+  Intake/Orchestrator ownership boundary. It pins exact fixture edges, holds on
+  unknown or unreviewed relationships, and assigns no legal conflict,
+  firm-wide-imputation, clearance, lesson-firing, runtime, or real-data authority.

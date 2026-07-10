@@ -40,7 +40,24 @@
     "skills_registry": "LawFirm-os-skills-registry",
     "intake": "LawFirm-os-intake"
   },
+  "sibling_repo_folder_aliases": {
+    "exception_lake": [
+      "LawFirm-os-exceptions-lake-runtime-main"
+    ]
+  },
+  "sibling_repo_identity_contracts": {
+    "exception_lake": {
+      "manifest_path": "skill-agent-manifest.json",
+      "required_fields": {
+        "owning_repo": "LawFirm-os-exceptions-lake-runtime",
+        "owning_plane": "exception_lake"
+      }
+    }
+  },
   "integration_path_anchors": [
+    {"repo": "semantic_substrate", "path": "governance/ADVERSITY_CLASS_REGISTRY_BOUNDARY.md"},
+    {"repo": "semantic_substrate", "path": "registry/adversity-class-registry.candidate.json"},
+    {"repo": "semantic_substrate", "path": "schemas/adversity-class-registry.schema.json"},
     {"repo": "semantic_substrate", "path": "governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md"},
     {"repo": "semantic_substrate", "path": "registry/governance-decision-dependency-atlas.seed.json"},
     {"repo": "semantic_substrate", "path": "schemas/legal-agent-safety-check.schema.json"},

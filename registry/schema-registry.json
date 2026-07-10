@@ -1096,6 +1096,19 @@
       "supersedes": null
     },
     {
+      "schema_id": "adversity-class-registry-v0_1",
+      "version": "0.1.0",
+      "status": "draft",
+      "path": "schemas/adversity-class-registry.schema.json",
+      "applies_to": [
+        "adversity-class-registry-candidate"
+      ],
+      "layer": "policy_and_governance",
+      "owner": "legal-operations-governance",
+      "supersedes": null,
+      "notes": "Synthetic-only PR-LL4 candidate shape. It assigns no canonical adversity classes, legal imputation policy, conflict clearance, runtime authority, or real-data permission."
+    },
+    {
       "schema_id": "eval-candidate-v1",
       "version": "1.0.0",
       "status": "active",
@@ -1133,6 +1146,7 @@
     "Gold Standard lands here as the first draft canonical KM family. It remains intentionally narrow and anchored to existing canonical documents, source artifacts, components, spans, and policy references.",
     "Innovation OS operating-object contracts are intentionally still marked draft even after field normalization because broader example and validator coverage is not complete yet.",
     "Phase 2 Innovation Autonomy grouped schemas are additive for genuinely new surfaces. Existing root-level Innovation OS schemas remain in place and are discovered through registry entries.",
+    "The adversity-class registry schema remains draft and synthetic-only pending HD-4 counsel decisions, HD-7 real-data approvals, and a later human promotion decision.",
     "Stub schemas, legacy helpers, and extension-local registries remain outside this primary surface until they are reconciled in place."
   ]
 }

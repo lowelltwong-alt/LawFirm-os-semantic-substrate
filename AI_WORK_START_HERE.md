@@ -43,7 +43,8 @@ Before any AI-assisted edit, read:
 13. `governance/DECISION_BOTTLENECK_AND_DECISION_MODELS.md` when touching decision models, approval gates, evidence minimums, or autonomy authority
 14. `registry/decision-model-registry.seed.json` when routing or validating decision-model coverage
 15. `registry/governance-dependency-map.json` and `governance/GOVERNANCE_DEPENDENCY_MAP.md` when changing governance-facing files, validators, CI, PR-description rules, repo authority, client-data boundaries, privacy/compliance boundaries, or downstream local mirrors
-16. the selected route template under `docs/governance/ai-workflow/templates/`
+16. `registry/adversity-class-registry.candidate.json` and `governance/ADVERSITY_CLASS_REGISTRY_BOUNDARY.md` when touching cross-matter learning, conflict-class candidates, Chinese-wall enforcement, or lesson firing
+17. the selected route template under `docs/governance/ai-workflow/templates/`
 
 Architecture sync gate (PR-09 — run when changing spine schemas, exports, or cross-repo commands):
 

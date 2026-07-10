@@ -50,6 +50,7 @@ Existing root-level Innovation OS schemas remain in place for backward compatibi
 
 See:
 
+- `registry/adversity-class-registry.candidate.json` and `governance/ADVERSITY_CLASS_REGISTRY_BOUNDARY.md` for the synthetic-only PR-LL4 adversity vocabulary review contract; it does not define legal conflict classes or authorize runtime use.
 - `governance/PHASE_2_SCHEMA_PLACEMENT.md`
 - `governance/PHASE_2_ROADMAP.md`
 - `governance/INNOVATION_AUTONOMY_LAYER.md`

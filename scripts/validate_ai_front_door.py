@@ -49,7 +49,32 @@ def _workspace(substrate_root: Path) -> Path:
 
 def _sibling(substrate_root: Path, fd: dict[str, Any], key: str) -> Path:
     name = fd["sibling_repo_folder_names"][key]
-    return _workspace(substrate_root) / name
+    canonical = _workspace(substrate_root) / name
+    if canonical.exists():
+        return canonical
+    aliases = fd.get("sibling_repo_folder_aliases", {}).get(key, [])
+    for alias in aliases:
+        candidate = _workspace(substrate_root) / alias
+        if candidate.exists() and _sibling_identity_matches(candidate, fd, key):
+            return candidate
+    return canonical
+
+
+def _sibling_identity_matches(path: Path, fd: dict[str, Any], key: str) -> bool:
+    contract = fd.get("sibling_repo_identity_contracts", {}).get(key)
+    if not isinstance(contract, dict):
+        return True
+    manifest_path = contract.get("manifest_path")
+    required_fields = contract.get("required_fields")
+    if not isinstance(manifest_path, str) or not isinstance(required_fields, dict):
+        return False
+    try:
+        manifest = _read_json(path / manifest_path)
+    except (OSError, json.JSONDecodeError):
+        return False
+    return isinstance(manifest, dict) and all(
+        manifest.get(field) == expected for field, expected in required_fields.items()
+    )
 
 
 def validate_ai_front_door(substrate_root: Path | None = None) -> list[str]:
@@ -59,6 +84,13 @@ def validate_ai_front_door(substrate_root: Path | None = None) -> list[str]:
     if not fd_path.exists():
         return [f"missing {fd_path}"]
     fd = _read_json(fd_path)
+
+    for key in fd.get("sibling_repo_identity_contracts", {}):
+        sibling = _sibling(root, fd, key)
+        if not sibling.exists():
+            errors.append(f"sibling repo missing for identity contract: {key}")
+        elif not _sibling_identity_matches(sibling, fd, key):
+            errors.append(f"sibling repo identity contract failed: {key}:{sibling}")
 
     for sub in fd.get("toc_required_substrings", []):
         for toc_name in fd.get("toc_files_must_reference_registry", []):
@@ -122,21 +154,19 @@ def validate_ai_front_door(substrate_root: Path | None = None) -> list[str]:
         if set(actual_g) != declared_g:
             errors.append("governance-full-manifest.json is out of sync with governance/**/*.md; regenerate it")
 
-    ws = _workspace(root)
-    folder_map = fd["sibling_repo_folder_names"]
     for anchor in fd.get("integration_path_anchors", []):
         repo = anchor["repo"]
         rel = anchor["path"]
         if repo == "semantic_substrate":
             base = root
         elif repo == "orchestrator":
-            base = ws / folder_map["orchestrator"]
+            base = _sibling(root, fd, "orchestrator")
         elif repo == "legal_knowledge_runtime":
-            base = ws / folder_map["legal_knowledge_runtime"]
+            base = _sibling(root, fd, "legal_knowledge_runtime")
         elif repo == "exception_lake":
-            base = ws / folder_map["exception_lake"]
+            base = _sibling(root, fd, "exception_lake")
         elif repo == "skills_registry":
-            base = ws / folder_map["skills_registry"]
+            base = _sibling(root, fd, "skills_registry")
         else:
             errors.append(f"unknown repo key in integration_path_anchors: {repo}")
             continue
@@ -162,13 +192,13 @@ def validate_ai_front_door(substrate_root: Path | None = None) -> list[str]:
                 if not (root / doc).exists():
                     errors.append(f"endpoint {ep.get('id')} related_docs missing on substrate: {doc}")
             elif doc.startswith("docs/"):
-                orch = ws / folder_map["orchestrator"]
+                orch = _sibling(root, fd, "orchestrator")
                 if not (orch / doc).exists():
                     errors.append(f"endpoint {ep.get('id')} related_docs missing on orchestrator: {doc}")
             else:
                 errors.append(f"endpoint {ep.get('id')} related_docs must start with governance/ or docs/: {doc}")
 
-    skills_root = ws / folder_map["skills_registry"]
+    skills_root = _sibling(root, fd, "skills_registry")
     index_path = skills_root / fd.get("draft_skill_index", "registry/proposed-draft-skill-index.json")
     if not index_path.exists():
         errors.append(f"missing skills draft index {index_path}")
@@ -196,7 +226,7 @@ def validate_ai_front_door(substrate_root: Path | None = None) -> list[str]:
                 errors.append(f"draft skill folder {sid} not listed in {index_path.relative_to(skills_root)}")
 
     for ev in fd.get("event_examples", []):
-        base = ws / folder_map["exception_lake"]
+        base = _sibling(root, fd, "exception_lake")
         rel = ev["path"]
         if not (base / rel).exists():
             errors.append(f"event example missing: {rel}")

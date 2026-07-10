@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lawfirm_os.adversity_class_registry.v0_1",
+  "title": "Candidate Adversity Class Registry",
+  "description": "Synthetic-only candidate contract for exact adversity edges. It does not define legal conflict classes, firm-wide imputation policy, or runtime authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "registry_id",
+    "status",
+    "owner_repo",
+    "source_repo",
+    "governance_doc",
+    "usage_contract",
+    "human_decisions",
+    "authority",
+    "compatibility_anchors",
+    "synthetic_case_manifest",
+    "synthetic_fixture_graph"
+  ],
+  "properties": {
+    "schema_version": {"const": "adversity_class_registry.v0_1"},
+    "registry_id": {"const": "adversity-class-registry.candidate.v0_1"},
+    "status": {"const": "candidate_synthetic_only"},
+    "owner_repo": {"const": "LawFirm-os-semantic-substrate"},
+    "source_repo": {"const": "LawFirm-os-intake"},
+    "governance_doc": {"const": "governance/ADVERSITY_CLASS_REGISTRY_BOUNDARY.md"},
+    "usage_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applies_when",
+        "does_not_apply_when",
+        "danger_if_misapplied",
+        "exact_declared_edges_only",
+        "unknown_relationship_holds",
+        "unreviewed_relationship_holds",
+        "local_rules_may_override",
+        "runtime_consumers_may_mutate"
+      ],
+      "properties": {
+        "applies_when": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "does_not_apply_when": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "danger_if_misapplied": {"type": "string", "minLength": 20},
+        "exact_declared_edges_only": {"const": true},
+        "unknown_relationship_holds": {"const": true},
+        "unreviewed_relationship_holds": {"const": true},
+        "local_rules_may_override": {"const": false},
+        "runtime_consumers_may_mutate": {"const": false}
+      }
+    },
+    "human_decisions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hd_4_authoritative_adversity_classes_decided",
+        "hd_4_firm_wide_legal_imputation_decided",
+        "hd_7_real_data_pilot_approved"
+      ],
+      "properties": {
+        "hd_4_authoritative_adversity_classes_decided": {"const": false},
+        "hd_4_firm_wide_legal_imputation_decided": {"const": false},
+        "hd_7_real_data_pilot_approved": {"const": false}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_only",
+        "canonical_adversity_classes_assigned",
+        "authoritative_firm_wide_imputation_policy_assigned",
+        "conflict_clearance_authorized",
+        "lesson_fire_authorized",
+        "runtime_execution_authorized",
+        "real_data_pilot_authorized",
+        "external_writes_authorized",
+        "legal_or_compliance_authority_exercised"
+      ],
+      "properties": {
+        "candidate_only": {"const": true},
+        "canonical_adversity_classes_assigned": {"const": false},
+        "authoritative_firm_wide_imputation_policy_assigned": {"const": false},
+        "conflict_clearance_authorized": {"const": false},
+        "lesson_fire_authorized": {"const": false},
+        "runtime_execution_authorized": {"const": false},
+        "real_data_pilot_authorized": {"const": false},
+        "external_writes_authorized": {"const": false},
+        "legal_or_compliance_authority_exercised": {"const": false}
+      }
+    },
+    "compatibility_anchors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_candidate_pr",
+        "source_candidate_commit",
+        "synthetic_adversity_graph_digest",
+        "synthetic_case_manifest_digest"
+      ],
+      "properties": {
+        "source_candidate_pr": {"const": "https://github.com/lowelltwong-alt/LawFirm-os-intake/pull/74"},
+        "source_candidate_commit": {"const": "22c5be92b8c741ab2c23c6317128ee4a28d2161f"},
+        "synthetic_adversity_graph_digest": {"const": "sha256:355b0c259de100e4000211e26e4c38b9b69c0e3c4f9a6927c8d5ff5e34b762a4"},
+        "synthetic_case_manifest_digest": {"const": "sha256:6777f21c501303c56568d6fc7a506335bce625dbfac2a1a7dfa8b8bb8b7adafa"}
+      }
+    },
+    "synthetic_case_manifest": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {"$ref": "#/$defs/syntheticCase"}
+    },
+    "synthetic_fixture_graph": {"$ref": "#/$defs/syntheticAdversityGraph"}
+  },
+  "$defs": {
+    "syntheticCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["request_id", "lesson_id", "provenance", "consumer"],
+      "properties": {
+        "request_id": {"type": "string", "pattern": "^synthetic-chw-[a-z0-9-]+$"},
+        "lesson_id": {"type": "string", "pattern": "^synthetic-lesson-[a-z0-9-]+$"},
+        "provenance": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^synthetic-coi-class-[a-z0-9-]+$"}
+        },
+        "consumer": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^synthetic-coi-class-[a-z0-9-]+$"}
+        }
+      }
+    },
+    "syntheticConflictClass": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class_id",
+        "definition_status",
+        "member_ref_count",
+        "member_refs_included",
+        "counsel_classification_authority_verified"
+      ],
+      "properties": {
+        "class_id": {"type": "string", "pattern": "^synthetic-coi-class-[a-z0-9-]+$"},
+        "definition_status": {"const": "synthetic_policy_placeholder"},
+        "member_ref_count": {"type": "integer", "minimum": 1},
+        "member_refs_included": {"const": false},
+        "counsel_classification_authority_verified": {"const": false}
+      }
+    },
+    "syntheticAdversityEdge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "edge_id",
+        "class_ids",
+        "review_status",
+        "source_ref",
+        "counsel_adversity_authority_verified",
+        "inferred_from_similarity"
+      ],
+      "properties": {
+        "edge_id": {"type": "string", "pattern": "^synthetic-adversity-edge-[a-z0-9-]+$"},
+        "class_ids": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^synthetic-coi-class-[a-z0-9-]+$"}
+        },
+        "review_status": {"enum": ["synthetic_fixture_reviewed", "unreviewed_fixture"]},
+        "source_ref": {"type": "string", "pattern": "^synthetic-policy-ref:[a-z0-9-]+$"},
+        "counsel_adversity_authority_verified": {"const": false},
+        "inferred_from_similarity": {"const": false}
+      }
+    },
+    "syntheticAdversityGraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "graph_id",
+        "graph_version",
+        "data_class",
+        "runtime_scope",
+        "candidate_only",
+        "policy_status",
+        "conflict_classes",
+        "adversity_edges",
+        "firm_wide_imputation_required",
+        "counsel_adversity_classes_authority_verified",
+        "adversity_inference_performed",
+        "contains_real_data",
+        "contains_private_data",
+        "contains_client_data",
+        "contains_matter_data",
+        "contains_real_carrier_data",
+        "contains_privileged_content",
+        "contains_work_product"
+      ],
+      "properties": {
+        "graph_id": {"const": "synthetic-adversity-graph-v1"},
+        "graph_version": {"const": "synthetic-policy-placeholder-v1"},
+        "data_class": {"const": "synthetic_fixture"},
+        "runtime_scope": {"const": "synthetic_candidate"},
+        "candidate_only": {"const": true},
+        "policy_status": {"const": "synthetic_policy_placeholder"},
+        "conflict_classes": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"$ref": "#/$defs/syntheticConflictClass"}
+        },
+        "adversity_edges": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/syntheticAdversityEdge"}
+        },
+        "firm_wide_imputation_required": {"const": true},
+        "counsel_adversity_classes_authority_verified": {"const": false},
+        "adversity_inference_performed": {"const": false},
+        "contains_real_data": {"const": false},
+        "contains_private_data": {"const": false},
+        "contains_client_data": {"const": false},
+        "contains_matter_data": {"const": false},
+        "contains_real_carrier_data": {"const": false},
+        "contains_privileged_content": {"const": false},
+        "contains_work_product": {"const": false}
+      }
+    }
+  }
+}

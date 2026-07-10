@@ -4,7 +4,7 @@
     "status":  "active",
     "source_repo":  "LawFirm-os-semantic-substrate",
     "owner":  "LawFirm OS governance owners",
-    "provenance_note":  "Created 2026-06-29 from the Logos governance dependency-map pattern, translated into LawFirm OS control-plane, client-data, privacy, compliance, automation-authority, and repo-ownership terms. Updated 2026-07-08 for DAD transport surface v1 rollout: AI front-door and TOC paths now point to versioned DAD local-pull transport metadata while preserving upstream governance-map authority, child-repo local authority, candidate-only data handling, and no external write authorization.",
+    "provenance_note":  "Created 2026-06-29 from the Logos governance dependency-map pattern, translated into LawFirm OS control-plane, client-data, privacy, compliance, automation-authority, and repo-ownership terms. Updated 2026-07-08 for DAD transport surface v1 rollout: AI front-door and TOC paths now point to versioned DAD local-pull transport metadata while preserving upstream governance-map authority, child-repo local authority, candidate-only data handling, and no external write authorization. Updated 2026-07-10 for the PR-LL4 synthetic-only adversity class candidate, exact-edge validator, and Intake/Orchestrator ownership boundary; HD-4 and HD-7 remain unresolved and no legal, runtime, or real-data authority is assigned.",
     "reason_for_inclusion":  "Governance-facing changes must update the map, local mirrors, discovery surfaces, and validators deterministically instead of relying on chat memory or local convenience.",
     "map_authority":  {
                           "records_governance_dependencies":  true,
@@ -176,7 +176,9 @@
                                         "README.md",
                                         "registry/ai-front-door-registry.json",
                                         "registry/registry-full-manifest.json",
-                                        "registry/governance-full-manifest.json"
+                                        "registry/governance-full-manifest.json",
+                                        "scripts/validate_ai_front_door.py",
+                                        "tests/test_ai_front_door_integrity.py"
                                     ],
                           "object_type":  "governance_front_door",
                           "trust_zone":  "canonical",
@@ -208,9 +210,11 @@
                                                   "AI_WORK_START_HERE.md",
                                                   "AI_TABLE_OF_CONTENTS.md",
                                                   "AGENTS.md",
-                                                  "registry/ai-front-door-registry.json"
+                                                  "registry/ai-front-door-registry.json",
+                                                  "scripts/validate_ai_front_door.py",
+                                                  "tests/test_ai_front_door_integrity.py"
                                               ],
-                          "provenance_note":  "Existing control-plane front-door surfaces, extended to discover the governance dependency map. Updated 2026-07-06 to align Exceptions Lake discovery with the live GitHub repo clone name and expose Intake as a sibling vertical repo. Updated 2026-07-08 to cover AI_FRONT_DOOR.md as a first-class front-door/discovery surface during the DAD transport surface v1 rollout.",
+                          "provenance_note":  "Existing control-plane front-door surfaces, extended to discover the governance dependency map. Updated 2026-07-06 to align Exceptions Lake discovery with the live GitHub repo clone name and expose Intake as a sibling vertical repo. Updated 2026-07-08 to cover AI_FRONT_DOOR.md as a first-class front-door/discovery surface during the DAD transport surface v1 rollout. Updated 2026-07-10 so local validation prefers the canonical Exceptions Lake clone name and may fall back to the explicitly declared -main checkout alias when the canonical folder is absent.",
                           "reason_for_inclusion":  "Agents and reviewers need the map before editing governance-facing files."
                       },
                       {
@@ -960,6 +964,72 @@
                                               ],
                           "provenance_note":  "Added 2026-07-06 to plan future Albers mock-trial style and ALS simulator adapters without authorizing legal advice, trial strategy, settlement authority, real client data, external writes, Lake/SQLite writes, or production automation.",
                           "reason_for_inclusion":  "Simulator adapters and real-work shadow pilots can blur legal advice, client data, privacy, compliance, and automation authority unless the control-plane boundary is explicit and validated."
+                      },
+                      {
+                          "artifact_id":  "LFGD-017",
+                          "title":  "Synthetic adversity class candidate and Chinese-wall ownership boundary",
+                          "repo":  "LawFirm-os-semantic-substrate",
+                          "paths":  [
+                                        "schemas/adversity-class-registry.schema.json",
+                                        "registry/adversity-class-registry.candidate.json",
+                                        "governance/ADVERSITY_CLASS_REGISTRY_BOUNDARY.md",
+                                        "scripts/validate_adversity_class_registry.py",
+                                        "tests/test_adversity_class_registry.py",
+                                        "registry/schema-registry.json",
+                                        "registry/ai-front-door-registry.json",
+                                        "registry/registry-full-manifest.json",
+                                        "registry/governance-full-manifest.json",
+                                        "AI_WORK_START_HERE.md",
+                                        "AI_TABLE_OF_CONTENTS.md",
+                                        "README.md",
+                                        "ci-test-manifest.json"
+                                    ],
+                          "object_type":  "candidate_adversity_class_registry",
+                          "trust_zone":  "control_plane_synthetic_candidate",
+                          "lifecycle_status":  "candidate_synthetic_only",
+                          "authorized_by":  "owner_approved_fable_learning_leakage_buildout_2026_07_10",
+                          "owner_decision_ref":  "registry/adversity-class-registry.candidate.json",
+                          "depends_on":  [
+                                             "LFGD-001",
+                                             "LFGD-002",
+                                             "LFGD-004",
+                                             "LFGD-005",
+                                             "LFGD-007",
+                                             "LFGD-008",
+                                             "LFGD-014",
+                                             "LFGD-015"
+                                         ],
+                          "downstream_controls":  [
+                                                      "exact_digest_pinned_synthetic_graph_only",
+                                                      "unknown_and_unreviewed_relationships_hold",
+                                                      "no_inferred_adversity_edges",
+                                                      "no_canonical_conflict_classes_or_legal_imputation_before_hd_4",
+                                                      "no_real_data_before_hd_7",
+                                                      "no_conflict_clearance_lesson_fire_runtime_write_or_promotion_authority",
+                                                      "child_repos_consume_read_only_and_may_not_override"
+                                                  ],
+                          "mirrored_by":  [
+                                              "LawFirm-os-intake PR #74 synthetic graph and reviewed-learning gate",
+                                              "LawFirm-os-orchestrator future PR-LL4 read-only synthetic enforcement adapter"
+                                          ],
+                          "validators":  [
+                                             "scripts/validate_adversity_class_registry.py",
+                                             "tests/test_adversity_class_registry.py",
+                                             "scripts/validate_ai_front_door.py",
+                                             "scripts/validate_governance_dependency_map.py"
+                                         ],
+                          "update_triggers":  [
+                                                  "schemas/adversity-class-registry.schema.json",
+                                                  "registry/adversity-class-registry.candidate.json",
+                                                  "governance/ADVERSITY_CLASS_REGISTRY_BOUNDARY.md",
+                                                  "scripts/validate_adversity_class_registry.py",
+                                                  "tests/test_adversity_class_registry.py",
+                                                  "AI_WORK_START_HERE.md",
+                                                  "AI_TABLE_OF_CONTENTS.md",
+                                                  "README.md"
+                                              ],
+                          "provenance_note":  "Added 2026-07-10 from LawFirm OS Intake PR #74 as a closed synthetic candidate. The fixed graph digest and case-manifest digest provide compatibility anchors only; they do not decide HD-4 legal classes or imputation, HD-7 real-data use, conflict clearance, lesson firing, runtime execution, or external writes.",
+                          "reason_for_inclusion":  "Cross-matter lesson controls can weaken privacy, professional-responsibility, and repository authority if child repos invent or drift adversity classes. The candidate must be owned, discoverable, and fail-closed in the control plane before any runtime adapter exists."
                       }
                   ],
     "child_mirror_contract":  {
