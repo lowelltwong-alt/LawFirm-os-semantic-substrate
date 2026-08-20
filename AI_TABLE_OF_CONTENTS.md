@@ -75,6 +75,8 @@ Canonical machine name: `LawFirm-os-semantic-substrate`. Human label: Law Firm O
 - `governance/AUTONOMY_RYG_POLICY.md`
 - `governance/CONTINUOUS_AUTONOMY_ASSURANCE.md`
 - `governance/HARNESS_INTENSITY_POLICY.md`
+- `governance/LITIGATION_SIMULATION_ADAPTER_BOUNDARY.md`
+- `governance/REAL_WORK_SHADOW_MODE_PILOT_GATES.md`
 - `governance/RESEARCH_SIGNAL_INGESTION_POLICY.md`
 - `governance/GREEN_RESTORATION_POLICY.md`
 - `governance/INTERNAL_IDEA_LIFECYCLE.md`
@@ -158,5 +160,17 @@ External legal data and PassageRef spans are **evidence**, not canon. Provider-s
 - `scripts/check_repo_drift.py`
 - `scripts/validate_governance_dependency_map.py`
 - `scripts/validate_intake_contract_promotion_review.py`
+- `scripts/validate_real_work_and_simulation_boundaries.py`
 - `scripts/validate_examples.py`
 - `scripts/validation/tests/`
+
+<!-- BEGIN DIGITAL_ASSET_DIRECTORY_TOC_ROWS -->
+| Path | What It Is | Tags | Use When |
+| --- | --- | --- | --- |
+| `.digital-asset/dad-integration.json` | Versioned DAD enrollment contract and approved write boundary. | dad, enrollment, governance | Confirm DAD cadence, control planes, approval IDs, and managed paths. |
+| `.digital-asset/context-map.json` | Repo context to DAD asset/control-plane route map. | dad, context, assets | Choose relevant DAD assets, skills, templates, or architecture references for a task. |
+| `.digital-asset/governance-map.yaml` | Repo-local governance dependency mirror. | governance, authority, dependencies | Check local authority boundaries and DAD-managed surfaces. |
+| `.digital-asset/data-map.yaml` | Repo-local sensitive-boundary and data-movement map. | data-map, privacy, release | Check what data can move through DAD mail or public-facing release paths. |
+| `.digital-asset/mail/` | Candidate-only DAD inbox/outbox/archive. | mail, suggestions, daily | Read or send cross-repo suggestions without mutating source authority. |
+| `.digital-asset/assets/index.jsonl` | Repo-local metadata-only digital asset cards using compact DAD address layers. | assets, address-model, learning | Record source-owned asset pointers, workflow refs, validation refs, and learning deltas without copying private content. |
+<!-- END DIGITAL_ASSET_DIRECTORY_TOC_ROWS -->

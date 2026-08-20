@@ -62,14 +62,21 @@ authority flags or convert local workflow convenience into governance authority.
 
 ## Red-Team Finding
 
-Code changes can add validators and workflows, but they cannot by themselves
-make GitHub require those checks before merge. As of the 2026-06-29 preflight,
-`main` branch protection / required-check settings were not reported as enabled
-for the LawFirm OS repos checked by `gh api`.
+Code changes can add validators and workflows, but repository settings decide
+whether GitHub requires those checks before merge. As of 2026-07-06, branch
+protection with the governance dependency-map or local mirror check plus the
+PR-description governance check is enabled for these public kernel repos:
 
-Blocked owner question: should the owner enable branch protection and required
-status checks for the governance dependency-map, child mirror, and PR-description
-workflows across all LawFirm OS repos?
+- `LawFirm-os-semantic-substrate`
+- `LawFirm-os-orchestrator`
+- `LawFirm-os-exceptions-lake-runtime`
+- `LawFirm-os-legal-knowledge-runtime`
+- `LawFirm-os-skills-registry`
+
+Blocked owner question: `LawFirm-os-intake` is registered as an active governed
+vertical workflow repo, but GitHub returned HTTP 403 when enabling branch
+protection because private-repo branch protection requires GitHub Pro or making
+the repository public.
 
 ## LawFirm OS Translation Notes
 
@@ -93,3 +100,8 @@ governance authority.
 - `LFGD-015` records the validation runtime policy for pytest. It keeps full and
   focused pytest behind the policy wrapper with a 3600 second floor so local
   validation does not silently inherit a short/default timeout ceiling.
+- `LFGD-016` records the future litigation simulator adapter boundary and the
+  real-work shadow-mode pilot gates. It is decision-support only and does not
+  authorize legal advice, trial strategy, settlement authority, real client
+  data, external writes, Lake/SQLite writes, connector writes, or production
+  automation.

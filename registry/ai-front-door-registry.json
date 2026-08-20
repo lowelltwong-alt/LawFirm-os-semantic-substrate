@@ -36,8 +36,9 @@
   "sibling_repo_folder_names": {
     "orchestrator": "LawFirm-os-orchestrator",
     "legal_knowledge_runtime": "LawFirm-os-legal-knowledge-runtime",
-    "exception_lake": "LawFirm-os-exceptions-lake-runtime-main",
-    "skills_registry": "LawFirm-os-skills-registry"
+    "exception_lake": "LawFirm-os-exceptions-lake-runtime",
+    "skills_registry": "LawFirm-os-skills-registry",
+    "intake": "LawFirm-os-intake"
   },
   "integration_path_anchors": [
     {"repo": "semantic_substrate", "path": "governance/GOVERNANCE_DECISION_DEPENDENCY_ATLAS.md"},
