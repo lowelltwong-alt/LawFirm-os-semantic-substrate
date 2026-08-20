@@ -86,6 +86,17 @@ def active_repo_names(workspace: Path) -> set[str]:
             out.add(entry.get('repo_name') or entry.get('repo_id'))
     return {x for x in out if x}
 
+def active_exclusion_overlaps(registry: dict[str, Any]) -> list[str]:
+    active = {
+        entry.get('repo_name') or entry.get('repo_id')
+        for entry in registry.get('repos', [])
+        if entry.get('status') == 'active'
+    }
+    return sorted(
+        name for name in active
+        if name and is_explicitly_excluded_repo(name, registry.get('explicit_exclusions', []))
+    )
+
 def repo_plane(repo: str, workspace: Path | None = None) -> str:
     if workspace:
         try:
@@ -234,7 +245,10 @@ def main() -> int:
     registry = load_repo_registry(workspace)
     repos = discover_repo_dirs(workspace, registry.get('explicit_exclusions', []))
     active = active_repo_names(workspace)
-    errors = []
+    errors = [
+        f'{repo}: active repository may not be explicitly excluded'
+        for repo in active_exclusion_overlaps(registry)
+    ]
     for repo, repo_dir in sorted(repos.items()):
         if repo not in active:
             errors.append(f'{repo}: repo directory exists but is not active in lawfirm-os-repo-registry.json')

@@ -82,3 +82,61 @@ def test_repo_registry_explicit_exclusions_skip_candidate_repos(tmp_path):
 
     assert onboarding.returncode == 0, onboarding.stderr
     assert registration.returncode == 0, registration.stderr
+
+
+def test_active_repo_may_not_be_explicitly_excluded(tmp_path):
+    workspace = tmp_path / "workspace"
+    substrate = workspace / "LawFirm-os-semantic-substrate"
+    candidate = workspace / "LawFirm-os-private-candidate"
+    substrate.mkdir(parents=True)
+    candidate.mkdir()
+
+    for name in ["README.md", "AGENTS.md", "AI_WORK_START_HERE.md"]:
+        (substrate / name).write_text("LawFirm-os-semantic-substrate\n", encoding="utf-8")
+    (substrate / "skill-agent-manifest.json").write_text('{"artifacts":[]}\n', encoding="utf-8")
+    (substrate / "ci-test-manifest.json").write_text(
+        json.dumps(
+            {
+                "repo": "LawFirm-os-semantic-substrate",
+                "owning_plane": "semantic_substrate",
+                "test_artifacts": [],
+                "no_tests_yet_rationale": "temp fixture",
+                "temporary_until": "2026-12-31",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    registry = {
+        "repos": [
+            {
+                "repo_id": "lawfirm-os-semantic-substrate",
+                "repo_name": "LawFirm-os-semantic-substrate",
+                "owning_plane": "semantic_substrate",
+                "status": "active",
+            },
+            {
+                "repo_id": "lawfirm-os-private-candidate",
+                "repo_name": "LawFirm-os-private-candidate",
+                "owning_plane": "private_candidate",
+                "status": "active",
+            },
+        ],
+        "explicit_exclusions": [
+            {
+                "pattern": "LawFirm-os-private-candidate",
+                "reason": "fixture conflict",
+            }
+        ],
+    }
+    (substrate / "registry").mkdir()
+    (substrate / "registry" / "lawfirm-os-repo-registry.json").write_text(
+        json.dumps(registry) + "\n",
+        encoding="utf-8",
+    )
+
+    expected = "LawFirm-os-private-candidate: active repository may not be explicitly excluded"
+    for validator in (ONBOARD, VALIDATE):
+        proc = run(validator, "--workspace", workspace)
+        assert proc.returncode == 1
+        assert expected in proc.stderr
