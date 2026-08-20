@@ -394,7 +394,7 @@
                                                   "registry/registry-full-manifest.json",
                                                   "registry/governance-full-manifest.json"
                                               ],
-                          "provenance_note":  "Added 2026-06-29 so governance-facing changes cannot pass without map, discovery, PR-body, and validator alignment. Updated 2026-06-30 to include CI route/test-artifact generator and validator surfaces that now route pytest recommendations through the validation runtime wrapper.",
+                          "provenance_note":  "Added 2026-06-29 so governance-facing changes cannot pass without map, discovery, PR-body, and validator alignment. Updated 2026-06-30 to include CI route/test-artifact generator and validator surfaces that now route pytest recommendations through the validation runtime wrapper. Updated 2026-08-20 to record that explicit repository exclusions must be applied consistently by onboarding and test-artifact registration validators; excluded candidate repositories remain outside active LawFirm OS validation until reviewed onboarding and provenance decisions occur.",
                           "reason_for_inclusion":  "CI shape changes can change effective governance even when no policy text changes."
                       },
                       {
