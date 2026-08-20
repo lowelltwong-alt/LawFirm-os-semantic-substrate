@@ -1202,6 +1202,54 @@
       "full_regression_required": false
     },
     {
+      "test_id": "LawFirm-os-semantic-substrate.tests.test_real_work_and_simulation_boundaries.v1",
+      "language": "python",
+      "framework": "pytest",
+      "artifact_type": "pytest_file",
+      "path": "tests/test_real_work_and_simulation_boundaries.py",
+      "runner_command": "python scripts/run_full_pytest.py tests/test_real_work_and_simulation_boundaries.py -q",
+      "owning_repo": "LawFirm-os-semantic-substrate",
+      "owning_plane": "semantic_substrate",
+      "architecture_surface": [
+        "semantic_substrate_control_plane",
+        "governance_boundary",
+        "evidence_boundary"
+      ],
+      "risk_tier": "protected",
+      "change_classes_covered": [
+        "test_artifact_change",
+        "source_code_change",
+        "governance_doc_change"
+      ],
+      "trigger_patterns": [
+        "tests/test_real_work_and_simulation_boundaries.py",
+        "scripts/validate_real_work_and_simulation_boundaries.py",
+        "governance/LITIGATION_SIMULATION_ADAPTER_BOUNDARY.md",
+        "governance/REAL_WORK_SHADOW_MODE_PILOT_GATES.md"
+      ],
+      "markers": [
+        "pytest",
+        "semantic_substrate",
+        "governance_boundary",
+        "protected"
+      ],
+      "upstream_dependencies": [],
+      "downstream_dependencies": [
+        "LawFirm-os-intake"
+      ],
+      "must_run_when": [
+        "real-work or litigation-simulation boundary surfaces change",
+        "router selects the governance boundary surface"
+      ],
+      "must_not_validate": [
+        "live client or matter data",
+        "external writes, connector actions, or production authority",
+        "promotion authority without governance decision"
+      ],
+      "expected_runtime_seconds": 5,
+      "full_regression_required": false
+    },
+    {
       "test_id": "LawFirm-os-semantic-substrate.tests.test_skill_agent_control_plane.v1",
       "language": "python",
       "framework": "pytest",
