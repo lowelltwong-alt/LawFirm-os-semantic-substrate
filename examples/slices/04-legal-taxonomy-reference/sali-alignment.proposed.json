@@ -1,0 +1,120 @@
+{
+  "release": "v2.0.0",
+  "commit": "3f14749f5f24b207d6e8314443f02f6409ae8547",
+  "sha256": "6bf82a7b85f0ff6863e86e912fff54918303381413cb330217a46742e76d9a04",
+  "ontology": "https://github.com/sali-legal/LMSS/blob/3f14749f5f24b207d6e8314443f02f6409ae8547/LMSS.owl",
+  "license": "https://github.com/sali-legal/LMSS/blob/3f14749f5f24b207d6e8314443f02f6409ae8547/LICENSE",
+  "terms": [
+    {
+      "concept": "document-deposition",
+      "iri": "http://lmss.sali.org/R9lGDb8R7BEFaHDwz4Qe1vB",
+      "label": "Deposition Transcript",
+      "parent_iri": "http://lmss.sali.org/RCn0LN18AxXoXv6siHJN9XM",
+      "parent_label": "Transcripts and Recordings",
+      "relation": "exact",
+      "rationale": "Candidate term specifically denotes the transcript, not summaries or the event.",
+      "review_status": "proposed"
+    },
+    {
+      "concept": "work-deposition",
+      "iri": "http://lmss.sali.org/RCnTNVCQ1VndGxskbMoaLr8",
+      "label": "Deposition",
+      "parent_iri": "http://lmss.sali.org/R9XqhlDRrcrbyXu5YJVhaoW",
+      "parent_label": "Discovery Events",
+      "relation": "exact",
+      "rationale": "Both refer to the event. Do not equate with its record.",
+      "review_status": "proposed"
+    },
+    {
+      "concept": "practice-appellate",
+      "iri": "http://lmss.sali.org/RBKT1I6J8ce2Gs6xwwFcUTr",
+      "label": "Appellate Practice",
+      "parent_iri": "http://lmss.sali.org/R79LjWBKHCdmQKEW6zPY8Co",
+      "parent_label": "Litigation Practice",
+      "relation": "close",
+      "rationale": "Appellate work overlaps, exact scope and administrative appeals need review.",
+      "review_status": "proposed"
+    },
+    {
+      "concept": "practice-employment",
+      "iri": "http://lmss.sali.org/RCzvtNXIrDJF8xkmOoc6JKH",
+      "label": "Labor and Employment Law",
+      "parent_iri": "http://lmss.sali.org/RSYBzf149Mi5KE0YtmpUmr",
+      "parent_label": "Area of Law",
+      "relation": "close",
+      "rationale": "Substantial overlap; benefit and cross-practice boundaries need review.",
+      "review_status": "proposed"
+    },
+    {
+      "concept": "practice-privacy",
+      "iri": "http://lmss.sali.org/R8hJCf4Ih6iuFXsxeK7e6zU",
+      "label": "Privacy Law",
+      "parent_iri": "http://lmss.sali.org/R7kUD6H5adQ83mCKuHjT5JD",
+      "parent_label": "Information Security Law",
+      "relation": "close",
+      "rationale": "Scope varies across confidentiality, data protection and sector regulation.",
+      "review_status": "proposed"
+    },
+    {
+      "concept": "practice-insurance",
+      "iri": "http://lmss.sali.org/RDFhkhLQDtnN9dqbZSYSlpC",
+      "label": "Insurance Law",
+      "parent_iri": "http://lmss.sali.org/RSYBzf149Mi5KE0YtmpUmr",
+      "parent_label": "Area of Law",
+      "relation": "close",
+      "rationale": "Local scope is provisional; review before calling equivalent.",
+      "review_status": "proposed"
+    },
+    {
+      "concept": "practice-property",
+      "iri": "http://lmss.sali.org/RDFhkhLQDtnN9dqbZSYSlpC",
+      "label": "Insurance Law",
+      "parent_iri": "http://lmss.sali.org/RSYBzf149Mi5KE0YtmpUmr",
+      "parent_label": "Area of Law",
+      "relation": "broader-target",
+      "rationale": "Insurance Law covers more than first-party property work.",
+      "review_status": "proposed"
+    },
+    {
+      "concept": "issue-negligence",
+      "iri": "http://lmss.sali.org/R7nqxxlAfhYqqSA2UQ5UxpX",
+      "label": "Negligence",
+      "parent_iri": "http://lmss.sali.org/RCfunX4u69LUQ3gbhckE0oI",
+      "parent_label": "Negligence Claims",
+      "relation": "close",
+      "rationale": "Local issue may be an advisory topic, while the external term is in a claims branch.",
+      "review_status": "proposed"
+    },
+    {
+      "concept": "issue-med-mal",
+      "iri": "http://lmss.sali.org/R7athlXhsUuRtg7LvK0uUaF",
+      "label": "Medical Malpractice",
+      "parent_iri": "http://lmss.sali.org/R8nVhrBlasGIc7jxw1D0vbm",
+      "parent_label": "Medical Malpractice Claims",
+      "relation": "close",
+      "rationale": "External claim context is separate from advice about the underlying issue.",
+      "review_status": "proposed"
+    },
+    {
+      "concept": "work-acquisition-dd",
+      "iri": "http://lmss.sali.org/RXAOdy7NJAxWjMtDJP9Bw6",
+      "label": "Due Diligence",
+      "parent_iri": "http://lmss.sali.org/R9amI1PJs7oW7XvMDtXomF9",
+      "parent_label": "Mergers and Acquisitions (M&A) Events",
+      "relation": "close",
+      "rationale": "The external event is in the acquisition context; a generic vendor review is outside the local scope.",
+      "review_status": "proposed"
+    }
+  ],
+  "address": "/example/public/ontology/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-sali-alignment/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "ontology",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-sali-alignment",
+    "version": "v1"
+  }
+}

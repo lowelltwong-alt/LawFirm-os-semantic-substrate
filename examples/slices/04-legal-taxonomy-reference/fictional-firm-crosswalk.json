@@ -1,0 +1,272 @@
+{
+  "id": "fictional-firm",
+  "version": "2026-11-demo",
+  "mapping_version": "0.1.0",
+  "target_scheme": "lawfirm-reference-demo",
+  "target_version": "0.1.1",
+  "synthetic": true,
+  "codes": [
+    {
+      "code": "DOC-17",
+      "definition": "Written deposition transcript; excludes summaries and event records.",
+      "components": [
+        "document-kind"
+      ]
+    },
+    {
+      "code": "WORK-DEP",
+      "definition": "A deposition event was billed or logged as performed.",
+      "components": [
+        "event-kind"
+      ]
+    },
+    {
+      "code": "PREM-NSEC",
+      "definition": "Claim categorization for premises-security litigation; plaintiff or defense posture is recorded elsewhere.",
+      "components": [
+        "practice-kind"
+      ]
+    },
+    {
+      "code": "PROP-COV",
+      "definition": "Commercial or personal property policy coverage work.",
+      "components": [
+        "practice-kind"
+      ]
+    },
+    {
+      "code": "CARR-COV",
+      "definition": "Coverage work billed to a carrier; the billing code does not identify the represented client.",
+      "components": [
+        "practice-kind",
+        "billing-party"
+      ]
+    },
+    {
+      "code": "PRIV-AD",
+      "definition": "Privacy law advisory work; advisory scope is captured elsewhere.",
+      "components": [
+        "practice-kind"
+      ]
+    },
+    {
+      "code": "APPEAL-X",
+      "definition": "Appellate work in a court.",
+      "components": [
+        "practice-kind"
+      ]
+    },
+    {
+      "code": "GEN-DD",
+      "definition": "Due diligence in either acquisitions or vendor screening.",
+      "components": [
+        "event-kind"
+      ]
+    },
+    {
+      "code": "DOC-ALT",
+      "definition": "Second local code for written deposition transcript when no template was chosen.",
+      "components": [
+        "document-kind",
+        "template-rule"
+      ]
+    }
+  ],
+  "maps": [
+    {
+      "id": "map-doc",
+      "code": "DOC-17",
+      "components": [
+        {
+          "part": "document-kind",
+          "target": "document-deposition",
+          "relation": "exact"
+        }
+      ],
+      "unmapped": [],
+      "review_status": "synthetic-verified",
+      "rationale": "Fictional dictionary with declared scope and enumerated components."
+    },
+    {
+      "id": "map-event",
+      "code": "WORK-DEP",
+      "components": [
+        {
+          "part": "event-kind",
+          "target": "work-deposition",
+          "relation": "exact"
+        }
+      ],
+      "unmapped": [],
+      "review_status": "synthetic-verified",
+      "rationale": "Fictional dictionary with declared scope and enumerated components."
+    },
+    {
+      "id": "map-premises",
+      "code": "PREM-NSEC",
+      "components": [
+        {
+          "part": "practice-kind",
+          "target": "practice-premises",
+          "relation": "broader-target"
+        }
+      ],
+      "unmapped": [],
+      "review_status": "synthetic-verified",
+      "rationale": "Fictional dictionary with declared scope and enumerated components."
+    },
+    {
+      "id": "map-property",
+      "code": "PROP-COV",
+      "components": [
+        {
+          "part": "practice-kind",
+          "target": "practice-property",
+          "relation": "exact"
+        }
+      ],
+      "unmapped": [],
+      "review_status": "synthetic-verified",
+      "rationale": "Fictional dictionary with declared scope and enumerated components."
+    },
+    {
+      "id": "map-carrier",
+      "code": "CARR-COV",
+      "components": [
+        {
+          "part": "practice-kind",
+          "target": "practice-coverage",
+          "relation": "exact"
+        }
+      ],
+      "unmapped": [
+        "billing-party"
+      ],
+      "review_status": "synthetic-verified",
+      "rationale": "Fictional dictionary with declared scope and enumerated components."
+    },
+    {
+      "id": "map-privacy",
+      "code": "PRIV-AD",
+      "components": [
+        {
+          "part": "practice-kind",
+          "target": "practice-privacy",
+          "relation": "broader-target"
+        }
+      ],
+      "unmapped": [],
+      "review_status": "synthetic-verified",
+      "rationale": "Fictional dictionary with declared scope and enumerated components."
+    },
+    {
+      "id": "map-appeal",
+      "code": "APPEAL-X",
+      "components": [
+        {
+          "part": "practice-kind",
+          "target": "practice-appellate",
+          "relation": "broader-target"
+        }
+      ],
+      "unmapped": [],
+      "review_status": "synthetic-verified",
+      "rationale": "Fictional dictionary with declared scope and enumerated components."
+    },
+    {
+      "id": "map-diligence",
+      "code": "GEN-DD",
+      "components": [],
+      "unmapped": [
+        "event-kind"
+      ],
+      "review_status": "synthetic-verified",
+      "rationale": "Fictional dictionary with declared scope and enumerated components."
+    },
+    {
+      "id": "map-alt",
+      "code": "DOC-ALT",
+      "components": [
+        {
+          "part": "document-kind",
+          "target": "document-deposition",
+          "relation": "exact"
+        }
+      ],
+      "unmapped": [
+        "template-rule"
+      ],
+      "review_status": "synthetic-verified",
+      "rationale": "Fictional dictionary with declared scope and enumerated components."
+    }
+  ],
+  "assignments": [
+    {
+      "id": "a-practice",
+      "engagement": "underlying-defense",
+      "code": "PREM-NSEC",
+      "source_revision": "2026-11-demo",
+      "effective": "2026-06-01",
+      "observed": "2026-06-05"
+    },
+    {
+      "id": "a-transcript",
+      "engagement": "underlying-defense",
+      "code": "DOC-17",
+      "source_revision": "2026-11-demo",
+      "effective": "2026-06-01",
+      "observed": "2026-06-05"
+    },
+    {
+      "id": "a-deposition",
+      "engagement": "coverage-declaration",
+      "code": "WORK-DEP",
+      "source_revision": "2026-11-demo",
+      "effective": "2026-06-01",
+      "observed": "2026-06-05"
+    },
+    {
+      "id": "a-carrier-code",
+      "engagement": "coverage-declaration",
+      "code": "CARR-COV",
+      "source_revision": "2026-11-demo",
+      "effective": "2026-06-01",
+      "observed": "2026-06-05"
+    },
+    {
+      "id": "a-property",
+      "engagement": "first-party-advice",
+      "code": "PROP-COV",
+      "source_revision": "2026-11-demo",
+      "effective": "2026-06-01",
+      "observed": "2026-06-05"
+    },
+    {
+      "id": "a-privacy",
+      "engagement": "notice-advice",
+      "code": "PRIV-AD",
+      "source_revision": "2026-11-demo",
+      "effective": "2026-06-01",
+      "observed": "2026-06-05"
+    },
+    {
+      "id": "a-unknown",
+      "engagement": "notice-advice",
+      "code": "GEN-DD",
+      "source_revision": "2026-11-demo",
+      "effective": "2026-06-01",
+      "observed": "2026-06-05"
+    }
+  ],
+  "address": "/example/public/data/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-fictional-firm-crosswalk/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "data",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-fictional-firm-crosswalk",
+    "version": "v1"
+  }
+}

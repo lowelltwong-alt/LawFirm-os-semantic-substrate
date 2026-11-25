@@ -1,0 +1,245 @@
+{
+  "id": "lawfirm-reference-demo",
+  "version": "0.1.1",
+  "status": "synthetic-demonstration",
+  "sources": {
+    "lawfirm-reference-design-revised": "README.md"
+  },
+  "concepts": [
+    {
+      "id": "practice-tort",
+      "facet": "practice",
+      "label": "Tort litigation",
+      "definition": "Work involving an asserted civil tort claim.",
+      "inclusion": "Premises negligence action",
+      "exclusion": "A standalone coverage opinion",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-premises",
+      "facet": "practice",
+      "label": "Premises liability",
+      "definition": "Work involving a claimed duty tied to the condition, use, or security of a premises.",
+      "inclusion": "Negligent-security suit against a hotel",
+      "exclusion": "A hotel wage dispute",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active",
+      "broader": "practice-tort"
+    },
+    {
+      "id": "practice-insurance",
+      "facet": "practice",
+      "label": "Insurance law",
+      "definition": "Work addressing insurance rights, obligations, or relationships.",
+      "inclusion": "Interpretation of an insurer's obligations under a policy",
+      "exclusion": "A liability defense file whose only insurance fact is payment",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-coverage",
+      "facet": "practice",
+      "label": "Insurance coverage",
+      "definition": "Work examining whether and how a policy responds to a claim or loss.",
+      "inclusion": "Opinion on a water exclusion",
+      "exclusion": "Defending a hotel on the merits of a negligence claim",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active",
+      "broader": "practice-insurance"
+    },
+    {
+      "id": "practice-property",
+      "facet": "practice",
+      "label": "Property insurance coverage",
+      "definition": "Coverage work on an insurance policy covering property or related losses.",
+      "inclusion": "First-party warehouse flood coverage advice",
+      "exclusion": "Coverage for a third-party bodily-injury suit",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active",
+      "broader": "practice-coverage"
+    },
+    {
+      "id": "practice-employment",
+      "facet": "practice",
+      "label": "Labor and employment",
+      "definition": "Work addressing employment, labor relations, or employment-law obligations.",
+      "inclusion": "Defense of a wage-and-hour claim",
+      "exclusion": "Personal injury suit involving an employee unrelated to employment rights",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-privacy",
+      "facet": "practice",
+      "label": "Privacy law",
+      "definition": "Work addressing duties about personal information and privacy rights.",
+      "inclusion": "Advice on a customer privacy notice",
+      "exclusion": "Software license interpretation without privacy issues",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-appellate",
+      "facet": "practice",
+      "label": "Appellate practice",
+      "definition": "Legal work on the review of decisions in an appellate forum.",
+      "inclusion": "Appeal brief on a civil-rights decision",
+      "exclusion": "Pretrial motions in the original proceeding",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-transport",
+      "facet": "practice",
+      "label": "Transportation liability",
+      "definition": "Work involving legal liability from transportation operations.",
+      "inclusion": "Defense of a motor carrier in a collision claim",
+      "exclusion": "Property advice for a company that happens to own trucks",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active",
+      "broader": "practice-tort"
+    },
+    {
+      "id": "practice-products",
+      "facet": "practice",
+      "label": "Products liability",
+      "definition": "Work involving allegations of harm from a product subject to product liability claims.",
+      "inclusion": "Design defect action over an unsafe battery",
+      "exclusion": "Warranty advice with no liability dispute",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-professional",
+      "facet": "practice",
+      "label": "Professional liability",
+      "definition": "Work involving responsibility for the standard of professional services.",
+      "inclusion": "Defense of an accountant accused of audit malpractice",
+      "exclusion": "Payment dispute without any alleged professional duty",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-construction",
+      "facet": "practice",
+      "label": "Construction",
+      "definition": "Work addressing building, design or construction relationships and obligations.",
+      "inclusion": "Building envelope defect dispute",
+      "exclusion": "Slip-and-fall unrelated to construction work",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-healthcare",
+      "facet": "practice",
+      "label": "Healthcare",
+      "definition": "Work about healthcare provision, institutions or healthcare law.",
+      "inclusion": "Hospital privacy or facility regulatory advice",
+      "exclusion": "Routine lease advice for a commercial landlord without healthcare issues",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-government",
+      "facet": "practice",
+      "label": "Government and public entity",
+      "definition": "Work addressing public entity authority, obligations or liability.",
+      "inclusion": "City defense in a public employment or civil rights claim",
+      "exclusion": "Private contract matter involving no public entity or public power",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-commercial",
+      "facet": "practice",
+      "label": "Commercial disputes",
+      "definition": "Work involving disputes over commercial rights or obligations.",
+      "inclusion": "Shareholder dispute over director duties",
+      "exclusion": "Corporate due diligence before a proposed sale",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "practice-cyber",
+      "facet": "practice",
+      "label": "Cybersecurity",
+      "definition": "Work addressing security of systems or digital information.",
+      "inclusion": "Advising on response to a ransomware incident",
+      "exclusion": "Review of a privacy notice without a security issue",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "issue-negligence",
+      "facet": "issue",
+      "label": "Negligence",
+      "definition": "An asserted negligence claim or topic requiring legal review. Assertion status is separate.",
+      "inclusion": "A pleading alleges negligent conduct",
+      "exclusion": "An incident report without a legal allegation",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "issue-med-mal",
+      "facet": "issue",
+      "label": "Medical malpractice",
+      "definition": "A theory alleging breach of a healthcare professional standard of care.",
+      "inclusion": "Negligent surgery allegation",
+      "exclusion": "Inadequate facility security unrelated to professional care",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "issue-duty-defend",
+      "facet": "issue",
+      "label": "Duty to defend",
+      "definition": "An issue about an insurer's contractual defense obligation.",
+      "inclusion": "Declaratory action over duty to defend",
+      "exclusion": "A carrier invoice without an issue about its obligation",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "work-deposition",
+      "facet": "work-event",
+      "label": "Deposition",
+      "definition": "A deposition event involving recorded sworn testimony outside trial.",
+      "inclusion": "Witness deposition in discovery",
+      "exclusion": "Written transcript as a document",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "document-deposition",
+      "facet": "document",
+      "label": "Deposition transcript",
+      "definition": "A written transcript of deposition testimony.",
+      "inclusion": "Official written deposition transcript",
+      "exclusion": "Counsel's summary of a deposition",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    },
+    {
+      "id": "work-acquisition-dd",
+      "facet": "work-event",
+      "label": "Acquisition due diligence",
+      "definition": "An event in which information is investigated for a proposed acquisition.",
+      "inclusion": "Review of an acquisition target's material contracts",
+      "exclusion": "Vendor compliance review outside an acquisition",
+      "source": "lawfirm-reference-design-revised",
+      "status": "active"
+    }
+  ],
+  "address": "/example/public/ontology/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-practice-vocabulary/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "ontology",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-practice-vocabulary",
+    "version": "v1"
+  }
+}

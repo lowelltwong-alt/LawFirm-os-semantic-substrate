@@ -1,0 +1,535 @@
+{
+  "version": "draft-1",
+  "synthetic": true,
+  "matters": [
+    {
+      "id": "hotel-matter",
+      "incident": "hotel-incident",
+      "label": "One hotel incident, two adverse engagements"
+    },
+    {
+      "id": "warehouse-matter",
+      "incident": "warehouse-loss",
+      "label": "First-party property advice"
+    },
+    {
+      "id": "privacy-matter",
+      "incident": "notice-review",
+      "label": "Transactional boundary with privacy-notice counseling"
+    }
+  ],
+  "parties": [
+    {
+      "id": "our-firm",
+      "kind": "law-firm"
+    },
+    {
+      "id": "outside-firm",
+      "kind": "law-firm"
+    },
+    {
+      "id": "successor",
+      "kind": "law-firm"
+    },
+    {
+      "id": "carrier",
+      "kind": "insurer"
+    },
+    {
+      "id": "excess-carrier",
+      "kind": "insurer"
+    },
+    {
+      "id": "hotel",
+      "kind": "organization"
+    },
+    {
+      "id": "estate",
+      "kind": "person"
+    },
+    {
+      "id": "retailer",
+      "kind": "organization"
+    },
+    {
+      "id": "court",
+      "kind": "public-entity"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "defense-letter",
+      "kind": "engagement-letter",
+      "date": "2026-02-02",
+      "description": "Hotel retains our firm for the underlying negligent-security action and later appeal."
+    },
+    {
+      "id": "transfer-letter",
+      "kind": "engagement-letter",
+      "date": "2026-07-15",
+      "description": "Hotel retains successor counsel effective July 20. Existing firm's scope ends then."
+    },
+    {
+      "id": "defense-invoice",
+      "kind": "invoice",
+      "date": "2026-02-10",
+      "description": "Primary insurer paid for underlying defense."
+    },
+    {
+      "id": "collection-assignment",
+      "kind": "assignment",
+      "date": "2026-02-11",
+      "description": "Hotel issued the instruction to defense counsel."
+    },
+    {
+      "id": "coverage-letter",
+      "kind": "engagement-letter",
+      "date": "2026-02-04",
+      "description": "Primary insurer retains outside firm for a duty-to-defend declaration."
+    },
+    {
+      "id": "trial-pleading",
+      "kind": "pleading",
+      "date": "2026-02-03",
+      "description": "Trial paper lists estate as plaintiff and hotel as defendant."
+    },
+    {
+      "id": "appeal-docket",
+      "kind": "court-docket",
+      "date": "2026-06-04",
+      "description": "Appeal docket lists hotel as appellant and estate as appellee."
+    },
+    {
+      "id": "declaratory-docket",
+      "kind": "court-docket",
+      "date": "2026-02-12",
+      "description": "Declaratory docket lists the primary insurer as plaintiff and hotel as defendant."
+    },
+    {
+      "id": "primary-reservation",
+      "kind": "carrier-notice",
+      "date": "2026-02-09",
+      "description": "Primary insurer reserves rights on defense."
+    },
+    {
+      "id": "primary-denial",
+      "kind": "carrier-notice",
+      "date": "2026-03-05",
+      "description": "Primary insurer replaces its defense reservation with a denial notice."
+    },
+    {
+      "id": "excess-reservation",
+      "kind": "carrier-notice",
+      "date": "2026-02-16",
+      "description": "Excess carrier reserves rights under its separate policy."
+    },
+    {
+      "id": "primary-judgment",
+      "kind": "judgment",
+      "date": "2026-04-05",
+      "description": "Judgment says primary insurer owes a defense."
+    },
+    {
+      "id": "indemnity-reservation",
+      "kind": "carrier-notice",
+      "date": "2026-03-08",
+      "description": "One record describes a reservation for indemnity."
+    },
+    {
+      "id": "indemnity-denial",
+      "kind": "carrier-notice",
+      "date": "2026-03-08",
+      "description": "A separate, conflicting record describes denial of indemnity."
+    },
+    {
+      "id": "property-letter",
+      "kind": "engagement-letter",
+      "date": "2026-02-03",
+      "description": "Primary insurer retains our firm to advise on a warehouse flood claim."
+    },
+    {
+      "id": "property-docket-check",
+      "kind": "court-docket",
+      "date": "2026-02-20",
+      "description": "Synthetic filing check documents no filing as of this date. Limited to the stated forum and check scope."
+    },
+    {
+      "id": "privacy-letter",
+      "kind": "engagement-letter",
+      "date": "2026-03-01",
+      "description": "Retailer retains our firm for prospective privacy compliance advice."
+    }
+  ],
+  "engagements": [
+    {
+      "id": "underlying-defense",
+      "matter": "hotel-matter",
+      "service": "underlying-defense",
+      "period": {
+        "from": "2026-02-02"
+      }
+    },
+    {
+      "id": "coverage-declaration",
+      "matter": "hotel-matter",
+      "service": "coverage-litigation",
+      "period": {
+        "from": "2026-02-04"
+      }
+    },
+    {
+      "id": "first-party-advice",
+      "matter": "warehouse-matter",
+      "service": "coverage-advice",
+      "period": {
+        "from": "2026-02-03"
+      }
+    },
+    {
+      "id": "notice-advice",
+      "matter": "privacy-matter",
+      "service": "regulatory-advice",
+      "period": {
+        "from": "2026-03-01"
+      }
+    }
+  ],
+  "proceedings": [
+    {
+      "id": "tort-trial",
+      "matter": "hotel-matter",
+      "engagements": [
+        "underlying-defense"
+      ],
+      "forum": "state-trial-court",
+      "stage": "trial"
+    },
+    {
+      "id": "tort-appeal",
+      "matter": "hotel-matter",
+      "engagements": [
+        "underlying-defense"
+      ],
+      "forum": "state-appellate-court",
+      "stage": "appeal",
+      "prior": "tort-trial"
+    },
+    {
+      "id": "coverage-trial",
+      "matter": "hotel-matter",
+      "engagements": [
+        "coverage-declaration"
+      ],
+      "forum": "state-trial-court",
+      "stage": "trial"
+    }
+  ],
+  "policies": [
+    {
+      "id": "primary-policy",
+      "carrier": "carrier",
+      "line": "commercial-liability",
+      "layer": "primary"
+    },
+    {
+      "id": "excess-policy",
+      "carrier": "excess-carrier",
+      "line": "umbrella",
+      "layer": "excess"
+    },
+    {
+      "id": "warehouse-policy",
+      "carrier": "carrier",
+      "line": "commercial-property",
+      "layer": "primary"
+    }
+  ],
+  "roles": [
+    {
+      "engagement": "underlying-defense",
+      "party": "our-firm",
+      "role": "counsel",
+      "period": {
+        "from": "2026-02-02",
+        "until": "2026-07-20"
+      },
+      "evidence": "defense-letter",
+      "end_evidence": "transfer-letter",
+      "state": "affirmed"
+    },
+    {
+      "engagement": "underlying-defense",
+      "party": "successor",
+      "role": "counsel",
+      "period": {
+        "from": "2026-07-20"
+      },
+      "evidence": "transfer-letter",
+      "state": "affirmed"
+    },
+    {
+      "engagement": "underlying-defense",
+      "party": "hotel",
+      "role": "client",
+      "period": {
+        "from": "2026-02-02"
+      },
+      "evidence": "defense-letter",
+      "state": "affirmed"
+    },
+    {
+      "engagement": "underlying-defense",
+      "party": "carrier",
+      "role": "payer",
+      "period": {
+        "from": "2026-02-10"
+      },
+      "evidence": "defense-invoice",
+      "state": "affirmed"
+    },
+    {
+      "engagement": "underlying-defense",
+      "party": "hotel",
+      "role": "instructing-party",
+      "period": {
+        "from": "2026-02-02"
+      },
+      "evidence": "defense-letter",
+      "state": "affirmed"
+    },
+    {
+      "engagement": "coverage-declaration",
+      "party": "outside-firm",
+      "role": "counsel",
+      "period": {
+        "from": "2026-02-04"
+      },
+      "evidence": "coverage-letter",
+      "state": "affirmed"
+    },
+    {
+      "engagement": "coverage-declaration",
+      "party": "carrier",
+      "role": "client",
+      "period": {
+        "from": "2026-02-04"
+      },
+      "evidence": "coverage-letter",
+      "state": "affirmed"
+    },
+    {
+      "engagement": "underlying-defense",
+      "party": "hotel",
+      "role": "defendant",
+      "period": {
+        "from": "2026-02-03"
+      },
+      "evidence": "trial-pleading",
+      "state": "affirmed",
+      "proceeding": "tort-trial"
+    },
+    {
+      "engagement": "underlying-defense",
+      "party": "estate",
+      "role": "plaintiff",
+      "period": {
+        "from": "2026-02-03"
+      },
+      "evidence": "trial-pleading",
+      "state": "affirmed",
+      "proceeding": "tort-trial"
+    },
+    {
+      "engagement": "underlying-defense",
+      "party": "hotel",
+      "role": "appellant",
+      "period": {
+        "from": "2026-06-04"
+      },
+      "evidence": "appeal-docket",
+      "state": "affirmed",
+      "proceeding": "tort-appeal"
+    },
+    {
+      "engagement": "underlying-defense",
+      "party": "estate",
+      "role": "appellee",
+      "period": {
+        "from": "2026-06-04"
+      },
+      "evidence": "appeal-docket",
+      "state": "affirmed",
+      "proceeding": "tort-appeal"
+    },
+    {
+      "engagement": "coverage-declaration",
+      "party": "carrier",
+      "role": "plaintiff",
+      "period": {
+        "from": "2026-02-12"
+      },
+      "evidence": "declaratory-docket",
+      "state": "affirmed",
+      "proceeding": "coverage-trial"
+    },
+    {
+      "engagement": "coverage-declaration",
+      "party": "hotel",
+      "role": "defendant",
+      "period": {
+        "from": "2026-02-12"
+      },
+      "evidence": "declaratory-docket",
+      "state": "affirmed",
+      "proceeding": "coverage-trial"
+    },
+    {
+      "engagement": "first-party-advice",
+      "party": "our-firm",
+      "role": "counsel",
+      "period": {
+        "from": "2026-02-03"
+      },
+      "evidence": "property-letter",
+      "state": "affirmed"
+    },
+    {
+      "engagement": "first-party-advice",
+      "party": "carrier",
+      "role": "client",
+      "period": {
+        "from": "2026-02-03"
+      },
+      "evidence": "property-letter",
+      "state": "affirmed"
+    },
+    {
+      "engagement": "notice-advice",
+      "party": "our-firm",
+      "role": "counsel",
+      "period": {
+        "from": "2026-03-01"
+      },
+      "evidence": "privacy-letter",
+      "state": "affirmed"
+    },
+    {
+      "engagement": "notice-advice",
+      "party": "retailer",
+      "role": "client",
+      "period": {
+        "from": "2026-03-01"
+      },
+      "evidence": "privacy-letter",
+      "state": "affirmed"
+    }
+  ],
+  "coverage": [
+    {
+      "engagement": "coverage-declaration",
+      "policy": "primary-policy",
+      "issue": "duty-to-defend",
+      "actor": "carrier",
+      "kind": "position",
+      "value": "reserved",
+      "period": {
+        "from": "2026-02-09",
+        "until": "2026-03-05"
+      },
+      "evidence": "primary-reservation",
+      "end_evidence": "primary-denial"
+    },
+    {
+      "engagement": "coverage-declaration",
+      "policy": "primary-policy",
+      "issue": "duty-to-defend",
+      "actor": "carrier",
+      "kind": "position",
+      "value": "denied",
+      "period": {
+        "from": "2026-03-05"
+      },
+      "evidence": "primary-denial"
+    },
+    {
+      "engagement": "coverage-declaration",
+      "policy": "excess-policy",
+      "issue": "duty-to-defend",
+      "actor": "excess-carrier",
+      "kind": "position",
+      "value": "reserved",
+      "period": {
+        "from": "2026-02-16"
+      },
+      "evidence": "excess-reservation"
+    },
+    {
+      "engagement": "coverage-declaration",
+      "policy": "primary-policy",
+      "issue": "duty-to-defend",
+      "actor": "court",
+      "kind": "outcome",
+      "value": "owed",
+      "period": {
+        "from": "2026-04-05"
+      },
+      "evidence": "primary-judgment"
+    },
+    {
+      "engagement": "coverage-declaration",
+      "policy": "primary-policy",
+      "issue": "indemnity",
+      "actor": "carrier",
+      "kind": "position",
+      "value": "reserved",
+      "period": {
+        "from": "2026-03-08"
+      },
+      "evidence": "indemnity-reservation"
+    },
+    {
+      "engagement": "coverage-declaration",
+      "policy": "primary-policy",
+      "issue": "indemnity",
+      "actor": "carrier",
+      "kind": "position",
+      "value": "denied",
+      "period": {
+        "from": "2026-03-08"
+      },
+      "evidence": "indemnity-denial"
+    }
+  ],
+  "filing": [
+    {
+      "engagement": "first-party-advice",
+      "scope": "state-trial-court",
+      "state": "not-filed",
+      "period": {
+        "from": "2026-02-20",
+        "until": "2026-02-21"
+      },
+      "evidence": "property-docket-check"
+    },
+    {
+      "engagement": "notice-advice",
+      "scope": "engagement",
+      "state": "inapplicable",
+      "period": {
+        "from": "2026-03-01"
+      },
+      "evidence": "privacy-letter"
+    }
+  ],
+  "address": "/example/public/data/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-worked-matters/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "data",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-worked-matters",
+    "version": "v1"
+  }
+}

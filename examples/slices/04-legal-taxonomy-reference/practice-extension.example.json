@@ -1,0 +1,22 @@
+{
+  "id": "practice-environmental",
+  "facet": "practice",
+  "label": "Environmental and toxic tort",
+  "definition": "Work on alleged private-law injury or loss from contamination or toxic exposure.",
+  "inclusion": "Civil claim for alleged illness following solvent exposure.",
+  "exclusion": "Environmental permitting advice with no alleged tort claim.",
+  "source": "lawfirm-reference-design-revised",
+  "status": "active",
+  "broader": "practice-tort",
+  "address": "/example/public/ontology/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-practice-extension/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "ontology",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-practice-extension",
+    "version": "v1"
+  }
+}
