@@ -1,6 +1,6 @@
 {
   "id": "lawfirm-reference-demo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "status": "synthetic-demonstration",
   "sources": {
     "lawfirm-reference-design-revised": "README.md"
@@ -230,5 +230,16 @@
       "source": "lawfirm-reference-design-revised",
       "status": "active"
     }
-  ]
+  ],
+  "address": "/example/public/ontology/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-practice-vocabulary/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "ontology",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-practice-vocabulary",
+    "version": "v1"
+  }
 }

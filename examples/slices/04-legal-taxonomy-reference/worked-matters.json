@@ -520,5 +520,16 @@
       },
       "evidence": "privacy-letter"
     }
-  ]
+  ],
+  "address": "/example/public/data/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-worked-matters/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "data",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-worked-matters",
+    "version": "v1"
+  }
 }

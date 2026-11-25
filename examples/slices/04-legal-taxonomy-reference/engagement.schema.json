@@ -68,6 +68,12 @@
       "items": {
         "$ref": "#/$defs/filing"
       }
+    },
+    "address": {
+      "type": "string"
+    },
+    "address_struct": {
+      "type": "object"
     }
   },
   "required": [
@@ -438,5 +444,24 @@
         "evidence"
       ]
     }
+  },
+  "address": "/example/public/schema/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-engagement-schema/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "schema",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-engagement-schema",
+    "version": "v1"
+  },
+  "dependentRequired": {
+    "address": [
+      "address_struct"
+    ],
+    "address_struct": [
+      "address"
+    ]
   }
 }

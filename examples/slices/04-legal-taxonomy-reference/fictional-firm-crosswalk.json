@@ -3,7 +3,7 @@
   "version": "2026-11-demo",
   "mapping_version": "0.1.0",
   "target_scheme": "lawfirm-reference-demo",
-  "target_version": "0.1.0",
+  "target_version": "0.1.1",
   "synthetic": true,
   "codes": [
     {
@@ -257,5 +257,16 @@
       "effective": "2026-06-01",
       "observed": "2026-06-05"
     }
-  ]
+  ],
+  "address": "/example/public/data/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-fictional-firm-crosswalk/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "data",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-fictional-firm-crosswalk",
+    "version": "v1"
+  }
 }

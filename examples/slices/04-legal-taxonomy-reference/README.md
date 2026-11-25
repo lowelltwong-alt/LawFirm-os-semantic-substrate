@@ -35,8 +35,8 @@ The package is for technical and legal review. No canonical concept IDs or
 runtime integrations change. Attorney-adjudicated evaluation and a comparative
 search benchmark remain future work.
 
-## Version 0.2.0
+## Version 0.2.1
 
 This review candidate uses the two prior snapshots as reproducibility examples.
 It preserves the vocabulary and crosswalk truth of 0.1.0. The 0.1.1 snapshot
-is a separate synthetic withdrawal exercise. No canonical concept changes.
+is a separate synthetic withdrawal exercise. The 0.2.1 packaging revision adds the repository's example addresses. No canonical concept changes.

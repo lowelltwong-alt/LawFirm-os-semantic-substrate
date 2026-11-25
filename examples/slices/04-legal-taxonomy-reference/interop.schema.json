@@ -51,6 +51,12 @@
             "$ref": "#/$defs/concept"
           },
           "minItems": 1
+        },
+        "address": {
+          "type": "string"
+        },
+        "address_struct": {
+          "type": "object"
         }
       },
       "required": [
@@ -59,7 +65,15 @@
         "status",
         "sources",
         "concepts"
-      ]
+      ],
+      "dependentRequired": {
+        "address": [
+          "address_struct"
+        ],
+        "address_struct": [
+          "address"
+        ]
+      }
     },
     "concept": {
       "type": "object",
@@ -102,6 +116,12 @@
         },
         "replacement": {
           "$ref": "#/$defs/id"
+        },
+        "address": {
+          "type": "string"
+        },
+        "address_struct": {
+          "type": "object"
         }
       },
       "required": [
@@ -113,7 +133,15 @@
         "exclusion",
         "source",
         "status"
-      ]
+      ],
+      "dependentRequired": {
+        "address": [
+          "address_struct"
+        ],
+        "address_struct": [
+          "address"
+        ]
+      }
     },
     "sali": {
       "type": "object",
@@ -141,6 +169,12 @@
           "items": {
             "$ref": "#/$defs/alignment"
           }
+        },
+        "address": {
+          "type": "string"
+        },
+        "address_struct": {
+          "type": "object"
         }
       },
       "required": [
@@ -150,7 +184,15 @@
         "ontology",
         "license",
         "terms"
-      ]
+      ],
+      "dependentRequired": {
+        "address": [
+          "address_struct"
+        ],
+        "address_struct": [
+          "address"
+        ]
+      }
     },
     "alignment": {
       "type": "object",
@@ -232,6 +274,12 @@
           "items": {
             "$ref": "#/$defs/assignment"
           }
+        },
+        "address": {
+          "type": "string"
+        },
+        "address_struct": {
+          "type": "object"
         }
       },
       "required": [
@@ -244,7 +292,15 @@
         "codes",
         "maps",
         "assignments"
-      ]
+      ],
+      "dependentRequired": {
+        "address": [
+          "address_struct"
+        ],
+        "address_struct": [
+          "address"
+        ]
+      }
     },
     "definition": {
       "type": "object",
@@ -368,5 +424,16 @@
         "observed"
       ]
     }
+  },
+  "address": "/example/public/schema/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-interop-schema/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "schema",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-interop-schema",
+    "version": "v1"
   }
 }

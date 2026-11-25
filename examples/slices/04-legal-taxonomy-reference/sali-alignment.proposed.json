@@ -105,5 +105,16 @@
       "rationale": "The external event is in the acquisition context; a generic vendor review is outside the local scope.",
       "review_status": "proposed"
     }
-  ]
+  ],
+  "address": "/example/public/ontology/legal_taxonomy/reference_candidate/artifact/ART-taxonomy-sali-alignment/v1",
+  "address_struct": {
+    "environment": "example",
+    "authority_zone": "public",
+    "layer": "ontology",
+    "domain": "legal_taxonomy",
+    "module": "reference_candidate",
+    "object_type": "artifact",
+    "object_id": "ART-taxonomy-sali-alignment",
+    "version": "v1"
+  }
 }
