@@ -1,0 +1,442 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LawFirm OS engagement candidate exchange",
+  "description": "Synthetic-only candidate contract. References are local to one bundle. Evidence uses date-only closed-open validity.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "draft-1"
+    },
+    "synthetic": {
+      "const": true
+    },
+    "matters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/matter"
+      },
+      "minItems": 1
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/party"
+      },
+      "minItems": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      },
+      "minItems": 1
+    },
+    "engagements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/engagement"
+      },
+      "minItems": 1
+    },
+    "proceedings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/proceeding"
+      }
+    },
+    "policies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/policy"
+      }
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/role"
+      }
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/coverage"
+      }
+    },
+    "filing": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/filing"
+      }
+    }
+  },
+  "required": [
+    "version",
+    "synthetic",
+    "matters",
+    "parties",
+    "evidence",
+    "engagements",
+    "proceedings",
+    "policies",
+    "roles",
+    "coverage",
+    "filing"
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "$ref": "#/$defs/date"
+        },
+        "until": {
+          "$ref": "#/$defs/date"
+        }
+      },
+      "required": [
+        "from"
+      ]
+    },
+    "endEvidence": {
+      "$ref": "#/$defs/id"
+    },
+    "asOf": {
+      "$ref": "#/$defs/date"
+    },
+    "matter": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "incident": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "id",
+        "incident",
+        "label"
+      ]
+    },
+    "party": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "law-firm",
+            "organization",
+            "insurer",
+            "person",
+            "public-entity"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "engagement-letter",
+            "client-confirmation",
+            "appearance",
+            "invoice",
+            "assignment",
+            "court-docket",
+            "pleading",
+            "carrier-notice",
+            "judgment",
+            "stipulation"
+          ]
+        },
+        "date": {
+          "$ref": "#/$defs/date"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "date",
+        "description"
+      ]
+    },
+    "engagement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "matter": {
+          "$ref": "#/$defs/id"
+        },
+        "service": {
+          "enum": [
+            "underlying-defense",
+            "coverage-advice",
+            "coverage-litigation",
+            "appellate-advocacy",
+            "transactional-advice",
+            "regulatory-advice"
+          ]
+        },
+        "period": {
+          "$ref": "#/$defs/period"
+        }
+      },
+      "required": [
+        "id",
+        "matter",
+        "service",
+        "period"
+      ]
+    },
+    "proceeding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "matter": {
+          "$ref": "#/$defs/id"
+        },
+        "engagements": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "forum": {
+          "$ref": "#/$defs/id"
+        },
+        "stage": {
+          "enum": [
+            "trial",
+            "appeal",
+            "administrative"
+          ]
+        },
+        "prior": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "required": [
+        "id",
+        "matter",
+        "engagements",
+        "forum",
+        "stage"
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "carrier": {
+          "$ref": "#/$defs/id"
+        },
+        "line": {
+          "enum": [
+            "commercial-liability",
+            "commercial-property",
+            "umbrella",
+            "cyber",
+            "professional-liability"
+          ]
+        },
+        "layer": {
+          "enum": [
+            "primary",
+            "excess"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "carrier",
+        "line",
+        "layer"
+      ]
+    },
+    "role": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "engagement": {
+          "$ref": "#/$defs/id"
+        },
+        "proceeding": {
+          "$ref": "#/$defs/id"
+        },
+        "party": {
+          "$ref": "#/$defs/id"
+        },
+        "role": {
+          "enum": [
+            "counsel",
+            "client",
+            "payer",
+            "instructing-party",
+            "plaintiff",
+            "defendant",
+            "appellant",
+            "appellee"
+          ]
+        },
+        "state": {
+          "enum": [
+            "affirmed",
+            "disputed"
+          ]
+        },
+        "period": {
+          "$ref": "#/$defs/period"
+        },
+        "evidence": {
+          "$ref": "#/$defs/id"
+        },
+        "end_evidence": {
+          "$ref": "#/$defs/endEvidence"
+        }
+      },
+      "required": [
+        "engagement",
+        "party",
+        "role",
+        "state",
+        "period",
+        "evidence"
+      ]
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "engagement": {
+          "$ref": "#/$defs/id"
+        },
+        "policy": {
+          "$ref": "#/$defs/id"
+        },
+        "issue": {
+          "enum": [
+            "duty-to-defend",
+            "indemnity",
+            "property-loss",
+            "business-interruption"
+          ]
+        },
+        "actor": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "position",
+            "outcome"
+          ]
+        },
+        "value": {
+          "enum": [
+            "reserved",
+            "denied",
+            "accepted",
+            "owed",
+            "not-owed",
+            "settled"
+          ]
+        },
+        "period": {
+          "$ref": "#/$defs/period"
+        },
+        "evidence": {
+          "$ref": "#/$defs/id"
+        },
+        "end_evidence": {
+          "$ref": "#/$defs/endEvidence"
+        }
+      },
+      "required": [
+        "engagement",
+        "policy",
+        "issue",
+        "actor",
+        "kind",
+        "value",
+        "period",
+        "evidence"
+      ]
+    },
+    "filing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "engagement": {
+          "$ref": "#/$defs/id"
+        },
+        "scope": {
+          "$ref": "#/$defs/id"
+        },
+        "state": {
+          "enum": [
+            "filed",
+            "not-filed",
+            "inapplicable"
+          ]
+        },
+        "period": {
+          "$ref": "#/$defs/period"
+        },
+        "evidence": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "required": [
+        "engagement",
+        "scope",
+        "state",
+        "period",
+        "evidence"
+      ]
+    }
+  }
+}

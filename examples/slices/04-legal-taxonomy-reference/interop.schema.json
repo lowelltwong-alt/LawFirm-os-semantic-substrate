@@ -1,0 +1,372 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "s": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "maxLength": 64
+    },
+    "code": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9-]*$",
+      "maxLength": 48
+    },
+    "relation": {
+      "enum": [
+        "exact",
+        "close",
+        "broader-target",
+        "narrower-target",
+        "related"
+      ]
+    },
+    "vocabulary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "$ref": "#/$defs/s"
+        },
+        "status": {
+          "const": "synthetic-demonstration"
+        },
+        "sources": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/s"
+          }
+        },
+        "concepts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/concept"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "status",
+        "sources",
+        "concepts"
+      ]
+    },
+    "concept": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "facet": {
+          "enum": [
+            "practice",
+            "issue",
+            "work-event",
+            "document"
+          ]
+        },
+        "label": {
+          "$ref": "#/$defs/s"
+        },
+        "definition": {
+          "$ref": "#/$defs/s"
+        },
+        "inclusion": {
+          "$ref": "#/$defs/s"
+        },
+        "exclusion": {
+          "$ref": "#/$defs/s"
+        },
+        "source": {
+          "$ref": "#/$defs/id"
+        },
+        "status": {
+          "enum": [
+            "active",
+            "deprecated"
+          ]
+        },
+        "broader": {
+          "$ref": "#/$defs/id"
+        },
+        "replacement": {
+          "$ref": "#/$defs/id"
+        }
+      },
+      "required": [
+        "id",
+        "facet",
+        "label",
+        "definition",
+        "inclusion",
+        "exclusion",
+        "source",
+        "status"
+      ]
+    },
+    "sali": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "release": {
+          "$ref": "#/$defs/s"
+        },
+        "commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "ontology": {
+          "$ref": "#/$defs/s"
+        },
+        "license": {
+          "$ref": "#/$defs/s"
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/alignment"
+          }
+        }
+      },
+      "required": [
+        "release",
+        "commit",
+        "sha256",
+        "ontology",
+        "license",
+        "terms"
+      ]
+    },
+    "alignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "concept": {
+          "$ref": "#/$defs/id"
+        },
+        "iri": {
+          "$ref": "#/$defs/s"
+        },
+        "label": {
+          "$ref": "#/$defs/s"
+        },
+        "parent_iri": {
+          "$ref": "#/$defs/s"
+        },
+        "parent_label": {
+          "$ref": "#/$defs/s"
+        },
+        "relation": {
+          "$ref": "#/$defs/relation"
+        },
+        "rationale": {
+          "$ref": "#/$defs/s"
+        },
+        "review_status": {
+          "const": "proposed"
+        }
+      },
+      "required": [
+        "concept",
+        "iri",
+        "label",
+        "parent_iri",
+        "parent_label",
+        "relation",
+        "rationale",
+        "review_status"
+      ]
+    },
+    "crosswalk": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "version": {
+          "$ref": "#/$defs/s"
+        },
+        "mapping_version": {
+          "$ref": "#/$defs/s"
+        },
+        "target_scheme": {
+          "$ref": "#/$defs/id"
+        },
+        "target_version": {
+          "$ref": "#/$defs/s"
+        },
+        "synthetic": {
+          "const": true
+        },
+        "codes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/definition"
+          },
+          "minItems": 1
+        },
+        "maps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/map"
+          }
+        },
+        "assignments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assignment"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "mapping_version",
+        "target_scheme",
+        "target_version",
+        "synthetic",
+        "codes",
+        "maps",
+        "assignments"
+      ]
+    },
+    "definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/code"
+        },
+        "definition": {
+          "$ref": "#/$defs/s"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "required": [
+        "code",
+        "definition",
+        "components"
+      ]
+    },
+    "map": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "code": {
+          "$ref": "#/$defs/code"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/component"
+          }
+        },
+        "unmapped": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        },
+        "review_status": {
+          "enum": [
+            "synthetic-verified",
+            "proposed",
+            "withdrawn"
+          ]
+        },
+        "rationale": {
+          "$ref": "#/$defs/s"
+        }
+      },
+      "required": [
+        "id",
+        "code",
+        "components",
+        "unmapped",
+        "review_status",
+        "rationale"
+      ]
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "part": {
+          "$ref": "#/$defs/id"
+        },
+        "target": {
+          "$ref": "#/$defs/id"
+        },
+        "relation": {
+          "$ref": "#/$defs/relation"
+        }
+      },
+      "required": [
+        "part",
+        "target",
+        "relation"
+      ]
+    },
+    "assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "engagement": {
+          "$ref": "#/$defs/id"
+        },
+        "code": {
+          "$ref": "#/$defs/code"
+        },
+        "source_revision": {
+          "$ref": "#/$defs/s"
+        },
+        "effective": {
+          "type": "string",
+          "format": "date"
+        },
+        "observed": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "id",
+        "engagement",
+        "code",
+        "source_revision",
+        "effective",
+        "observed"
+      ]
+    }
+  }
+}
